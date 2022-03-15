@@ -33,7 +33,7 @@ export default function Topbar() {
                             fontWeight={700}
                         >
                             {category.map(({id, name}, idx) => (
-                                <Link href="#" underline="none" key={id} style={textColor}>
+                                <Link href="/goods" underline="none" key={id} style={textColor}>
                                     {name}
                                 </Link>
                             ))}

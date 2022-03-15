@@ -1,11 +1,10 @@
 import MainLayout from "Components/MainLayout"
+import GoodsLayout from "Goods/GoodsLayout"
 
 export default function Index() {
     return (
-        <div>
-            <MainLayout>
-                <></>
-            </MainLayout>
-        </div>
+        <MainLayout>
+            <GoodsLayout />
+        </MainLayout>
     )
 }
