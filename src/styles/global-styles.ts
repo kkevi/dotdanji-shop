@@ -1,5 +1,6 @@
 import {createGlobalStyle} from "styled-components"
 import {reset} from "styled-reset"
+import {WEB_FONT} from "./font-styles"
 
 export const GlobalStyle = createGlobalStyle`
     ${reset}
@@ -39,21 +40,6 @@ export const GlobalStyle = createGlobalStyle`
         -moz-appearance: textfield;
     }
 
-    /*font*/
-    @font-face {
-        font-family: 'Pretendard-Regular';
-        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-        font-weight: 400;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Chosunilbo_myungjo';  
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
-
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
@@ -67,15 +53,9 @@ export const GlobalStyle = createGlobalStyle`
     figure, figcaption, footer, header, hgroup, 
     menu, nav, output, ruby, section, summary,
     time, mark, audio, video, .MuiTypography-root{
-        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-    }
-    
-    .myungjo {
-        font-family: 'Chosunilbo_myungjo'
+        font-family: -apple-system, Roboto, 'Helvetica Neue', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
     }
 
-    .MuiTypography-body1 {
-        font-weight: 200
-    }
 
+    ${WEB_FONT}
 `
