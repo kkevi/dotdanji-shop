@@ -1,7 +1,12 @@
 import React from "react"
-import {Button, ButtonGroup, Container, IconButton, Link, Stack, useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
 import useStyles from "./styles"
+import router from "next/router"
+
+import {ButtonGroup, Container, IconButton, Link, Stack, useMediaQuery} from "@mui/material"
+import {useTheme} from "@mui/system"
+
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded"
 
 export default function Topbar() {
     const classes = useStyles()
@@ -23,10 +28,10 @@ export default function Topbar() {
                     <Stack direction="row" justifyContent="space-between" alignItems="center">
                         <div>
                             {/* TODO : 로고 화이트 버전으로 변경 필요 */}
-                            <img src="/images/logo.png" alt="" width="130px" />
+                            <img src="/images/logo3.png" alt="" width="130px" />
                         </div>
                         <Stack
-                            sx={{width: "40%"}}
+                            sx={{width: "40%", marginLeft: 20}}
                             direction="row"
                             spacing={4}
                             justifyContent="space-between"
@@ -43,8 +48,12 @@ export default function Topbar() {
                         </Stack>
                         <Stack>
                             <ButtonGroup size="small" disableElevation>
-                                <IconButton>로그인</IconButton>
-                                <Button style={textColor}>회원가입</Button>
+                                <IconButton sx={{marginRight: 2}} onClick={() => router.push("/")}>
+                                    <ShoppingCartRoundedIcon style={{color: "white", fontSize: "28px"}} />
+                                </IconButton>
+                                <IconButton onClick={() => router.push("/")}>
+                                    <AccountCircleIcon style={{color: "white", fontSize: "28px"}} />
+                                </IconButton>
                             </ButtonGroup>
                         </Stack>
                     </Stack>
