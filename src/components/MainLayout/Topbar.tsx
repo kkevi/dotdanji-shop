@@ -1,6 +1,5 @@
 import {Button, ButtonGroup, Container, Link, Stack, useMediaQuery} from "@mui/material"
 import {useTheme} from "@mui/system"
-import {FontFamilyName} from "styles/font-styles"
 import useStyles from "./styles"
 
 export default function Topbar() {
@@ -22,7 +21,7 @@ export default function Topbar() {
                         <div>
                             <img src="/images/logo.png" alt="" width="130px" />
                         </div>
-                        <Stack direction="row" spacing={4} fontWeight={700} fontFamily={FontFamilyName.bold}>
+                        <Stack direction="row" spacing={4} fontWeight={700}>
                             {category.map(({id, name}, idx) => (
                                 <Link href="#" underline="none" key={id}>
                                     {name}

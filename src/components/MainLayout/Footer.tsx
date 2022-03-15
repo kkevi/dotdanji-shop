@@ -26,7 +26,7 @@ export default function Footer() {
                     {smDown && <Divider orientation="horizontal" />}
                     <Stack spacing={2} my={smDown ? 3 : 0}>
                         <p>대표자 | 오홍석</p>
-                        <p>사업자 등록번호 | 12345678-12345678</p>
+                        <p>사업자 등록번호 | 456-88-01404</p>
                         <p>통신판매업 신고번호 | 12345678-12345678</p>
                     </Stack>
                     {smDown && <Divider orientation="horizontal" />}

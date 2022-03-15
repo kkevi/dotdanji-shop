@@ -1,6 +1,14 @@
 import {createTheme} from "@mui/material/styles"
 
 export const theme = createTheme({
+    typography: {
+        fontFamily: [
+            "NanumSquareRoundLight",
+            "NanumSquareRound",
+            "NanumSquareRoundBold",
+            "NanumSquareRoundExtraBold",
+        ].join(","),
+    },
     palette: {
         primary: {
             light: "#8A8EE1",

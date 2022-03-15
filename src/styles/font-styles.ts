@@ -1,30 +1,5 @@
-export const FontFamilyName = {light: "SBAggroL", normal: "SBAggroM", bold: "SBAggroB"}
-
 export const WEB_FONT = `
 
-   /* font - 샌드박스 어그로체 Light */
-    @font-face {
-        font-family: 'SBAggroL';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
-
-    /* font - 샌드박스 어그로체 Medium */
-    @font-face {
-        font-family: 'SBAggroM';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
-
-    /* font - 샌드박스 어그로체 Bold */
-    @font-face {
-        font-family: 'SBAggroB';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
 
     /* font 실제 적용 */
     html, body, div, span, applet, object, iframe,
@@ -40,11 +15,8 @@ export const WEB_FONT = `
     figure, figcaption, footer, header, hgroup, 
     menu, nav, output, ruby, section, summary,
     time, mark, audio, video, .MuiTypography-root {
-        font-family: SBAggroL;
+        font-family: NanumSquareRound;
     }
 
-    .MuiTypography-body1 {
-        font-weight: 200;
-    }
 
 `

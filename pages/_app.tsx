@@ -13,11 +13,9 @@ function MyApp({Component, pageProps}: AppProps) {
                 {/* favicon */}
                 {/* font */}
                 <link
+                    href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css"
                     rel="stylesheet"
-                    type="text/css"
-                    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css"
-                />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+                ></link>
             </Head>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
