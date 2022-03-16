@@ -1,35 +1,55 @@
 import React from "react"
-import Slider from "react-slick"
 
-export default function HomeSlider() {
-    const sliderSettings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-    }
+import {Typography, Stack, Button} from "@mui/material"
+import {makeStyles} from "@mui/styles"
+
+import ImageBox from "Components/ImageBox"
+
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+
+type HomeSliderProps = {
+    id: string
+    title: string
+    subTitle: string
+    image: string
+    url: string
+}
+
+const useStyles = makeStyles({
+    button: {
+        marginTop: 60,
+        width: 250,
+        padding: "16px 28px",
+        fontSize: 18,
+        color: "white",
+        border: "2px solid white",
+        "&:hover": {
+            backgroundColor: "rgba(250,251,253,0.3)",
+            color: "white",
+            fontWeight: 700,
+            border: "2px solid white",
+        },
+    },
+})
+
+export default function HomeSlider(props: HomeSliderProps) {
+    const {id, title, subTitle, image, url} = props
+    const classes = useStyles()
 
     return (
-        <Slider {...sliderSettings}>
-            <div>
-                <h3>1</h3>
-            </div>
-            <div>
-                <h3>2</h3>
-            </div>
-            <div>
-                <h3>3</h3>
-            </div>
-            <div>
-                <h3>4</h3>
-            </div>
-            <div>
-                <h3>5</h3>
-            </div>
-            <div>
-                <h3>6</h3>
-            </div>
-        </Slider>
+        <div style={{position: "relative"}}>
+            <Stack position="absolute" bottom={110} left={500} zIndex={10} fontWeight={800} color="white">
+                <Typography variant="h3">{title}</Typography>
+                <Typography variant="h5" mt={2}>
+                    {subTitle}
+                </Typography>
+
+                <Button variant="outlined" className={classes.button} onClick={() => {}}>
+                    자세히 보기
+                </Button>
+            </Stack>
+            <ImageBox height={720} src={image} />
+        </div>
     )
 }

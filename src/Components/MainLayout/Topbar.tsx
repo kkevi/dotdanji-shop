@@ -45,11 +45,10 @@ export default function Topbar() {
                 <Container maxWidth="lg" sx={{py: scrollPosition < 100 ? 4 : 1, transition: "0.5s"}}>
                     <Stack direction="row" justifyContent="space-between" alignItems="center">
                         <div>
-                            {/* TODO : 로고 화이트 버전으로 변경 필요 */}
                             <img src="/images/logo3.png" alt="" width="130px" />
                         </div>
                         <Stack
-                            sx={{width: "40%", marginLeft: 20}}
+                            sx={{width: "40%", marginLeft: 32}}
                             direction="row"
                             spacing={4}
                             justifyContent="space-between"
