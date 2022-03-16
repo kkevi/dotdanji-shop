@@ -1,11 +1,13 @@
 import {createStyles, makeStyles} from "@mui/styles"
+import {Theme} from "@mui/material"
 
-const styles = makeStyles(
+const styles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
+            display: "block",
+            position: "relative",
             flexShrink: 0,
             overflow: "hidden",
-            position: "relative",
             backgroundColor: "#eee",
         },
         image: {

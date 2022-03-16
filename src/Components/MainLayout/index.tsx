@@ -12,9 +12,7 @@ export default function MainLayout(props: Props) {
     return (
         <div>
             <Topbar />
-            <div style={{backgroundColor: bgcolor}}>
-                <Container maxWidth="lg">{children}</Container>
-            </div>
+            <div style={{backgroundColor: bgcolor}}>{children}</div>
             <Footer />
         </div>
     )
