@@ -4,7 +4,7 @@ import Slider from "react-slick"
 import {useTheme} from "@mui/styles"
 import {Button, Stack, Typography} from "@mui/material"
 
-import ImageBox from "Components/ImageBox"
+import ImageBox from "Components/image-box/ImageBox"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"

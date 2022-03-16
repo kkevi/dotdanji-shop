@@ -5,7 +5,7 @@ import {toast} from "react-toastify"
 import {GoodsItemProps} from "../GoodsType"
 //component
 import {IconButton, Stack, Typography, ButtonBase} from "@mui/material"
-import ImageBox from "Components/ImageBox"
+import ImageBox from "Components/image-box/ImageBox"
 //icon
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
@@ -19,7 +19,7 @@ type props = {
 const isLoggedIn = false
 
 export default function GoodsItem(props: props) {
-    const {id, imgUrl, name, price, sale, isFavor, isCart} = props.data
+    const {goodsId, categoryId, imgUrl, name, price, sale, isFavor, isCart} = props.data
     const classes = useStyles()
     const route = useRouter()
     //state
@@ -33,7 +33,7 @@ export default function GoodsItem(props: props) {
 
     //상세페이지 이동
     const onClickRouter = () => {
-        route.push(`/goods/${id}`)
+        route.push(`/goods/${categoryId}/${goodsId}`)
     }
 
     //찜하기 버튼 클릭
@@ -42,12 +42,12 @@ export default function GoodsItem(props: props) {
             return alert("로그인 후 이용이 가능합니다.")
         }
         setFavorState(it => !it)
-        doFavor(id, isFavor)
+        doFavor(goodsId, isFavor)
     }
 
     // 찜하기 저장 - 서버 전송
     const doFavor = useCallback(
-        async (id: string, newFavor: boolean) => {
+        async (goodsId: string, newFavor: boolean) => {
             setLoading(true)
             try {
                 let newFavorCount = 0
@@ -64,7 +64,7 @@ export default function GoodsItem(props: props) {
                 setLoading(false)
             }
         },
-        [id], //api
+        [goodsId], //api
     )
 
     //장바구니 버튼 클릭
@@ -72,7 +72,7 @@ export default function GoodsItem(props: props) {
         if (cartState) {
             return alert("이미 장바구니에 있는 상품입니다.")
         }
-        doCart(id)
+        doCart(goodsId)
     }
 
     // 장바구니 저장 - 서버 전송
@@ -89,7 +89,7 @@ export default function GoodsItem(props: props) {
                 setLoading(false)
             }
         },
-        [id], //api
+        [goodsId], //api
     )
 
     return (

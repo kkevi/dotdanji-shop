@@ -9,29 +9,40 @@ import {
     Typography,
     useTheme,
 } from "@mui/material"
-import {useState} from "react"
-import GoodsItem from "./GoodsItem"
-import {GoodsItemProps} from "./GoodsType"
+import {useEffect, useState} from "react"
+import GoodsItem from "./goods-item/GoodsItem"
+import {GoodsCategoryProps, GoodsItemProps} from "./GoodsType"
+//fake data
+import {GOODS_ITEMS_DATA, GOODS_CATEGORY_DATA} from "Components/fake-data"
 
-const GOODS_ITEM_DATA: GoodsItemProps[] = new Array(10).fill({
-    id: "fake-data",
-    imgUrl: "/images/demo.jpg",
-    name: "스토리셀프 교재 세트",
-    price: 10000,
-    sale: 10,
-    isFavor: false,
-})
+type Props = {
+    categoryId?: string | string[] | undefined
+}
 
-export default function GoodsLayout() {
+export default function GoodsLayout(props: Props) {
     const theme = useTheme()
-    const [goodsFilter, setGoodsFilter] = useState("newest")
-    const [goodsList, setGoodsList] = useState(GOODS_ITEM_DATA)
+    const {categoryId} = props
+    const [goodsFilter, setGoodsFilter] = useState<string>("newest")
+    const [categoryList, setCategoryList] = useState<GoodsCategoryProps[]>(GOODS_CATEGORY_DATA)
+    const [categoryTitle, setCategoryTitle] = useState<string>("")
+    const [goodsList, setGoodsList] = useState<GoodsItemProps[]>([])
+
     const goodsArr = [
         {name: "신상품순", value: "newest"},
         {name: "인기순", value: "topsellers"},
         {name: "높은가격순", value: "high"},
         {name: "낮은가격순", value: "low"},
     ]
+
+    useEffect(() => {
+        //최상단 title 표시
+        const category = categoryList.filter(it => it.categoryId === categoryId)[0] as GoodsCategoryProps
+        setCategoryTitle(category?.title)
+
+        //item list 불러오기
+        const goods = GOODS_ITEMS_DATA.filter(it => it.categoryId === categoryId) as GoodsItemProps[]
+        setGoodsList(goods)
+    }, [categoryId, goodsList])
 
     const onChangeSelect = (event: SelectChangeEvent) => {
         setGoodsFilter(event.target.value)
@@ -43,7 +54,7 @@ export default function GoodsLayout() {
             <Stack direction="row" justifyContent="space-between" alignItems="flex-end" mb={2}>
                 <Stack direction="row" alignItems="flex-end">
                     <Typography variant="h4" fontWeight="bold">
-                        교재
+                        {categoryTitle}
                     </Typography>
                     <Typography variant="body1" ml={1}>
                         [{goodsList.length}]
@@ -64,7 +75,7 @@ export default function GoodsLayout() {
 
             <Grid container spacing={3}>
                 {goodsList.map((data: GoodsItemProps, idx) => (
-                    <Grid item key={data.id + idx} lg={4} md={4} sm={6} xs={12}>
+                    <Grid item key={data.goodsId + idx} lg={4} md={4} sm={6} xs={12}>
                         <GoodsItem data={data} />
                     </Grid>
                 ))}
