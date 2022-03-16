@@ -1,9 +1,22 @@
+import {Typography} from "@mui/material"
 import ImageBox from "Components/ImageBox"
 
-export default function GoodsItem() {
+type Props = {
+    id: string
+    imgUrl: string
+    name: string
+    price: string
+}
+
+export default function GoodsItem(props: Props) {
+    const {id, imgUrl, name, price} = props
     return (
         <div>
-            <ImageBox src="/images/demo.jpg" height="400px" />
+            <ImageBox src={imgUrl} height="400px" />
+            <div>
+                <Typography>{price}</Typography>
+            </div>
+            <Typography>{name}</Typography>
         </div>
     )
 }
