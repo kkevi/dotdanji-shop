@@ -7,10 +7,11 @@ type Props = {
     src: string
     brightness?: number
     hoverEffects?: boolean
+    children?: React.ReactNode
 }
 
 export default function ImageBox(props: Props) {
-    const {width = "100%", height, src, brightness, hoverEffects = false} = props
+    const {width = "100%", height, src, brightness, hoverEffects = false, children} = props
     const classes = useStyles()
 
     return (
@@ -21,6 +22,7 @@ export default function ImageBox(props: Props) {
                 style={{filter: `brightness(${brightness})`}}
                 className={clsx({[classes.image]: true, [classes.hover]: hoverEffects})}
             />
+            {children}
         </div>
     )
 }

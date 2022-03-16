@@ -18,6 +18,7 @@ export default function Topbar() {
     const updateScroll = () => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop)
     }
+
     useEffect(() => {
         window.addEventListener("scroll", updateScroll)
     })
@@ -47,6 +48,7 @@ export default function Topbar() {
                         <div>
                             <img src="/images/logo3.png" alt="" width="130px" />
                         </div>
+
                         <Stack
                             sx={{width: "40%", marginLeft: 32}}
                             direction="row"
@@ -59,10 +61,12 @@ export default function Topbar() {
                                     {name}
                                 </Link>
                             ))}
+
                             <Link href="#" underline="none" style={textColor}>
                                 제휴&문의
                             </Link>
                         </Stack>
+
                         <Stack>
                             <ButtonGroup size="small" disableElevation>
                                 <IconButton sx={{marginRight: 2}} onClick={() => router.push("/")}>
