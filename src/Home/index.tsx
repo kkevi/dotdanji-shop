@@ -2,8 +2,11 @@ import React from "react"
 import Slider from "react-slick"
 import {Container, Typography, Stack} from "@mui/material"
 
+import ImageBox from "Components/ImageBox"
 import HomeSlider from "./home-slider/HomeSlider"
+import HomeVideo from "./home-video/HomeVideo"
 import VerticalSlider from "./vertical-slider/VerticalSlider"
+import NewArrival from "./new-arrival/NewArrival"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -81,7 +84,6 @@ export default function Home() {
 
     return (
         <div>
-            {/* <Container maxWidth="lg" sx={{py: 6.75}} /> */}
             {/* 메인 슬라이더 */}
             <Slider {...sliderSettings}>
                 {fakeHomeSliderData.map((itm, idx) => {
@@ -96,18 +98,22 @@ export default function Home() {
                     )
                 })}
             </Slider>
+
+            {/* 상단메인 */}
             <Container maxWidth="lg">
                 <Typography variant="h4" mt={10} fontWeight={800}>
-                    우리 아이가 좋아하는 이야기
+                    # 우리 아이가 좋아하는 이야기
                 </Typography>
                 <Stack mt={2} mb={6} direction="row" justifyContent="space-between" position="relative">
                     {/* 메인 비디오 재생 */}
-                    <div style={{width: 850, height: 450, backgroundColor: "pink"}}>video please</div>
+                    <div style={{width: 850, height: 450}}>
+                        <HomeVideo />
+                    </div>
 
-                    {/* 우측 세로 슬라이더 */}
+                    {/* 우측 세로 슬라이더 (이벤트) */}
                     <div
                         style={{
-                            width: 280,
+                            width: 320,
                             height: 650,
                             position: "absolute",
                             right: 0,
@@ -132,9 +138,29 @@ export default function Home() {
                 </Stack>
             </Container>
 
-            <Container maxWidth="xl">
-                <div style={{backgroundColor: "aqua", height: 560}}>working?</div>
+            {/* 신상품 */}
+            <NewArrival />
+
+            {/* 베스트 셀러 */}
+            <Container maxWidth="lg">
+                <Typography variant="h4" mt={20} fontWeight={800}>
+                    이 달의 베스트 셀러
+                </Typography>
+                {/* <Stack mt={2} mb={6} direction="row" justifyContent="space-between" position="relative">
+
+                </Stack> */}
             </Container>
+
+            {/* <Container maxWidth="xl">
+                <Stack style={{backgroundColor: "tomato", height: 560}} justifyContent="space-between" direction="row">
+                    <div style={{flex: 1.2}}>
+                        <ImageBox height={560} src="/images/fake/home-slider1.jpeg" />
+                    </div>
+                    <Stack style={{backgroundColor: "blue", flex: 0.8, height: 560}}>
+                        <div style={{backgroundColor: "red", height: 220}} />
+                    </Stack>
+                </Stack>
+            </Container> */}
         </div>
     )
 }
