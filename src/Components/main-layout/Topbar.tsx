@@ -1,20 +1,22 @@
 import React, {useEffect, useState} from "react"
 import useStyles from "./styles"
-import router from "next/router"
+import {useRouter} from "next/router"
 //ui components
-import {ButtonGroup, Container, IconButton, Link, Stack, useMediaQuery} from "@mui/material"
+import {Button, ButtonGroup, Container, Link, Stack, useMediaQuery} from "@mui/material"
 import {useTheme} from "@mui/system"
 //icon
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"
-import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded"
 //fake data
 import {GOODS_CATEGORY_DATA} from "Components/fake-data"
+import UserLoginButton from "./user-login-button/UserLoginButton"
+import ShopCartButton from "./shop-cart-button/ShopCartButton"
 
 export default function Topbar() {
     const classes = useStyles()
     const theme = useTheme()
     const smDown = useMediaQuery(theme.breakpoints.down("sm"))
+    const route = useRouter()
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)
+    const [badgeContent, setBadgeContent] = useState(1)
 
     //스크롤시, 스타일변경
     const [scrollPosition, setScrollPosition] = useState(0)
@@ -26,7 +28,11 @@ export default function Topbar() {
         window.addEventListener("scroll", updateScroll)
     })
 
-    const textColor = {color: "white"}
+    const textColor = {color: "white", fontWeight: 800, fontSize: 16}
+
+    const onClickCategorys = (categoryId: string) => {
+        route.push({pathname: "/goods", query: {categoryId: categoryId}})
+    }
 
     return (
         <div
@@ -44,7 +50,8 @@ export default function Topbar() {
                     <Stack direction="row" justifyContent="space-between" alignItems="center">
                         <div>
                             <Link href={"/"}>
-                                <img src="/images/logo3.png" alt="" width="130px" />
+                                <img src="/images/logo_new2.png" alt="" width="130px" />
+                                {/* <img src="/images/logo3.png" alt="" width="130px" /> */}
                             </Link>
                         </div>
 
@@ -56,29 +63,20 @@ export default function Topbar() {
                             fontWeight={700}
                         >
                             {category.map(({categoryId, title}, idx) => (
-                                <Link
-                                    href={`/goods/${categoryId}`}
-                                    underline="none"
-                                    key={categoryId + idx}
-                                    style={textColor}
-                                >
+                                <Button onClick={() => onClickCategorys(categoryId)} key={categoryId} style={textColor}>
                                     {title}
-                                </Link>
+                                </Button>
                             ))}
 
-                            <Link href="#" underline="none" style={textColor}>
+                            <Button onClick={() => route.push("/")} style={textColor}>
                                 제휴&문의
-                            </Link>
+                            </Button>
                         </Stack>
 
                         <Stack>
                             <ButtonGroup size="small" disableElevation>
-                                <IconButton sx={{marginRight: 2}} onClick={() => router.push("/")}>
-                                    <ShoppingCartRoundedIcon style={{color: "white", fontSize: "28px"}} />
-                                </IconButton>
-                                <IconButton onClick={() => router.push("/")}>
-                                    <AccountCircleIcon style={{color: "white", fontSize: "28px"}} />
-                                </IconButton>
+                                <ShopCartButton badgeContent={badgeContent} />
+                                <UserLoginButton />
                             </ButtonGroup>
                         </Stack>
                     </Stack>

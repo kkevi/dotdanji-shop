@@ -2,7 +2,7 @@ import {useCallback, useState} from "react"
 import {useRouter} from "next/router"
 import useStyles from "./styles"
 import {toast} from "react-toastify"
-import {GoodsItemProps} from "../GoodsType"
+import {GoodsItemProps} from "../goods-type"
 //component
 import {IconButton, Stack, Typography, ButtonBase} from "@mui/material"
 import ImageBox from "Components/image-box/ImageBox"
@@ -19,7 +19,7 @@ type props = {
 const isLoggedIn = false
 
 export default function GoodsItem(props: props) {
-    const {goodsId, categoryId, imgUrl, name, price, sale, isFavor, isCart} = props.data
+    const {goodsId, categoryId, thumnails, name, price, sale, isFavor, isCart} = props.data
     const classes = useStyles()
     const route = useRouter()
     //state
@@ -33,7 +33,7 @@ export default function GoodsItem(props: props) {
 
     //상세페이지 이동
     const onClickRouter = () => {
-        route.push(`/goods/${categoryId}/${goodsId}`)
+        route.push({pathname: "/goods/detail", query: {goodsId: goodsId}})
     }
 
     //찜하기 버튼 클릭
@@ -96,7 +96,7 @@ export default function GoodsItem(props: props) {
         <div className={classes.root}>
             <div className={classes.thumnail}>
                 <ButtonBase onClick={onClickRouter} disabled={disabled}>
-                    <ImageBox src={imgUrl} height="400px" />
+                    <ImageBox src={thumnails[0]} height="400px" />
                 </ButtonBase>
 
                 <Stack direction="row" position="absolute" bottom={0} right="1rem" zIndex={5} bgcolor="#fff">

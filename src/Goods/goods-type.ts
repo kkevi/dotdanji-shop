@@ -1,7 +1,8 @@
 export interface GoodsItemProps {
     goodsId: string
     categoryId: string
-    imgUrl: string
+    thumnails: string[]
+    option?: string[]
     name: string
     price: number
     sale: number

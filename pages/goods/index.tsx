@@ -1,12 +1,19 @@
+import MainLayout from "Components/main-layout/MainLayout"
+import GoodsLayout from "Goods"
 import {useRouter} from "next/router"
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
 
 export default function Index() {
     const router = useRouter()
-    const categoryId = router.query.categoryId
+    const [categoryId, setCategoryId] = useState<string | string[] | undefined>("")
 
     useEffect(() => {
-        router.push(`/goods/${categoryId}`)
-    }, [])
-    return null
+        setCategoryId(router.query.categoryId)
+    }, [router])
+
+    return (
+        <MainLayout>
+            <GoodsLayout categoryId={categoryId} />
+        </MainLayout>
+    )
 }

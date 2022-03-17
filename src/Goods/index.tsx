@@ -11,7 +11,7 @@ import {
 } from "@mui/material"
 import {useEffect, useState} from "react"
 import GoodsItem from "./goods-item/GoodsItem"
-import {GoodsCategoryProps, GoodsItemProps} from "./GoodsType"
+import {GoodsCategoryProps, GoodsItemProps} from "./goods-type"
 //fake data
 import {GOODS_ITEMS_DATA, GOODS_CATEGORY_DATA} from "Components/fake-data"
 
@@ -73,13 +73,21 @@ export default function GoodsLayout(props: Props) {
                 </Stack>
             </Stack>
 
-            <Grid container spacing={3}>
-                {goodsList.map((data: GoodsItemProps, idx) => (
-                    <Grid item key={data.goodsId + idx} lg={4} md={4} sm={6} xs={12}>
-                        <GoodsItem data={data} />
-                    </Grid>
-                ))}
-            </Grid>
+            {goodsList.length > 0 && (
+                <Grid container spacing={3}>
+                    {goodsList.map((data: GoodsItemProps, idx) => (
+                        <Grid item key={data.goodsId + idx} lg={4} md={4} sm={6} xs={12}>
+                            <GoodsItem data={data} />
+                        </Grid>
+                    ))}
+                </Grid>
+            )}
+
+            {goodsList.length === 0 && (
+                <Stack height="70vh" justifyContent="center" alignItems="center" bgcolor="#f9f9f9">
+                    <Typography sx={{opacity: 0.5}}>현재 상품이 준비중입니다.</Typography>
+                </Stack>
+            )}
         </Container>
     )
 }
