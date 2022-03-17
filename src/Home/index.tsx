@@ -2,11 +2,11 @@ import React from "react"
 import Slider from "react-slick"
 import {Container, Typography, Stack} from "@mui/material"
 
-import ImageBox from "Components/ImageBox"
 import HomeSlider from "./home-slider/HomeSlider"
 import HomeVideo from "./home-video/HomeVideo"
 import VerticalSlider from "./vertical-slider/VerticalSlider"
 import NewArrival from "./new-arrival/NewArrival"
+import BestSeller from "./best-seller/BestSeller"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -142,13 +142,11 @@ export default function Home() {
             <NewArrival />
 
             {/* 베스트 셀러 */}
-            <Container maxWidth="lg">
-                <Typography variant="h4" mt={20} fontWeight={800}>
-                    이 달의 베스트 셀러
+            <Container maxWidth="lg" sx={{marginBottom: 20}}>
+                <Typography variant="h4" mt={20} mb={2} fontWeight={800}>
+                    # 이 달의 인기 도서
                 </Typography>
-                {/* <Stack mt={2} mb={6} direction="row" justifyContent="space-between" position="relative">
-
-                </Stack> */}
+                <BestSeller />
             </Container>
 
             {/* <Container maxWidth="xl">
