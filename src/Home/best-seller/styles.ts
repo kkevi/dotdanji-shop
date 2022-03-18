@@ -25,7 +25,7 @@ const styles = makeStyles((theme: Theme) =>
             background: "rgba(0, 0, 0, 0)",
             transition: "background .2s linear",
             "&:hover": {
-                background: "rgba(0, 0, 0, 0.5)",
+                background: "rgba(0, 0, 0, 0.4)",
                 cursor: "pointer",
             },
         },
