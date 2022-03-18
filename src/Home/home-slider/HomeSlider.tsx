@@ -1,4 +1,5 @@
 import React from "react"
+import {useRouter} from "next/router"
 
 import {Typography, Stack, Button} from "@mui/material"
 import {makeStyles} from "@mui/styles"
@@ -36,6 +37,7 @@ const useStyles = makeStyles({
 export default function HomeSlider(props: HomeSliderProps) {
     const {id, title, subTitle, image, url} = props
     const classes = useStyles()
+    const router = useRouter()
 
     return (
         <div style={{position: "relative"}}>
@@ -45,7 +47,13 @@ export default function HomeSlider(props: HomeSliderProps) {
                     {subTitle}
                 </Typography>
 
-                <Button variant="outlined" className={classes.button} onClick={() => {}}>
+                <Button
+                    variant="outlined"
+                    className={classes.button}
+                    onClick={() => {
+                        router.push("/")
+                    }}
+                >
                     자세히 보기
                 </Button>
             </Stack>
