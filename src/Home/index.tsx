@@ -149,6 +149,14 @@ export default function Home() {
                 <BestSeller />
             </Container>
 
+            <div
+                style={{
+                    width: "100%",
+                    height: 150,
+                    backgroundColor: "#FAFBFD",
+                }}
+            ></div>
+            {/* 레이아웃 */}
             {/* <Container maxWidth="xl">
                 <Stack style={{backgroundColor: "tomato", height: 560}} justifyContent="space-between" direction="row">
                     <div style={{flex: 1.2}}>
