@@ -86,17 +86,16 @@ export default function Home() {
         <div>
             {/* 메인 슬라이더 */}
             <Slider {...sliderSettings}>
-                {fakeHomeSliderData.map((itm, idx) => {
-                    return (
-                        <HomeSlider
-                            id={itm.id}
-                            title={itm.title}
-                            subTitle={itm.subTitle}
-                            image={itm.image}
-                            url={itm.url}
-                        />
-                    )
-                })}
+                {fakeHomeSliderData.map((itm, idx) => (
+                    <HomeSlider
+                        key={itm.id}
+                        id={itm.id}
+                        title={itm.title}
+                        subTitle={itm.subTitle}
+                        image={itm.image}
+                        url={itm.url}
+                    />
+                ))}
             </Slider>
 
             {/* 상단메인 */}
@@ -121,18 +120,17 @@ export default function Home() {
                         }}
                     >
                         <Slider {...sliderSettings}>
-                            {fakeVerticalData.map((itm, idx) => {
-                                return (
-                                    <VerticalSlider
-                                        id={itm.id}
-                                        title={itm.title}
-                                        author={itm.author}
-                                        content={itm.content}
-                                        image={itm.image}
-                                        url={itm.url}
-                                    />
-                                )
-                            })}
+                            {fakeVerticalData.map((itm, idx) => (
+                                <VerticalSlider
+                                    key={itm.id}
+                                    id={itm.id}
+                                    title={itm.title}
+                                    author={itm.author}
+                                    content={itm.content}
+                                    image={itm.image}
+                                    url={itm.url}
+                                />
+                            ))}
                         </Slider>
                     </div>
                 </Stack>

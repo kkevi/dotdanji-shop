@@ -96,7 +96,7 @@ export default function GoodsItem(props: props) {
         <div className={classes.root}>
             <div className={classes.thumnail}>
                 <ButtonBase onClick={onClickRouter} disabled={disabled}>
-                    <ImageBox src={thumnails[0]} height="400px" />
+                    <ImageBox src={thumnails.images[0]} height="400px" />
                 </ButtonBase>
 
                 <Stack direction="row" position="absolute" bottom={0} right="1rem" zIndex={5} bgcolor="#fff">

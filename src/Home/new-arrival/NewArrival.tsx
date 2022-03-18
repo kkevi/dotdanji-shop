@@ -47,7 +47,7 @@ export default function NewArrival() {
                         {fakeNewArrivalData.map((itm, idx) => {
                             const hovering = hover === idx
                             return (
-                                <div onMouseEnter={e => setHover(idx)}>
+                                <div onMouseEnter={e => setHover(idx)} key={itm.id}>
                                     <Stack
                                         width={350}
                                         style={{borderTop: `2px solid ${theme.palette.primary.light}`, paddingTop: 16}}
