@@ -43,7 +43,7 @@ export default function LoginSection() {
     return (
         <Stack justifyContent="center" alignItems="flex-start" padding={20} height={"100%"}>
             <img src="/images/logo_new3.png" style={{height: 35}} />
-            <Typography mt={2} variant="h4" fontWeight={700}>
+            <Typography mt={4} variant="h4" fontWeight={700}>
                 다시 만나서 반가워요!
             </Typography>
             <Typography sx={{mt: 0.5}} variant="subtitle2" color="#757575">
@@ -69,7 +69,7 @@ export default function LoginSection() {
                 className={classes.outlinedButton}
                 variant="outlined"
                 fullWidth
-                onClick={() => router.push("/")}
+                onClick={() => router.push("/signup")}
             >
                 아직 계정이 없으신가요?
             </Button>
