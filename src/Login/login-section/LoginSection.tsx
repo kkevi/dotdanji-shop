@@ -1,13 +1,15 @@
-import React from "react"
+import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {Button, Stack, TextField, Typography, Divider, Link} from "@mui/material"
 
-import styled from "styled-components"
 import useStyles from "./styles"
 
 export default function LoginSection() {
     const classes = useStyles()
     const router = useRouter()
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
     const socialLogin = [
         {
             id: "naver",
@@ -29,17 +31,6 @@ export default function LoginSection() {
         },
     ]
 
-    const WhiteBorderTextField = styled(TextField)`
-        & label.Mui-focused {
-            color: black;
-        }
-        & .MuiOutlinedInput-root {
-            &.Mui-focused fieldset {
-                border-color: black;
-            }
-        }
-    `
-
     return (
         <Stack justifyContent="center" alignItems="flex-start" padding={20} height={"100%"}>
             <img src="/images/logo_new3.png" style={{height: 35}} />
@@ -49,8 +40,24 @@ export default function LoginSection() {
             <Typography sx={{mt: 0.5}} variant="subtitle2" color="#757575">
                 심키즈 계정으로 로그인하고 다양한 이야기를 읽어보세요.
             </Typography>
-            <WhiteBorderTextField sx={{mt: 6}} label="이메일" variant="outlined" fullWidth />
-            <WhiteBorderTextField sx={{mt: 2}} label="비밀번호" variant="outlined" fullWidth />
+            <TextField
+                className={classes.textField}
+                sx={{mt: 6}}
+                label="이메일"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                variant="outlined"
+                fullWidth
+            />
+            <TextField
+                className={classes.textField}
+                sx={{mt: 2}}
+                label="비밀번호"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                variant="outlined"
+                fullWidth
+            />
             <Button sx={{mt: 3, mb: 3}} className={classes.containedButton} variant="contained" fullWidth>
                 로그인 하기
             </Button>

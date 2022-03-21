@@ -1,30 +1,51 @@
-import React from "react"
+import React, {useState} from "react"
 
-import {Button, Stack, TextField, Typography, FormControlLabel, Checkbox, FormGroup, Link, Divider} from "@mui/material"
-import styled from "styled-components"
+import {Stack, Button, TextField} from "@mui/material"
+import useStyles from "../styles"
 
 type SignUpSection2Prop = {
+    email: string
+    setEmail: (val: string) => void
     setStep: (val: number) => void
 }
 
 export default function SignUpSection2(prop: SignUpSection2Prop) {
-    const {setStep} = prop
+    const {email, setEmail, setStep} = prop
+    const classes = useStyles()
+    const [helperText, setHelperText] = useState("이메일을 입력해주세요.")
 
-    const WhiteBorderTextField = styled(TextField)`
-        & label.Mui-focused {
-            color: black;
+    const regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
+    const isValidEmail = (email: string) => {
+        if (regEmail.test(email)) {
+            setStep(2)
+        } else {
+            setHelperText("올바른 이메일 형식이 아닙니다.")
         }
-        & .MuiOutlinedInput-root {
-            &.Mui-focused fieldset {
-                border-color: black;
-            }
-        }
-    `
+    }
 
     return (
-        <div>
-            <WhiteBorderTextField sx={{mt: 6}} label="이메일" variant="outlined" fullWidth />
-            <WhiteBorderTextField sx={{mt: 2}} label="비밀번호" variant="outlined" fullWidth />
-        </div>
+        <Stack width={"100%"}>
+            <TextField
+                sx={{mt: 6}}
+                className={classes.textField}
+                error={helperText === "올바른 이메일 형식이 아닙니다." ? true : false}
+                label="이메일"
+                helperText={helperText}
+                variant="outlined"
+                fullWidth
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+            />
+
+            <Button
+                sx={{mt: 6, mb: 3}}
+                className={classes.containedButton}
+                variant="contained"
+                fullWidth
+                onClick={() => isValidEmail(email)}
+            >
+                동의하고 가입하기
+            </Button>
+        </Stack>
     )
 }

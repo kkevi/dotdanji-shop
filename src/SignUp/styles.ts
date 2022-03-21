@@ -32,6 +32,14 @@ const styles = makeStyles((theme: Theme) =>
             textDecoration: "underline",
             cursor: "pointer",
         },
+        textField: {
+            "& label.Mui-focused": {
+                color: "black",
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "black",
+            },
+        },
     }),
 )
 

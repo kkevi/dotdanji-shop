@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react"
+import React, {useState, useEffect} from "react"
 import {Button, Stack, Typography, FormControlLabel, Checkbox, FormGroup, Divider} from "@mui/material"
 
 import useStyles from "../styles"
@@ -9,10 +9,10 @@ type SignUpSection1Props = {
 
 export default function SignUpSection1(prop: SignUpSection1Props) {
     const checkedLists = [
-        {id: 0, value: "age", title: "[필수] 만 14세 이상", link: false, required: true},
-        {id: 1, value: "terms", title: "[필수] 이용약관 동의", link: true, required: true},
-        {id: 2, value: "privacy", title: "[필수] 개인정보 처리방침 동의", link: true, required: true},
-        {id: 3, value: "marketing", title: "[선택] 광고성 정보 수신 및 마케팅 활용 동의", link: true, required: false},
+        {id: 0, value: "age", title: "[필수] 만 14세 이상", link: false},
+        {id: 1, value: "terms", title: "[필수] 이용약관 동의", link: true},
+        {id: 2, value: "privacy", title: "[필수] 개인정보 처리방침 동의", link: true},
+        {id: 3, value: "marketing", title: "[선택] 광고성 정보 수신 및 마케팅 활용 동의", link: true},
     ]
 
     const [isAllChecked, setIsAllChecked] = useState(false)
@@ -46,8 +46,6 @@ export default function SignUpSection1(prop: SignUpSection1Props) {
 
     // 하나라도 체크 해제할 경우 전체 동의 해제
     useEffect(() => {
-        console.log("checkedItems", checkedItems)
-
         if (checkedItems.length >= 4) {
             setIsAllChecked(true)
         } else {

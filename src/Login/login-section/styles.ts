@@ -21,6 +21,14 @@ const styles = makeStyles((theme: Theme) =>
             borderRadius: "50%",
             objectFit: "contain",
         },
+        textField: {
+            "& label.Mui-focused": {
+                color: "black",
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "black",
+            },
+        },
         containedButton: {
             height: 56,
             backgroundColor: "black",
