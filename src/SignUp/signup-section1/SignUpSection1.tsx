@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useCallback} from "react"
 import {Button, Stack, Typography, FormControlLabel, Checkbox, FormGroup, Divider} from "@mui/material"
 
 import useStyles from "../styles"
@@ -44,13 +44,21 @@ export default function SignUpSection1(prop: SignUpSection1Props) {
         }
     }
 
+    // 하나라도 체크 해제할 경우 전체 동의 해제
     useEffect(() => {
+        console.log("checkedItems", checkedItems)
+
         if (checkedItems.length >= 4) {
             setIsAllChecked(true)
         } else {
             setIsAllChecked(false)
         }
     }, [checkedItems])
+
+    const avaliable1 = checkedItems.includes("age")
+    const avaliable2 = checkedItems.includes("terms")
+    const avaliable3 = checkedItems.includes("privacy")
+    const avaliableAll = avaliable1 && avaliable2 && avaliable3
 
     return (
         <>
@@ -93,11 +101,14 @@ export default function SignUpSection1(prop: SignUpSection1Props) {
 
             <Button
                 sx={{mt: 6, mb: 3}}
+                disabled={!avaliableAll}
                 className={classes.containedButton}
                 variant="contained"
                 fullWidth
                 onClick={() => {
-                    setStep(1)
+                    if (avaliableAll) {
+                        setStep(1)
+                    } else return
                 }}
             >
                 동의하고 가입하기
