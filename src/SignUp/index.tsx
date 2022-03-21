@@ -5,10 +5,13 @@ import {Stack, Typography} from "@mui/material"
 import ImageBox from "Components/image-box/ImageBox"
 import SignUpSection1 from "./signup-section1/SignUpSection1"
 import SignUpSection2 from "./signup-section2/SignUpSection2"
+import SignUpSection3 from "./signup-section3/SignUpSection3"
+// import SignUpSection4 from "./signup-section4/SignUpSection4"
 
 export default function SignUp() {
     const [step, setStep] = useState(0)
     const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
     const section = [
         {
@@ -21,7 +24,7 @@ export default function SignUp() {
         },
         {
             subTitle: "로그인에 사용할 비밀번호를 입력해주세요.",
-            render: <SignUpSection1 setStep={setStep} />,
+            render: <SignUpSection3 password={password} setPassword={setPassword} setStep={setStep} />,
         },
         {
             subTitle: "",
