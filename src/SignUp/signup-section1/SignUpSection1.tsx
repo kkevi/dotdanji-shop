@@ -3,22 +3,27 @@ import {Button, Stack, Typography, FormControlLabel, Checkbox, FormGroup, Divide
 
 import useStyles from "../styles"
 
+import TermsDialog from "./TermsDialog"
+
 type SignUpSection1Props = {
     setStep: (val: number) => void
 }
 
 export default function SignUpSection1(prop: SignUpSection1Props) {
+    const {setStep} = prop
+    const classes = useStyles()
+
+    const [isAllChecked, setIsAllChecked] = useState(false)
+    const [checkedItems, setCheckedItems] = useState<string[]>([])
+    const [dialogId, setDialogId] = useState(0)
+    const [visibleDialog, setVisibleDialog] = useState(false)
+
     const checkedLists = [
         {id: 0, value: "age", title: "[필수] 만 14세 이상", link: false},
         {id: 1, value: "terms", title: "[필수] 이용약관 동의", link: true},
         {id: 2, value: "privacy", title: "[필수] 개인정보 처리방침 동의", link: true},
         {id: 3, value: "marketing", title: "[선택] 광고성 정보 수신 및 마케팅 활용 동의", link: true},
     ]
-
-    const [isAllChecked, setIsAllChecked] = useState(false)
-    const [checkedItems, setCheckedItems] = useState<string[]>([])
-    const {setStep} = prop
-    const classes = useStyles()
 
     // 모두 체크할 경우
     const onCheckedAll = (checked: boolean) => {
@@ -60,6 +65,8 @@ export default function SignUpSection1(prop: SignUpSection1Props) {
 
     return (
         <>
+            {visibleDialog ? <TermsDialog id={dialogId} setVisibleDialog={setVisibleDialog} /> : null}
+
             <Stack width={"100%"} mt={4}>
                 <FormControlLabel
                     control={
@@ -87,10 +94,18 @@ export default function SignUpSection1(prop: SignUpSection1Props) {
                                     label={<Typography variant="subtitle2">{itm.title}</Typography>}
                                 />
                                 {itm.link ? (
-                                    <Typography variant="subtitle2" className={classes.link} ml={-1} onClick={() => {}}>
+                                    <Typography
+                                        variant="subtitle2"
+                                        className={classes.link}
+                                        ml={-1}
+                                        onClick={() => {
+                                            setDialogId(itm.id)
+                                            setVisibleDialog(true)
+                                        }}
+                                    >
                                         보기
                                     </Typography>
-                                ) : undefined}
+                                ) : null}
                             </Stack>
                         )
                     })}
