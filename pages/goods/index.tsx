@@ -4,12 +4,12 @@ import {useRouter} from "next/router"
 import {useEffect, useState} from "react"
 
 export default function Index() {
-    const router = useRouter()
+    const route = useRouter()
     const [categoryId, setCategoryId] = useState<string | string[] | undefined>("")
 
     useEffect(() => {
-        setCategoryId(router.query.categoryId)
-    }, [router])
+        setCategoryId(route.query.categoryId)
+    }, [route])
 
     return (
         <MainLayout>

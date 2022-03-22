@@ -6,7 +6,7 @@ import useStyles from "./styles"
 
 export default function LoginSection() {
     const classes = useStyles()
-    const router = useRouter()
+    const route = useRouter()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -65,7 +65,7 @@ export default function LoginSection() {
                 {socialLogin.map((itm, idx) => {
                     return (
                         <div className={classes.socialLogin} style={{backgroundColor: itm.color}}>
-                            <img className={classes.socialImage} src={itm.image} onClick={() => router.push(itm.url)} />
+                            <img className={classes.socialImage} src={itm.image} onClick={() => route.push(itm.url)} />
                         </div>
                     )
                 })}
@@ -76,7 +76,7 @@ export default function LoginSection() {
                 className={classes.outlinedButton}
                 variant="outlined"
                 fullWidth
-                onClick={() => router.push("/signup")}
+                onClick={() => route.push("/signup")}
             >
                 아직 계정이 없으신가요?
             </Button>

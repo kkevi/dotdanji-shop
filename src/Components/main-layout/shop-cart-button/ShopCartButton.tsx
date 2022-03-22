@@ -7,10 +7,10 @@ type Props = {
 }
 
 export default function ShopCartButton(props: Props) {
-    const router = useRouter()
+    const route = useRouter()
     const {badgeContent} = props
     return (
-        <IconButton sx={{marginRight: 2}} onClick={() => router.push("/cart")}>
+        <IconButton sx={{marginRight: 2}} onClick={() => route.push("/cart")}>
             <Badge
                 badgeContent={badgeContent}
                 color="primary"

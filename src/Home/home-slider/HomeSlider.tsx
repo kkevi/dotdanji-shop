@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 export default function HomeSlider(props: HomeSliderProps) {
     const {id, title, subTitle, image, url} = props
     const classes = useStyles()
-    const router = useRouter()
+    const route = useRouter()
 
     return (
         <div style={{position: "relative"}}>
@@ -51,7 +51,7 @@ export default function HomeSlider(props: HomeSliderProps) {
                     variant="outlined"
                     className={classes.button}
                     onClick={() => {
-                        router.push("/")
+                        route.push("/")
                     }}
                 >
                     자세히 보기
