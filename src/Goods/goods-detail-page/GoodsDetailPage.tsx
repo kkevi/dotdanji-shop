@@ -1,17 +1,5 @@
-import {useEffect, useState} from "react"
-import {
-    Button,
-    ButtonGroup,
-    Container,
-    Divider,
-    IconButton,
-    InputLabel,
-    MenuItem,
-    Select,
-    SelectChangeEvent,
-    Stack,
-    Typography,
-} from "@mui/material"
+import React, {useState} from "react"
+import {Button, Divider, IconButton, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
 import {GOODS_ITEMS_DATA} from "Components/fake-data"
 import {GoodsItemProps, Options} from "Goods/goods-type"
@@ -23,6 +11,8 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 //icon
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded"
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
+import AddRoundedIcon from "@mui/icons-material/AddRounded"
 
 type Props = {
     goodsId: string | string[] | undefined
@@ -43,6 +33,8 @@ export default function GoodsDetailPage(props: Props) {
     const defaultOption = "옵션 선택"
     const [selectValue, setSelectValue] = useState(defaultOption)
     const [selectValueList, setSelectValueList] = useState<OptionCart[]>([])
+
+    // 옵션 선택
     const onSelectOption = (event: SelectChangeEvent) => {
         const {value} = event.target
         setSelectValue(value)
@@ -50,20 +42,24 @@ export default function GoodsDetailPage(props: Props) {
         onAddOptionList(value)
     }
 
-    //옵션 배열 검사
+    // 옵션 배열 검사
     const onAddOptionList = (id: string) => {
         const search = selectValueList.findIndex(it => it.option.optionId === id)
         if (search === -1) {
+            // 옵션 선택하여 추가
             const arr = options
             const newItm = arr.filter(it => it.optionId === id)[0]
             selectValueList.push({option: newItm, count: 1})
         } else {
+            // 이미 추가되어있는 옵션 추가 선택
+            console.log("추가 되어있는데 또 누른 곳")
         }
     }
 
-    //옵션 배열 삭제
+    // 옵션 배열 삭제
     const onDeleteOption = (optionId: string) => {
         setSelectValueList(prev => prev.filter(it => it.option.optionId !== optionId))
+        setSelectValue("옵션 선택")
     }
 
     return (
@@ -96,10 +92,11 @@ export default function GoodsDetailPage(props: Props) {
 
                 {/* right box */}
                 <div className={classes.infoBox}>
-                    <Typography variant="h4" fontWeight={800}>
+                    <Typography fontSize={28} fontWeight={800}>
                         {name}
                     </Typography>
-                    <Typography variant="h5" mt={3} mb={10}>
+                    <Typography variant="subtitle2">#태그태그 #태그태그</Typography>
+                    <Typography fontSize={20} mt={3} mb={8}>
                         {infoText}
                     </Typography>
 
@@ -111,13 +108,14 @@ export default function GoodsDetailPage(props: Props) {
                             variant="standard"
                             onChange={onSelectOption}
                             fullWidth
+                            sx={{marginBottom: 3}}
                         >
                             <MenuItem value={defaultOption} sx={{opacity: 0.6}}>
-                                <Typography variant="h6">{defaultOption}</Typography>
+                                <Typography fontSize={20}>{defaultOption}</Typography>
                             </MenuItem>
                             {options.map((option, idx) => (
                                 <MenuItem key={option.optionId} value={option.optionId}>
-                                    <Typography variant="h6">{option.text}</Typography>
+                                    <Typography fontSize={20}>{option.text}</Typography>
                                 </MenuItem>
                             ))}
                         </Select>
@@ -125,38 +123,86 @@ export default function GoodsDetailPage(props: Props) {
 
                     {/* option list */}
                     {selectValueList.length > 0 && (
-                        <Stack my={3} width="100%">
-                            {selectValueList.map(({option, count}, idx) => (
-                                <Stack
-                                    key={option.optionId}
-                                    bgcolor="rgba(255,255,255,0.7)"
-                                    my={0.5}
-                                    width="100%"
-                                    p={2}
-                                    direction="row"
-                                    justifyContent="space-between"
-                                    alignItems="center"
-                                >
-                                    <Typography>{option.text}</Typography>
-                                    <Typography>{count}</Typography>
-                                    <div>
-                                        <IconButton onClick={() => onDeleteOption(option.optionId)}>
-                                            <ClearRoundedIcon />
-                                        </IconButton>
-                                    </div>
-                                </Stack>
-                            ))}
-                        </Stack>
+                        <>
+                            <Stack mb={3} width="100%">
+                                {selectValueList.map(({option, count}, idx) => (
+                                    <Stack
+                                        key={option.optionId}
+                                        bgcolor="rgba(255,255,255,0.7)"
+                                        my={0.5}
+                                        width="100%"
+                                        p={1}
+                                        px={1.5}
+                                        direction="column"
+                                        alignItems="flex-start"
+                                    >
+                                        <Typography fontSize={14}>{option.text}</Typography>
+                                        <Stack className={classes.rootStack}>
+                                            <Typography fontSize={18} fontWeight={700}>
+                                                {option.value.toLocaleString("ko")}원
+                                            </Typography>
+                                            <Stack direction="row" alignItems="center">
+                                                <Stack className={classes.countButtonBox}>
+                                                    <IconButton>
+                                                        <RemoveRoundedIcon />
+                                                    </IconButton>
+                                                    <Divider orientation="vertical" flexItem />
+                                                    <Typography width={40} align="center">
+                                                        {count}
+                                                    </Typography>
+                                                    <Divider orientation="vertical" flexItem />
+                                                    <IconButton>
+                                                        <AddRoundedIcon />
+                                                    </IconButton>
+                                                </Stack>
+
+                                                <IconButton onClick={() => onDeleteOption(option.optionId)}>
+                                                    <ClearRoundedIcon />
+                                                </IconButton>
+                                            </Stack>
+                                        </Stack>
+                                    </Stack>
+                                ))}
+                            </Stack>
+                            <Divider orientation="horizontal" flexItem sx={{backgroundColor: "#726C60"}} />
+                        </>
                     )}
 
-                    <ButtonGroup disableElevation variant="contained" size="large" fullWidth>
-                        <Button>
+                    <Stack mt={2} className={classes.rootStack} justifyContent="flex-start !important">
+                        <Typography fontSize={13} width={"20%"} fontWeight={700}>
+                            배송비
+                        </Typography>
+                        <Typography fontSize={13} fontWeight={700} color="#726C60">
+                            50,000원 이상 구매 시, 무료배송 (미만 시 3,000원 발생)
+                        </Typography>
+                    </Stack>
+                    <Stack my={2} className={classes.rootStack} justifyContent="flex-start !important">
+                        <Typography fontSize={13} width={"20%"} fontWeight={700}>
+                            배송예정일
+                        </Typography>
+                        <Typography fontSize={13} fontWeight={700} color="#726C60">
+                            1일 이내 출고
+                        </Typography>
+                    </Stack>
+
+                    <Divider orientation="horizontal" flexItem sx={{backgroundColor: "#726C60"}} />
+                    <Stack mt={4} className={classes.rootStack}>
+                        <Typography variant="h6" fontWeight={700}>
+                            총 상품금액
+                        </Typography>
+                        <Typography variant="h6" fontWeight={700}>
+                            123원
+                        </Typography>
+                    </Stack>
+
+                    <Stack className={classes.rootStack}>
+                        <Button variant="contained" sx={{height: 55}} fullWidth>
                             <Typography variant="h6">장바구니 담기</Typography>
                         </Button>
-                        <Button>
+                        <Button variant="contained" sx={{height: 55}} fullWidth>
                             <Typography variant="h6">바로 구매하기</Typography>
                         </Button>
-                    </ButtonGroup>
+                    </Stack>
                 </div>
             </Stack>
 
