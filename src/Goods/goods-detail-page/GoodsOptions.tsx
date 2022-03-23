@@ -12,7 +12,6 @@ type Props = {
     option: any
     count: number
     price: number
-    // setPrice: (val: number) => void
     selectValueList: any
     setSelectValueList: (val: any) => void
     onDeleteOption: (val: string) => void

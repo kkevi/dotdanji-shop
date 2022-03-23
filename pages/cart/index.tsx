@@ -1,10 +1,10 @@
 import MainLayout from "Components/main-layout/MainLayout"
-import CartLayout from "Cart"
+import Cart from "Cart"
 
 export default function Index() {
     return (
         <MainLayout>
-            <CartLayout />
+            <Cart />
         </MainLayout>
     )
 }

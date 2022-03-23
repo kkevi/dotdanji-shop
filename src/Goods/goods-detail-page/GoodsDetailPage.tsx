@@ -11,6 +11,8 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
+import {useRouter} from "next/router"
+
 type Props = {
     goodsId: string | string[] | undefined
 }
@@ -23,6 +25,7 @@ type OptionCart = {
 
 export default function GoodsDetailPage(props: Props) {
     const classes = useStyles()
+    const route = useRouter()
     const {goodsId} = props
     const [goodsItemData, setGoodsItemData] = useState<GoodsItemProps>(GOODS_ITEMS_DATA[0])
     const {name, thumnails, infoText, options = [], price} = goodsItemData
@@ -51,7 +54,7 @@ export default function GoodsDetailPage(props: Props) {
             selectValueList.push({option: newItm, price: Number(newItm.value), count: 1})
         } else {
             // 이미 추가되어있는 옵션 추가 선택
-            console.log("추가 되어있는데 또 누른 곳")
+            alert("이미 선택 되어있는 옵션입니다. 수량변경을 통해 개수를 조절 해주세요.")
         }
     }
 
@@ -61,16 +64,20 @@ export default function GoodsDetailPage(props: Props) {
         setSelectValue("옵션 선택")
     }
 
+    // 옵션 값이 바뀔 때마다 가격 변동
     useEffect(() => {
+        let cost = 0
         const prices = selectValueList.map((itm, idx) => {
             return itm.price
         })
-
-        let cost = 0
         prices.forEach(itm => {
             cost += itm
             setTotalPrice(cost)
         })
+
+        if (selectValueList.length < 1) {
+            setTotalPrice(0)
+        }
     }, [onSelectOption || selectValueList])
 
     return (
@@ -148,7 +155,7 @@ export default function GoodsDetailPage(props: Props) {
                                     />
                                 ))}
                             </Stack>
-                            <Divider orientation="horizontal" flexItem sx={{backgroundColor: "#726C60"}} />
+                            <Divider orientation="horizontal" flexItem sx={{backgroundColor: "rgba(0, 0, 0, .4)"}} />
                         </>
                     )}
 
@@ -171,7 +178,7 @@ export default function GoodsDetailPage(props: Props) {
                     </Stack>
 
                     {/* 합계금액 */}
-                    <Divider orientation="horizontal" flexItem sx={{backgroundColor: "#726C60"}} />
+                    <Divider orientation="horizontal" flexItem sx={{backgroundColor: "rgba(0, 0, 0, .4)"}} />
                     <Stack mt={4} className={classes.rootStack}>
                         <Typography variant="h6" fontWeight={700}>
                             총 상품금액
@@ -183,10 +190,19 @@ export default function GoodsDetailPage(props: Props) {
 
                     {/* 구매버튼 */}
                     <Stack className={classes.rootStack}>
-                        <Button variant="contained" sx={{height: 55}} fullWidth>
+                        <Button
+                            variant="contained"
+                            sx={{height: 55}}
+                            fullWidth
+                            onClick={() => {
+                                if (selectValueList.length < 1) {
+                                    alert("옵션을 선택 해주세요.")
+                                } else route.push("/cart")
+                            }}
+                        >
                             <Typography variant="h6">장바구니 담기</Typography>
                         </Button>
-                        <Button variant="contained" sx={{height: 55}} fullWidth>
+                        <Button variant="contained" sx={{height: 55}} fullWidth onClick={() => {}}>
                             <Typography variant="h6">바로 구매하기</Typography>
                         </Button>
                     </Stack>
