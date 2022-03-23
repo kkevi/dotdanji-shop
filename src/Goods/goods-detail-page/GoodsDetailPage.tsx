@@ -61,9 +61,17 @@ export default function GoodsDetailPage(props: Props) {
         setSelectValue("옵션 선택")
     }
 
-    // useEffect(() => {
-    //     setTotalPrice(prev => prev + newPrice)
-    // }, [selectValue || totalPrice || newPrice])
+    useEffect(() => {
+        const prices = selectValueList.map((itm, idx) => {
+            return itm.price
+        })
+
+        let cost = 0
+        prices.forEach(itm => {
+            cost += itm
+            setTotalPrice(cost)
+        })
+    }, [onSelectOption || selectValueList])
 
     return (
         <div className={classes.root}>
