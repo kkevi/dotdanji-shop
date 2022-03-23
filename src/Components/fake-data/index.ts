@@ -8,7 +8,7 @@ export const GOODS_ITEMS_DATA: GoodsItemProps[] = new Array(10).fill({
         bgColor: "#FFD059",
     },
     options: [
-        {optionId: "opt0", text: "교재 세트", value: 0},
+        {optionId: "opt0", text: "교재 세트", value: 5000},
         {optionId: "opt1", text: "교재 7권 + e-book 세트", value: 10000},
         {optionId: "opt2", text: "교재 10권 + e-book 세트", value: 20000},
     ],

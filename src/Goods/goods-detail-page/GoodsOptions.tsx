@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import {Divider, IconButton, Stack, Typography} from "@mui/material"
 //components
 import useStyles from "./style"
@@ -11,6 +11,8 @@ type Props = {
     idx: number
     option: any
     count: number
+    price: number
+    // setPrice: (val: number) => void
     selectValueList: any
     setSelectValueList: (val: any) => void
     onDeleteOption: (val: string) => void
@@ -18,24 +20,22 @@ type Props = {
 
 export default function GoodsOptions(props: Props) {
     const classes = useStyles()
-    const {idx, option, count, selectValueList, setSelectValueList, onDeleteOption} = props
+    const {idx, option, count, price, selectValueList, setSelectValueList, onDeleteOption} = props
 
     const findIndex = selectValueList.findIndex(opt => opt.id === option.id)
     let copyOption = [...selectValueList]
 
-    const onClickReduce = (count: number) => {
+    const onClickReduce = (count: number, value: number, price: number) => {
         if (count === 1) return
         if (findIndex !== -1) {
-            console.log("copyOption", copyOption)
-            copyOption[idx] = {...copyOption[idx], count: count - 1}
+            copyOption[idx] = {...copyOption[idx], price: price - value, count: count - 1}
         }
 
         setSelectValueList(copyOption)
     }
-    const onClickAdd = (count: number) => {
+    const onClickAdd = (count: number, value: number) => {
         if (findIndex !== -1) {
-            console.log("copyOption", copyOption)
-            copyOption[idx] = {...copyOption[idx], count: count + 1}
+            copyOption[idx] = {...copyOption[idx], price: value * (count + 1), count: count + 1}
         }
 
         setSelectValueList(copyOption)
@@ -57,14 +57,17 @@ export default function GoodsOptions(props: Props) {
                 <Stack direction="column">
                     <Typography fontSize={14}>{option.text}</Typography>
                     <Typography mt={0.5} fontSize={18} fontWeight={700}>
-                        {option.value.toLocaleString("ko")}원
+                        {price.toLocaleString("ko")}원
                     </Typography>
                 </Stack>
 
                 {/* 상품수량조절 */}
                 <Stack direction="row" alignItems="center">
                     <Stack className={classes.countButtonBox}>
-                        <IconButton disabled={count === 1 ? true : false} onClick={() => onClickReduce(count)}>
+                        <IconButton
+                            disabled={count === 1 ? true : false}
+                            onClick={() => onClickReduce(count, option.value, price)}
+                        >
                             <RemoveRoundedIcon />
                         </IconButton>
                         <Divider orientation="vertical" flexItem />
@@ -72,7 +75,7 @@ export default function GoodsOptions(props: Props) {
                             {count}
                         </Typography>
                         <Divider orientation="vertical" flexItem />
-                        <IconButton onClick={() => onClickAdd(count)}>
+                        <IconButton onClick={() => onClickAdd(count, option.value)}>
                             <AddRoundedIcon />
                         </IconButton>
                     </Stack>

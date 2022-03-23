@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {Button, Divider, IconButton, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
+import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
 import {GOODS_ITEMS_DATA} from "Components/fake-data"
 import {GoodsItemProps, Options} from "Goods/goods-type"
@@ -17,6 +17,7 @@ type Props = {
 
 type OptionCart = {
     option: Options
+    price: number
     count: number
 }
 
@@ -30,7 +31,7 @@ export default function GoodsDetailPage(props: Props) {
     const defaultOption = "옵션 선택"
     const [selectValue, setSelectValue] = useState(defaultOption)
     const [selectValueList, setSelectValueList] = useState<OptionCart[]>([])
-    let coast
+    const [totalPrice, setTotalPrice] = useState(0)
 
     // 옵션 선택
     const onSelectOption = (event: SelectChangeEvent) => {
@@ -38,8 +39,6 @@ export default function GoodsDetailPage(props: Props) {
         setSelectValue(value)
         if (value === defaultOption) return
         onAddOptionList(value)
-        // console.log("value", value)
-        // console.log("selectValueList", selectValueList[selectValueList.length - 1]?.count)
     }
 
     // 옵션 배열 검사
@@ -49,7 +48,7 @@ export default function GoodsDetailPage(props: Props) {
             // 옵션 선택하여 추가
             const arr = options
             const newItm = arr.filter(it => it.optionId === id)[0]
-            selectValueList.push({option: newItm, count: 1})
+            selectValueList.push({option: newItm, price: Number(newItm.value), count: 1})
         } else {
             // 이미 추가되어있는 옵션 추가 선택
             console.log("추가 되어있는데 또 누른 곳")
@@ -62,9 +61,9 @@ export default function GoodsDetailPage(props: Props) {
         setSelectValue("옵션 선택")
     }
 
-    useEffect(() => {
-        console.log("changed")
-    }, [selectValueList])
+    // useEffect(() => {
+    //     setTotalPrice(prev => prev + newPrice)
+    // }, [selectValue || totalPrice || newPrice])
 
     return (
         <div className={classes.root}>
@@ -129,11 +128,12 @@ export default function GoodsDetailPage(props: Props) {
                     {selectValueList.length > 0 && (
                         <>
                             <Stack mb={3} width="100%">
-                                {selectValueList.map(({option, count}, idx) => (
+                                {selectValueList.map(({option, count, price}, idx) => (
                                     <GoodsOptions
                                         idx={idx}
                                         option={option}
                                         count={count}
+                                        price={price}
                                         selectValueList={selectValueList}
                                         setSelectValueList={setSelectValueList}
                                         onDeleteOption={onDeleteOption}
@@ -169,7 +169,7 @@ export default function GoodsDetailPage(props: Props) {
                             총 상품금액
                         </Typography>
                         <Typography variant="h6" fontWeight={700}>
-                            123원
+                            {totalPrice.toLocaleString("ko")} 원
                         </Typography>
                     </Stack>
 
