@@ -1,0 +1,87 @@
+import React, {useState} from "react"
+import {Divider, IconButton, Stack, Typography} from "@mui/material"
+//components
+import useStyles from "./style"
+//icon
+import ClearRoundedIcon from "@mui/icons-material/ClearRounded"
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
+import AddRoundedIcon from "@mui/icons-material/AddRounded"
+
+type Props = {
+    idx: number
+    option: any
+    count: number
+    selectValueList: any
+    setSelectValueList: (val: any) => void
+    onDeleteOption: (val: string) => void
+}
+
+export default function GoodsOptions(props: Props) {
+    const classes = useStyles()
+    const {idx, option, count, selectValueList, setSelectValueList, onDeleteOption} = props
+
+    const findIndex = selectValueList.findIndex(opt => opt.id === option.id)
+    let copyOption = [...selectValueList]
+
+    const onClickReduce = (count: number) => {
+        if (count === 1) return
+        if (findIndex !== -1) {
+            console.log("copyOption", copyOption)
+            copyOption[idx] = {...copyOption[idx], count: count - 1}
+        }
+
+        setSelectValueList(copyOption)
+    }
+    const onClickAdd = (count: number) => {
+        if (findIndex !== -1) {
+            console.log("copyOption", copyOption)
+            copyOption[idx] = {...copyOption[idx], count: count + 1}
+        }
+
+        setSelectValueList(copyOption)
+    }
+
+    return (
+        <Stack
+            key={option.optionId}
+            bgcolor="rgba(255,255,255,0.7)"
+            my={0.5}
+            width="100%"
+            p={1}
+            px={1.5}
+            direction="column"
+            alignItems="flex-start"
+        >
+            <Stack className={classes.rootStack}>
+                {/* 선택상품 */}
+                <Stack direction="column">
+                    <Typography fontSize={14}>{option.text}</Typography>
+                    <Typography mt={0.5} fontSize={18} fontWeight={700}>
+                        {option.value.toLocaleString("ko")}원
+                    </Typography>
+                </Stack>
+
+                {/* 상품수량조절 */}
+                <Stack direction="row" alignItems="center">
+                    <Stack className={classes.countButtonBox}>
+                        <IconButton disabled={count === 1 ? true : false} onClick={() => onClickReduce(count)}>
+                            <RemoveRoundedIcon />
+                        </IconButton>
+                        <Divider orientation="vertical" flexItem />
+                        <Typography width={40} align="center">
+                            {count}
+                        </Typography>
+                        <Divider orientation="vertical" flexItem />
+                        <IconButton onClick={() => onClickAdd(count)}>
+                            <AddRoundedIcon />
+                        </IconButton>
+                    </Stack>
+
+                    <IconButton onClick={() => onDeleteOption(option.optionId)}>
+                        <ClearRoundedIcon />
+                    </IconButton>
+                </Stack>
+            </Stack>
+        </Stack>
+    )
+}

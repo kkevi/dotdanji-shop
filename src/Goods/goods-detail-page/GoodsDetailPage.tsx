@@ -1,18 +1,15 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {Button, Divider, IconButton, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
 import {GOODS_ITEMS_DATA} from "Components/fake-data"
 import {GoodsItemProps, Options} from "Goods/goods-type"
 import ImageBox from "Components/image-box/ImageBox"
+import GoodsOptions from "./GoodsOptions"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-//icon
-import ClearRoundedIcon from "@mui/icons-material/ClearRounded"
-import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
-import AddRoundedIcon from "@mui/icons-material/AddRounded"
 
 type Props = {
     goodsId: string | string[] | undefined
@@ -33,6 +30,7 @@ export default function GoodsDetailPage(props: Props) {
     const defaultOption = "옵션 선택"
     const [selectValue, setSelectValue] = useState(defaultOption)
     const [selectValueList, setSelectValueList] = useState<OptionCart[]>([])
+    let coast
 
     // 옵션 선택
     const onSelectOption = (event: SelectChangeEvent) => {
@@ -40,6 +38,8 @@ export default function GoodsDetailPage(props: Props) {
         setSelectValue(value)
         if (value === defaultOption) return
         onAddOptionList(value)
+        // console.log("value", value)
+        // console.log("selectValueList", selectValueList[selectValueList.length - 1]?.count)
     }
 
     // 옵션 배열 검사
@@ -61,6 +61,10 @@ export default function GoodsDetailPage(props: Props) {
         setSelectValueList(prev => prev.filter(it => it.option.optionId !== optionId))
         setSelectValue("옵션 선택")
     }
+
+    useEffect(() => {
+        console.log("changed")
+    }, [selectValueList])
 
     return (
         <div className={classes.root}>
@@ -126,53 +130,26 @@ export default function GoodsDetailPage(props: Props) {
                         <>
                             <Stack mb={3} width="100%">
                                 {selectValueList.map(({option, count}, idx) => (
-                                    <Stack
-                                        key={option.optionId}
-                                        bgcolor="rgba(255,255,255,0.7)"
-                                        my={0.5}
-                                        width="100%"
-                                        p={1}
-                                        px={1.5}
-                                        direction="column"
-                                        alignItems="flex-start"
-                                    >
-                                        <Typography fontSize={14}>{option.text}</Typography>
-                                        <Stack className={classes.rootStack}>
-                                            <Typography fontSize={18} fontWeight={700}>
-                                                {option.value.toLocaleString("ko")}원
-                                            </Typography>
-                                            <Stack direction="row" alignItems="center">
-                                                <Stack className={classes.countButtonBox}>
-                                                    <IconButton>
-                                                        <RemoveRoundedIcon />
-                                                    </IconButton>
-                                                    <Divider orientation="vertical" flexItem />
-                                                    <Typography width={40} align="center">
-                                                        {count}
-                                                    </Typography>
-                                                    <Divider orientation="vertical" flexItem />
-                                                    <IconButton>
-                                                        <AddRoundedIcon />
-                                                    </IconButton>
-                                                </Stack>
-
-                                                <IconButton onClick={() => onDeleteOption(option.optionId)}>
-                                                    <ClearRoundedIcon />
-                                                </IconButton>
-                                            </Stack>
-                                        </Stack>
-                                    </Stack>
+                                    <GoodsOptions
+                                        idx={idx}
+                                        option={option}
+                                        count={count}
+                                        selectValueList={selectValueList}
+                                        setSelectValueList={setSelectValueList}
+                                        onDeleteOption={onDeleteOption}
+                                    />
                                 ))}
                             </Stack>
                             <Divider orientation="horizontal" flexItem sx={{backgroundColor: "#726C60"}} />
                         </>
                     )}
 
+                    {/* 배송정보 */}
                     <Stack mt={2} className={classes.rootStack} justifyContent="flex-start !important">
                         <Typography fontSize={13} width={"20%"} fontWeight={700}>
                             배송비
                         </Typography>
-                        <Typography fontSize={13} fontWeight={700} color="#726C60">
+                        <Typography fontSize={13} fontWeight={700} color="rgba(0, 0, 0, .4)">
                             50,000원 이상 구매 시, 무료배송 (미만 시 3,000원 발생)
                         </Typography>
                     </Stack>
@@ -180,11 +157,12 @@ export default function GoodsDetailPage(props: Props) {
                         <Typography fontSize={13} width={"20%"} fontWeight={700}>
                             배송예정일
                         </Typography>
-                        <Typography fontSize={13} fontWeight={700} color="#726C60">
+                        <Typography fontSize={13} fontWeight={700} color="rgba(0, 0, 0, .4)">
                             1일 이내 출고
                         </Typography>
                     </Stack>
 
+                    {/* 합계금액 */}
                     <Divider orientation="horizontal" flexItem sx={{backgroundColor: "#726C60"}} />
                     <Stack mt={4} className={classes.rootStack}>
                         <Typography variant="h6" fontWeight={700}>
@@ -195,6 +173,7 @@ export default function GoodsDetailPage(props: Props) {
                         </Typography>
                     </Stack>
 
+                    {/* 구매버튼 */}
                     <Stack className={classes.rootStack}>
                         <Button variant="contained" sx={{height: 55}} fullWidth>
                             <Typography variant="h6">장바구니 담기</Typography>
