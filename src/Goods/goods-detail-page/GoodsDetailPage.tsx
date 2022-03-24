@@ -78,6 +78,8 @@ export default function GoodsDetailPage(props: Props) {
         if (selectValueList.length < 1) {
             setTotalPrice(0)
         }
+
+        console.log("selectValueList", selectValueList)
     }, [onSelectOption || selectValueList])
 
     return (

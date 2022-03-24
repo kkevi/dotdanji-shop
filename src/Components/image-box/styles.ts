@@ -8,7 +8,7 @@ const styles = makeStyles((theme: Theme) =>
             position: "relative",
             flexShrink: 0,
             overflow: "hidden",
-            backgroundColor: "#eee",
+            // backgroundColor: "#eee",
         },
         image: {
             width: "100%",

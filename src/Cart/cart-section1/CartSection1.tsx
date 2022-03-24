@@ -1,28 +1,80 @@
 import React from "react"
 
-import {Table, TableHead, TableRow, TableBody, TableCell, Checkbox, Typography, Divider} from "@mui/material"
+import {
+    Table,
+    TableHead,
+    TableRow,
+    TableBody,
+    TableCell,
+    Checkbox,
+    Typography,
+    Divider,
+    Button,
+    Stack,
+} from "@mui/material"
+import useStyles from "./style"
 
 import CartList from "./CartList"
+import ImageBox from "Components/image-box/ImageBox"
 
-export default function CartSection1() {
+type CartSection1Props = {
+    setStep: (val: number) => void
+}
+
+export default function CartSection1(prop: CartSection1Props) {
+    const classes = useStyles()
+    const {setStep} = prop
+
     const tableTitle = ["제품정보", "수량", "주문금액", "배송비"]
 
-    const test = [0, 1, 2]
+    const fakeGoodsList = [
+        {
+            count: 1,
+            options: {
+                id: "goodsNo.1",
+                title: "교재세트",
+                value: 10000,
+                option: ["교재 10권 + e-book 세트", "교재 7권 + e-book 세트"],
+            },
+        },
+        {
+            count: 1,
+            options: {
+                id: "goodsNo.2",
+                title: "스마트 교구",
+                value: 100000,
+                option: ["기본"],
+            },
+        },
+        {
+            count: 3,
+            options: {
+                id: "goodsNo.3",
+                title: "스티커북",
+                value: 10000,
+                option: ["분홍 10매", "노랑 10매"],
+            },
+        },
+    ]
 
     return (
         <>
-            <Typography variant="h5" mb={1} ml={1} fontWeight={700} alignSelf="flex-start">
-                제품
-            </Typography>
-            <Divider sx={{backgroundColor: "black", height: 1}} flexItem />
+            <Stack className={classes.rootStack}>
+                <Typography variant="h5" mb={1} ml={1} fontWeight={700} alignSelf="flex-start">
+                    제품
+                </Typography>
+                <Button sx={{color: "black"}}>선택상품 삭제</Button>
+            </Stack>
+            <Divider className={classes.divider} flexItem />
 
+            {/* 장바구니 목록 */}
             <Table>
                 <TableHead>
                     <TableRow>
                         <TableCell padding="checkbox">
                             <Checkbox
                                 color="primary"
-                                // indeterminate={numSelected > 0 && numSelected < rowCount}
+                                // indeterminate={numSelected > 0 && numSelected < rowCount} //전체체크 여부 만들어주는 거
                                 // checked={rowCount > 0 && numSelected === rowCount}
                                 // onChange={onSelectAllClick}
                             />
@@ -35,16 +87,57 @@ export default function CartSection1() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {test.map((itm, idx) => {
-                        return <CartList idx={idx} length={test.length} />
+                    {fakeGoodsList.map(({count, options}, idx) => {
+                        return (
+                            <>
+                                <CartList idx={idx} count={count} option={options} />
+                            </>
+                        )
                     })}
-                    {/* {list !== undefined &&
-                                list.length > 0 &&
-                                list.map((data, idx) => (
-                                    <TableListItem key={data.id} data={data} idx={idx} onClickDelete={onClickDelete} />
-                                ))} */}
                 </TableBody>
             </Table>
+
+            <Divider className={classes.divider} flexItem />
+
+            {/* 총 결제 금액 계산 */}
+            <Stack my={4} py={3} px={38} className={classes.rootStack}>
+                <Stack className={classes.columnStack}>
+                    <Typography mb={0.5}>총 주문금액</Typography>
+                    <Typography fontSize={26} fontWeight={700}>
+                        230,000 원
+                    </Typography>
+                </Stack>
+                <ImageBox width={24} height={24} src="/icons/icon-add.png" />
+                <Stack className={classes.columnStack}>
+                    <Typography mb={0.5}>배송비</Typography>
+                    <Typography fontSize={26} fontWeight={700}>
+                        2,500 원
+                    </Typography>
+                </Stack>
+                <ImageBox width={24} height={24} src="/icons/icon-equal.png" />
+                <Stack className={classes.columnStack}>
+                    <Typography mb={0.5}>총 결제금액</Typography>
+                    <Typography fontSize={26} fontWeight={700}>
+                        232,500 원
+                    </Typography>
+                </Stack>
+            </Stack>
+
+            {/* 주문결제버튼 */}
+            <Stack className={classes.rootStack} width={"50% !important"} mb={16}>
+                <Button variant="contained" fullWidth onClick={() => {}}>
+                    <Typography variant="h6">쇼핑 계속하기</Typography>
+                </Button>
+                <Button
+                    variant="contained"
+                    fullWidth
+                    onClick={() => {
+                        // setStep(1)
+                    }}
+                >
+                    <Typography variant="h6">주문하기</Typography>
+                </Button>
+            </Stack>
         </>
     )
 }
