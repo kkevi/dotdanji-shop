@@ -79,6 +79,7 @@ export default function CartSection1(prop: CartSection1Props) {
                                 // onChange={onSelectAllClick}
                             />
                         </TableCell>
+
                         {tableTitle.map((title, idx) => (
                             <TableCell key={"tableTitle" + idx} sx={{fontSize: ".9rem", padding: 2}} align="center">
                                 {title}
@@ -89,9 +90,14 @@ export default function CartSection1(prop: CartSection1Props) {
                 <TableBody>
                     {fakeGoodsList.map(({count, options}, idx) => {
                         return (
-                            <>
+                            <TableRow key={"tableRow" + idx} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
                                 <CartList idx={idx} count={count} option={options} />
-                            </>
+                                {idx === 0 && (
+                                    <TableCell rowSpan={3} align="center">
+                                        배송비
+                                    </TableCell>
+                                )}
+                            </TableRow>
                         )
                     })}
                 </TableBody>
