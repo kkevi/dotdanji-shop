@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
 import {GOODS_ITEMS_DATA} from "Components/fake-data"
-import {GoodsItemProps, Options} from "Goods/goods-type"
+import {GoodsItemProps, OptionCart} from "Goods/goods-type"
 import ImageBox from "Components/image-box/ImageBox"
 import GoodsOptions from "./GoodsOptions"
 import useStyles from "./style"
@@ -17,18 +17,12 @@ type Props = {
     goodsId: string | string[] | undefined
 }
 
-type OptionCart = {
-    option: Options
-    price: number
-    count: number
-}
-
 export default function GoodsDetailPage(props: Props) {
     const classes = useStyles()
     const route = useRouter()
     const {goodsId} = props
     const [goodsItemData, setGoodsItemData] = useState<GoodsItemProps>(GOODS_ITEMS_DATA[0])
-    const {name, thumnails, infoText, options = [], price} = goodsItemData
+    const {name, thumnails, infoText, options = []} = goodsItemData
 
     //옵션 선택 박스
     const defaultOption = "옵션 선택"
@@ -79,7 +73,7 @@ export default function GoodsDetailPage(props: Props) {
             setTotalPrice(0)
         }
 
-        console.log("selectValueList", selectValueList)
+        // console.log("selectValueList", selectValueList)
     }, [onSelectOption || selectValueList])
 
     return (

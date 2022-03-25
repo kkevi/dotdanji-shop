@@ -5,6 +5,8 @@ import {Divider, IconButton, Stack, Typography} from "@mui/material"
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
 import AddRoundedIcon from "@mui/icons-material/AddRounded"
 
+import {OptionCart} from "Goods/goods-type"
+
 type CountControllerProps = {
     idx: number
     option: any

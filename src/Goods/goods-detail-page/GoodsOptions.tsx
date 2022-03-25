@@ -2,20 +2,20 @@ import React from "react"
 import {Divider, IconButton, Stack, Typography} from "@mui/material"
 //components
 import useStyles from "./style"
+import {OptionCart} from "../goods-type"
+import CountController from "Components/count-controller/CountController"
 //icon
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded"
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
 import AddRoundedIcon from "@mui/icons-material/AddRounded"
-
-import CountController from "Components/count-controller/CountController"
 
 type Props = {
     idx: number
     option: any
     count: number
     price: number
-    selectValueList: any
-    setSelectValueList: (val: any) => void
+    selectValueList: OptionCart[]
+    setSelectValueList: (val: OptionCart[]) => void
     onDeleteOption: (val: string) => void
 }
 
@@ -23,19 +23,23 @@ export default function GoodsOptions(props: Props) {
     const classes = useStyles()
     const {idx, option, count, price, selectValueList, setSelectValueList, onDeleteOption} = props
 
-    const findIndex = selectValueList.findIndex((opt: any) => opt.id === option.id)
+    console.log("selectValueList", selectValueList)
+
+    const findIndex = selectValueList.findIndex(opt => opt.option.optionId === option.id)
     let copyOption = [...selectValueList]
+
+    console.log("findIndex", findIndex)
 
     const onClickReduce = (count: number, value: number, price: number) => {
         if (count === 1) return
-        if (findIndex !== -1) {
+        if (findIndex === -1) {
             copyOption[idx] = {...copyOption[idx], price: price - value, count: count - 1}
         }
 
         setSelectValueList(copyOption)
     }
     const onClickAdd = (count: number, value: number) => {
-        if (findIndex !== -1) {
+        if (findIndex === -1) {
             copyOption[idx] = {...copyOption[idx], price: value * (count + 1), count: count + 1}
         }
 
@@ -64,7 +68,7 @@ export default function GoodsOptions(props: Props) {
 
                 {/* 상품수량조절 */}
                 <Stack direction="row" alignItems="center">
-                    <CountController
+                    {/* <CountController
                         idx={idx}
                         option={option}
                         count={count}
@@ -72,8 +76,8 @@ export default function GoodsOptions(props: Props) {
                         selectValueList={selectValueList}
                         setSelectValueList={setSelectValueList}
                         mr={16}
-                    />
-                    {/* <Stack className={classes.countButtonBox}>
+                    /> */}
+                    <Stack className={classes.countButtonBox}>
                         <IconButton
                             disabled={count === 1 ? true : false}
                             onClick={() => onClickReduce(count, option.value, price)}
@@ -88,7 +92,7 @@ export default function GoodsOptions(props: Props) {
                         <IconButton onClick={() => onClickAdd(count, option.value)}>
                             <AddRoundedIcon />
                         </IconButton>
-                    </Stack> */}
+                    </Stack>
 
                     <IconButton onClick={() => onDeleteOption(option.optionId)}>
                         <ClearRoundedIcon />

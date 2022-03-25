@@ -29,6 +29,12 @@ export type Options = {
     value: string
 }
 
+export type OptionCart = {
+    option: Options
+    price: number
+    count: number
+}
+
 //상품 장바구니 데이터
 export interface CartItemProps {
     goodsId: string

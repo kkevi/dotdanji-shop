@@ -91,7 +91,7 @@ export default function CartSection1(prop: CartSection1Props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {fakeGoodsList.map(({count, price, options}, idx) => {
+                    {fakeGoodsList.map(({count, options, price}, idx) => {
                         return (
                             <TableRow key={"tableRow" + idx} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
                                 <CartList idx={idx} count={count} price={price} option={options} />
