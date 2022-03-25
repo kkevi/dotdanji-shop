@@ -6,13 +6,17 @@ import CountController from "Components/count-controller/CountController"
 
 type CartListProps = {
     idx: number
+    name: string
+    src: string
     count: number
     price: number
     option: any
 }
 
 export default function CartList(props: CartListProps) {
-    const {idx, count, price, option} = props
+    const {idx, name, src, count, price, option} = props
+
+    console.log("working in here?", option)
 
     return (
         <>
@@ -21,21 +25,16 @@ export default function CartList(props: CartListProps) {
             </TableCell>
             <TableCell width="60%" align="center">
                 <Stack direction={"row"}>
-                    <ImageBox width={150} height={150} src="/images/fake/sun-moon.png" style={{marginLeft: 20}} />
+                    <ImageBox width={150} height={150} src={src} style={{marginLeft: 20}} />
                     <Stack ml={4} direction="column" alignItems="flex-start" justifyContent="center">
                         <Typography fontSize={20} fontWeight={700} mb={1}>
-                            {option.title}
+                            {name}
                         </Typography>
                         <Typography fontSize={14} mb={1}>
                             {option.value.toLocaleString("ko")} 원
                         </Typography>
                         <Stack direction="row" alignItems="center" justifyContent="center">
-                            {option.option.map((itm: any, idx: number) => (
-                                <Typography fontSize={14} mb={1} mr={1}>
-                                    {itm}
-                                    {idx === option.option.length - 1 ? "" : ", "}
-                                </Typography>
-                            ))}
+                            {option.text}
                         </Stack>
                     </Stack>
                 </Stack>

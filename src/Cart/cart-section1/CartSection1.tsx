@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, {useState} from "react"
 
 import {
     Table,
@@ -18,6 +18,7 @@ import CartList from "./CartList"
 import ImageBox from "Components/image-box/ImageBox"
 
 import {CartItemProps} from "Cart/cart-type"
+import {CART_ITEMS_DATA} from "Components/fake-data/fake-cart"
 
 type CartSection1Props = {
     setStep: (val: number) => void
@@ -28,39 +29,7 @@ export default function CartSection1(prop: CartSection1Props) {
     const {setStep} = prop
 
     const tableTitle = ["제품정보", "수량", "주문금액", "배송비"]
-
-    const fakeGoodsList = [
-        {
-            count: 1,
-            price: 10000,
-            options: {
-                id: "goodsNo.1",
-                title: "교재세트",
-                value: 10000,
-                option: ["교재 10권 + e-book 세트", "교재 7권 + e-book 세트"],
-            },
-        },
-        {
-            count: 1,
-            price: 100000,
-            options: {
-                id: "goodsNo.2",
-                title: "스마트 교구",
-                value: 100000,
-                option: ["기본"],
-            },
-        },
-        {
-            count: 3,
-            price: 30000,
-            options: {
-                id: "goodsNo.3",
-                title: "스티커북",
-                value: 10000,
-                option: ["분홍 10매", "노랑 10매"],
-            },
-        },
-    ]
+    const [cartItemData, setCartItemData] = useState<CartItemProps[]>(CART_ITEMS_DATA)
 
     return (
         <>
@@ -92,18 +61,30 @@ export default function CartSection1(prop: CartSection1Props) {
                         ))}
                     </TableRow>
                 </TableHead>
+
                 <TableBody>
-                    {fakeGoodsList.map(({count, options, price}, idx) => {
-                        return (
-                            <TableRow key={"tableRow" + idx} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
-                                <CartList idx={idx} count={count} price={price} option={options} />
-                                {idx === 0 && (
-                                    <TableCell rowSpan={fakeGoodsList.length + 1} align="center">
-                                        배송비
-                                    </TableCell>
-                                )}
-                            </TableRow>
-                        )
+                    {cartItemData.map((_itm, _idx) => {
+                        return _itm.options.map((itm, idx) => {
+                            const {count, price, option} = itm
+
+                            return (
+                                <TableRow key={"tableRow" + idx} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
+                                    <CartList
+                                        idx={idx}
+                                        name={_itm.name}
+                                        src={_itm.thumbnail}
+                                        count={count}
+                                        price={price}
+                                        option={option}
+                                    />
+                                    {idx === 0 && (
+                                        <TableCell rowSpan={cartItemData.length} align="center">
+                                            배송비
+                                        </TableCell>
+                                    )}
+                                </TableRow>
+                            )
+                        })
                     })}
                 </TableBody>
             </Table>
