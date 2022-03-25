@@ -210,12 +210,6 @@ export default function GoodsDetailPage(props: Props) {
                     </Stack>
                 </div>
             </Stack>
-
-            {/* <Container maxWidth="lg">
-                <Stack py={40}>
-                    <Container maxWidth="lg" sx={{my: 24}}></Container>
-                </Stack>
-            </Container> */}
         </div>
     )
 }

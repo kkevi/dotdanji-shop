@@ -7,6 +7,8 @@ import ClearRoundedIcon from "@mui/icons-material/ClearRounded"
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
 import AddRoundedIcon from "@mui/icons-material/AddRounded"
 
+import CountController from "Components/count-controller/CountController"
+
 type Props = {
     idx: number
     option: any
@@ -62,7 +64,16 @@ export default function GoodsOptions(props: Props) {
 
                 {/* 상품수량조절 */}
                 <Stack direction="row" alignItems="center">
-                    <Stack className={classes.countButtonBox}>
+                    <CountController
+                        idx={idx}
+                        option={option}
+                        count={count}
+                        price={price}
+                        selectValueList={selectValueList}
+                        setSelectValueList={setSelectValueList}
+                        mr={16}
+                    />
+                    {/* <Stack className={classes.countButtonBox}>
                         <IconButton
                             disabled={count === 1 ? true : false}
                             onClick={() => onClickReduce(count, option.value, price)}
@@ -77,7 +88,7 @@ export default function GoodsOptions(props: Props) {
                         <IconButton onClick={() => onClickAdd(count, option.value)}>
                             <AddRoundedIcon />
                         </IconButton>
-                    </Stack>
+                    </Stack> */}
 
                     <IconButton onClick={() => onDeleteOption(option.optionId)}>
                         <ClearRoundedIcon />

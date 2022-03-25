@@ -30,6 +30,7 @@ export default function CartSection1(prop: CartSection1Props) {
     const fakeGoodsList = [
         {
             count: 1,
+            price: 10000,
             options: {
                 id: "goodsNo.1",
                 title: "교재세트",
@@ -39,6 +40,7 @@ export default function CartSection1(prop: CartSection1Props) {
         },
         {
             count: 1,
+            price: 100000,
             options: {
                 id: "goodsNo.2",
                 title: "스마트 교구",
@@ -48,6 +50,7 @@ export default function CartSection1(prop: CartSection1Props) {
         },
         {
             count: 3,
+            price: 30000,
             options: {
                 id: "goodsNo.3",
                 title: "스티커북",
@@ -88,12 +91,12 @@ export default function CartSection1(prop: CartSection1Props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {fakeGoodsList.map(({count, options}, idx) => {
+                    {fakeGoodsList.map(({count, price, options}, idx) => {
                         return (
                             <TableRow key={"tableRow" + idx} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
-                                <CartList idx={idx} count={count} option={options} />
+                                <CartList idx={idx} count={count} price={price} option={options} />
                                 {idx === 0 && (
-                                    <TableCell rowSpan={3} align="center">
+                                    <TableCell rowSpan={fakeGoodsList.length + 1} align="center">
                                         배송비
                                     </TableCell>
                                 )}

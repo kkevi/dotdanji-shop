@@ -1,16 +1,18 @@
 import React from "react"
+import {TableCell, Checkbox, Typography, Stack} from "@mui/material"
 
-import {TableRow, TableCell, Checkbox, Typography, Stack} from "@mui/material"
 import ImageBox from "Components/image-box/ImageBox"
+import CountController from "Components/count-controller/CountController"
 
 type CartListProps = {
     idx: number
     count: number
+    price: number
     option: any
 }
 
 export default function CartList(props: CartListProps) {
-    const {idx, count, option} = props
+    const {idx, count, price, option} = props
 
     return (
         <>
@@ -25,7 +27,7 @@ export default function CartList(props: CartListProps) {
                             {option.title}
                         </Typography>
                         <Typography fontSize={14} mb={1}>
-                            {option.value}
+                            {option.value.toLocaleString("ko")} 원
                         </Typography>
                         <Stack direction="row" alignItems="center" justifyContent="center">
                             {option.option.map((itm, idx) => (
@@ -38,8 +40,17 @@ export default function CartList(props: CartListProps) {
                     </Stack>
                 </Stack>
             </TableCell>
-            <TableCell align="center">{count}</TableCell>
-            <TableCell align="center">{option.value * count}</TableCell>
+            <TableCell width={120} align="center">
+                <CountController
+                    idx={idx}
+                    option={option}
+                    count={count}
+                    price={price}
+                    selectValueList={[]}
+                    setSelectValueList={() => {}}
+                />
+            </TableCell>
+            <TableCell align="center">{(option.value * count).toLocaleString("ko")} 원</TableCell>
         </>
     )
 }
