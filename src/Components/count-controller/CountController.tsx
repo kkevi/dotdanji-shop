@@ -18,7 +18,7 @@ type CountControllerProps = {
 export default function CountController(props: CountControllerProps) {
     const {idx, option, count, price, selectValueList, setSelectValueList, mr} = props
 
-    const findIndex = selectValueList.findIndex(opt => opt.id === option.id)
+    const findIndex = selectValueList.findIndex((opt: any) => opt.id === option.id)
     let copyOption = [...selectValueList]
 
     const onClickReduce = (count: number, value: number, price: number) => {

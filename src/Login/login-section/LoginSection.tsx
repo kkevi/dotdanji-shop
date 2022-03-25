@@ -3,6 +3,7 @@ import {useRouter} from "next/router"
 import {Button, Stack, TextField, Typography, Divider, Link} from "@mui/material"
 
 import useStyles from "./styles"
+import {KAKAO_AUTH_URL} from "./login-token"
 
 export default function LoginSection() {
     const classes = useStyles()
@@ -21,7 +22,7 @@ export default function LoginSection() {
             id: "kakao",
             image: "/images/logo-kakao.png",
             color: "#FFE617",
-            url: "/",
+            url: KAKAO_AUTH_URL,
         },
         {
             id: "google",
@@ -61,6 +62,7 @@ export default function LoginSection() {
             <Button sx={{mt: 3, mb: 3}} className={classes.containedButton} variant="contained" fullWidth>
                 로그인 하기
             </Button>
+            {/* socialLogin */}
             <Stack direction="row" width="35%" justifyContent="space-between" alignSelf="center">
                 {socialLogin.map((itm, idx) => {
                     return (
@@ -70,7 +72,6 @@ export default function LoginSection() {
                     )
                 })}
             </Stack>
-
             <Button
                 sx={{mt: 12, mb: 4}}
                 className={classes.outlinedButton}
@@ -80,7 +81,6 @@ export default function LoginSection() {
             >
                 아직 계정이 없으신가요?
             </Button>
-
             <Stack direction="row" justifyContent="center" alignSelf="center">
                 <Link sx={{mt: 0.5, mr: 1}} variant="subtitle2" color="#757575" underline="hover" href="#">
                     아이디 (이메일) 찾기

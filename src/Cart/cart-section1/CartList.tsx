@@ -30,7 +30,7 @@ export default function CartList(props: CartListProps) {
                             {option.value.toLocaleString("ko")} 원
                         </Typography>
                         <Stack direction="row" alignItems="center" justifyContent="center">
-                            {option.option.map((itm, idx) => (
+                            {option.option.map((itm: any, idx: number) => (
                                 <Typography fontSize={14} mb={1} mr={1}>
                                     {itm}
                                     {idx === option.option.length - 1 ? "" : ", "}
