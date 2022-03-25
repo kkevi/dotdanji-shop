@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 
 import {
     Table,
@@ -16,6 +16,8 @@ import useStyles from "./style"
 
 import CartList from "./CartList"
 import ImageBox from "Components/image-box/ImageBox"
+
+import {CartItemProps} from "Cart/cart-type"
 
 type CartSection1Props = {
     setStep: (val: number) => void

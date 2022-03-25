@@ -26,7 +26,7 @@ export type Thumnail = {
 export type Options = {
     optionId: string
     text: string
-    value: string
+    value: number
 }
 
 export type OptionCart = {
@@ -38,5 +38,7 @@ export type OptionCart = {
 //상품 장바구니 데이터
 export interface CartItemProps {
     goodsId: string
-    selectOption: Options[]
+    name: string
+    thumbnail: string
+    options: OptionCart[]
 }

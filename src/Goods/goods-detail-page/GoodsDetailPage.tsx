@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
-import {GOODS_ITEMS_DATA} from "Components/fake-data"
-import {GoodsItemProps, OptionCart} from "Goods/goods-type"
-import ImageBox from "Components/image-box/ImageBox"
+import {GOODS_ITEMS_DATA} from "Components/fake-data/fake-goods"
+import {GoodsItemProps, OptionCart, CartItemProps} from "Goods/goods-type"
 import GoodsOptions from "./GoodsOptions"
+import ImageBox from "Components/image-box/ImageBox"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
@@ -14,7 +14,7 @@ import "slick-carousel/slick/slick-theme.css"
 import {useRouter} from "next/router"
 
 type Props = {
-    goodsId: string | string[] | undefined
+    goodsId: string
 }
 
 export default function GoodsDetailPage(props: Props) {
@@ -193,7 +193,22 @@ export default function GoodsDetailPage(props: Props) {
                             onClick={() => {
                                 if (selectValueList.length < 1) {
                                     alert("옵션을 선택 해주세요.")
-                                } else route.push("/cart")
+                                } else {
+                                    const newArray: CartItemProps = {
+                                        goodsId: goodsId,
+                                        name: name,
+                                        thumbnail: thumnails.images[0],
+                                        options: selectValueList,
+                                    }
+                                    const loggedIn = true
+                                    if (loggedIn) {
+                                        route.push("/cart")
+                                    } else {
+                                        if (confirm("로그인을 먼저 해주세요.")) {
+                                            route.push("/login")
+                                        } else return
+                                    }
+                                }
                             }}
                         >
                             <Typography variant="h6">장바구니 담기</Typography>

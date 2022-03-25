@@ -3,7 +3,7 @@ import {Divider, IconButton, Stack, Typography} from "@mui/material"
 //components
 import useStyles from "./style"
 import {OptionCart} from "../goods-type"
-import CountController from "Components/count-controller/CountController"
+// import CountController from "Components/count-controller/CountController"
 //icon
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded"
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
@@ -23,12 +23,8 @@ export default function GoodsOptions(props: Props) {
     const classes = useStyles()
     const {idx, option, count, price, selectValueList, setSelectValueList, onDeleteOption} = props
 
-    console.log("selectValueList", selectValueList)
-
     const findIndex = selectValueList.findIndex(opt => opt.option.optionId === option.id)
     let copyOption = [...selectValueList]
-
-    console.log("findIndex", findIndex)
 
     const onClickReduce = (count: number, value: number, price: number) => {
         if (count === 1) return

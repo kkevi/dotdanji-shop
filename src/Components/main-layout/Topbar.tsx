@@ -6,7 +6,7 @@ import {Button, ButtonGroup, Container, Link, Stack, useMediaQuery} from "@mui/m
 import {useTheme} from "@mui/system"
 //icon
 //fake data
-import {GOODS_CATEGORY_DATA} from "Components/fake-data"
+import {GOODS_CATEGORY_DATA} from "Components/fake-data/fake-goods"
 import UserLoginButton from "./user-login-button/UserLoginButton"
 import ShopCartButton from "./shop-cart-button/ShopCartButton"
 
