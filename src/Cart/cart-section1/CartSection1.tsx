@@ -31,6 +31,26 @@ export default function CartSection1(prop: CartSection1Props) {
     const tableTitle = ["제품정보", "수량", "주문금액", "배송비"]
     const [cartItemData, setCartItemData] = useState<CartItemProps[]>(CART_ITEMS_DATA)
 
+    const _length = () => {
+        const lengthMeasure = () => {
+            const measure = cartItemData.map((itm, idx) => {
+                return itm.options.length
+            })
+
+            return measure
+        }
+        const _lengthMeasure = lengthMeasure()
+
+        let sum = 0
+        _lengthMeasure.forEach(itm => {
+            sum += itm
+        })
+
+        return sum
+    }
+
+    const length = _length()
+
     return (
         <>
             <Stack className={classes.rootStack}>
@@ -77,8 +97,8 @@ export default function CartSection1(prop: CartSection1Props) {
                                         price={price}
                                         option={option}
                                     />
-                                    {idx === 0 && (
-                                        <TableCell rowSpan={cartItemData.length} align="center">
+                                    {idx === 0 && _idx === 0 && (
+                                        <TableCell rowSpan={length + 1} align="center">
                                             배송비
                                         </TableCell>
                                     )}
