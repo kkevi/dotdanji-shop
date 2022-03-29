@@ -31,6 +31,7 @@ export default function CartSection1(prop: CartSection1Props) {
     const tableTitle = ["제품정보", "수량", "주문금액", "배송비"]
     const [cartItemData, setCartItemData] = useState<CartItemProps[]>(CART_ITEMS_DATA)
 
+    // 배송비 rowSpan 값
     const _length = () => {
         const lengthMeasure = () => {
             const measure = cartItemData.map((itm, idx) => {
@@ -48,7 +49,6 @@ export default function CartSection1(prop: CartSection1Props) {
 
         return sum
     }
-
     const length = _length()
 
     return (
@@ -86,6 +86,10 @@ export default function CartSection1(prop: CartSection1Props) {
                     {cartItemData.map((_itm, _idx) => {
                         return _itm.options.map((itm, idx) => {
                             const {count, price, option} = itm
+
+                            console.log("cartItemData", cartItemData)
+                            console.log("_itm", _itm)
+                            console.log("itm", itm)
 
                             return (
                                 <TableRow key={"tableRow" + idx} sx={{"&:last-child td, &:last-child th": {border: 0}}}>

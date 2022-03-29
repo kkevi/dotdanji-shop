@@ -3,7 +3,7 @@ import {Divider, IconButton, Stack, Typography} from "@mui/material"
 //components
 import useStyles from "./style"
 import {OptionCart} from "../goods-type"
-// import CountController from "Components/count-controller/CountController"
+import CountController from "Components/count-controller/CountController"
 //icon
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded"
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
@@ -42,6 +42,8 @@ export default function GoodsOptions(props: Props) {
         setSelectValueList(copyOption)
     }
 
+    console.log(":selectValueList", selectValueList)
+
     return (
         <Stack
             key={option.optionId}
@@ -64,16 +66,16 @@ export default function GoodsOptions(props: Props) {
 
                 {/* 상품수량조절 */}
                 <Stack direction="row" alignItems="center">
-                    {/* <CountController
+                    <CountController
                         idx={idx}
                         option={option}
                         count={count}
                         price={price}
                         selectValueList={selectValueList}
                         setSelectValueList={setSelectValueList}
-                        mr={16}
-                    /> */}
-                    <Stack className={classes.countButtonBox}>
+                        mr={1}
+                    />
+                    {/* <Stack className={classes.countButtonBox}>
                         <IconButton
                             disabled={count === 1 ? true : false}
                             onClick={() => onClickReduce(count, option.value, price)}
@@ -88,7 +90,7 @@ export default function GoodsOptions(props: Props) {
                         <IconButton onClick={() => onClickAdd(count, option.value)}>
                             <AddRoundedIcon />
                         </IconButton>
-                    </Stack>
+                    </Stack> */}
 
                     <IconButton onClick={() => onDeleteOption(option.optionId)}>
                         <ClearRoundedIcon />

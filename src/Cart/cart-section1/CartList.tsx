@@ -16,6 +16,8 @@ type CartListProps = {
 export default function CartList(props: CartListProps) {
     const {idx, name, src, count, price, option} = props
 
+    console.log("option", option)
+
     return (
         <>
             <TableCell padding="checkbox">
