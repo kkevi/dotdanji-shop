@@ -13,7 +13,7 @@ export default function Index() {
 
     return (
         <MainLayout>
-            <GoodsDetailPage goodsId={goodsId} />
+            <GoodsDetailPage goodsId={goodsId as string} />
         </MainLayout>
     )
 }
