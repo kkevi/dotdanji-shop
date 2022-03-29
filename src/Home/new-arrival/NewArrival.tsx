@@ -35,7 +35,7 @@ export default function NewArrival() {
     return (
         <Container maxWidth="xl" style={{backgroundColor: "white"}}>
             <Stack direction="row" justifyContent="space-between" alignItems="center" height={600} mt={20}>
-                <ImageBox width={1000} height={600} src={fakeNewArrivalData[hover].image} />
+                <ImageBox style={{borderRadius: 20}} width={1000} height={600} src={fakeNewArrivalData[hover].image} />
                 <Stack
                     width={450}
                     height={600}

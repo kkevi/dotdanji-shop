@@ -20,13 +20,13 @@ type HomeSliderProps = {
 const useStyles = makeStyles({
     button: {
         marginTop: 60,
-        width: 250,
-        padding: "16px 28px",
+        width: 200,
+        height: 50,
         fontSize: 18,
         color: "white",
         border: "2px solid white",
         "&:hover": {
-            backgroundColor: "rgba(250,251,253,0.3)",
+            backgroundColor: "rgba(0,0,0,0.3)",
             color: "white",
             fontWeight: 700,
             border: "2px solid white",
@@ -41,8 +41,10 @@ export default function HomeSlider(props: HomeSliderProps) {
 
     return (
         <div style={{position: "relative"}}>
-            <Stack position="absolute" bottom={110} left={500} zIndex={10} fontWeight={800} color="white">
-                <Typography variant="h3">{title}</Typography>
+            <Stack position="absolute" top="40%" left={500} zIndex={10} fontWeight={800} color="white">
+                <Typography variant="h3" className="pointFont">
+                    {title}
+                </Typography>
                 <Typography variant="h5" mt={2}>
                     {subTitle}
                 </Typography>
@@ -57,7 +59,7 @@ export default function HomeSlider(props: HomeSliderProps) {
                     자세히 보기
                 </Button>
             </Stack>
-            <ImageBox height={720} src={image} />
+            <ImageBox height={720} src={image} brightness={0.7} />
         </div>
     )
 }
