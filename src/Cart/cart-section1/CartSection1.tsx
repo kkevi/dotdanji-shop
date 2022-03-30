@@ -17,7 +17,7 @@ import useStyles from "./style"
 import CartList from "./CartList"
 import ImageBox from "Components/image-box/ImageBox"
 
-import {CartItemProps} from "Cart/cart-type"
+import {CartItemProps, OptionCart} from "Cart/cart-type"
 import {CART_ITEMS_DATA} from "Components/fake-data/fake-cart"
 
 type CartSection1Props = {
@@ -30,6 +30,7 @@ export default function CartSection1(prop: CartSection1Props) {
 
     const tableTitle = ["제품정보", "수량", "주문금액", "배송비"]
     const [cartItemData, setCartItemData] = useState<CartItemProps[]>(CART_ITEMS_DATA)
+    const [selectValueList, setSelectValueList] = useState<OptionCart[]>([])
 
     // 배송비 rowSpan 값
     const _length = () => {
@@ -50,6 +51,20 @@ export default function CartSection1(prop: CartSection1Props) {
         return sum
     }
     const length = _length()
+
+    console.log("cartItemData", cartItemData)
+
+    const _selectValueList = () => {
+        cartItemData.map((_itm, _idx) => {
+            _itm.options.forEach(itm => {
+                selectValueList.push(itm)
+            })
+        })
+    }
+
+    _selectValueList()
+
+    console.log("selectValueList", selectValueList)
 
     return (
         <>
@@ -83,16 +98,16 @@ export default function CartSection1(prop: CartSection1Props) {
                 </TableHead>
 
                 <TableBody>
-                    {cartItemData.map((_itm, _idx) => {
-                        return _itm.options.map((itm, idx) => {
+                    {/* {cartItemData.map((_itm, _idx) => {
+                        console.log("_itm", _itm)
+                        return _itm.options?.map((itm, idx) => {
                             const {count, price, option} = itm
 
-                            console.log("cartItemData", cartItemData)
-                            console.log("_itm", _itm)
                             console.log("itm", itm)
+                            console.log("tt", _idx, idx)
 
                             return (
-                                <TableRow key={"tableRow" + idx} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
+                                <TableRow key={"tableRow"} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
                                     <CartList
                                         idx={idx}
                                         name={_itm.name}
@@ -100,6 +115,8 @@ export default function CartSection1(prop: CartSection1Props) {
                                         count={count}
                                         price={price}
                                         option={option}
+                                        selectValueList={selectValueList}
+                                        setSelectValueList={setSelectValueList}
                                     />
                                     {idx === 0 && _idx === 0 && (
                                         <TableCell rowSpan={length + 1} align="center">
@@ -109,6 +126,30 @@ export default function CartSection1(prop: CartSection1Props) {
                                 </TableRow>
                             )
                         })
+                    })} */}
+
+                    {selectValueList?.map((itm, idx) => {
+                        const {count, price, option} = itm
+
+                        return (
+                            <TableRow key={"tableRow" + idx} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
+                                <CartList
+                                    idx={idx}
+                                    name={"asdf"}
+                                    src={"/"}
+                                    count={count}
+                                    price={price}
+                                    option={option}
+                                    selectValueList={selectValueList}
+                                    setSelectValueList={setSelectValueList}
+                                />
+                                {idx === 0 && (
+                                    <TableCell rowSpan={length + 1} align="center">
+                                        배송비
+                                    </TableCell>
+                                )}
+                            </TableRow>
+                        )
                     })}
                 </TableBody>
             </Table>

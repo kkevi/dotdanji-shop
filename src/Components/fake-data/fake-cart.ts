@@ -10,7 +10,7 @@ export const CART_ITEMS_DATA: CartItemProps[] = [
                 count: 1,
                 price: 10000,
                 option: {
-                    optionId: "opt0",
+                    optionId: "goodsId0_opt0",
                     text: "교재세트 7권 + 스티커북 10매",
                     value: 10000,
                 },
@@ -19,7 +19,7 @@ export const CART_ITEMS_DATA: CartItemProps[] = [
                 count: 3,
                 price: 30000,
                 option: {
-                    optionId: "opt1",
+                    optionId: "goodsId0_opt1",
                     text: "교재세트 + 스티커북 10매",
                     value: 10000,
                 },
@@ -35,7 +35,7 @@ export const CART_ITEMS_DATA: CartItemProps[] = [
                 count: 5,
                 price: 25000,
                 option: {
-                    optionId: "opt0",
+                    optionId: "goodsId1opt0",
                     text: "스티커북 10매",
                     value: 5000,
                 },

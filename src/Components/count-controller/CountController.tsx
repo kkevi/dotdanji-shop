@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {Divider, IconButton, Stack, Typography} from "@mui/material"
 
 //icon
@@ -12,34 +12,37 @@ type CountControllerProps = {
     option: any
     count: number
     price: number
-    selectValueList: any
-    setSelectValueList: (val: any) => void
+    selectValueList: OptionCart[]
+    setSelectValueList: (val: OptionCart[]) => void
     mr?: number
 }
 
 export default function CountController(props: CountControllerProps) {
     const {idx, option, count, price, selectValueList, setSelectValueList, mr} = props
 
-    const findIndex = selectValueList.findIndex(opt => opt.option.optionId === option.id)
+    console.log("idx", idx)
+
+    const findIndex = selectValueList.findIndex(opt => opt.option?.optionId === option.optionId)
     let copyOption = [...selectValueList]
 
     const onClickReduce = (count: number, value: number, price: number) => {
         if (count === 1) return
-        if (findIndex === -1) {
+        if (findIndex !== -1) {
             copyOption[idx] = {...copyOption[idx], price: price - value, count: count - 1}
         }
-
         setSelectValueList(copyOption)
     }
+
     const onClickAdd = (count: number, value: number) => {
-        if (findIndex === -1) {
+        if (findIndex !== -1) {
             copyOption[idx] = {...copyOption[idx], price: value * (count + 1), count: count + 1}
         }
 
+        console.log("copyOption", copyOption)
         setSelectValueList(copyOption)
+        console.log("worked well! :: selectValueList", copyOption)
+        console.log("worked well! :: copyOption", copyOption)
     }
-
-    console.log("selectValueList", selectValueList)
 
     return (
         <Stack flexDirection="row" alignItems="center" mr={mr ? mr : 0} sx={{border: "1px solid #726C60"}}>
