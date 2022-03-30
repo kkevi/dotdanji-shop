@@ -63,21 +63,21 @@ export default function Home() {
             id: "homeslider1",
             title: "우리 아이 얼굴이 나오는 동화책",
             subTitle: "최첨단 얼굴인식 AI로 흥미롭고 재미있게!",
-            image: "/images/fake/home-slider1.jpeg",
+            image: "/images/fake/home-slider1.jpg",
             url: "",
         },
         {
             id: "homeslider2",
             title: "언어 발달을 도와주는 혁신적인 아이콘!",
             subTitle: "전문가와 함께 하는 검증된 교육",
-            image: "/images/fake/home-slider2.png",
+            image: "/images/fake/home-slider2.jpg",
             url: "",
         },
         {
             id: "homeslider3",
             title: "스토리셀프 구독 시 첫 달 무료",
             subTitle: "1년 구독시 99,000원에 파격 세일",
-            image: "/images/fake/home-slider3.jpeg",
+            image: "/images/fake/home-slider3.jpg",
             url: "",
         },
     ]
@@ -100,12 +100,12 @@ export default function Home() {
 
             {/* 상단메인 */}
             <Container maxWidth="lg">
-                <Typography variant="h4" mt={10} fontWeight={800}>
+                <Typography className="pointFont" variant="h4" mt={10} fontWeight={800}>
                     # 우리 아이가 좋아하는 이야기
                 </Typography>
                 <Stack mt={2} mb={6} direction="row" justifyContent="space-between" position="relative">
                     {/* 메인 비디오 재생 */}
-                    <div style={{width: 850, height: 450}}>
+                    <div style={{width: 850, height: 450, borderRadius: 20, overflow: "hidden"}}>
                         <HomeVideo />
                     </div>
 
@@ -117,6 +117,9 @@ export default function Home() {
                             position: "absolute",
                             right: 0,
                             bottom: 0,
+                            borderRadius: 20,
+                            overflow: "hidden",
+                            borderBottomLeftRadius: 0,
                         }}
                     >
                         <Slider {...sliderSettings}>
@@ -141,7 +144,7 @@ export default function Home() {
 
             {/* 베스트 셀러 */}
             <Container maxWidth="lg" sx={{marginBottom: 20}}>
-                <Typography variant="h4" mt={20} mb={2} fontWeight={800}>
+                <Typography className="pointFont" variant="h4" mt={20} mb={2} fontWeight={800}>
                     # 이 달의 인기 도서
                 </Typography>
                 <BestSeller />
