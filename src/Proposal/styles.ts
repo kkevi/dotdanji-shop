@@ -9,6 +9,7 @@ const styles = makeStyles((theme: Theme) =>
             borderRadius: 4,
         },
         lastTextField: {
+            color: "#646566",
             backgroundColor: "rgba(208,235,245,0.1)",
             borderRadius: 4,
             "& .Mui-disabled": {

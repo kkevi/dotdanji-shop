@@ -8,12 +8,67 @@ import ProposalProcess from "./proposal-process/ProposalProcess"
 import ProposalTerms from "./proposal-terms/ProposalTerms"
 import ProposalForm from "./proposal-form/ProposalForm"
 
+import {ProposalFormProps, proposalFormDefaultData} from "./ProposalDataType"
+
 export default function Index() {
     const theme = useTheme()
     const classes = useStyles()
-    const [formData, setFormData] = useState()
+    const [formData, setFormData] = useState<ProposalFormProps>(proposalFormDefaultData)
 
     const process = ["등록 및 접수", "제안 내용 검토", "검토결과 회신"]
+
+    const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {value, name} = e.target
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
+    }
+
+    const onChangeOperationFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target?.files
+        const maxSize = 20 * 1024 * 1024 // 20MB
+        let reader = new FileReader()
+        if (!files || files.length === 0 || files[0].size === 0) return
+        else if (files[0]?.size > maxSize) {
+            return alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다.")
+        } else {
+            reader.readAsDataURL(files[0])
+            reader.onloadend = () => {
+                setFormData({
+                    ...formData,
+                    operationFile: {
+                        fileSize: files[0].size,
+                        fileName: files[0].name,
+                        downloadUrl: reader.result,
+                    },
+                })
+            }
+        }
+    }
+
+    const onChangeProposalFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target?.files
+        const maxSize = 20 * 1024 * 1024 // 20MB
+        let reader = new FileReader()
+        if (!files || files.length === 0 || files[0].size === 0) return
+        else if (files[0]?.size > maxSize) {
+            return alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다.")
+        } else {
+            reader.readAsDataURL(files[0])
+            reader.onloadend = () => {
+                console.log("you worked well until here", files)
+                setFormData({
+                    ...formData,
+                    proposalFile: {
+                        fileSize: files[0].size,
+                        fileName: files[0].name,
+                        downloadUrl: reader.result,
+                    },
+                })
+            }
+        }
+    }
 
     return (
         <Stack>
@@ -50,6 +105,8 @@ export default function Index() {
                     <ProposalProcess idx={idx} title={itm} />
                 ))}
             </Stack>
+
+            {/* 약관동의란 */}
             <Typography
                 className="pointFont"
                 color={theme.palette.secondary.dark}
@@ -62,6 +119,7 @@ export default function Index() {
             </Typography>
             <ProposalTerms />
 
+            {/* 작성란 */}
             <Typography
                 className="pointFont"
                 color={theme.palette.secondary.dark}
@@ -72,14 +130,20 @@ export default function Index() {
             >
                 # 제휴/제안
             </Typography>
-            <ProposalForm />
+            <ProposalForm
+                formData={formData}
+                setFormData={setFormData}
+                onChangeInput={onChangeInput}
+                onChangeOperationFile={onChangeOperationFile}
+                onChangeProposalFile={onChangeProposalFile}
+            />
             <Divider />
             <Typography mt={2} mb={6} variant="subtitle2" color="#757575">
                 ❗️ 등록 전 개인정보와 제휴제안 내용을 다시 한 번 확인 해주세요. 개인정보가 정확하지 않으면 답변이
                 어려울 수 있습니다.
             </Typography>
 
-            <Button className={classes.button} sx={{alignSelf: "center"}} variant="outlined">
+            <Button className={classes.button} sx={{alignSelf: "center"}} variant="outlined" onClick={() => {}}>
                 제휴제안 보내기
             </Button>
         </Stack>
