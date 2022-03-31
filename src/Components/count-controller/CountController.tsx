@@ -1,60 +1,62 @@
-import React, {useEffect} from "react"
-import {Divider, IconButton, Stack, Typography} from "@mui/material"
-
+import AddRoundedIcon from "@mui/icons-material/AddRounded"
 //icon
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
-import AddRoundedIcon from "@mui/icons-material/AddRounded"
-
+import {Divider, IconButton, Stack, Typography} from "@mui/material"
 import {OptionCart} from "Goods/goods-type"
+import React from "react"
+import {toast} from "react-toastify"
 
 type CountControllerProps = {
     idx: number
-    option: any
+    optionId: string
     count: number
+    defaultPrice: number
     price: number
-    selectValueList: OptionCart[]
-    setSelectValueList: (val: OptionCart[]) => void
+    selectValueList: any[]
+    setSelectValueList: React.Dispatch<React.SetStateAction<any[]>>
     mr?: number
 }
 
 export default function CountController(props: CountControllerProps) {
-    const {idx, option, count, price, selectValueList, setSelectValueList, mr} = props
+    const {idx, optionId, count, defaultPrice, price, selectValueList, setSelectValueList, mr} = props
 
-    console.log("idx", idx)
-
-    const findIndex = selectValueList.findIndex(opt => opt.option?.optionId === option.optionId)
+    const findIndex = selectValueList.findIndex(opt => opt.option?.optionId === optionId)
     let copyOption = [...selectValueList]
 
-    const onClickReduce = (count: number, value: number, price: number) => {
-        if (count === 1) return
+    const onClickReduce = (count: number) => {
+        if (count <= 1) return
         if (findIndex !== -1) {
-            copyOption[idx] = {...copyOption[idx], price: price - value, count: count - 1}
+            copyOption[idx] = {...copyOption[idx], count: count - 1}
         }
         setSelectValueList(copyOption)
     }
 
-    const onClickAdd = (count: number, value: number) => {
-        if (findIndex !== -1) {
-            copyOption[idx] = {...copyOption[idx], price: value * (count + 1), count: count + 1}
+    const onClickAdd = (count: number) => {
+        if (count >= 30) {
+            toast.info("30개 이상은 단체 문의를 이용해주세요.")
+            return
         }
-
-        console.log("copyOption", copyOption)
+        if (findIndex !== -1) {
+            copyOption[idx] = {...copyOption[idx], count: count + 1}
+        }
         setSelectValueList(copyOption)
-        console.log("worked well! :: selectValueList", copyOption)
-        console.log("worked well! :: copyOption", copyOption)
     }
 
     return (
         <Stack flexDirection="row" alignItems="center" mr={mr ? mr : 0} sx={{border: "1px solid #726C60"}}>
-            <IconButton disabled={count === 1 ? true : false} onClick={() => onClickReduce(count, option.value, price)}>
+            <IconButton disabled={count === 1 ? true : false} onClick={() => onClickReduce(count)}>
                 <RemoveRoundedIcon />
             </IconButton>
+
             <Divider orientation="vertical" flexItem />
+
             <Typography width={40} align="center">
                 {count}
             </Typography>
+
             <Divider orientation="vertical" flexItem />
-            <IconButton onClick={() => onClickAdd(count, option.value)}>
+
+            <IconButton onClick={() => onClickAdd(count)}>
                 <AddRoundedIcon />
             </IconButton>
         </Stack>

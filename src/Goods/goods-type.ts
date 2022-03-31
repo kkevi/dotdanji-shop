@@ -8,17 +8,18 @@ export interface GoodsCategoryProps {
 export interface GoodsItemProps {
     goodsId: string
     categoryId: string
-    thumnails: Thumnail
+    thumbnails: Thumbnail
     options?: Options[]
     name: string
     infoText: string
+    tags: string[]
     price: number
     sale: number
     isFavor: boolean
     isCart: boolean
 }
 
-export type Thumnail = {
+export type Thumbnail = {
     images: string[]
     bgColor: string
 }

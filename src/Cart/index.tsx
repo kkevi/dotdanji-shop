@@ -8,36 +8,37 @@ import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRound
 export default function Cart() {
     const [step, setStep] = useState(0)
 
-    const title = ["01 장바구니", "02 주문하기", "03 주문서 확인"]
+    const title = ["장바구니", "주문하기", "주문서 확인"]
+
+    const onChangeNextStep = (index: number) => {
+        setStep(index)
+    }
 
     return (
         <Container maxWidth="lg">
             <Stack sx={{mt: 28, mb: 4}} alignItems="center">
-                <Stack
-                    width="35%"
-                    direction="row"
-                    justifyContent="space-between"
-                    alignSelf="center"
-                    alignItems="center"
-                    mb={8}
-                >
+                <Stack direction="row" justifyContent="space-between" alignSelf="center" alignItems="center" mb={8}>
                     {title.map((itm, idx) => (
-                        <>
+                        <Stack key={idx} direction="row" alignItems="center">
                             <Typography
+                                key={idx}
                                 fontSize={18}
                                 fontWeight={700}
                                 color={step === idx ? "black" : "rgba(0, 0, 0, 0.3)"}
                             >
-                                {itm}
+                                {`0${idx + 1} ${itm}`}
                             </Typography>
                             {title.length - 1 !== idx ? (
-                                <ArrowForwardIosRoundedIcon fontSize="small" sx={{color: "rgba(0, 0, 0, 0.2)"}} />
+                                <ArrowForwardIosRoundedIcon
+                                    fontSize="small"
+                                    sx={{color: "rgba(0, 0, 0, 0.2)", mx: 2}}
+                                />
                             ) : null}
-                        </>
+                        </Stack>
                     ))}
                 </Stack>
 
-                <CartSection1 setStep={setStep} />
+                <CartSection1 onChangeNextStep={onChangeNextStep} />
             </Stack>
         </Container>
     )

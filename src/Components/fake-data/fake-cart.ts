@@ -2,24 +2,22 @@ import {CartItemProps} from "Cart/cart-type"
 
 export const CART_ITEMS_DATA: CartItemProps[] = [
     {
-        goodsId: "goodsId0",
-        name: "스토리셀프 교재 세트",
-        thumbnail: "/images/fake/little-prince.png",
+        goodsId: "fake-goodsId-0",
         options: [
             {
                 count: 1,
-                price: 10000,
+                price: 10500,
                 option: {
-                    optionId: "goodsId0_opt0",
+                    optionId: "fake-goodsId-0_opt0",
                     text: "교재세트 7권 + 스티커북 10매",
-                    value: 10000,
+                    value: 5000,
                 },
             },
             {
                 count: 3,
                 price: 30000,
                 option: {
-                    optionId: "goodsId0_opt1",
+                    optionId: "fake-goodsId-0_opt1",
                     text: "교재세트 + 스티커북 10매",
                     value: 10000,
                 },
@@ -27,15 +25,13 @@ export const CART_ITEMS_DATA: CartItemProps[] = [
         ],
     },
     {
-        goodsId: "goodsId1",
-        name: "스토리셀프 스티커북",
-        thumbnail: "/images/fake/little-prince.png",
+        goodsId: "fake-goodsId-1",
         options: [
             {
                 count: 5,
                 price: 25000,
                 option: {
-                    optionId: "goodsId1opt0",
+                    optionId: "fake-goodsId-1_opt0",
                     text: "스티커북 10매",
                     value: 5000,
                 },
@@ -43,15 +39,13 @@ export const CART_ITEMS_DATA: CartItemProps[] = [
         ],
     },
     {
-        goodsId: "goodsId2",
-        name: "스토리셀프 밍밍밍",
-        thumbnail: "/images/fake/little-prince.png",
+        goodsId: "fake-goodsId-2",
         options: [
             {
                 count: 1,
                 price: 15000,
                 option: {
-                    optionId: "opt0",
+                    optionId: "fake-goodsId-2_opt0",
                     text: "밍밍이 키링",
                     value: 15000,
                 },
@@ -60,7 +54,7 @@ export const CART_ITEMS_DATA: CartItemProps[] = [
                 count: 1,
                 price: 30000,
                 option: {
-                    optionId: "opt0",
+                    optionId: "fake-goodsId-2_opt1",
                     text: "밍밍이 인형",
                     value: 30000,
                 },

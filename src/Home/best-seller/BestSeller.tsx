@@ -56,7 +56,7 @@ export default function BestSeller() {
                     const hovering = hover === idx
 
                     return (
-                        <Grid item xs={4}>
+                        <Grid item xs={4} key={idx}>
                             <div
                                 style={{height: 275, position: "relative"}}
                                 onMouseEnter={() => setHover(idx)}

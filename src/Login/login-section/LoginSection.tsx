@@ -64,13 +64,11 @@ export default function LoginSection() {
             </Button>
             {/* socialLogin */}
             <Stack direction="row" width="35%" justifyContent="space-between" alignSelf="center">
-                {socialLogin.map((itm, idx) => {
-                    return (
-                        <div className={classes.socialLogin} style={{backgroundColor: itm.color}}>
-                            <img className={classes.socialImage} src={itm.image} onClick={() => route.push(itm.url)} />
-                        </div>
-                    )
-                })}
+                {socialLogin.map((itm, idx) => (
+                    <div className={classes.socialLogin} style={{backgroundColor: itm.color}} key={idx}>
+                        <img className={classes.socialImage} src={itm.image} onClick={() => route.push(itm.url)} />
+                    </div>
+                ))}
             </Stack>
             <Button
                 sx={{mt: 12, mb: 4}}

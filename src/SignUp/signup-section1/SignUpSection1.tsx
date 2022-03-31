@@ -80,35 +80,33 @@ export default function SignUpSection1(prop: SignUpSection1Props) {
                 />
                 <Divider sx={{margin: "8px 0"}} />
                 <FormGroup>
-                    {checkedLists.map((itm, idx) => {
-                        return (
-                            <Stack direction="row" alignItems="center">
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            value={itm.value}
-                                            checked={checkedItems.includes(itm.value) ? true : false}
-                                            onChange={e => onCheckedOne(e.currentTarget.checked, e.target.value)}
-                                        />
-                                    }
-                                    label={<Typography variant="subtitle2">{itm.title}</Typography>}
-                                />
-                                {itm.link ? (
-                                    <Typography
-                                        variant="subtitle2"
-                                        className={classes.link}
-                                        ml={-1}
-                                        onClick={() => {
-                                            setDialogId(itm.id)
-                                            setVisibleDialog(true)
-                                        }}
-                                    >
-                                        보기
-                                    </Typography>
-                                ) : null}
-                            </Stack>
-                        )
-                    })}
+                    {checkedLists.map((itm, idx) => (
+                        <Stack direction="row" alignItems="center" key={idx}>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        value={itm.value}
+                                        checked={checkedItems.includes(itm.value) ? true : false}
+                                        onChange={e => onCheckedOne(e.currentTarget.checked, e.target.value)}
+                                    />
+                                }
+                                label={<Typography variant="subtitle2">{itm.title}</Typography>}
+                            />
+                            {itm.link ? (
+                                <Typography
+                                    variant="subtitle2"
+                                    className={classes.link}
+                                    ml={-1}
+                                    onClick={() => {
+                                        setDialogId(itm.id)
+                                        setVisibleDialog(true)
+                                    }}
+                                >
+                                    보기
+                                </Typography>
+                            ) : null}
+                        </Stack>
+                    ))}
                 </FormGroup>
             </Stack>
 

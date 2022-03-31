@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useCallback, useEffect, useState} from "react"
 
 import {
     Table,
@@ -11,6 +11,7 @@ import {
     Divider,
     Button,
     Stack,
+    FormControlLabel,
 } from "@mui/material"
 import useStyles from "./style"
 
@@ -21,50 +22,84 @@ import {CartItemProps, OptionCart} from "Cart/cart-type"
 import {CART_ITEMS_DATA} from "Components/fake-data/fake-cart"
 
 type CartSection1Props = {
-    setStep: (val: number) => void
+    onChangeNextStep: (index: number) => void
 }
 
-export default function CartSection1(prop: CartSection1Props) {
+export type CartOptionsType = {
+    goodsId: string
+    count: number
+    price: number
+    optionId: string
+    optionName: string
+    optionValue: number
+}
+
+export default function CartSection1(props: CartSection1Props) {
     const classes = useStyles()
-    const {setStep} = prop
-
+    const {onChangeNextStep} = props
+    //장바구니 데이터 표시
     const tableTitle = ["제품정보", "수량", "주문금액", "배송비"]
-    const [cartItemData, setCartItemData] = useState<CartItemProps[]>(CART_ITEMS_DATA)
-    const [selectValueList, setSelectValueList] = useState<OptionCart[]>([])
+    const [cartItemList, setCartItemList] = useState<CartOptionsType[]>([])
+    //실제 구매 데이터 생성
+    const [choiceList, setChoiceList] = useState<Record<string, boolean>>(new Object() as Record<string, boolean>)
+    const [checkAll, setCheckAll] = useState(true)
+    const [potalPrice, setPotalPrice] = useState<number>(0)
+    const deliveryPrice = 2500
 
-    // 배송비 rowSpan 값
-    const _length = () => {
-        const lengthMeasure = () => {
-            const measure = cartItemData.map((itm, idx) => {
-                return itm.options.length
-            })
+    useEffect(() => {
+        loadData()
+    }, [])
 
-            return measure
+    useEffect(() => {
+        setChoiceList(choiceList)
+    }, [cartItemList, choiceList])
+
+    //장바구니 데이터 가져오기
+    const loadData = async () => {
+        try {
+            const result = await CART_ITEMS_DATA
+            const list: CartOptionsType[] = []
+            result.map((itm, idx) =>
+                list.push(
+                    ...itm.options.reduce((acc, cur) => {
+                        acc.push({
+                            goodsId: itm.goodsId,
+                            count: cur.count,
+                            price: cur.price,
+                            optionId: cur.option.optionId,
+                            optionName: cur.option.text,
+                            optionValue: cur.option.value,
+                        })
+                        return acc
+                    }, [] as CartOptionsType[]),
+                ),
+            )
+            setCartItemList(list)
+            list.map(({optionId}) => (choiceList[optionId] = true))
+        } catch (e) {
+            console.log(e)
+        } finally {
         }
-        const _lengthMeasure = lengthMeasure()
-
-        let sum = 0
-        _lengthMeasure.forEach(itm => {
-            sum += itm
-        })
-
-        return sum
-    }
-    const length = _length()
-
-    console.log("cartItemData", cartItemData)
-
-    const _selectValueList = () => {
-        cartItemData.map((_itm, _idx) => {
-            _itm.options.forEach(itm => {
-                selectValueList.push(itm)
-            })
-        })
     }
 
-    _selectValueList()
+    //체크박스 선택된 제품만
+    const onChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChoiceList({
+            ...choiceList,
+            [event.target.name]: event.target.checked,
+        })
+    }
+    const onCheckAll = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCheckAll(event.target.checked)
+        for (const [key, value] of Object.entries(choiceList)) {
+            choiceList[key] = event.target.checked
+        }
+    }
 
-    console.log("selectValueList", selectValueList)
+    //주문하기 버튼 클릭
+    const onClickOrder = () => {
+        onChangeNextStep(1)
+    }
 
     return (
         <>
@@ -81,11 +116,16 @@ export default function CartSection1(prop: CartSection1Props) {
                 <TableHead>
                     <TableRow>
                         <TableCell padding="checkbox">
-                            <Checkbox
+                            <FormControlLabel
+                                label=""
                                 color="primary"
-                                // indeterminate={numSelected > 0 && numSelected < rowCount} //전체체크 여부 만들어주는 거
-                                // checked={rowCount > 0 && numSelected === rowCount}
-                                // onChange={onSelectAllClick}
+                                control={
+                                    <Checkbox
+                                        checked={checkAll}
+                                        // indeterminate={}
+                                        onChange={onCheckAll}
+                                    />
+                                }
                             />
                         </TableCell>
 
@@ -98,53 +138,19 @@ export default function CartSection1(prop: CartSection1Props) {
                 </TableHead>
 
                 <TableBody>
-                    {/* {cartItemData.map((_itm, _idx) => {
-                        console.log("_itm", _itm)
-                        return _itm.options?.map((itm, idx) => {
-                            const {count, price, option} = itm
-
-                            console.log("itm", itm)
-                            console.log("tt", _idx, idx)
-
-                            return (
-                                <TableRow key={"tableRow"} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
-                                    <CartList
-                                        idx={idx}
-                                        name={_itm.name}
-                                        src={_itm.thumbnail}
-                                        count={count}
-                                        price={price}
-                                        option={option}
-                                        selectValueList={selectValueList}
-                                        setSelectValueList={setSelectValueList}
-                                    />
-                                    {idx === 0 && _idx === 0 && (
-                                        <TableCell rowSpan={length + 1} align="center">
-                                            배송비
-                                        </TableCell>
-                                    )}
-                                </TableRow>
-                            )
-                        })
-                    })} */}
-
-                    {selectValueList?.map((itm, idx) => {
-                        const {count, price, option} = itm
-
+                    {cartItemList?.map((cartItem, idx) => {
                         return (
                             <TableRow key={"tableRow" + idx} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
                                 <CartList
                                     idx={idx}
-                                    name={"asdf"}
-                                    src={"/"}
-                                    count={count}
-                                    price={price}
-                                    option={option}
-                                    selectValueList={selectValueList}
-                                    setSelectValueList={setSelectValueList}
+                                    cartItem={cartItem}
+                                    cartItemList={cartItemList}
+                                    checkList={choiceList}
+                                    setCartItemList={setCartItemList}
+                                    onChangeCheckbox={onChangeCheckbox}
                                 />
                                 {idx === 0 && (
-                                    <TableCell rowSpan={length + 1} align="center">
+                                    <TableCell rowSpan={cartItemList.length + 1} align="center">
                                         배송비
                                     </TableCell>
                                 )}
@@ -161,21 +167,25 @@ export default function CartSection1(prop: CartSection1Props) {
                 <Stack className={classes.columnStack}>
                     <Typography mb={0.5}>총 주문금액</Typography>
                     <Typography fontSize={26} fontWeight={700}>
-                        230,000 원
+                        {potalPrice.toLocaleString()} 원
                     </Typography>
                 </Stack>
+
                 <ImageBox width={24} height={24} src="/icons/icon-add.png" />
+
                 <Stack className={classes.columnStack}>
                     <Typography mb={0.5}>배송비</Typography>
                     <Typography fontSize={26} fontWeight={700}>
-                        2,500 원
+                        {potalPrice >= 50000 || potalPrice === 0 ? 0 : deliveryPrice.toLocaleString()} 원
                     </Typography>
                 </Stack>
+
                 <ImageBox width={24} height={24} src="/icons/icon-equal.png" />
+
                 <Stack className={classes.columnStack}>
                     <Typography mb={0.5}>총 결제금액</Typography>
                     <Typography fontSize={26} fontWeight={700}>
-                        232,500 원
+                        {potalPrice === 0 ? 0 : (potalPrice + deliveryPrice).toLocaleString()} 원
                     </Typography>
                 </Stack>
             </Stack>
@@ -185,13 +195,7 @@ export default function CartSection1(prop: CartSection1Props) {
                 <Button variant="contained" fullWidth onClick={() => {}}>
                     <Typography variant="h6">쇼핑 계속하기</Typography>
                 </Button>
-                <Button
-                    variant="contained"
-                    fullWidth
-                    onClick={() => {
-                        // setStep(1)
-                    }}
-                >
+                <Button variant="contained" fullWidth onClick={onClickOrder}>
                     <Typography variant="h6">주문하기</Typography>
                 </Button>
             </Stack>

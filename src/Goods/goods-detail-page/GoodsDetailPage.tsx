@@ -22,7 +22,7 @@ export default function GoodsDetailPage(props: Props) {
     const route = useRouter()
     const {goodsId} = props
     const [goodsItemData, setGoodsItemData] = useState<GoodsItemProps>(GOODS_ITEMS_DATA[0])
-    const {name, thumnails, infoText, options = []} = goodsItemData
+    const {name, thumbnails, infoText, options = [], tags} = goodsItemData
 
     //옵션 선택 박스
     const defaultOption = "옵션 선택"
@@ -30,12 +30,21 @@ export default function GoodsDetailPage(props: Props) {
     const [selectValueList, setSelectValueList] = useState<OptionCart[]>([])
     const [totalPrice, setTotalPrice] = useState(0)
 
+    useEffect(() => {
+        //전체 금액 표시
+        setTotalPrice(
+            selectValueList.reduce((acc, cur) => {
+                acc += (cur.price + goodsItemData.price) * cur.count
+                return acc
+            }, 0),
+        )
+    }, [selectValueList, selectValue])
+
     // 옵션 선택
     const onSelectOption = (event: SelectChangeEvent) => {
         const {value} = event.target
-        setSelectValue(value)
-        if (value === defaultOption) return
         onAddOptionList(value)
+        setSelectValue(value)
     }
 
     // 옵션 배열 검사
@@ -58,34 +67,37 @@ export default function GoodsDetailPage(props: Props) {
         setSelectValue("옵션 선택")
     }
 
-    // 옵션 값이 바뀔 때마다 가격 변동
-    useEffect(() => {
-        let cost = 0
-        const prices = selectValueList.map((itm, idx) => {
-            return itm.price
-        })
-        prices.forEach(itm => {
-            cost += itm
-            setTotalPrice(cost)
-        })
-
+    const onCickCart = () => {
         if (selectValueList.length < 1) {
-            setTotalPrice(0)
+            alert("옵션을 선택 해주세요.")
+        } else {
+            const newArray: CartItemProps = {
+                goodsId: goodsId,
+                name: name,
+                thumbnail: thumbnails.images[0],
+                options: selectValueList,
+            }
+            const loggedIn = true
+            if (loggedIn) {
+                route.push("/cart")
+            } else {
+                if (confirm("로그인을 먼저 해주세요.")) {
+                    route.push("/login")
+                } else return
+            }
         }
-
-        // console.log("selectValueList", selectValueList)
-    }, [onSelectOption || selectValueList])
+    }
 
     return (
         <div className={classes.root}>
-            <Stack direction="row" width="100%" bgcolor={thumnails.bgColor}>
+            <Stack direction="row" width="100%" bgcolor={thumbnails.bgColor}>
                 {/* left box */}
                 <div style={{width: "60%", paddingTop: "2rem"}}>
                     <Slider {...sliderSettings}>
-                        {thumnails.images.map((image, idx) => (
+                        {thumbnails.images.map((image, idx) => (
                             <Stack
                                 mt={10}
-                                key={"thumnail" + idx}
+                                key={"thumbnail" + idx}
                                 width="100%"
                                 className={classes.slideBox}
                                 height={1000}
@@ -106,10 +118,14 @@ export default function GoodsDetailPage(props: Props) {
 
                 {/* right box */}
                 <div className={classes.infoBox}>
+                    {/* 이름,태그, 가격 */}
+                    <Typography variant="subtitle2">{tags.map((tag, idx) => `#${tag} `)}</Typography>
                     <Typography fontSize={28} fontWeight={800}>
                         {name}
                     </Typography>
-                    <Typography variant="subtitle2">#태그태그 #태그태그</Typography>
+                    <Typography fontSize={24} fontWeight={800} mt={2}>
+                        {goodsItemData.price.toLocaleString()}원
+                    </Typography>
                     <Typography fontSize={20} mt={3} mb={8}>
                         {infoText}
                     </Typography>
@@ -128,8 +144,15 @@ export default function GoodsDetailPage(props: Props) {
                                 <Typography fontSize={20}>{defaultOption}</Typography>
                             </MenuItem>
                             {options.map((option, idx) => (
-                                <MenuItem key={option.optionId} value={option.optionId}>
+                                <MenuItem
+                                    key={option.optionId}
+                                    value={option.optionId}
+                                    style={{display: "flex", justifyContent: "space-between"}}
+                                >
                                     <Typography fontSize={20}>{option.text}</Typography>
+                                    <Typography fontSize={16} color="#888">
+                                        {option.value > 0 && `+${option.value.toLocaleString()}원`}
+                                    </Typography>
                                 </MenuItem>
                             ))}
                         </Select>
@@ -141,13 +164,15 @@ export default function GoodsDetailPage(props: Props) {
                             <Stack mb={3} width="100%">
                                 {selectValueList.map(({option, count, price}, idx) => (
                                     <GoodsOptions
+                                        key={"option" + idx}
                                         idx={idx}
                                         option={option}
                                         count={count}
-                                        price={price}
+                                        defaultPrice={goodsItemData.price}
+                                        optionDefaultPrice={price}
                                         selectValueList={selectValueList}
-                                        setSelectValueList={setSelectValueList}
                                         onDeleteOption={onDeleteOption}
+                                        setSelectValueList={setSelectValueList}
                                     />
                                 ))}
                             </Stack>
@@ -180,37 +205,13 @@ export default function GoodsDetailPage(props: Props) {
                             총 상품금액
                         </Typography>
                         <Typography variant="h6" fontWeight={700}>
-                            {totalPrice.toLocaleString("ko")} 원
+                            {totalPrice.toLocaleString()}원
                         </Typography>
                     </Stack>
 
                     {/* 구매버튼 */}
                     <Stack className={classes.rootStack}>
-                        <Button
-                            variant="contained"
-                            sx={{height: 55}}
-                            fullWidth
-                            onClick={() => {
-                                if (selectValueList.length < 1) {
-                                    alert("옵션을 선택 해주세요.")
-                                } else {
-                                    const newArray: CartItemProps = {
-                                        goodsId: goodsId,
-                                        name: name,
-                                        thumbnail: thumnails.images[0],
-                                        options: selectValueList,
-                                    }
-                                    const loggedIn = true
-                                    if (loggedIn) {
-                                        route.push("/cart")
-                                    } else {
-                                        if (confirm("로그인을 먼저 해주세요.")) {
-                                            route.push("/login")
-                                        } else return
-                                    }
-                                }
-                            }}
-                        >
+                        <Button variant="contained" sx={{height: 55}} fullWidth onClick={onCickCart}>
                             <Typography variant="h6">장바구니 담기</Typography>
                         </Button>
                         <Button variant="contained" sx={{height: 55}} fullWidth onClick={() => {}}>

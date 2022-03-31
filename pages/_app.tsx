@@ -3,6 +3,8 @@ import Head from "next/head"
 import {CssBaseline, ThemeProvider} from "@mui/material"
 import {theme} from "styles/theme"
 import {GlobalStyle} from "styles/global-styles"
+import {ToastContainer} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 function MyApp({Component, pageProps}: AppProps) {
     return (
@@ -21,6 +23,7 @@ function MyApp({Component, pageProps}: AppProps) {
                 <CssBaseline />
                 <GlobalStyle />
                 <Component {...pageProps} />
+                <ToastContainer autoClose={2000} pauseOnHover={false} hideProgressBar />
             </ThemeProvider>
         </>
     )

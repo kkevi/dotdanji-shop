@@ -1,8 +1,7 @@
-import React, {ReactChild, useEffect} from "react"
 import {observer} from "mobx-react"
-import {useSessionStorage} from "react-use"
 import {useRouter} from "next/router"
-import userPool from "./UserPool"
+import React, {ReactChild, useEffect} from "react"
+import userPool from "../../Login/login-section/UserPool"
 
 type Props = {
     children: ReactChild

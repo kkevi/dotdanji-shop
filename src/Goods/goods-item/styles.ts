@@ -17,7 +17,7 @@ const styles = makeStyles((theme: Theme) =>
                 color: theme.palette.secondary.light,
             },
         },
-        thumnail: {
+        thumbnail: {
             position: "relative",
             width: "100%",
             height: "fit-content",

@@ -12,7 +12,5 @@ export type OptionCart = {
 
 export interface CartItemProps {
     goodsId: string
-    name: string
-    thumbnail: string
     options: OptionCart[]
 }

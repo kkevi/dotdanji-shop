@@ -19,7 +19,7 @@ type props = {
 const isLoggedIn = false
 
 export default function GoodsItem(props: props) {
-    const {goodsId, categoryId, thumnails, name, price, sale, isFavor, isCart} = props.data
+    const {goodsId, categoryId, thumbnails, name, price, sale, isFavor, isCart} = props.data
     const classes = useStyles()
     const route = useRouter()
     //state
@@ -94,9 +94,9 @@ export default function GoodsItem(props: props) {
 
     return (
         <div className={classes.root}>
-            <div className={classes.thumnail}>
+            <div className={classes.thumbnail}>
                 <ButtonBase onClick={onClickRouter} disabled={disabled}>
-                    <ImageBox src={thumnails.images[0]} height="400px" />
+                    <ImageBox src={thumbnails.images[0]} height="400px" />
                 </ButtonBase>
 
                 <Stack direction="row" position="absolute" bottom={0} right="1rem" zIndex={5} bgcolor="#fff">
