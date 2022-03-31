@@ -4,7 +4,7 @@ import {Theme} from "@mui/material"
 const styles = makeStyles((theme: Theme) =>
     createStyles({
         footer: {
-            backgroundColor: theme.palette.primary.dark,
+            backgroundColor: "#2d2d2d",
             color: "#777",
             fontSize: "0.85rem",
 
@@ -17,7 +17,7 @@ const styles = makeStyles((theme: Theme) =>
             },
         },
         footerTextArea: {
-            color: "#fff",
+            color: "#cccccc",
             opacity: 0.8,
         },
     }),

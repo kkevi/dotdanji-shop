@@ -3,6 +3,7 @@ import {Theme} from "@mui/material"
 
 const styles = makeStyles((theme: Theme) =>
     createStyles({
+        terms: {},
         textField: {
             marginBottom: 30,
             backgroundColor: "rgba(208,235,245,0.1)",

@@ -21,7 +21,7 @@ export default function ShopCartButton(props: Props) {
                     horizontal: "right",
                 }}
             >
-                <ShoppingCartRoundedIcon style={{color: "white", fontSize: "28px"}} />
+                <ShoppingCartRoundedIcon style={{color: theme.palette.secondary.dark, fontSize: "28px"}} />
             </Badge>
         </IconButton>
     )
