@@ -69,7 +69,7 @@ export default function Topbar() {
                             ))}
 
                             <Button onClick={() => route.push("/")} style={textColor}>
-                                제휴&문의
+                                고객센터
                             </Button>
                         </Stack>
 

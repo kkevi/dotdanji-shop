@@ -1,14 +1,16 @@
 import {IconButton, Badge} from "@mui/material"
 import {useRouter} from "next/router"
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded"
-
+import {useTheme} from "@mui/system"
 type Props = {
     badgeContent: number
 }
 
 export default function ShopCartButton(props: Props) {
     const route = useRouter()
+    const theme = useTheme()
     const {badgeContent} = props
+
     return (
         <IconButton sx={{marginRight: 2}} onClick={() => route.push("/cart")}>
             <Badge

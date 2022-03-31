@@ -11,8 +11,11 @@ import BestSeller from "./best-seller/BestSeller"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import {sliderSettings} from "./sliderSetting"
+import {useTheme} from "@mui/system"
 
 export default function Home() {
+    const theme = useTheme()
+
     const fakeVerticalData = [
         {
             id: "vertical0",
@@ -100,7 +103,13 @@ export default function Home() {
 
             {/* 상단메인 */}
             <Container maxWidth="lg">
-                <Typography className="pointFont" variant="h4" mt={10} fontWeight={800}>
+                <Typography
+                    className="pointFont"
+                    color={theme.palette.secondary.dark}
+                    variant="h4"
+                    mt={10}
+                    fontWeight={800}
+                >
                     # 우리 아이가 좋아하는 이야기
                 </Typography>
                 <Stack mt={2} mb={6} direction="row" justifyContent="space-between" position="relative">
@@ -144,7 +153,14 @@ export default function Home() {
 
             {/* 베스트 셀러 */}
             <Container maxWidth="lg" sx={{marginBottom: 20}}>
-                <Typography className="pointFont" variant="h4" mt={20} mb={2} fontWeight={800}>
+                <Typography
+                    className="pointFont"
+                    color={theme.palette.secondary.dark}
+                    variant="h4"
+                    mt={20}
+                    mb={2}
+                    fontWeight={800}
+                >
                     # 이 달의 인기 도서
                 </Typography>
                 <BestSeller />

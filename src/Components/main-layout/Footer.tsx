@@ -35,8 +35,8 @@ export default function Footer() {
                     </Stack>
                     {smDown && <Divider orientation="horizontal" />}
                     <Stack spacing={2} my={smDown ? 3 : 0}>
-                        <Link href="#" underline="none">
-                            고객센터
+                        <Link href="/proposal" underline="none">
+                            제휴&문의
                         </Link>
                         <p className={classes.footerTextArea}>contact@simbaat.com</p>
                         <p className={classes.footerTextArea}>Copyright ⓒ 2021 Simbaat All rights reserved.</p>

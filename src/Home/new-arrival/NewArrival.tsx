@@ -63,7 +63,7 @@ export default function NewArrival() {
                                                 href="#"
                                                 underline="none"
                                                 fontWeight={800}
-                                                color={theme.palette.primary.light}
+                                                color={theme.palette.primary.main}
                                             >
                                                 읽으러 가기
                                             </Link>
