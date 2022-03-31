@@ -117,7 +117,7 @@ export default function Index() {
             >
                 # 개인정보 이용 동의
             </Typography>
-            <ProposalTerms />
+            <ProposalTerms formData={formData} setFormData={setFormData} />
 
             {/* 작성란 */}
             <Typography

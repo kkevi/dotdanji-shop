@@ -1,7 +1,14 @@
 import React from "react"
 import {Typography, Stack, Divider, FormControlLabel, Checkbox} from "@mui/material"
 
-export default function ProposalTerms() {
+import {ProposalFormProps} from "../ProposalDataType"
+
+type ProposalTermsProps = {
+    formData: ProposalFormProps
+    setFormData: React.Dispatch<React.SetStateAction<ProposalFormProps>>
+}
+
+export default function ProposalTerms({formData, setFormData}: ProposalTermsProps) {
     return (
         <Stack>
             <Typography variant="subtitle2" mb={0.1}>
@@ -24,7 +31,17 @@ export default function ProposalTerms() {
             </Typography>
             <Divider sx={{marginTop: 2, marginBottom: 1}} />
             <FormControlLabel
-                control={<Checkbox defaultChecked />}
+                control={
+                    <Checkbox
+                        value={formData.agree}
+                        onChange={e => {
+                            setFormData({
+                                ...formData,
+                                agree: !formData.agree,
+                            })
+                        }}
+                    />
+                }
                 label={<Typography variant="subtitle2">개인정보 수집 및 이용에 동의합니다.</Typography>}
             />
         </Stack>
