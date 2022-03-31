@@ -28,7 +28,7 @@ export default function Topbar() {
         window.addEventListener("scroll", updateScroll)
     })
 
-    const textColor = {color: "white", fontWeight: 800, fontSize: 16}
+    const textColor = {color: theme.palette.secondary.dark, fontWeight: 800, fontSize: 16}
 
     const onClickCategorys = (categoryId: string) => {
         route.push({pathname: "/goods", query: {categoryId: categoryId}})
@@ -41,12 +41,19 @@ export default function Topbar() {
                 top: 0,
                 left: 0,
                 width: "100%",
-                background: theme.palette.primary.dark,
+                background: "white",
                 zIndex: 10,
+                borderBottom: scrollPosition < 320 ? "none" : "1px solid #eaeaea",
             }}
         >
             <div style={{position: "relative"}}>
-                <Container maxWidth="lg" sx={{py: scrollPosition < 100 ? 4 : 1, transition: "0.5s"}}>
+                <Container
+                    maxWidth="lg"
+                    sx={{
+                        py: scrollPosition < 320 ? 4 : 2,
+                        transition: "0.5s",
+                    }}
+                >
                     <Stack direction="row" justifyContent="space-between" alignItems="center">
                         <div>
                             <Link href={"/"}>
@@ -68,8 +75,8 @@ export default function Topbar() {
                                 </Button>
                             ))}
 
-                            <Button onClick={() => route.push("/")} style={textColor}>
-                                제휴&문의
+                            <Button onClick={() => route.push("/notice")} style={textColor}>
+                                고객센터
                             </Button>
                         </Stack>
 

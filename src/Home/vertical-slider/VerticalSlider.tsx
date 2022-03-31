@@ -1,5 +1,4 @@
 import React from "react"
-import Slider from "react-slick"
 
 import {useTheme} from "@mui/styles"
 import {Button, Stack, Typography} from "@mui/material"
