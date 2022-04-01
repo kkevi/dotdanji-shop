@@ -1,9 +1,18 @@
+export interface CartItemProps {
+    goodsId: string
+    options: OptionCart[]
+}
+
 export type OptionCart = {
     optionId: string
     count: number
 }
 
-export interface CartItemProps {
+export type CartOptionsType = {
     goodsId: string
-    options: OptionCart[]
+    count: number
+    price: number
+    optionId: string
+    optionName: string
+    optionValue: number
 }

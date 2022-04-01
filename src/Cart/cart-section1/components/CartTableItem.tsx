@@ -1,9 +1,9 @@
 import {Checkbox, FormControlLabel, Stack, TableCell, Typography} from "@mui/material"
+import {CartOptionsType} from "Cart/cart-type"
 import CountController from "Components/count-controller/CountController"
 import {GOODS_ITEMS_DATA} from "Components/fake-data/fake-goods"
 import ImageBox from "Components/image-box/ImageBox"
 import React, {useEffect, useState} from "react"
-import {CartOptionsType} from "./CartSection1"
 
 type CartListProps = {
     idx: number
@@ -14,7 +14,7 @@ type CartListProps = {
     onChangeCheckbox: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function CartList(props: CartListProps) {
+export default function CartTableItem(props: CartListProps) {
     const {idx, cartItem, cartItemList, checkList, setCartItemList, onChangeCheckbox} = props
     const [goodsThumbnail, setGoodsThumbnail] = useState("")
     const [goodsName, setGoodsName] = useState("")

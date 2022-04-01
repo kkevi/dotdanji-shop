@@ -9,7 +9,7 @@ import ImageBox from "Components/image-box/ImageBox"
 //icon
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
-import LocalGroceryStoreOutlinedIcon from "@mui/icons-material/LocalGroceryStoreOutlined"
+import ShareIcon from "@mui/icons-material/Share"
 
 type props = {
     data: GoodsItemProps
@@ -67,31 +67,6 @@ export default function GoodsItem(props: props) {
         [goodsId], //api
     )
 
-    //장바구니 버튼 클릭
-    const onClickCartBtn = () => {
-        if (cartState) {
-            return alert("이미 장바구니에 있는 상품입니다.")
-        }
-        doCart(goodsId)
-    }
-
-    // 장바구니 저장 - 서버 전송
-    const doCart = useCallback(
-        async (id: string) => {
-            setLoading(true)
-            try {
-                // const {count} = await api
-            } catch (err: any) {
-                return console.log(err)
-            } finally {
-                setCartState(true)
-                toast("장바구니에 저장되었습니다.")
-                setLoading(false)
-            }
-        },
-        [goodsId], //api
-    )
-
     return (
         <div className={classes.root}>
             <div className={classes.thumbnail}>
@@ -99,14 +74,14 @@ export default function GoodsItem(props: props) {
                     <ImageBox src={thumbnails.images[0]} height="400px" />
                 </ButtonBase>
 
-                <Stack direction="row" position="absolute" bottom={0} right="1rem" zIndex={5} bgcolor="#fff">
-                    <IconButton size="small" onClick={onClickCartBtn}>
-                        <LocalGroceryStoreOutlinedIcon />
-                    </IconButton>
+                <div className={classes.iconButtonList}>
                     <IconButton size="small" onClick={onClickFavorBtn}>
                         {favorState ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />}
                     </IconButton>
-                </Stack>
+                    <IconButton size="small">
+                        <ShareIcon />
+                    </IconButton>
+                </div>
             </div>
 
             <ButtonBase className={classes.titleArea} onClick={onClickRouter} disabled={disabled}>

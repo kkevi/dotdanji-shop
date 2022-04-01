@@ -33,6 +33,21 @@ const styles = makeStyles((theme: Theme) =>
             flexDirection: "column",
             alignItems: "flex-end",
         },
+
+        iconButtonList: {
+            display: "flex",
+            fiexDirection: "row",
+            position: "absolute",
+            bottom: 0,
+            right: "1rem",
+            zIndex: 5,
+            background: "#fff",
+            transition: "0.5s",
+
+            "&:hover": {
+                bottom: 12,
+            },
+        },
     }),
 )
 

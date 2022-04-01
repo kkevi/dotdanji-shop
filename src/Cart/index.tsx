@@ -1,7 +1,8 @@
 import React, {useState} from "react"
 import {Stack, Container, Typography} from "@mui/material"
 
-import CartSection1 from "./cart-section1/CartSection1"
+import CartSection1 from "./cart-section1"
+import CartSection2 from "./cart-section2"
 
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded"
 
@@ -38,7 +39,8 @@ export default function Cart() {
                     ))}
                 </Stack>
 
-                <CartSection1 onChangeNextStep={onChangeNextStep} />
+                {step === 0 && <CartSection1 onChangeNextStep={onChangeNextStep} />}
+                {step === 1 && <CartSection2 onChangeNextStep={onChangeNextStep} />}
             </Stack>
         </Container>
     )

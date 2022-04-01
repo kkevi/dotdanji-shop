@@ -42,7 +42,7 @@ export default function GoodsLayout(props: Props) {
         //item list 불러오기
         const goods = GOODS_ITEMS_DATA.filter(it => it.categoryId === categoryId) as GoodsItemProps[]
         setGoodsList(goods)
-    }, [categoryId, goodsList])
+    }, [categoryId])
 
     const onChangeSelect = (event: SelectChangeEvent) => {
         setGoodsFilter(event.target.value)
@@ -53,7 +53,7 @@ export default function GoodsLayout(props: Props) {
             {/* search*/}
             <Stack direction="row" justifyContent="space-between" alignItems="flex-end" mb={2}>
                 <Stack direction="row" alignItems="flex-end">
-                    <Typography variant="h4" fontWeight="bold">
+                    <Typography className="pointFont" variant="h4" color="#333">
                         {categoryTitle}
                     </Typography>
                     <Typography variant="body1" ml={1}>
