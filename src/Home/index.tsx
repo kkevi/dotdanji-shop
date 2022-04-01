@@ -12,81 +12,14 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import {sliderSettings} from "./sliderSetting"
 import {useTheme} from "@mui/system"
+import ImageBox from "Components/image-box/ImageBox"
+import {fakeHomeSliderData, fakeVerticalData} from "Components/fake-data/fake-event"
 
 export default function Home() {
     const theme = useTheme()
 
-    const fakeVerticalData = [
-        {
-            id: "vertical0",
-            title: "어린 왕자",
-            author: "원작 생텍쥐페리⎟글 조가비⎟그림 안지현",
-            content: "엇쩌고저쩌고 블라블라",
-            image: "/images/fake/little-prince.png",
-            url: "",
-        },
-
-        {
-            id: "vertical1",
-            title: "피노키오",
-            author: "원작 카를로 콜로디⎟글 박병화⎟그림 송현정",
-            content: "엇쩌고저쩌고 블라블라",
-            image: "/images/fake/pinokio.png",
-            url: "",
-        },
-
-        {
-            id: "vertical2",
-            title: "해님 달님",
-            author: "전래동화⎟글・그림 조가비",
-            content: "엇쩌고저쩌고 블라블라",
-            image: "/images/fake/sun-moon.png",
-            url: "",
-        },
-        {
-            id: "vertical3",
-            title: "골디락스와 세 마리 곰",
-            author: "영국 민담⎟글・그림 조가비",
-            content: "엇쩌고저쩌고 블라블라",
-            image: "/images/fake/three-bears.png",
-            url: "",
-        },
-        {
-            id: "vertical4",
-            title: "호두까끼 인형",
-            author: "원작 E.T.A호프만 글 조가비⎟그림 안지현",
-            content: "엇쩌고저쩌고 블라블라",
-            image: "/images/fake/walnut.png",
-            url: "",
-        },
-    ]
-
-    const fakeHomeSliderData = [
-        {
-            id: "homeslider1",
-            title: "우리 아이 얼굴이 나오는 동화책",
-            subTitle: "최첨단 얼굴인식 AI로 흥미롭고 재미있게!",
-            image: "/images/fake/home-slider1.jpg",
-            url: "",
-        },
-        {
-            id: "homeslider2",
-            title: "언어 발달을 도와주는 혁신적인 아이콘!",
-            subTitle: "전문가와 함께 하는 검증된 교육",
-            image: "/images/fake/home-slider2.jpg",
-            url: "",
-        },
-        {
-            id: "homeslider3",
-            title: "스토리셀프 구독 시 첫 달 무료",
-            subTitle: "1년 구독시 99,000원에 파격 세일",
-            image: "/images/fake/home-slider3.jpg",
-            url: "",
-        },
-    ]
-
     return (
-        <div>
+        <div style={{background: "#F4F5F7"}}>
             {/* 메인 슬라이더 */}
             <Slider {...sliderSettings}>
                 {fakeHomeSliderData.map((itm, idx) => (
@@ -134,11 +67,12 @@ export default function Home() {
                         <Slider {...sliderSettings}>
                             {fakeVerticalData.map((itm, idx) => (
                                 <VerticalSlider
-                                    key={itm.id}
-                                    id={itm.id}
+                                    key={itm.eventId}
+                                    eventId={itm.eventId}
                                     title={itm.title}
-                                    author={itm.author}
-                                    content={itm.content}
+                                    startDate={itm.startDate}
+                                    endDate={itm.endDate}
+                                    caption={itm.caption}
                                     image={itm.image}
                                     url={itm.url}
                                 />
@@ -148,42 +82,30 @@ export default function Home() {
                 </Stack>
             </Container>
 
+            {/* 베스트 셀러 */}
+            <BestSeller />
+
             {/* 신상품 */}
             <NewArrival />
-
-            {/* 베스트 셀러 */}
-            <Container maxWidth="lg" sx={{marginBottom: 20}}>
-                <Typography
-                    className="pointFont"
-                    color={theme.palette.secondary.dark}
-                    variant="h4"
-                    mt={20}
-                    mb={2}
-                    fontWeight={800}
-                >
-                    # 이 달의 인기 도서
-                </Typography>
-                <BestSeller />
-            </Container>
 
             <div
                 style={{
                     width: "100%",
-                    height: 150,
-                    backgroundColor: "#FAFBFD",
+                    maxHeight: 150,
+                    backgroundColor: "#E6E7EB",
+                    padding: "50px 0",
                 }}
-            ></div>
-            {/* 레이아웃 */}
-            {/* <Container maxWidth="xl">
-                <Stack style={{backgroundColor: "tomato", height: 560}} justifyContent="space-between" direction="row">
-                    <div style={{flex: 1.2}}>
-                        <ImageBox height={560} src="/images/fake/home-slider1.jpeg" />
-                    </div>
-                    <Stack style={{backgroundColor: "blue", flex: 0.8, height: 560}}>
-                        <div style={{backgroundColor: "red", height: 220}} />
+            >
+                <Container maxWidth="lg">
+                    <Stack direction="row" justifyContent="space-around" alignItems="center">
+                        <ImageBox src="/images/logo2.png" height={40} width={150} />
+                        <ImageBox src="/images/logo2.png" height={40} width={150} />
+                        <ImageBox src="/images/logo2.png" height={40} width={150} />
+                        <ImageBox src="/images/logo2.png" height={40} width={150} />
+                        <ImageBox src="/images/logo2.png" height={40} width={150} />
                     </Stack>
-                </Stack>
-            </Container> */}
+                </Container>
+            </div>
         </div>
     )
 }

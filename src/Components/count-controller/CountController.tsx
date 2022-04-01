@@ -2,33 +2,27 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded"
 //icon
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
 import {Divider, IconButton, Stack, Typography} from "@mui/material"
-import {OptionCart} from "Goods/goods-type"
-import React from "react"
+import React, {useEffect} from "react"
 import {toast} from "react-toastify"
 
 type CountControllerProps = {
     idx: number
     optionId: string
     count: number
-    defaultPrice: number
-    price: number
-    selectValueList: any[]
-    setSelectValueList: React.Dispatch<React.SetStateAction<any[]>>
+    valueList: any[]
+    setValueList: React.Dispatch<React.SetStateAction<any[]>>
     mr?: number
 }
 
 export default function CountController(props: CountControllerProps) {
-    const {idx, optionId, count, defaultPrice, price, selectValueList, setSelectValueList, mr} = props
+    const {idx, optionId, count, valueList, setValueList, mr} = props
 
-    const findIndex = selectValueList.findIndex(opt => opt.option?.optionId === optionId)
-    let copyOption = [...selectValueList]
+    const findIndex = valueList.findIndex(opt => opt.option?.optionId === optionId)
 
     const onClickReduce = (count: number) => {
         if (count <= 1) return
-        if (findIndex !== -1) {
-            copyOption[idx] = {...copyOption[idx], count: count - 1}
-        }
-        setSelectValueList(copyOption)
+        valueList[idx] = {...valueList[idx], count: count - 1}
+        setValueList(it => [...it])
     }
 
     const onClickAdd = (count: number) => {
@@ -36,10 +30,8 @@ export default function CountController(props: CountControllerProps) {
             toast.info("30개 이상은 단체 문의를 이용해주세요.")
             return
         }
-        if (findIndex !== -1) {
-            copyOption[idx] = {...copyOption[idx], count: count + 1}
-        }
-        setSelectValueList(copyOption)
+        valueList[idx] = {...valueList[idx], count: count + 1}
+        setValueList(it => [...it])
     }
 
     return (

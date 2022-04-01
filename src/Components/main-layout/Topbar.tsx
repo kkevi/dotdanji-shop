@@ -57,8 +57,7 @@ export default function Topbar() {
                     <Stack direction="row" justifyContent="space-between" alignItems="center">
                         <div>
                             <Link href={"/"}>
-                                <img src="/images/logo_new2.png" alt="" width="130px" />
-                                {/* <img src="/images/logo3.png" alt="" width="130px" /> */}
+                                <img src="/images/logo_new.png" alt="" width="130px" />
                             </Link>
                         </div>
 

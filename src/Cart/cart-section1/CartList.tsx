@@ -1,12 +1,8 @@
-import React, {useEffect, useState} from "react"
-import {TableCell, Checkbox, Typography, Stack, IconButton, Divider, FormControlLabel} from "@mui/material"
-
-import {OptionCart} from "Cart/cart-type"
-import ImageBox from "Components/image-box/ImageBox"
+import {Checkbox, FormControlLabel, Stack, TableCell, Typography} from "@mui/material"
 import CountController from "Components/count-controller/CountController"
 import {GOODS_ITEMS_DATA} from "Components/fake-data/fake-goods"
-
-//icon
+import ImageBox from "Components/image-box/ImageBox"
+import React, {useEffect, useState} from "react"
 import {CartOptionsType} from "./CartSection1"
 
 type CartListProps = {
@@ -56,16 +52,29 @@ export default function CartList(props: CartListProps) {
 
             <TableCell width="60%" align="center">
                 <Stack direction={"row"}>
+                    {/* 상품 이미지 */}
                     <ImageBox width={150} height={150} src={goodsThumbnail} style={{marginLeft: 20}} />
+
                     <Stack ml={4} direction="column" alignItems="flex-start" justifyContent="center">
+                        {/* 상품명 */}
                         <Typography fontSize={20} fontWeight={700} mb={1}>
                             {goodsName}
                         </Typography>
-                        <Typography fontSize={14} mb={1}>
-                            {cartItem.optionValue.toLocaleString("ko")} 원
-                        </Typography>
-                        <Stack direction="row" alignItems="center" justifyContent="center">
-                            {cartItem.optionName}
+
+                        {/* 옵션정보 */}
+                        <Stack direction="row" alignItems="center" justifyContent="center" mt={2}>
+                            <Typography color="#999" fontSize={14}>
+                                옵션정보
+                            </Typography>
+                            <Stack borderLeft="1px solid #ddd" height="100%" mx={1} />
+                            <Typography fontSize={14} mr={1}>
+                                {cartItem.optionName}
+                            </Typography>
+                            {cartItem.optionValue > 0 && (
+                                <Typography fontSize={14} color="#999">
+                                    +{cartItem.optionValue.toLocaleString("ko")}원
+                                </Typography>
+                            )}
                         </Stack>
                     </Stack>
                 </Stack>
@@ -76,14 +85,16 @@ export default function CartList(props: CartListProps) {
                     idx={idx}
                     optionId={cartItem.optionId}
                     count={cartItem.count}
-                    defaultPrice={cartItem.price}
-                    price={cartItem.optionValue}
-                    selectValueList={cartItemList}
-                    setSelectValueList={setCartItemList}
+                    valueList={cartItemList}
+                    setValueList={setCartItemList}
                 />
             </TableCell>
 
-            <TableCell align="center">{(cartItem.optionValue * cartItem.count).toLocaleString("ko")} 원</TableCell>
+            <TableCell align="center">
+                <Typography fontSize={15} fontWeight={800} color="#333" mr={2}>
+                    {(cartItem.price * cartItem.count).toLocaleString("ko")} 원
+                </Typography>
+            </TableCell>
         </>
     )
 }

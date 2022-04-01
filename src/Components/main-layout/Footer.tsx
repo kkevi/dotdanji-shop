@@ -31,7 +31,7 @@ export default function Footer() {
                     <Stack spacing={2} my={smDown ? 3 : 0}>
                         <p className={classes.footerTextArea}>대표자 | 오홍석</p>
                         <p className={classes.footerTextArea}>사업자 등록번호 | 456-88-01404</p>
-                        <p className={classes.footerTextArea}>통신판매업 신고번호 | 12345678-12345678</p>
+                        <p className={classes.footerTextArea}>통신판매업 신고번호 | 2021-서울마포-0644</p>
                     </Stack>
                     {smDown && <Divider orientation="horizontal" />}
                     <Stack spacing={2} my={smDown ? 3 : 0}>

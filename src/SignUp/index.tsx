@@ -51,7 +51,7 @@ export default function SignUp() {
                     padding={2}
                 >
                     <Stack sx={{flex: 1.2}} height={"85vh"}>
-                        <ImageBox height={"100%"} src="/images/fake/home-slider2.png" />
+                        <ImageBox height={"100%"} src="/images/fake/home-slider2.jpg" />
                     </Stack>
                     <Stack sx={{flex: 0.8}} height={"85vh"}>
                         <Stack justifyContent="center" alignItems="flex-start" padding={20} height={"100%"}>

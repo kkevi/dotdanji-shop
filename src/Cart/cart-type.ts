@@ -1,12 +1,5 @@
-export type Options = {
-    optionId: string
-    text: string
-    value: number
-}
-
 export type OptionCart = {
-    option: Options
-    price: number
+    optionId: string
     count: number
 }
 

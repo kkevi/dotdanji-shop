@@ -9,17 +9,19 @@ const styles = makeStyles((theme: Theme) =>
             justifyContent: "space-between",
             alignItems: "center",
 
-            "& .MuiButton-contained": {
+            "& .MuiButton-outlined": {
                 marginTop: "2rem",
                 background: "#fff",
                 color: "#222",
                 height: 55,
-                "&:last-child": {
-                    marginLeft: "1rem",
-                    background: "#222",
-                    color: "#fff",
-                    height: 55,
-                },
+                border: "1px solid #222",
+            },
+            "& .MuiButton-contained": {
+                marginTop: "2rem",
+                height: 55,
+                marginLeft: "1rem",
+                background: "#222",
+                color: "#fff",
             },
         },
         columnStack: {

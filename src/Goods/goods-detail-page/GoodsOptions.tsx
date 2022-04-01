@@ -55,10 +55,8 @@ export default function GoodsOptions(props: Props) {
                         idx={idx}
                         optionId={option.optionId}
                         count={count}
-                        defaultPrice={defaultPrice}
-                        price={optionPriceTotal}
-                        selectValueList={selectValueList}
-                        setSelectValueList={setSelectValueList}
+                        valueList={selectValueList}
+                        setValueList={setSelectValueList}
                         mr={1}
                     />
 

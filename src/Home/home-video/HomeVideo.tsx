@@ -12,7 +12,7 @@ export default function HomeVideo() {
                 width={800}
                 height={450}
                 light={false}
-                url="https://youtu.be/Lo8NiyPMn98"
+                url="https://youtu.be/5_qpqZCJDPo"
                 onError={() => console.log("Video Load Failed")}
             />
         </div>

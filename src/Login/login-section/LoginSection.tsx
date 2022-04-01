@@ -59,7 +59,13 @@ export default function LoginSection() {
                 variant="outlined"
                 fullWidth
             />
-            <Button sx={{mt: 3, mb: 3}} className={classes.containedButton} variant="contained" fullWidth>
+            <Button
+                sx={{mt: 3, mb: 3}}
+                className={classes.containedButton}
+                variant="contained"
+                fullWidth
+                disableElevation
+            >
                 로그인 하기
             </Button>
             {/* socialLogin */}

@@ -1,78 +1,95 @@
-import React, {useState} from "react"
-import {Container, Typography, Stack, Link} from "@mui/material"
+import {Container, Link, Stack, Typography, Zoom} from "@mui/material"
 import {useTheme} from "@mui/system"
-
+import {fakeNewArrivalData} from "Components/fake-data/fake-event"
 import ImageBox from "Components/image-box/ImageBox"
+import React, {useState} from "react"
 
 export default function NewArrival() {
     const theme = useTheme()
-
     const [hover, setHover] = useState(0)
 
-    const fakeNewArrivalData = [
-        {
-            id: "newArrival1",
-            title: "스위스 전래 동화를 읽으며 배우는 배려심",
-            image: "/images/fake/little-prince.png",
-        },
-        {
-            id: "newArrival2",
-            title: "거짓말을 많이 하면 코가 길어진다고?!",
-            image: "/images/fake/pinokio.png",
-        },
-        {
-            id: "newArrival3",
-            title: "해님과 달님, 그리고 나",
-            image: "/images/fake/sun-moon.png",
-        },
-        {
-            id: "newArrival4",
-            title: "호두까끼 인형의 저주",
-            image: "/images/fake/walnut.png",
-        },
-    ]
-
     return (
-        <Container maxWidth="xl" style={{backgroundColor: "white"}}>
-            <Stack direction="row" justifyContent="space-between" alignItems="center" height={600} mt={20}>
-                <ImageBox style={{borderRadius: 20}} width={1000} height={600} src={fakeNewArrivalData[hover].image} />
+        <Container maxWidth="xl">
+            <Stack direction="row" justifyContent="space-between" alignItems="center" height={600} mb={20}>
+                {/* 왼쪽 이미지 */}
+                <Stack width={1000} height={600} position="relative">
+                    <Stack
+                        position="absolute"
+                        top={-24}
+                        left={40}
+                        zIndex={2}
+                        bgcolor="#fff"
+                        px={4}
+                        py={1}
+                        borderRadius={10}
+                    >
+                        <Typography fontSize={20} color={theme.palette.primary.dark} className="pointFont">
+                            #최근 출시한 신작소개
+                        </Typography>
+                    </Stack>
+                    <ImageBox
+                        width="100%"
+                        height="100%"
+                        src={fakeNewArrivalData[hover].image}
+                        style={{
+                            borderTopLeftRadius: 20,
+                            borderBottomLeftRadius: 20,
+                        }}
+                    />
+                </Stack>
+
+                {/* 오른쪽 목록 */}
                 <Stack
                     width={450}
                     height={600}
                     justifyContent="center"
                     padding="0 50px"
-                    style={{border: `2px solid ${theme.palette.primary.light}`}}
+                    bgcolor="#fff"
+                    sx={{borderTopRightRadius: 20, borderBottomRightRadius: 20}}
                 >
-                    <Stack height={400} justifyContent="space-between">
-                        {fakeNewArrivalData.map((itm, idx) => {
-                            const hovering = hover === idx
-                            return (
-                                <div onMouseEnter={e => setHover(idx)} key={itm.id}>
-                                    <Stack
-                                        width={350}
-                                        style={{borderTop: `2px solid ${theme.palette.primary.light}`, paddingTop: 16}}
-                                    >
-                                        <Typography variant="h6" fontWeight={800} fontSize={18}>
-                                            {`0${idx + 1}. `}
-                                            {itm.title}
-                                        </Typography>
-                                        {hovering ? (
-                                            <Link
-                                                mt={1}
-                                                variant="caption"
-                                                href="#"
-                                                underline="none"
-                                                fontWeight={800}
-                                                color={theme.palette.primary.main}
-                                            >
-                                                읽으러 가기
-                                            </Link>
-                                        ) : undefined}
-                                    </Stack>
-                                </div>
-                            )
-                        })}
-                    </Stack>
+                    {fakeNewArrivalData.map((itm, idx) => {
+                        const hovering = hover === idx
+                        return (
+                            <Stack width={350} pt={2} onMouseEnter={e => setHover(idx)} key={itm.id}>
+                                <Stack
+                                    borderTop={hovering ? `3px solid ${theme.palette.primary.main}` : `1px solid #bbb`}
+                                    mb={2}
+                                    style={{opacity: hovering ? 1 : 0.5}}
+                                />
+                                <Typography
+                                    variant="h6"
+                                    fontWeight={800}
+                                    fontSize={18}
+                                    className="pointFont"
+                                    color={hovering ? theme.palette.primary.main : "#ddd"}
+                                >
+                                    {`0${idx + 1} `}
+                                </Typography>
+                                <Typography
+                                    variant="h6"
+                                    fontWeight={800}
+                                    fontSize={18}
+                                    color={hovering ? "#222" : "#999"}
+                                >
+                                    {itm.title}
+                                </Typography>
+                                {hovering ? (
+                                    <Zoom in={hovering}>
+                                        <Link
+                                            mt={1}
+                                            variant="caption"
+                                            href="#"
+                                            underline="none"
+                                            fontWeight={800}
+                                            color={theme.palette.primary.main}
+                                        >
+                                            자세히 보기
+                                        </Link>
+                                    </Zoom>
+                                ) : undefined}
+                            </Stack>
+                        )
+                    })}
                 </Stack>
             </Stack>
         </Container>

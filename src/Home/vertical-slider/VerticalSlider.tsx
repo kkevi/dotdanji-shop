@@ -7,41 +7,43 @@ import ImageBox from "Components/image-box/ImageBox"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import Router from "next/router"
 
 type VerticalSliderProps = {
-    id: string
+    eventId: string
     title: string
-    author: string
-    content: string
+    startDate: string
+    endDate: string
+    caption: string
     image: string
     url: string
 }
 
 export default function VerticalSlider(props: VerticalSliderProps) {
-    const {id, title, author, content, image, url} = props
+    const {eventId, title, startDate, endDate, caption, image, url} = props
     const theme = useTheme()
 
     return (
         <Stack>
             <Stack
-                sx={{height: 350, backgroundColor: "#FAFBFD", padding: 3}}
+                sx={{height: 350, backgroundColor: "#fff", padding: 3}}
                 justifyContent="space-between"
                 alignItems="flex-start"
             >
                 <Stack>
-                    <Typography mt={2} fontWeight={800} fontSize={24}>
+                    <Typography className="pointFont" my={2} fontWeight={800} fontSize={20}>
                         {title}
                     </Typography>
-                    <Typography fontWeight={800} fontSize={14} color="#757575">
-                        {author}
+                    <Typography fontWeight={800} fontSize={14} color="#bbb">
+                        {startDate} - {endDate}
                     </Typography>
-                    <Typography mt={4} fontWeight={800} fontSize={16} color="#757575">
-                        {content}
+                    <Typography mt={4} fontWeight={300} fontSize={15} color="#777">
+                        {caption}
                     </Typography>
                 </Stack>
 
-                <Button variant="outlined" sx={{width: 120}} onClick={() => {}}>
-                    읽으러 가기
+                <Button color="inherit" variant="outlined" sx={{width: 120}} onClick={() => Router.push(url)}>
+                    확인하기
                 </Button>
             </Stack>
             <div style={{height: 300, backgroundColor: "pink"}}>

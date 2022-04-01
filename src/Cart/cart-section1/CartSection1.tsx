@@ -20,6 +20,8 @@ import ImageBox from "Components/image-box/ImageBox"
 
 import {CartItemProps, OptionCart} from "Cart/cart-type"
 import {CART_ITEMS_DATA} from "Components/fake-data/fake-cart"
+import {toast} from "react-toastify"
+import {GOODS_ITEMS_DATA} from "Components/fake-data/fake-goods"
 
 type CartSection1Props = {
     onChangeNextStep: (index: number) => void
@@ -40,11 +42,15 @@ export default function CartSection1(props: CartSection1Props) {
     //장바구니 데이터 표시
     const tableTitle = ["제품정보", "수량", "주문금액", "배송비"]
     const [cartItemList, setCartItemList] = useState<CartOptionsType[]>([])
-    //실제 구매 데이터 생성
+    /*
+    실제 구매 데이터 생성
+    {optionId:선택여부}
+    */
     const [choiceList, setChoiceList] = useState<Record<string, boolean>>(new Object() as Record<string, boolean>)
     const [checkAll, setCheckAll] = useState(true)
     const [potalPrice, setPotalPrice] = useState<number>(0)
-    const deliveryPrice = 2500
+    //배송비 - 50,000원이상 무료
+    const deliveryPrice = potalPrice >= 50000 ? 0 : 2500
 
     useEffect(() => {
         loadData()
@@ -52,33 +58,57 @@ export default function CartSection1(props: CartSection1Props) {
 
     useEffect(() => {
         setChoiceList(choiceList)
-    }, [cartItemList, choiceList])
+        //총 금액 계산
+        const newPrice = Object.entries(choiceList).reduce((acc, cur) => {
+            const data = cartItemList.filter(it => it.optionId === cur[0])[0]
+            if (cur[1]) {
+                acc += data.price * data.count
+            } else if (!cur[1]) {
+                setCheckAll(false)
+            }
+            return acc
+        }, 0)
+        setPotalPrice(newPrice)
+    }, [cartItemList, choiceList, checkAll])
 
     //장바구니 데이터 가져오기
     const loadData = async () => {
         try {
-            const result = await CART_ITEMS_DATA
             const list: CartOptionsType[] = []
-            result.map((itm, idx) =>
+            //카트 정보 = goodsId,optionId,count
+            const result = await CART_ITEMS_DATA
+
+            result.map((itm, idx) => {
+                //해당 id의 상품 정보를 가져온다.
+                const goodsId = itm.goodsId
+                const goodsData = GOODS_ITEMS_DATA.filter(it => it.goodsId === goodsId)[0]
+                const optionData = goodsData.options || []
+
+                //새로운 장바구니 리스트 생성
                 list.push(
                     ...itm.options.reduce((acc, cur) => {
+                        //상품의 옵셥정보를 optionId로 맵핑
+                        const data = optionData.filter(it => it.optionId === cur.optionId)[0]
                         acc.push({
-                            goodsId: itm.goodsId,
+                            goodsId: goodsId,
                             count: cur.count,
-                            price: cur.price,
-                            optionId: cur.option.optionId,
-                            optionName: cur.option.text,
-                            optionValue: cur.option.value,
+                            price: goodsData.price + data.value,
+                            optionId: cur.optionId,
+                            optionName: data.text,
+                            optionValue: data.value,
                         })
                         return acc
                     }, [] as CartOptionsType[]),
-                ),
-            )
+                )
+            })
+
             setCartItemList(list)
+
             list.map(({optionId}) => (choiceList[optionId] = true))
         } catch (e) {
             console.log(e)
         } finally {
+            console.log(cartItemList)
         }
     }
 
@@ -98,7 +128,12 @@ export default function CartSection1(props: CartSection1Props) {
 
     //주문하기 버튼 클릭
     const onClickOrder = () => {
+        if (potalPrice === 0) return toast.info("상품을 선택해주세요.")
         onChangeNextStep(1)
+    }
+
+    const onDeleteCartItem = () => {
+        confirm("선택 상품을 모두 삭제하시겠습니까?")
     }
 
     return (
@@ -107,7 +142,9 @@ export default function CartSection1(props: CartSection1Props) {
                 <Typography variant="h5" mb={1} ml={1} fontWeight={700} alignSelf="flex-start">
                     제품
                 </Typography>
-                <Button sx={{color: "black"}}>선택상품 삭제</Button>
+                <Button sx={{color: "black"}} onClick={onDeleteCartItem}>
+                    선택상품 삭제
+                </Button>
             </Stack>
             <Divider className={classes.divider} flexItem />
 
@@ -150,8 +187,12 @@ export default function CartSection1(props: CartSection1Props) {
                                     onChangeCheckbox={onChangeCheckbox}
                                 />
                                 {idx === 0 && (
-                                    <TableCell rowSpan={cartItemList.length + 1} align="center">
-                                        배송비
+                                    <TableCell
+                                        rowSpan={cartItemList.length + 1}
+                                        align="center"
+                                        sx={{borderLeft: "1px solid #eee"}}
+                                    >
+                                        {potalPrice >= 50000 ? "5만원이상 무료" : `${deliveryPrice.toLocaleString()}원`}
                                     </TableCell>
                                 )}
                             </TableRow>
@@ -176,7 +217,7 @@ export default function CartSection1(props: CartSection1Props) {
                 <Stack className={classes.columnStack}>
                     <Typography mb={0.5}>배송비</Typography>
                     <Typography fontSize={26} fontWeight={700}>
-                        {potalPrice >= 50000 || potalPrice === 0 ? 0 : deliveryPrice.toLocaleString()} 원
+                        {deliveryPrice.toLocaleString()} 원
                     </Typography>
                 </Stack>
 
@@ -192,10 +233,10 @@ export default function CartSection1(props: CartSection1Props) {
 
             {/* 주문결제버튼 */}
             <Stack className={classes.rootStack} width={"50% !important"} mb={16}>
-                <Button variant="contained" fullWidth onClick={() => {}}>
+                <Button variant="outlined" fullWidth onClick={() => {}}>
                     <Typography variant="h6">쇼핑 계속하기</Typography>
                 </Button>
-                <Button variant="contained" fullWidth onClick={onClickOrder}>
+                <Button variant="contained" fullWidth onClick={onClickOrder} disableElevation>
                     <Typography variant="h6">주문하기</Typography>
                 </Button>
             </Stack>
