@@ -7,7 +7,7 @@ export default function Index() {
     return (
         <MainLayout>
             <Container maxWidth="lg">
-                <Stack py={16}>
+                <Stack py={13.5}>
                     <Proposal />
                 </Stack>
             </Container>

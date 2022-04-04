@@ -5,7 +5,7 @@ export default function Index() {
     return (
         <MainLayout>
             <Container maxWidth="lg">
-                <Stack py={20}>
+                <Stack py={13.5}>
                     <Typography variant="h5">서비스 이용약관</Typography>
                 </Stack>
             </Container>

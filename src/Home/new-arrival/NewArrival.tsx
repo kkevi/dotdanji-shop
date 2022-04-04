@@ -1,8 +1,22 @@
+import React, {useState} from "react"
+import {keyframes} from "styled-components"
+
 import {Container, Link, Stack, Typography, Zoom} from "@mui/material"
 import {useTheme} from "@mui/system"
-import {fakeNewArrivalData} from "Components/fake-data/fake-event"
+
 import ImageBox from "Components/image-box/ImageBox"
-import React, {useState} from "react"
+import {fakeNewArrivalData} from "Components/fake-data/fake-event"
+
+const fadeIn = keyframes`
+    0% {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    `
 
 export default function NewArrival() {
     const theme = useTheme()

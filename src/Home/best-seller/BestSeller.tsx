@@ -64,7 +64,7 @@ export default function BestSeller() {
                         #이 달의 인기 상품
                     </Typography>
                     <Typography color={theme.palette.primary.dark} variant="body1" fontWeight={300}>
-                        가장 인기있었던 최고의 상품을 만나보세요!
+                        가장 인기 있었던 최고의 상품을 만나보세요!
                     </Typography>
                 </Stack>
 
