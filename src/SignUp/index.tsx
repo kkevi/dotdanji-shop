@@ -9,10 +9,12 @@ import SignUpSection3 from "./signup-section3/SignUpSection3"
 import SignUpSection4 from "./signup-section4/SignUpSection4"
 import userPool from "Login/login-section/UserPool"
 import {toast} from "react-toastify"
+import {CognitoUserAttribute} from "amazon-cognito-identity-js"
 
 export default function SignUp() {
     const [step, setStep] = useState(0)
     const [email, setEmail] = useState("")
+    const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
     const [validPassword, setValidPassword] = useState("")
 
@@ -33,7 +35,15 @@ export default function SignUp() {
         },
         {
             subTitle: "로그인에 사용할 이메일을 입력해주세요.",
-            render: <SignUpSection2 email={email} setEmail={setEmail} setStep={setStep} />,
+            render: (
+                <SignUpSection2
+                    email={email}
+                    userName={userName}
+                    setUserName={setUserName}
+                    setEmail={setEmail}
+                    setStep={setStep}
+                />
+            ),
         },
         {
             subTitle: "로그인에 사용할 비밀번호를 입력해주세요.",

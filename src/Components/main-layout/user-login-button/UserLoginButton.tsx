@@ -1,14 +1,24 @@
-import {IconButton} from "@mui/material"
+import {IconButton, Stack, Typography} from "@mui/material"
 import {useRouter} from "next/router"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import {useTheme} from "@mui/system"
-export default function UserLoginButton() {
+import {useSessionStorage} from "react-use"
+
+type Props = {
+    userName: string | undefined
+}
+export default function UserLoginButton(props: Props) {
+    const {userName} = props
     const route = useRouter()
     const theme = useTheme()
+    const [isLoggedIn, setIsLoggedIn] = useSessionStorage<boolean>("login")
 
     return (
-        <IconButton onClick={() => route.push("/login")}>
-            <AccountCircleIcon style={{color: theme.palette.secondary.dark, fontSize: "28px"}} />
-        </IconButton>
+        <Stack>
+            <IconButton onClick={() => route.push(isLoggedIn ? "/mypage" : "/login")}>
+                <AccountCircleIcon style={{color: theme.palette.secondary.dark, fontSize: "28px"}} />
+            </IconButton>
+            {userName !== "" && <Typography>{userName}님</Typography>}
+        </Stack>
     )
 }

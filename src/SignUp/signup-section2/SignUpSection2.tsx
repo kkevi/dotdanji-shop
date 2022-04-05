@@ -6,11 +6,13 @@ import useStyles from "../styles"
 type SignUpSection2Prop = {
     email: string
     setEmail: (val: string) => void
+    userName: string
+    setUserName: (val: string) => void
     setStep: (val: number) => void
 }
 
 export default function SignUpSection2(prop: SignUpSection2Prop) {
-    const {email, setEmail, setStep} = prop
+    const {email, setEmail, setStep, userName, setUserName} = prop
     const classes = useStyles()
     const [warningText, setWarningText] = useState("")
 

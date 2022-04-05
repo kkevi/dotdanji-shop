@@ -1,13 +1,14 @@
-import React, {useCallback, useState} from "react"
+import React, {useCallback, useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import {Button, Stack, TextField, Typography, Divider, Link} from "@mui/material"
 
 import useStyles from "./styles"
-import {KAKAO_AUTH_URL} from "./LoginToken"
 import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js"
-import userPool from "./UserPool"
+import userPool, {KAKAO_AUTH_URL} from "./UserPool"
 import {toast} from "react-toastify"
 import {userEmailCheck, userPasswordCheck} from "./validation-check"
+import {useSessionStorage} from "react-use"
+import UserPool from "./UserPool"
 
 export default function LoginSection() {
     const classes = useStyles()
@@ -15,8 +16,7 @@ export default function LoginSection() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
-    const congnitoUser = new CognitoUser({Username: email, Pool: userPool})
-    const authDetails = new AuthenticationDetails({Username: email, Password: password})
+    const [isLoggedIn, setIsLoggedIn] = useSessionStorage<boolean>("login", false)
 
     //error
     const [errorEmail, setErrorEmail] = useState<boolean>(false)
@@ -29,19 +29,18 @@ export default function LoginSection() {
         doLogin()
     }
 
+    const congnitoUser = new CognitoUser({Username: email, Pool: userPool})
+    const authDetails = new AuthenticationDetails({Username: email, Password: password, ValidationData: {email: email}})
+
     const doLogin = useCallback(async () => {
         setLoading(true)
-        const authDetails = new AuthenticationDetails({
-            Username: email,
-            Password: password,
-            ValidationData: {email: email},
-        })
-
+        console.log("authDetails", authDetails)
         try {
             congnitoUser.authenticateUser(authDetails, {
                 onSuccess: function (result: any) {
+                    setIsLoggedIn(true)
                     toast.info(`${result.idToken.payload.email}님 환영합니다.`)
-                    route.push("/dashboard")
+                    route.push("/")
                 },
                 onFailure: function (err) {
                     if (err.message == "User is not confirmed.") {
@@ -49,7 +48,7 @@ export default function LoginSection() {
                     } else if (err.message == "Incorrect username or password.") {
                         toast.error("잘못 된 이메일 또는 비밀번호 입니다.")
                     } else {
-                        toast.error(err.message)
+                        console.log(err.message)
                     }
                 },
             })
@@ -120,7 +119,7 @@ export default function LoginSection() {
                 로그인 하기
             </Button>
             {/* socialLogin */}
-            <Stack direction="row" width="35%" justifyContent="space-between" alignSelf="center">
+            <Stack direction="row" width="40%" justifyContent="space-between" alignSelf="center">
                 {socialLogin.map((itm, idx) => (
                     <div className={classes.socialLogin} style={{backgroundColor: itm.color}} key={idx}>
                         <img className={classes.socialImage} src={itm.image} onClick={() => route.push(itm.url)} />

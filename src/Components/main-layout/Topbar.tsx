@@ -9,6 +9,7 @@ import {useTheme} from "@mui/system"
 import {GOODS_CATEGORY_DATA} from "Components/fake-data/fake-goods"
 import UserLoginButton from "./user-login-button/UserLoginButton"
 import ShopCartButton from "./shop-cart-button/ShopCartButton"
+import UserPool from "Login/login-section/UserPool"
 
 export default function Topbar() {
     const classes = useStyles()
@@ -17,6 +18,7 @@ export default function Topbar() {
     const route = useRouter()
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)
     const [badgeContent, setBadgeContent] = useState(1)
+    const [userName, setUserName] = useState<string | undefined>("")
 
     //스크롤시, 스타일변경
     const [scrollPosition, setScrollPosition] = useState(0)
@@ -27,6 +29,11 @@ export default function Topbar() {
     useEffect(() => {
         window.addEventListener("scroll", updateScroll)
     })
+
+    useEffect(() => {
+        const currentUser = UserPool.getCurrentUser()?.getUsername()
+        setUserName(currentUser)
+    }, [UserPool])
 
     const textColor = {color: theme.palette.secondary.dark, fontWeight: 800, fontSize: 16}
 
@@ -82,7 +89,7 @@ export default function Topbar() {
                         <Stack>
                             <ButtonGroup size="small" disableElevation>
                                 <ShopCartButton badgeContent={badgeContent} />
-                                <UserLoginButton />
+                                <UserLoginButton userName={userName} />
                             </ButtonGroup>
                         </Stack>
                     </Stack>
