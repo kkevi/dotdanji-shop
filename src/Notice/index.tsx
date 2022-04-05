@@ -1,6 +1,5 @@
 import React from "react"
 import {useRouter} from "next/router"
-
 import {Stack, Divider, Table, TableHead, TableRow, TableCell, TableBody} from "@mui/material"
 
 import {NoticeDetailProps} from "./notice-type"
@@ -18,7 +17,7 @@ export default function Index() {
 
             <Table>
                 <TableHead>
-                    <TableRow>
+                    <TableRow key={`tableTitle`}>
                         {tableTitle.map((title, idx) => (
                             <TableCell key={"tableTitle" + idx} sx={{fontSize: "1rem", fontWeight: 700}} align="center">
                                 {title}
@@ -27,19 +26,21 @@ export default function Index() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {fakeTableListItem.map((itm, idx) => (
-                        <TableRow sx={{padding: 12, cursor: "pointer"}}>
-                            <TableCell align="center" sx={{fontSize: "1rem"}}>
-                                {idx + 1}
-                            </TableCell>
-                            <TableCell sx={{fontSize: "1rem"}} onClick={() => onClickRouter(itm.noticeId)}>
-                                {itm.title}
-                            </TableCell>
-                            <TableCell align="center" sx={{fontSize: "1rem"}}>
-                                {itm.date}
-                            </TableCell>
-                        </TableRow>
-                    ))}
+                    {fakeTableListItem
+                        .map((itm, idx) => (
+                            <TableRow key={`tableRow ${idx}`} sx={{padding: 12, cursor: "pointer"}}>
+                                <TableCell align="center" sx={{fontSize: "1rem"}}>
+                                    {idx + 1}
+                                </TableCell>
+                                <TableCell sx={{fontSize: "1rem"}} onClick={() => onClickRouter(itm.noticeId)}>
+                                    {itm.title}
+                                </TableCell>
+                                <TableCell align="center" sx={{fontSize: "1rem"}}>
+                                    {itm.date}
+                                </TableCell>
+                            </TableRow>
+                        ))
+                        .reverse()}
                 </TableBody>
             </Table>
         </Stack>
