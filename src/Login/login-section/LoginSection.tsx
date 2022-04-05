@@ -7,20 +7,63 @@ import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js"
 import userPool, {KAKAO_AUTH_URL} from "./UserPool"
 import {toast} from "react-toastify"
 import {userEmailCheck, userPasswordCheck} from "./validation-check"
-import {useSessionStorage} from "react-use"
+import {useLocalStorage} from "react-use"
 import UserPool from "./UserPool"
 
 export default function LoginSection() {
     const classes = useStyles()
     const route = useRouter()
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
     const [loading, setLoading] = useState(false)
-    const [isLoggedIn, setIsLoggedIn] = useSessionStorage<boolean>("login", false)
+    const [isLoggedIn, setIsLoggedIn] = useLocalStorage<{name: string; email: string}>("login", {name: "", email: ""})
 
     //error
     const [errorEmail, setErrorEmail] = useState<boolean>(false)
     const [errorPassword, setErrorPassword] = useState(false)
+
+    const onChangeEmailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value)
+    }
+    const onChangePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value)
+    }
+
+    //aws cognito login api
+    const doLogin = () => {
+        setLoading(true)
+
+        try {
+            new CognitoUser({Username: email, Pool: userPool}).authenticateUser(
+                new AuthenticationDetails({
+                    Username: email,
+                    Password: password,
+                    ValidationData: {email: email},
+                }),
+                {
+                    onSuccess: function (result: any) {
+                        console.log("result", result)
+                        setIsLoggedIn({name: result.idToken.payload.name, email: result.idToken.payload.email})
+                        toast.info(`${result.idToken.payload.name}님 환영합니다.`)
+                        route.push("/")
+                    },
+                    onFailure: function (err) {
+                        if (err.message == "User is not confirmed.") {
+                            toast.error("가입한 이메일을 인증해주세요.")
+                        } else if (err.message == "Incorrect username or password.") {
+                            toast.error("잘못 된 이메일 또는 비밀번호 입니다.")
+                        } else {
+                            console.log(err.message)
+                        }
+                    },
+                },
+            )
+        } catch (e) {
+            toast.error("로그인 중, 문제가 생겼습니다.")
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const onClickLogin = () => {
         setErrorEmail(!userEmailCheck(email))
@@ -28,36 +71,6 @@ export default function LoginSection() {
         if (errorEmail || errorPassword) return
         doLogin()
     }
-
-    const congnitoUser = new CognitoUser({Username: email, Pool: userPool})
-    const authDetails = new AuthenticationDetails({Username: email, Password: password, ValidationData: {email: email}})
-
-    const doLogin = useCallback(async () => {
-        setLoading(true)
-        console.log("authDetails", authDetails)
-        try {
-            congnitoUser.authenticateUser(authDetails, {
-                onSuccess: function (result: any) {
-                    setIsLoggedIn(true)
-                    toast.info(`${result.idToken.payload.email}님 환영합니다.`)
-                    route.push("/")
-                },
-                onFailure: function (err) {
-                    if (err.message == "User is not confirmed.") {
-                        toast.error("가입한 이메일을 인증해주세요.")
-                    } else if (err.message == "Incorrect username or password.") {
-                        toast.error("잘못 된 이메일 또는 비밀번호 입니다.")
-                    } else {
-                        console.log(err.message)
-                    }
-                },
-            })
-        } catch (e) {
-            toast.error("로그인 중, 문제가 생겼습니다.")
-        } finally {
-            setLoading(false)
-        }
-    }, [])
 
     const socialLogin = [
         {
@@ -94,7 +107,7 @@ export default function LoginSection() {
                 sx={{mt: 6}}
                 label="이메일"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={onChangeEmailInput}
                 variant="outlined"
                 fullWidth
             />
@@ -104,7 +117,7 @@ export default function LoginSection() {
                 type="password"
                 label="비밀번호"
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={onChangePasswordInput}
                 variant="outlined"
                 fullWidth
             />

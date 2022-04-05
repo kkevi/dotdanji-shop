@@ -17,7 +17,7 @@ export default function Index() {
 
     const process = ["등록 및 접수", "제안 내용 검토", "검토결과 회신"]
 
-    const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeInput =  React.ChangeEvent<HTMLInputElement>) => {
         const {value, name} = e.target
         setFormData({
             ...formData,

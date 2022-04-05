@@ -10,13 +10,11 @@ import ImageBox from "Components/image-box/ImageBox"
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import ShareIcon from "@mui/icons-material/Share"
+import {useLocalStorage} from "react-use"
 
 type props = {
     data: GoodsItemProps
 }
-
-//임시 로그인확인 변수
-const isLoggedIn = false
 
 export default function GoodsItem(props: props) {
     const {goodsId, categoryId, thumbnails, name, price, sale, isFavor, isCart} = props.data
@@ -27,6 +25,7 @@ export default function GoodsItem(props: props) {
     const [cartState, setCartState] = useState(isCart)
     const [disabled, setDisabled] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = useLocalStorage<{name: string; email: string} | null>("login")
 
     //할인 계산식
     var resultPrice = price - price * (sale / 100)

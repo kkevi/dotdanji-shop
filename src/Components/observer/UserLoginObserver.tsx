@@ -1,7 +1,7 @@
 import {observer} from "mobx-react"
 import {useRouter} from "next/router"
 import React, {ReactChild, useEffect} from "react"
-import {useSessionStorage} from "react-use"
+import {useLocalStorage} from "react-use"
 import userPool from "../../Login/login-section/UserPool"
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 function UserLoginObserver(props: Props) {
     const route = useRouter()
     const {children} = props
-    const [isLoggedIn, setIsLoggedIn] = useSessionStorage<boolean>("login")
+    const [isLoggedIn, setIsLoggedIn] = useLocalStorage<{name: string; email: string} | null>("login")
 
     useEffect(() => {
         const currentUser = userPool.getCurrentUser()

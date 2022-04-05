@@ -19,7 +19,8 @@ export default function SignUp() {
     const [validPassword, setValidPassword] = useState("")
 
     const onSignUp = () => {
-        userPool.signUp(email, password, [], [], (err, data) => {
+        var attributeName = new CognitoUserAttribute({Name: "name", Value: userName})
+        userPool.signUp(email, password, [attributeName], [], (err, data) => {
             if (err) {
                 return console.error("SignUp error: ", err)
             }

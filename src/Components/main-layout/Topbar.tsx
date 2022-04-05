@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import useStyles from "./styles"
-import {useRouter} from "next/router"
+import Router from "next/router"
 //ui components
 import {Button, ButtonGroup, Container, Link, Stack, useMediaQuery} from "@mui/material"
 import {useTheme} from "@mui/system"
@@ -9,16 +9,15 @@ import {useTheme} from "@mui/system"
 import {GOODS_CATEGORY_DATA} from "Components/fake-data/fake-goods"
 import UserLoginButton from "./user-login-button/UserLoginButton"
 import ShopCartButton from "./shop-cart-button/ShopCartButton"
-import UserPool from "Login/login-section/UserPool"
+import {useLocalStorage} from "react-use"
 
 export default function Topbar() {
     const classes = useStyles()
     const theme = useTheme()
     const smDown = useMediaQuery(theme.breakpoints.down("sm"))
-    const route = useRouter()
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)
     const [badgeContent, setBadgeContent] = useState(1)
-    const [userName, setUserName] = useState<string | undefined>("")
+    const [isLoggedIn, setIsLoggedIn] = useLocalStorage<{name: string; email: string} | null>("login")
 
     //스크롤시, 스타일변경
     const [scrollPosition, setScrollPosition] = useState(0)
@@ -30,15 +29,10 @@ export default function Topbar() {
         window.addEventListener("scroll", updateScroll)
     })
 
-    useEffect(() => {
-        const currentUser = UserPool.getCurrentUser()?.getUsername()
-        setUserName(currentUser)
-    }, [UserPool])
-
     const textColor = {color: theme.palette.secondary.dark, fontWeight: 800, fontSize: 16}
 
     const onClickCategorys = (categoryId: string) => {
-        route.push({pathname: "/goods", query: {categoryId: categoryId}})
+        Router.push({pathname: "/goods", query: {categoryId: categoryId}})
     }
 
     return (
@@ -81,15 +75,15 @@ export default function Topbar() {
                                 </Button>
                             ))}
 
-                            <Button onClick={() => route.push("/notice")} style={textColor}>
+                            <Button onClick={() => Router.push("/notice")} style={textColor}>
                                 고객센터
                             </Button>
                         </Stack>
 
                         <Stack>
                             <ButtonGroup size="small" disableElevation>
-                                <ShopCartButton badgeContent={badgeContent} />
-                                <UserLoginButton userName={userName} />
+                                {isLoggedIn && <ShopCartButton badgeContent={badgeContent} />}
+                                <UserLoginButton isLoggedIn={isLoggedIn} />
                             </ButtonGroup>
                         </Stack>
                     </Stack>
