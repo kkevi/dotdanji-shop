@@ -11,10 +11,11 @@ type SignUpSection2Prop = {
     validPassword: string
     setValidPassword: (val: string) => void
     setStep: (val: number) => void
+    onSignUp: () => void
 }
 
 export default function SignUpSection3(prop: SignUpSection2Prop) {
-    const {password, setPassword, validPassword, setValidPassword, setStep} = prop
+    const {password, setPassword, validPassword, setValidPassword, setStep, onSignUp} = prop
     const classes = useStyles()
 
     const regPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/
@@ -85,7 +86,7 @@ export default function SignUpSection3(prop: SignUpSection2Prop) {
                 fullWidth
                 onClick={() => {
                     if (validPwAll) {
-                        setStep(3)
+                        onSignUp()
                     } else return
                 }}
             >
