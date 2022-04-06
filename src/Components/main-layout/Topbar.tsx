@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import Router from "next/router"
+import Router, {useRouter} from "next/router"
 //ui components
 import {Button, ButtonGroup, Container, Link, Stack} from "@mui/material"
 import {useTheme} from "@mui/system"
@@ -8,10 +8,10 @@ import {useTheme} from "@mui/system"
 import {GOODS_CATEGORY_DATA} from "Components/fake-data/fake-goods"
 import UserLoginButton from "./user-login-button/UserLoginButton"
 import ShopCartButton from "./shop-cart-button/ShopCartButton"
-import {observer} from "mobx-react"
 import useStore from "Components/store/useStore"
 
-function Topbar() {
+export default function Topbar() {
+    const route = useRouter()
     const theme = useTheme()
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)
     const [badgeContent, setBadgeContent] = useState(1)
@@ -32,10 +32,6 @@ function Topbar() {
     const onClickCategorys = (categoryId: string) => {
         Router.push({pathname: "/goods", query: {categoryId: categoryId}})
     }
-
-    useEffect(() => {
-        console.log("btn:", userStore.userName)
-    }, [userStore])
 
     return (
         <div
@@ -59,9 +55,9 @@ function Topbar() {
                 >
                     <Stack direction="row" justifyContent="space-between" alignItems="center">
                         <div>
-                            <Link href={"/"}>
-                                <img src="/images/logo_new.png" alt="" width="130px" />
-                            </Link>
+                            {/* <Link href={"/"}> */}
+                            <img src="/images/logo_new.png" alt="" width="130px" onClick={() => route.push("/")} />
+                            {/* </Link> */}
                         </div>
 
                         <Stack
@@ -94,5 +90,3 @@ function Topbar() {
         </div>
     )
 }
-
-export default observer(Topbar)

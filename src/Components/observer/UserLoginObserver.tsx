@@ -11,7 +11,7 @@ type Props = {
     children: ReactChild
 }
 
-function UserLoginObserver(props: Props) {
+export default function UserLoginObserver(props: Props) {
     const {children} = props
     const {userStore} = useStore()
     class newCognitoUser extends CognitoUser {
@@ -20,13 +20,13 @@ function UserLoginObserver(props: Props) {
     const currentUser: newCognitoUser | null = UserPool.getCurrentUser()
 
     useEffect(() => {
-        userStore.setUserName(JSON.parse(currentUser?.storage.login).name)
-        // userStore.setRefreshToken(currentRefreshToken)
-        console.log("currentRefreshToken: ", currentUser)
-        console.log("userName: ", userStore.userName)
+        if (!userStore.userName || userStore.userName === "") {
+            console.log("work on login observer")
+            userStore.setUserName(JSON.parse(currentUser?.storage.login).name)
+        }
     }, [currentUser, userStore])
 
     return <div>{children}</div>
 }
 
-export default observer(UserLoginObserver)
+// observer(UserLoginObserver)

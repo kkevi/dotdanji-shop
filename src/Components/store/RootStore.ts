@@ -4,8 +4,6 @@ import {RootStoreInitialState} from "./types"
 
 /**
  * @class Mobx 루트 스토어
- * @property {IntlStore} intlStore - UI 상태
- * @property {ProjectLayoutStore} projectLayoutStore - 프로젝트 레이아웃
  */
 class RootStore {
     /**

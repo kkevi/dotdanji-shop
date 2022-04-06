@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react"
+import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {Button, Stack, TextField, Typography, Divider, Link} from "@mui/material"
 
@@ -7,6 +7,7 @@ import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js"
 import {toast} from "react-toastify"
 import {userEmailCheck, userPasswordCheck} from "./validation-check"
 import UserPool, {KAKAO_AUTH_URL} from "./UserPool"
+import useStore from "Components/store/useStore"
 
 export default function LoginSection() {
     const classes = useStyles()
@@ -14,6 +15,7 @@ export default function LoginSection() {
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [loading, setLoading] = useState(false)
+    const {userStore} = useStore()
 
     //error
     const [errorEmail, setErrorEmail] = useState<boolean>(false)
@@ -39,7 +41,7 @@ export default function LoginSection() {
                 }),
                 {
                     onSuccess: function (result: any) {
-                        console.log("result", result)
+                        userStore.setUserName(result.idToken.payload.name)
                         toast.info(`${result.idToken.payload.name}님 환영합니다.`)
                         route.push("/")
                     },

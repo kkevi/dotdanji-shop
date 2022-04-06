@@ -1,5 +1,7 @@
 import {MobXProviderContext} from "mobx-react"
 import {useContext} from "react"
+
+// eslint-disable-next-line no-unused-vars
 import RootStore from "./RootStore"
 
 /**

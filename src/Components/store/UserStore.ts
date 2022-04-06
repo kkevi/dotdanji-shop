@@ -5,21 +5,13 @@ export default class UserStore {
         makeObservable(this)
     }
 
-    @observable private _userName: string | undefined = undefined
-    @observable private _refreshToken: string | undefined = undefined
+    @observable private _userName: string = ""
 
-    @computed get userName(): string | undefined {
+    @computed get userName(): string {
         return this._userName
     }
-    @computed get refreshToken(): string | undefined {
-        return this._refreshToken
-    }
 
-    @action setUserName(userName: string | null | undefined) {
-        this._userName = userName ?? undefined
-    }
-
-    @action setRefreshToken(refreshToken: string | null | undefined) {
-        this._refreshToken = refreshToken ?? undefined
+    @action setUserName(userName: string) {
+        this._userName = userName
     }
 }

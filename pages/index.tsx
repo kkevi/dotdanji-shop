@@ -3,10 +3,8 @@ import Home from "Home"
 
 export default function Index() {
     return (
-        <div>
-            <MainLayout>
-                <Home />
-            </MainLayout>
-        </div>
+        <MainLayout>
+            <Home />
+        </MainLayout>
     )
 }

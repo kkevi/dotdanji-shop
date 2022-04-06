@@ -8,8 +8,13 @@ import "react-toastify/dist/ReactToastify.css"
 import {observer} from "mobx-react"
 import StoreProvider from "Components/store/StoreProvider"
 import UserLoginObserver from "Components/observer/UserLoginObserver"
+import React, {useEffect} from "react"
 
 function MyApp({Component, pageProps}: AppProps) {
+    useEffect(() => {
+        console.log("work on _app.tsx")
+    }, [])
+
     return (
         <>
             <Head>
