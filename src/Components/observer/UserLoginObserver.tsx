@@ -20,7 +20,12 @@ export default function UserLoginObserver(props: Props) {
     const currentUser: newCognitoUser | null = UserPool.getCurrentUser()
 
     useEffect(() => {
-        if (!userStore.userName || userStore.userName === "") {
+        if (!currentUser) {
+            userStore.setUserName("")
+            userStore.setRefreshToken("")
+            userStore.setIsLoggedIn(false)
+            return
+        } else if (!userStore.userName || userStore.userName === "") {
             console.log("work on login observer")
             userStore.setUserName(JSON.parse(currentUser?.storage.login).name)
         }

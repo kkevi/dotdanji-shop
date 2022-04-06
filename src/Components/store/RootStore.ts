@@ -1,6 +1,7 @@
 import log from "./log"
-import UserStore from "./UserStore"
 import {RootStoreInitialState} from "./types"
+import UserStore from "./UserStore"
+import GoodsStore from "./UserStore copy"
 
 /**
  * @class Mobx 루트 스토어
@@ -10,6 +11,7 @@ class RootStore {
      * ProfileStore
      */
     userStore = new UserStore()
+    goodsStore = new GoodsStore()
 
     /**
      * hydrate

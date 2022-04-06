@@ -2,9 +2,7 @@ import React, {useEffect, useState} from "react"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
 import {GOODS_ITEMS_DATA} from "Components/fake-data/fake-goods"
-import {GoodsItemProps, OptionCart, CartItemProps} from "Goods/goods-type"
-import GoodsOptions from "./GoodsOptions"
-import ImageBox from "Components/image-box/ImageBox"
+import {GoodsItemProps} from "Goods/goods-type"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
@@ -12,6 +10,9 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 import {useRouter} from "next/router"
+import useStore from "Components/store/useStore"
+import {CartItemProps, OptionCart} from "Cart/cart-type"
+import ImageBox from "Components/image-box/ImageBox"
 
 type Props = {
     goodsId: string
@@ -20,7 +21,10 @@ type Props = {
 export default function GoodsDetailPage(props: Props) {
     const classes = useStyles()
     const route = useRouter()
+    const {userStore, goodsStore} = useStore()
     const {goodsId} = props
+
+    //데이터
     const [goodsItemData, setGoodsItemData] = useState<GoodsItemProps>(GOODS_ITEMS_DATA[0])
     const {name, thumbnails, infoText, options = [], tags} = goodsItemData
 
@@ -34,7 +38,9 @@ export default function GoodsDetailPage(props: Props) {
         //전체 금액 표시
         setTotalPrice(
             selectValueList.reduce((acc, cur) => {
-                acc += (cur.price + goodsItemData.price) * cur.count
+                if (!goodsItemData.options) return acc
+                const optionValue = goodsItemData.options.filter(it => it.optionId === "fake-goodsId-0_opt1")[0].value
+                acc += (optionValue + goodsItemData.price) * cur.count
                 return acc
             }, 0),
         )
@@ -43,48 +49,44 @@ export default function GoodsDetailPage(props: Props) {
     // 옵션 선택
     const onSelectOption = (event: SelectChangeEvent) => {
         const {value} = event.target
-        onAddOptionList(value)
+        // onAddOptionList(value)
         setSelectValue(value)
     }
 
     // 옵션 배열 검사
-    const onAddOptionList = (id: string) => {
-        const search = selectValueList.findIndex(it => it.option.optionId === id)
-        if (search === -1) {
-            // 옵션 선택하여 추가
-            const arr = options
-            const newItm = arr.filter(it => it.optionId === id)[0]
-            selectValueList.push({option: newItm, price: Number(newItm.value), count: 1})
-        } else {
-            // 이미 추가되어있는 옵션 추가 선택
-            alert("이미 선택 되어있는 옵션입니다. 수량변경을 통해 개수를 조절 해주세요.")
-        }
-    }
+    // const onAddOptionList = (id: string) => {
+    //     const search = selectValueList.findIndex(it => it.option.optionId === id)
+    //     if (search === -1) {
+    //         // 옵션 선택하여 추가
+    //         const arr = options
+    //         const newItm = arr.filter(it => it.optionId === id)[0]
+    //         selectValueList.push({option: newItm, price: Number(newItm.value), count: 1})
+    //     } else {
+    //         // 이미 추가되어있는 옵션 추가 선택
+    //         alert("이미 선택 되어있는 옵션입니다. 수량변경을 통해 개수를 조절 해주세요.")
+    //     }
+    // }
 
     // 옵션 배열 삭제
     const onDeleteOption = (optionId: string) => {
-        setSelectValueList(prev => prev.filter(it => it.option.optionId !== optionId))
+        setSelectValueList(prev => prev.filter(it => it.optionId !== optionId))
         setSelectValue("옵션 선택")
     }
 
     const onCickCart = () => {
-        if (selectValueList.length < 1) {
-            alert("옵션을 선택 해주세요.")
+        if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
+
+        const newArray: CartItemProps = {
+            goodsId: goodsId,
+            options: selectValueList,
+        }
+        if (userStore.isLoggedIn) {
+            //TODO: 서버 장바구니에 저장 기능 추가
         } else {
-            const newArray: CartItemProps = {
-                goodsId: goodsId,
-                name: name,
-                thumbnail: thumbnails.images[0],
-                options: selectValueList,
-            }
-            const loggedIn = true
-            if (loggedIn) {
-                route.push("/cart")
-            } else {
-                if (confirm("로그인을 먼저 해주세요.")) {
-                    route.push("/login")
-                } else return
-            }
+            goodsStore.cartItemList.push(newArray)
+        }
+        if (confirm("장바구니를 확인하시겠습니까?")) {
+            route.push("/cart")
         }
     }
 
@@ -162,7 +164,7 @@ export default function GoodsDetailPage(props: Props) {
                     {selectValueList.length > 0 && (
                         <>
                             <Stack mb={3} width="100%">
-                                {selectValueList.map(({option, count, price}, idx) => (
+                                {/* {selectValueList.map(({option, count, price}, idx) => (
                                     <GoodsOptions
                                         key={"option" + idx}
                                         idx={idx}
@@ -174,7 +176,7 @@ export default function GoodsDetailPage(props: Props) {
                                         onDeleteOption={onDeleteOption}
                                         setSelectValueList={setSelectValueList}
                                     />
-                                ))}
+                                ))} */}
                             </Stack>
                             <Divider orientation="horizontal" flexItem sx={{backgroundColor: "rgba(0, 0, 0, .4)"}} />
                         </>

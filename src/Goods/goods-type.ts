@@ -24,22 +24,8 @@ export type Thumbnail = {
     bgColor: string
 }
 
-export type Options = {
+type Options = {
     optionId: string
     text: string
     value: number
-}
-
-export type OptionCart = {
-    option: Options
-    price: number
-    count: number
-}
-
-//상품 장바구니 데이터
-export interface CartItemProps {
-    goodsId: string
-    name: string
-    thumbnail: string
-    options: OptionCart[]
 }

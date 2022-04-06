@@ -80,8 +80,8 @@ export default function Topbar() {
 
                         <Stack>
                             <ButtonGroup size="small" disableElevation>
-                                {userStore.userName && <ShopCartButton badgeContent={badgeContent} />}
-                                <UserLoginButton userName={userStore.userName} />
+                                {userStore.isLoggedIn && <ShopCartButton badgeContent={badgeContent} />}
+                                <UserLoginButton userName={userStore.userName} isLoggedIn={userStore.isLoggedIn} />
                             </ButtonGroup>
                         </Stack>
                     </Stack>

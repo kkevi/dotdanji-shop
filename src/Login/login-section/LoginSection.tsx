@@ -41,7 +41,9 @@ export default function LoginSection() {
                 }),
                 {
                     onSuccess: function (result: any) {
+                        userStore.setRefreshToken(result.refreshToken.token)
                         userStore.setUserName(result.idToken.payload.name)
+                        userStore.setIsLoggedIn(true)
                         toast.info(`${result.idToken.payload.name}님 환영합니다.`)
                         route.push("/")
                     },

@@ -6,21 +6,21 @@ import React from "react"
 
 type Props = {
     userName?: string
+    isLoggedIn?: boolean
 }
 
 export default function UserLoginButton(props: Props) {
     const route = useRouter()
     const theme = useTheme()
-    const {userName} = props
-    //isLoggedIn ? "/mypage" : "/login"
+    const {userName, isLoggedIn} = props
 
     return (
         <Stack>
-            <IconButton onClick={() => route.push("/login")}>
+            <IconButton onClick={() => route.push(isLoggedIn ? "/mypage" : "/login")}>
                 <AccountCircleIcon style={{color: theme.palette.secondary.dark, fontSize: "28px"}} />
             </IconButton>
             <Typography variant="caption" mt={-1}>
-                {userName && userName + "님"}
+                {isLoggedIn && userName + "님"}
             </Typography>
         </Stack>
     )

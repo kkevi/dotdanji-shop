@@ -1,8 +1,8 @@
 import {useCallback, useState} from "react"
 import {useRouter} from "next/router"
 import useStyles from "./styles"
-import {toast} from "react-toastify"
 import {GoodsItemProps} from "../goods-type"
+import useStore from "Components/store/useStore"
 //component
 import {IconButton, Stack, Typography, ButtonBase} from "@mui/material"
 import ImageBox from "Components/image-box/ImageBox"
@@ -10,7 +10,6 @@ import ImageBox from "Components/image-box/ImageBox"
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import ShareIcon from "@mui/icons-material/Share"
-import {useLocalStorage} from "react-use"
 
 type props = {
     data: GoodsItemProps
@@ -20,12 +19,12 @@ export default function GoodsItem(props: props) {
     const {goodsId, categoryId, thumbnails, name, price, sale, isFavor, isCart} = props.data
     const classes = useStyles()
     const route = useRouter()
+    const {userStore} = useStore()
     //state
     const [favorState, setFavorState] = useState(isFavor)
     const [cartState, setCartState] = useState(isCart)
     const [disabled, setDisabled] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [isLoggedIn, setIsLoggedIn] = useLocalStorage<{name: string; email: string} | null>("login")
 
     //할인 계산식
     var resultPrice = price - price * (sale / 100)
@@ -37,11 +36,11 @@ export default function GoodsItem(props: props) {
 
     //찜하기 버튼 클릭
     const onClickFavorBtn = () => {
-        if (!isLoggedIn) {
+        if (!userStore.isLoggedIn) {
             return alert("로그인 후 이용이 가능합니다.")
         }
-        setFavorState(it => !it)
         doFavor(goodsId, isFavor)
+        setFavorState(it => !it)
     }
 
     // 찜하기 저장 - 서버 전송
@@ -49,7 +48,6 @@ export default function GoodsItem(props: props) {
         async (goodsId: string, newFavor: boolean) => {
             setLoading(true)
             try {
-                let newFavorCount = 0
                 if (newFavor) {
                     // const {count} = await api
                     // newFavorCount = count
@@ -63,7 +61,7 @@ export default function GoodsItem(props: props) {
                 setLoading(false)
             }
         },
-        [goodsId], //api
+        [goodsId],
     )
 
     return (

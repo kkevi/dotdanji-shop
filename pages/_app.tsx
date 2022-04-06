@@ -11,10 +11,6 @@ import UserLoginObserver from "Components/observer/UserLoginObserver"
 import React, {useEffect} from "react"
 
 function MyApp({Component, pageProps}: AppProps) {
-    useEffect(() => {
-        console.log("work on _app.tsx")
-    }, [])
-
     return (
         <>
             <Head>
