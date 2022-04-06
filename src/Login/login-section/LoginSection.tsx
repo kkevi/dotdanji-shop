@@ -4,11 +4,9 @@ import {Button, Stack, TextField, Typography, Divider, Link} from "@mui/material
 
 import useStyles from "./styles"
 import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js"
-import userPool, {KAKAO_AUTH_URL} from "./UserPool"
 import {toast} from "react-toastify"
 import {userEmailCheck, userPasswordCheck} from "./validation-check"
-import {useLocalStorage} from "react-use"
-import UserPool from "./UserPool"
+import UserPool, {KAKAO_AUTH_URL} from "./UserPool"
 
 export default function LoginSection() {
     const classes = useStyles()
@@ -16,7 +14,6 @@ export default function LoginSection() {
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [loading, setLoading] = useState(false)
-    const [isLoggedIn, setIsLoggedIn] = useLocalStorage<{name: string; email: string}>("login", {name: "", email: ""})
 
     //error
     const [errorEmail, setErrorEmail] = useState<boolean>(false)
@@ -34,7 +31,7 @@ export default function LoginSection() {
         setLoading(true)
 
         try {
-            new CognitoUser({Username: email, Pool: userPool}).authenticateUser(
+            new CognitoUser({Username: email, Pool: UserPool}).authenticateUser(
                 new AuthenticationDetails({
                     Username: email,
                     Password: password,
@@ -43,7 +40,6 @@ export default function LoginSection() {
                 {
                     onSuccess: function (result: any) {
                         console.log("result", result)
-                        setIsLoggedIn({name: result.idToken.payload.name, email: result.idToken.payload.email})
                         toast.info(`${result.idToken.payload.name}님 환영합니다.`)
                         route.push("/")
                     },

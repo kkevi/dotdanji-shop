@@ -3,22 +3,28 @@ import {useRouter} from "next/router"
 import React, {ReactChild, useEffect} from "react"
 import {useLocalStorage} from "react-use"
 import userPool from "../../Login/login-section/UserPool"
+import UserPool from "Login/login-section/UserPool"
+import {CognitoUser} from "amazon-cognito-identity-js"
+import useStore from "Components/store/useStore"
 
 type Props = {
     children: ReactChild
 }
 
 function UserLoginObserver(props: Props) {
-    const route = useRouter()
     const {children} = props
-    const [isLoggedIn, setIsLoggedIn] = useLocalStorage<{name: string; email: string} | null>("login")
+    const {userStore} = useStore()
+    class newCognitoUser extends CognitoUser {
+        public storage?: any
+    }
+    const currentUser: newCognitoUser | null = UserPool.getCurrentUser()
 
     useEffect(() => {
-        const currentUser = userPool.getCurrentUser()
-        if (currentUser === null && !isLoggedIn) {
-            route.push("/")
-        }
-    }, [userPool])
+        userStore.setUserName(JSON.parse(currentUser?.storage.login).name)
+        // userStore.setRefreshToken(currentRefreshToken)
+        console.log("currentRefreshToken: ", currentUser)
+        console.log("userName: ", userStore.userName)
+    }, [currentUser, userStore])
 
     return <div>{children}</div>
 }

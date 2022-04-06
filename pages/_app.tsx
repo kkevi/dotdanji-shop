@@ -5,21 +5,11 @@ import {theme} from "styles/theme"
 import {GlobalStyle} from "styles/global-styles"
 import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import {useLocalStorage} from "react-use"
-import {useEffect} from "react"
-import UserPool from "Login/login-section/UserPool"
+import {observer} from "mobx-react"
+import StoreProvider from "Components/store/StoreProvider"
+import UserLoginObserver from "Components/observer/UserLoginObserver"
 
 function MyApp({Component, pageProps}: AppProps) {
-    const [isLoggedIn, setIsLoggedIn] = useLocalStorage<{name: string; email: string} | null>("login")
-
-    const currentUser = UserPool.getCurrentUser()?.getUsername()
-
-    useEffect(() => {
-        if (currentUser === "") {
-            setIsLoggedIn(null)
-        }
-    }, [currentUser])
-
     return (
         <>
             <Head>
@@ -32,14 +22,18 @@ function MyApp({Component, pageProps}: AppProps) {
                     rel="stylesheet"
                 ></link>
             </Head>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <GlobalStyle />
-                <Component {...pageProps} />
-                <ToastContainer autoClose={2000} pauseOnHover={false} hideProgressBar />
-            </ThemeProvider>
+            <StoreProvider rootStoreInitialState={undefined}>
+                <UserLoginObserver>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <GlobalStyle />
+                        <Component {...pageProps} />
+                        <ToastContainer autoClose={2000} pauseOnHover={false} hideProgressBar />
+                    </ThemeProvider>
+                </UserLoginObserver>
+            </StoreProvider>
         </>
     )
 }
 
-export default MyApp
+export default observer(MyApp)

@@ -4,24 +4,24 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import {useTheme} from "@mui/system"
 
 type Props = {
-    isLoggedIn?: {name: string; email: string} | null
+    userName?: string
 }
 
 export default function UserLoginButton(props: Props) {
-    const {isLoggedIn} = props
     const route = useRouter()
     const theme = useTheme()
+    const {userName} = props
+    //isLoggedIn ? "/mypage" : "/login"
 
     return (
         <Stack>
-            <IconButton onClick={() => route.push(isLoggedIn ? "/mypage" : "/login")}>
+            <IconButton onClick={() => route.push("/login")}>
                 <AccountCircleIcon style={{color: theme.palette.secondary.dark, fontSize: "28px"}} />
             </IconButton>
-            {isLoggedIn && (
-                <Typography variant="caption" mt={-1}>
-                    {isLoggedIn.name}님
-                </Typography>
-            )}
+            {/* {isLoggedIn && ( */}
+            <Typography variant="caption" mt={-1}>
+                {userName && userName + "님"}
+            </Typography>
         </Stack>
     )
 }

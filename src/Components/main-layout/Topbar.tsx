@@ -1,23 +1,21 @@
 import React, {useEffect, useState} from "react"
-import useStyles from "./styles"
 import Router from "next/router"
 //ui components
-import {Button, ButtonGroup, Container, Link, Stack, useMediaQuery} from "@mui/material"
+import {Button, ButtonGroup, Container, Link, Stack} from "@mui/material"
 import {useTheme} from "@mui/system"
 //icon
 //fake data
 import {GOODS_CATEGORY_DATA} from "Components/fake-data/fake-goods"
 import UserLoginButton from "./user-login-button/UserLoginButton"
 import ShopCartButton from "./shop-cart-button/ShopCartButton"
-import {useLocalStorage} from "react-use"
+import {observer} from "mobx-react"
+import useStore from "Components/store/useStore"
 
-export default function Topbar() {
-    const classes = useStyles()
+function Topbar() {
     const theme = useTheme()
-    const smDown = useMediaQuery(theme.breakpoints.down("sm"))
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)
     const [badgeContent, setBadgeContent] = useState(1)
-    const [isLoggedIn, setIsLoggedIn] = useLocalStorage<{name: string; email: string} | null>("login")
+    const {userStore} = useStore()
 
     //스크롤시, 스타일변경
     const [scrollPosition, setScrollPosition] = useState(0)
@@ -34,6 +32,10 @@ export default function Topbar() {
     const onClickCategorys = (categoryId: string) => {
         Router.push({pathname: "/goods", query: {categoryId: categoryId}})
     }
+
+    useEffect(() => {
+        console.log("btn:", userStore.userName)
+    }, [userStore])
 
     return (
         <div
@@ -82,8 +84,8 @@ export default function Topbar() {
 
                         <Stack>
                             <ButtonGroup size="small" disableElevation>
-                                {isLoggedIn && <ShopCartButton badgeContent={badgeContent} />}
-                                <UserLoginButton isLoggedIn={isLoggedIn} />
+                                {userStore.userName && <ShopCartButton badgeContent={badgeContent} />}
+                                <UserLoginButton userName={userStore.userName} />
                             </ButtonGroup>
                         </Stack>
                     </Stack>
@@ -92,3 +94,5 @@ export default function Topbar() {
         </div>
     )
 }
+
+export default observer(Topbar)
