@@ -95,7 +95,7 @@ export default function LoginSection() {
 
     return (
         <Stack justifyContent="center" alignItems="flex-start" width="100%" maxWidth={400} height={"100%"}>
-            <img src="/images/logo_new3.png" style={{height: 35}} />
+            {/* <img src="/images/logo_new3.png" style={{height: 35}} /> */}
             <Typography mt={4} variant="h4" fontWeight={700}>
                 다시 만나서 반가워요!
             </Typography>
