@@ -19,7 +19,7 @@ export default function UserLoginButton(props: Props) {
             <IconButton onClick={() => route.push(isLoggedIn ? "/mypage" : "/login")}>
                 <AccountCircleIcon style={{color: theme.palette.secondary.dark, fontSize: "28px"}} />
             </IconButton>
-            <Typography variant="caption" mt={-1}>
+            <Typography variant="caption" mt={isLoggedIn ? -1 : 0}>
                 {isLoggedIn && userName + "님"}
             </Typography>
         </Stack>

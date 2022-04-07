@@ -1,7 +1,7 @@
 import React from "react"
 import {useRouter} from "next/router"
 
-import {Typography, Stack, Button} from "@mui/material"
+import {Container, Typography, Stack, Button} from "@mui/material"
 import {makeStyles} from "@mui/styles"
 
 import ImageBox from "Components/image-box/ImageBox"
@@ -41,24 +41,26 @@ export default function HomeSlider(props: HomeSliderProps) {
 
     return (
         <div style={{position: "relative"}}>
-            <Stack position="absolute" top="40%" left={500} zIndex={10} fontWeight={800} color="white">
-                <Typography variant="h3" className="pointFont">
-                    {title}
-                </Typography>
-                <Typography variant="h5" mt={2}>
-                    {subTitle}
-                </Typography>
+            <Container maxWidth="lg">
+                <Stack position="absolute" top="40%" zIndex={10} fontWeight={800} color="white">
+                    <Typography variant="h3" className="pointFont">
+                        {title}
+                    </Typography>
+                    <Typography variant="h5" mt={2}>
+                        {subTitle}
+                    </Typography>
 
-                <Button
-                    variant="outlined"
-                    className={classes.button}
-                    onClick={() => {
-                        route.push("/")
-                    }}
-                >
-                    자세히 보기
-                </Button>
-            </Stack>
+                    <Button
+                        variant="outlined"
+                        className={classes.button}
+                        onClick={() => {
+                            route.push("/")
+                        }}
+                    >
+                        자세히 보기
+                    </Button>
+                </Stack>
+            </Container>
             <ImageBox height={720} src={image} brightness={0.7} />
         </div>
     )

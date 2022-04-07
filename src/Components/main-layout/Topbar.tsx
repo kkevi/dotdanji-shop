@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import Router, {useRouter} from "next/router"
 //ui components
-import {Button, ButtonGroup, Container, Link, Stack} from "@mui/material"
+import {Button, ButtonGroup, Container, Stack} from "@mui/material"
 import {useTheme} from "@mui/system"
 //icon
 //fake data
@@ -54,10 +54,8 @@ export default function Topbar() {
                     }}
                 >
                     <Stack direction="row" justifyContent="space-between" alignItems="center">
-                        <div>
-                            {/* <Link href={"/"}> */}
+                        <div style={{cursor: "pointer"}}>
                             <img src="/images/logo_new.png" alt="" width="130px" onClick={() => route.push("/")} />
-                            {/* </Link> */}
                         </div>
 
                         <Stack
