@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {useTheme} from "@mui/system"
-import {Stack, IconButton, Paper, InputBase, Typography, Divider, Chip} from "@mui/material"
+import {Stack, IconButton, InputBase, Typography, Divider, Chip} from "@mui/material"
 
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded"
 import FaqAccordion from "./faq-accordion/FaqAccordion"
