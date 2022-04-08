@@ -70,7 +70,8 @@ const styles = makeStyles((theme: Theme) =>
         button2: {
             marginLeft: 16,
             width: 170,
-            fontSize: 13,
+            fontSize: 14,
+            fontWeight: 500,
             color: "#646566",
             border: "1px solid #babcbc",
             backgroundColor: "rgba(208,235,245,0.1)",

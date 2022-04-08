@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {Button, Container, Grid, Stack, Typography} from "@mui/material"
+import {Container, Grid, Stack, Typography} from "@mui/material"
 import {useRouter} from "next/router"
 import {useTheme} from "@mui/system"
 import UserPool from "Login/login-section/UserPool"
@@ -35,7 +35,7 @@ export default function Index() {
     return (
         <>
             <MyPageHeader title="마이페이지" />
-            <Container maxWidth="xl">
+            <Container maxWidth="lg">
                 <Stack mt={12} direction="row" alignItems="center">
                     <Typography variant="h4" fontWeight={700}>
                         {userName ? userName : "홍길동"}
@@ -56,14 +56,14 @@ export default function Index() {
 
                 {/* 회원정보 리스트 */}
                 <Stack direction="row" alignItems="center" mt={8} spacing={4}>
-                    <Stack className={classes.box} direction="column" onClick={() => {}}>
+                    <Stack className={classes.box} direction="column" onClick={() => route.push("/mypage/wishlist")}>
                         <FavoriteIcon className={classes.iconBig} />
                         <Typography className="pointFont" fontSize={20} my={3}>
                             찜상품
                         </Typography>
                         <Typography color="#777777">0개</Typography>
                     </Stack>
-                    <Stack className={classes.box} direction="column" onClick={() => {}}>
+                    <Stack className={classes.box} direction="column" onClick={() => route.push("/mypage/orderlist")}>
                         <ShoppingBasketIcon className={classes.iconBig} />
                         <Typography className="pointFont" fontSize={20} my={3}>
                             구매내역

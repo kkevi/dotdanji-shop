@@ -3,7 +3,7 @@ import {Stack, Typography, TextField, Button, Select, MenuItem, SelectChangeEven
 
 import {useTheme} from "@mui/system"
 import useStyles from "./styles"
-import {InquiryFormProps, inquiryFormDefaultData, categoryList, CategoryTypeKey} from "./InquiryDataType"
+import {InquiryFormProps, inquiryFormDefaultData, categoryList} from "./InquiryDataType"
 import InquiryTerms from "./inquiry-terms/InquiryTerms"
 
 export default function Index() {

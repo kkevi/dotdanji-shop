@@ -27,9 +27,6 @@ export default function DaumPostModal(prop: DaumPostModalTypes) {
             fullAddress += extraAddress !== "" ? ` (${extraAddress})` : ""
         }
 
-        console.log(postCode) // 우편번호
-        console.log(fullAddress) // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
-
         setFormData(prev => {
             return {
                 ...prev,
@@ -45,7 +42,7 @@ export default function DaumPostModal(prop: DaumPostModalTypes) {
     }
 
     return (
-        <Dialog open={visibleModal} onClose={onClose} maxWidth="lg">
+        <Dialog open={visibleModal} onClose={onClose} fullWidth>
             <DaumPostcode onComplete={handleComplete} />
         </Dialog>
     )
