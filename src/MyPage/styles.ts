@@ -33,6 +33,7 @@ const styles = makeStyles((theme: Theme) =>
         },
         container: {
             padding: 30,
+            minHeight: 678,
             borderRadius: 20,
             boxShadow: "0px 22px 32px -18px rgba(0, 0, 0, 0.2)",
             // backgroundColor: "antiquewhite",

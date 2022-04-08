@@ -10,14 +10,15 @@ type Props = {
     hoverEffects?: boolean
     children?: React.ReactNode
     style?: CSSProperties
+    onClick?: () => void
 }
 
 export default function ImageBox(props: Props) {
-    const {width = "100%", height, src, brightness, hoverEffects = false, children, style} = props
+    const {width = "100%", height, src, brightness, hoverEffects = false, children, style, onClick} = props
     const classes = useStyles()
 
     return (
-        <div className={classes.root} style={{...style, width: width, height: height}}>
+        <div className={classes.root} style={{...style, width: width, height: height}} onClick={onClick}>
             <img
                 src={src}
                 alt=""

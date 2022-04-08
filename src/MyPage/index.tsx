@@ -91,19 +91,21 @@ export default function Index() {
                         </Stack>
                     </Stack>
                 </Stack>
-                <Stack className={classes.container} height={"700px"} mt={8}>
-                    <Stack direction="row" alignItems="center">
+                <Stack className={classes.container} mt={8}>
+                    <Stack direction="row" alignItems="center" mb={6}>
                         <Typography className="pointFont" fontSize={20} mr={2}>
                             나의 E-BOOK
                         </Typography>
-                        <Typography color="#777777">0권</Typography>
+                        <Typography color="#777777">{fakeEbookList.length}권</Typography>
                     </Stack>
-                    <Grid container alignItems="center" spacing={3}>
-                        <Grid item xs={4}>
-                            {fakeEbookList.map((itm, idx) => {
-                                return <EBookItem />
-                            })}
-                        </Grid>
+                    <Grid container alignItems="center" spacing={4}>
+                        {fakeEbookList.map((itm, idx) => {
+                            return (
+                                <Grid key={"ebookitem" + idx} item xs={3}>
+                                    <EBookItem title={itm.title} url={itm.url} images={itm.image} />
+                                </Grid>
+                            )
+                        })}
                     </Grid>
                 </Stack>
             </Container>
