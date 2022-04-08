@@ -5,7 +5,7 @@ import {useTheme} from "@mui/system"
 
 import useStyles from "../styles"
 import MyPageHeader from "MyPage/mypage-header/MyPageHeader"
-
+import DaumPostCode from "./DaumPostModal"
 import {MyPageModifyFormProps, MyPageModifyFormDefaultData} from "./mypage-modify-type"
 
 export default function MyPageModifyPage() {
@@ -13,6 +13,7 @@ export default function MyPageModifyPage() {
     const classes = useStyles()
     const route = useRouter()
     const [formData, setFormData] = useState<MyPageModifyFormProps>(MyPageModifyFormDefaultData)
+    const [visibleModal, setVisibleModal] = useState(false)
 
     const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {value, name} = e.target
@@ -22,12 +23,17 @@ export default function MyPageModifyPage() {
         })
     }
 
-    const onChangeAddress = () => {}
+    const onChangeAddress = () => {
+        setVisibleModal(true)
+    }
 
     const onSave = () => {}
 
     return (
         <>
+            {visibleModal && (
+                <DaumPostCode setFormData={setFormData} visibleModal={visibleModal} setVisibleModal={setVisibleModal} />
+            )}
             <MyPageHeader title="마이페이지" />
             <Container maxWidth="lg">
                 <Stack mt={12} direction="column" justifyContent="center" alignItems="center">
@@ -90,7 +96,6 @@ export default function MyPageModifyPage() {
                                 required
                                 disabled
                                 fullWidth
-                                defaultValue={"우편번호"}
                                 value={formData.postCode}
                                 sx={{marginBottom: "0 !important"}}
                             />
@@ -102,7 +107,6 @@ export default function MyPageModifyPage() {
                             className={classes.disabledTextField}
                             required
                             fullWidth
-                            defaultValue={"기본주소"}
                             value={formData.address}
                             onChange={onChangeInput}
                             disabled

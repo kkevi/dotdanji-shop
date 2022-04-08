@@ -57,7 +57,6 @@ const styles = makeStyles((theme: Theme) =>
         button: {
             marginTop: 16,
             padding: "12px 60px",
-            // backgroundColor: "white",
             fontSize: 16,
             fontWeight: 700,
             color: theme.palette.primary.dark,
@@ -69,7 +68,7 @@ const styles = makeStyles((theme: Theme) =>
             },
         },
         button2: {
-            marginLeft: 8,
+            marginLeft: 16,
             width: 170,
             fontSize: 13,
             color: "#646566",

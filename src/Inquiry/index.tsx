@@ -1,16 +1,5 @@
 import React, {useState, useRef} from "react"
-import {
-    Stack,
-    Typography,
-    TextField,
-    Button,
-    Autocomplete,
-    AutocompleteValue,
-    AutocompleteChangeReason,
-    Select,
-    MenuItem,
-    SelectChangeEvent,
-} from "@mui/material"
+import {Stack, Typography, TextField, Button, Select, MenuItem, SelectChangeEvent} from "@mui/material"
 
 import {useTheme} from "@mui/system"
 import useStyles from "./styles"
@@ -129,7 +118,7 @@ export default function Index() {
                                 value={category}
                                 style={{display: "flex", justifyContent: "space-between"}}
                             >
-                                <Typography fontSize={20}>{category}</Typography>
+                                <Typography fontSize={16}>{category}</Typography>
                             </MenuItem>
                         ))}
                     </Select>
