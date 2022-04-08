@@ -5,12 +5,13 @@ import {theme} from "styles/theme"
 import {GlobalStyle} from "styles/global-styles"
 import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import {observer} from "mobx-react"
 import StoreProvider from "Components/store/StoreProvider"
 import UserLoginObserver from "Components/observer/UserLoginObserver"
-import React, {useEffect} from "react"
+import React from "react"
 
-function MyApp({Component, pageProps}: AppProps) {
+function MyApp(props: AppProps) {
+    const {Component, pageProps} = props
+
     return (
         <>
             <Head>
@@ -36,5 +37,4 @@ function MyApp({Component, pageProps}: AppProps) {
         </>
     )
 }
-
-export default observer(MyApp)
+export default MyApp
