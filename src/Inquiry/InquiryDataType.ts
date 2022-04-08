@@ -31,8 +31,6 @@ export const inquiryFormDefaultData: InquiryFormProps = {
     agree: false,
 }
 
-export const categoryList = {0: "회원정보", 1: "결제", 2: "기기", 3: "교재", 4: "배송", 5: "기타"}
-
 type CategoryList = {
     key: number
     label: string
@@ -42,4 +40,15 @@ type ImageFile = {
     fileSize: number
     fileName: string
     downloadUrl: string | ArrayBuffer | null
+}
+
+export type CategoryTypeKey = "info" | "pay" | "goods" | "book" | "order" | "etc"
+
+export const categoryList: Record<CategoryTypeKey, string> = {
+    info: "회원정보",
+    pay: "결제",
+    goods: "기기",
+    book: "교재",
+    order: "배송",
+    etc: "기타",
 }

@@ -1,9 +1,20 @@
 import React, {useState, useRef} from "react"
-import {Stack, Typography, TextField, Button, Autocomplete} from "@mui/material"
+import {
+    Stack,
+    Typography,
+    TextField,
+    Button,
+    Autocomplete,
+    AutocompleteValue,
+    AutocompleteChangeReason,
+    Select,
+    MenuItem,
+    SelectChangeEvent,
+} from "@mui/material"
 
 import {useTheme} from "@mui/system"
 import useStyles from "./styles"
-import {InquiryFormProps, inquiryFormDefaultData, categoryList} from "./InquiryDataType"
+import {InquiryFormProps, inquiryFormDefaultData, categoryList, CategoryTypeKey} from "./InquiryDataType"
 import InquiryTerms from "./inquiry-terms/InquiryTerms"
 
 export default function Index() {
@@ -11,6 +22,7 @@ export default function Index() {
     const classes = useStyles()
     const [formData, setFormData] = useState<InquiryFormProps>(inquiryFormDefaultData)
     const imageFileInputRef = useRef<HTMLInputElement>(null)
+    const [category, setCategory] = useState<string>(categoryList.info)
 
     const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {value, name} = e.target
@@ -40,6 +52,11 @@ export default function Index() {
                 })
             }
         }
+    }
+
+    const onSelectCategory = (event: SelectChangeEvent) => {
+        const {value} = event.target
+        setCategory(value)
     }
 
     return (
@@ -98,18 +115,24 @@ export default function Index() {
                     >
                         # 문의내역
                     </Typography>
-                    <Autocomplete
+                    <Select
                         className={classes.autocomplete}
                         fullWidth
                         id="category"
-                        options={Object.values(categoryList)}
-                        value={formData.category.label || ""}
-                        onChange={(event, newValue) => {
-                            const categoryKey = Object.keys(categoryList).find(key => categoryList[key] === newValue)
-                            setFormData({...formData, category: {key: Number(categoryKey), label: newValue || ""}})
-                        }}
-                        renderInput={params => <TextField {...params} placeholder="카테고리 선택" />}
-                    />
+                        value={category}
+                        onChange={onSelectCategory}
+                        sx={{marginBottom: 3}}
+                    >
+                        {Object.values(categoryList).map((category, idx) => (
+                            <MenuItem
+                                key={category}
+                                value={category}
+                                style={{display: "flex", justifyContent: "space-between"}}
+                            >
+                                <Typography fontSize={20}>{category}</Typography>
+                            </MenuItem>
+                        ))}
+                    </Select>
                     <TextField
                         className={classes.textField}
                         required
