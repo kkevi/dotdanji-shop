@@ -57,7 +57,7 @@ export default function FaqAccordion(prop: FaqAccordionProps) {
     const theme = useTheme()
 
     return (
-        <Accordion expanded={expanded === `panel${idx}`} onChange={handleChange(`panel${idx}`)}>
+        <Accordion expanded={expanded === `panel${idx}`} onChange={() => handleChange(`panel${idx}`)}>
             <AccordionSummary
                 expandIcon={<ExpandMoreRoundedIcon fontSize="large" color="primary" />}
                 aria-controls="panel1a-content"
