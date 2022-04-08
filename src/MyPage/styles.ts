@@ -33,10 +33,52 @@ const styles = makeStyles((theme: Theme) =>
         },
         container: {
             padding: 30,
+            width: "100%",
             minHeight: 678,
             borderRadius: 20,
             boxShadow: "0px 22px 32px -18px rgba(0, 0, 0, 0.2)",
             // backgroundColor: "antiquewhite",
+        },
+        textField: {
+            marginBottom: 30,
+            backgroundColor: "rgba(208,235,245,0.1)",
+            borderRadius: 4,
+        },
+
+        disabledTextField: {
+            marginBottom: 30,
+            color: "#646566",
+            backgroundColor: "rgba(208,235,245,0.1)",
+            borderRadius: 4,
+            "& .Mui-disabled": {
+                color: "#646566",
+            },
+        },
+        button: {
+            marginTop: 16,
+            padding: "12px 60px",
+            // backgroundColor: "white",
+            fontSize: 16,
+            fontWeight: 700,
+            color: theme.palette.primary.dark,
+            border: `1px solid ${theme.palette.primary.dark}`,
+            "&:hover": {
+                color: theme.palette.primary.main,
+                fontWeight: 700,
+                border: `1px solid ${theme.palette.primary.main}`,
+            },
+        },
+        button2: {
+            marginLeft: 8,
+            width: 170,
+            fontSize: 13,
+            color: "#646566",
+            border: "1px solid #babcbc",
+            backgroundColor: "rgba(208,235,245,0.1)",
+            "&:active": {
+                color: theme.palette.primary.dark,
+                border: `1px solid ${theme.palette.primary.dark}`,
+            },
         },
     }),
 )
