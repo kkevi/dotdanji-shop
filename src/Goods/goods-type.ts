@@ -6,13 +6,14 @@ export interface GoodsCategoryProps {
 
 //상품 데이터
 export interface GoodsItemProps {
-    goodsId: string
-    categoryId: string
-    thumbnails: Thumbnail
+    goodsId: string //필수
+    categoryId: string //필수
+    thumbnails: Thumbnail //필수
     options?: Options[]
-    name: string
-    infoText: string
+    name: string //필수
     tags: string[]
+    infoText: string //필수
+    infoHtml: string
     price: number
     sale: number
     isFavor: boolean

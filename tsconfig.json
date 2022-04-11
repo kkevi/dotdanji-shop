@@ -69,6 +69,6 @@
         "isolatedModules": true,
         "incremental": true
     },
-    "include": ["src", "public", "next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.tsx"],
+    "include": ["src", "public", "next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.tsx", "backend/config/config.js"],
     "exclude": ["node_modules"]
 }
