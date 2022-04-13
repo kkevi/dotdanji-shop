@@ -31,7 +31,7 @@ const styles = makeStyles((theme: Theme) =>
         },
         divider: {
             height: 2,
-            backgroundColor: "black",
+            backgroundColor: theme.palette.secondary.dark,
         },
         countButtonBox: {
             marginRight: 16,

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import {Typography, Divider, Button, Stack} from "@mui/material"
 import {toast} from "react-toastify"
 import useStyles from "./style"
+import {useTheme} from "@mui/system"
 
 import TotalPrice from "./components/TotalPrice"
 import CartTable from "./components/CartTable"
@@ -15,6 +16,7 @@ type Props = {
 
 export default function CartSection1(props: Props) {
     const classes = useStyles()
+    const theme = useTheme()
     const {onChangeNextStep} = props
     //장바구니 데이터 표시
     const [cartItemList, setCartItemList] = useState<CartOptionsType[]>([])
@@ -123,8 +125,8 @@ export default function CartSection1(props: Props) {
     return (
         <>
             <Stack className={classes.rootStack}>
-                <Typography variant="h5" mb={1} ml={1} fontWeight={700} alignSelf="flex-start">
-                    제품
+                <Typography variant="h5" mb={1} className="pointFont" color={theme.palette.secondary.dark}>
+                    # 제품
                 </Typography>
                 <Button sx={{color: "black"}} onClick={onDeleteCartItem}>
                     선택상품 삭제

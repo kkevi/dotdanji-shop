@@ -12,15 +12,15 @@ const styles = makeStyles((theme: Theme) =>
             "& .MuiButton-outlined": {
                 marginTop: "2rem",
                 background: "#fff",
-                color: "#222",
+                color: theme.palette.secondary.dark,
                 height: 55,
-                border: "1px solid #222",
+                border: `1px solid ${theme.palette.secondary.dark}`,
             },
             "& .MuiButton-contained": {
                 marginTop: "2rem",
                 height: 55,
                 marginLeft: "1rem",
-                background: "#222",
+                background: theme.palette.secondary.dark,
                 color: "#fff",
             },
         },
@@ -31,7 +31,7 @@ const styles = makeStyles((theme: Theme) =>
         },
         divider: {
             height: 2,
-            backgroundColor: "black",
+            backgroundColor: theme.palette.secondary.dark,
         },
         countButtonBox: {
             marginRight: 16,

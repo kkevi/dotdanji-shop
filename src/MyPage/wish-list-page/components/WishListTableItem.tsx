@@ -2,7 +2,18 @@ import React from "react"
 import {Checkbox, FormControlLabel, Stack, TableCell, Typography} from "@mui/material"
 import ImageBox from "Components/image-box/ImageBox"
 
-export default function WishListTableItem() {
+type WishListTableItemProps = {
+    idx: number
+    // wishItem: CartOptionsType
+    wishItemList: any[]
+    setWishItemList: React.Dispatch<React.SetStateAction<any[]>>
+    checkList: Record<string, boolean>
+    onChangeCheckbox: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export default function WishListTableItem(props: WishListTableItemProps) {
+    const {wishItemList, setWishItemList, checkList, onChangeCheckbox} = props
+
     return (
         <>
             <TableCell padding="checkbox">
@@ -11,9 +22,9 @@ export default function WishListTableItem() {
                     label=""
                     control={
                         <Checkbox
-                        // checked={checkList[cartItem.optionId] || false}
-                        // onChange={onChangeCheckbox}
-                        // name={cartItem.optionId}
+                            // checked={checkList[cartItem.optionId] || false}
+                            onChange={onChangeCheckbox}
+                            // name={cartItem.optionId}
                         />
                     }
                 />
