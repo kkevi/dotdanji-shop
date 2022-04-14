@@ -1,18 +1,27 @@
-import React from "react"
+import React, {useState} from "react"
 
-import {Container, Stack, Typography} from "@mui/material"
+import {Container, Divider, Stack, Typography} from "@mui/material"
+import {useTheme} from "@mui/system"
 
-import MyPageHeader from "../mypage-header/MyPageHeader"
+import useStyles from "./style"
+import OredrListTable from "./components/OrderListTable"
 
 export default function OrderListPage() {
+    const classes = useStyles()
+    const theme = useTheme()
+
     return (
-        <>
-            <MyPageHeader title="구매내역" />
-            <Container maxWidth="lg">
-                <Stack>
-                    <Typography>ㅁㄴㅇㄹ</Typography>
+        <Container maxWidth="lg">
+            <Stack mt={16}>
+                <Stack className={classes.rootStack}>
+                    <Typography variant="h5" mb={1} className="pointFont" color={theme.palette.secondary.dark}>
+                        # 구매내역
+                    </Typography>
                 </Stack>
-            </Container>
-        </>
+                <Divider className={classes.divider} flexItem />
+                <OredrListTable />
+                <Divider className={classes.divider} flexItem />
+            </Stack>
+        </Container>
     )
 }

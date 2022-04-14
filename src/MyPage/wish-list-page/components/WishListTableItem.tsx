@@ -61,13 +61,13 @@ export default function WishListTableItem(props: WishListTableItemProps) {
             </TableCell>
 
             <TableCell align="center">
-                <Typography fontSize={15} fontWeight={800} color="#333" mr={2}>
+                <Typography fontSize={15} fontWeight={800} color="#333">
                     1 개
                 </Typography>
             </TableCell>
 
             <TableCell align="center">
-                <Typography fontSize={15} fontWeight={800} color="#333" mr={2}>
+                <Typography fontSize={15} fontWeight={800} color="#333">
                     1000 원
                 </Typography>
             </TableCell>

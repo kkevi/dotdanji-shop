@@ -46,48 +46,14 @@ export default function WishListTable(props: WishListTableType) {
             </TableHead>
 
             <TableBody>
-                {/* {cartItemList?.map((cartItem, idx) => {
-                return (
-                    <TableRow key={"tableRow" + idx} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
-                        <CartTableItem
-                            idx={idx}
-                            cartItem={cartItem}
-                            cartItemList={cartItemList}
-                            checkList={checkList}
-                            setCartItemList={setCartItemList}
-                            onChangeCheckbox={onChangeCheckbox}
-                        />
-                        {idx === 0 && (
-                            <TableCell
-                                rowSpan={cartItemList.length + 1}
-                                align="center"
-                                sx={{borderLeft: "1px solid #eee"}}
-                            >
-                                {totalPrice >= 50000 ? "5만원이상 무료" : `${deliveryPrice.toLocaleString()}원`}
-                            </TableCell>
-                        )}
-                    </TableRow>
-                )
-            })} */}
-
-                <TableRow key={"tableRow"} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
+                <TableRow key={"tableRow"}>
                     <WishListTableItem
-                        // idx={idx}
-                        // cartItem={cartItem}
+                        idx={0}
                         wishItemList={wishItemList}
                         setWishItemList={setWishItemList}
                         checkList={checkList}
                         onChangeCheckbox={onChangeCheckbox}
                     />
-                    {/* {idx === 0 && (
-                            <TableCell
-                                rowSpan={cartItemList.length + 1}
-                                align="center"
-                                sx={{borderLeft: "1px solid #eee"}}
-                            >
-                                {totalPrice >= 50000 ? "5만원이상 무료" : `${deliveryPrice.toLocaleString()}원`}
-                            </TableCell>
-                        )} */}
                 </TableRow>
             </TableBody>
         </Table>
