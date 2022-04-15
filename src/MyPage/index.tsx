@@ -79,7 +79,11 @@ export default function Index() {
                             </Typography>
                         </Stack>
 
-                        <Stack className={classes.box2} direction="row" onClick={() => {}}>
+                        <Stack
+                            className={classes.box2}
+                            direction="row"
+                            onClick={() => route.push("/mypage/password-edit")}
+                        >
                             <LockIcon className={classes.iconSmall} />
                             <Typography fontSize={18} fontWeight={700}>
                                 비밀번호 변경
