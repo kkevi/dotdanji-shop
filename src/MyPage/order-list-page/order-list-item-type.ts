@@ -1,3 +1,5 @@
+import {nanoid} from "nanoid"
+
 export type OrderListType = {
     goodsId: string
     count: number
@@ -33,4 +35,21 @@ export const categoryList: Record<CategoryTypeKey, string> = {
     deliveryMissing: "배송 누락",
     misDelivery: "오배송",
     etc: "기타",
+}
+
+export type ReturnFormProps = {
+    id: string
+    category: CategoryList //카테고리*
+    title: string // 제목*
+    content: string // 내용*
+}
+
+export const inquiryFormDefaultData: ReturnFormProps = {
+    id: nanoid(),
+    category: {
+        key: 0,
+        label: "",
+    },
+    title: "",
+    content: "",
 }

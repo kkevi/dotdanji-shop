@@ -33,6 +33,18 @@ const styles = makeStyles((theme: Theme) =>
             height: 2,
             backgroundColor: theme.palette.secondary.dark,
         },
+        submitButton: {
+            padding: "12px 28px",
+            fontSize: 16,
+            fontWeight: 700,
+            color: theme.palette.primary.dark,
+            border: `1px solid ${theme.palette.primary.dark}`,
+            "&:hover": {
+                color: theme.palette.primary.main,
+                fontWeight: 700,
+                border: `1px solid ${theme.palette.primary.main}`,
+            },
+        },
         countButtonBox: {
             marginRight: 16,
             flexDirection: "row",

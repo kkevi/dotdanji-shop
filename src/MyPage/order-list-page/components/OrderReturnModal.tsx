@@ -2,7 +2,6 @@ import React, {useState} from "react"
 import {
     Dialog,
     DialogContent,
-    Divider,
     MenuItem,
     Select,
     SelectChangeEvent,
@@ -13,12 +12,14 @@ import {
     TableRow,
     Typography,
     TextField,
+    Button,
+    tableCellClasses,
 } from "@mui/material"
 import {useTheme} from "@mui/system"
 
 import useStyles from "../style"
 import ImageBox from "Components/image-box/ImageBox"
-import {categoryList} from "../order-list-item-type"
+import {categoryList, inquiryFormDefaultData} from "../order-list-item-type"
 
 type OrderReturnModalTypes = {
     visibleModal: boolean
@@ -29,7 +30,8 @@ export default function OrderReturnModal(props: OrderReturnModalTypes) {
     const theme = useTheme()
     const classes = useStyles()
     const {visibleModal, setVisibleModal} = props
-    const [category, setCategory] = useState<string>()
+    const [category, setCategory] = useState<string>("사유 선택")
+    const [formData, setFormData] = useState(inquiryFormDefaultData)
 
     const onClose = () => {
         setVisibleModal(false)
@@ -38,6 +40,14 @@ export default function OrderReturnModal(props: OrderReturnModalTypes) {
     const onSelectCategory = (event: SelectChangeEvent) => {
         const {value} = event.target
         setCategory(value)
+    }
+
+    const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {value, name} = e.target
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
     }
 
     return (
@@ -53,13 +63,19 @@ export default function OrderReturnModal(props: OrderReturnModalTypes) {
                 },
             }}
         >
-            <DialogContent>
+            <DialogContent sx={{display: "flex", flexDirection: "column"}}>
                 <Typography variant="h5" mt={2} mb={1} className="pointFont" color={theme.palette.secondary.dark}>
                     # 환불/반품 정보 입력
                 </Typography>
 
                 {/* 제품정보 */}
-                <Table>
+                <Table
+                    sx={{
+                        [`& .${tableCellClasses.root}`]: {
+                            borderBottom: "none",
+                        },
+                    }}
+                >
                     <TableBody>
                         <TableRow key={"tableRow" + 0}>
                             <TableCell width="50%" align="center">
@@ -113,9 +129,17 @@ export default function OrderReturnModal(props: OrderReturnModalTypes) {
                     </TableBody>
                 </Table>
 
-                {/* <Divider flexItem /> */}
                 <Stack mt={4} direction="row">
-                    <Select className={classes.autocomplete} id="category" value={category} onChange={onSelectCategory}>
+                    <Select
+                        className={classes.autocomplete}
+                        id="category"
+                        required
+                        value={category}
+                        onChange={onSelectCategory}
+                    >
+                        <MenuItem disabled value="사유 선택">
+                            <em>사유 선택</em>
+                        </MenuItem>
                         {Object.values(categoryList).map((category, idx) => (
                             <MenuItem
                                 key={category}
@@ -133,6 +157,8 @@ export default function OrderReturnModal(props: OrderReturnModalTypes) {
                         required
                         label="제목"
                         name="title"
+                        value={formData.title}
+                        onChange={onChangeInput}
                     />
                 </Stack>
 
@@ -141,10 +167,21 @@ export default function OrderReturnModal(props: OrderReturnModalTypes) {
                     fullWidth
                     required
                     multiline
-                    rows={10}
+                    rows={12}
                     label="내용"
                     name="content"
+                    value={formData.content}
+                    onChange={onChangeInput}
                 />
+
+                <Button
+                    className={classes.submitButton}
+                    sx={{alignSelf: "center", marginBottom: 2}}
+                    variant="outlined"
+                    onClick={() => {}}
+                >
+                    요청하기
+                </Button>
             </DialogContent>
         </Dialog>
     )
