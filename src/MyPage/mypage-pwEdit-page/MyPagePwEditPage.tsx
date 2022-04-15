@@ -38,10 +38,10 @@ export default function MyPagePwEditPage() {
     }
 
     const onSave = () => {
-        if (formData.currentPw === "" || formData.newPw === "" || formData.newPwVerify === "")
-            alert("비밀번호를 제대로 입력 해주세요.")
         // if(formData.currentPw !== currentPassword) alert('기존 비밀번호가 일치하지 않습니다.')
-        if (formData.newPw !== formData.newPwVerify) alert("새 비밀번호가 일치하지 않습니다.")
+        if (validPwAll) {
+            console.log("work on here")
+        } else return
     }
 
     return (
@@ -62,6 +62,7 @@ export default function MyPagePwEditPage() {
                         </Typography>
                         <TextField
                             className={classes.disabledTextField}
+                            type="password"
                             required
                             fullWidth
                             label="현재 비밀번호"
@@ -72,6 +73,7 @@ export default function MyPagePwEditPage() {
                         <TextField
                             className={classes.textField}
                             sx={{marginBottom: "0 !important"}}
+                            type="password"
                             required
                             fullWidth
                             label="새 비밀번호"
@@ -112,6 +114,7 @@ export default function MyPagePwEditPage() {
                         <TextField
                             className={classes.textField}
                             sx={{marginBottom: "0 !important"}}
+                            type="password"
                             required
                             fullWidth
                             label="새 비밀번호 확인"
@@ -136,6 +139,7 @@ export default function MyPagePwEditPage() {
                         </Stack>
                         <Button
                             className={classes.button}
+                            disabled={!validPwAll}
                             sx={{alignSelf: "center"}}
                             variant="outlined"
                             onClick={onSave}
