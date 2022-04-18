@@ -5,7 +5,7 @@ import {useTheme} from "@mui/system"
 
 import useStyles from "../styles"
 import MyPageHeader from "MyPage/mypage-header/MyPageHeader"
-import DaumPostCode from "./DaumPostModal"
+import DaumPostModal from "Components/daum-post-modal/DaumPostModal"
 import {MyPageModifyFormProps, MyPageModifyFormDefaultData} from "./mypage-modify-type"
 
 export default function MyPageModifyPage() {
@@ -23,8 +23,15 @@ export default function MyPageModifyPage() {
         })
     }
 
-    const onChangeAddress = () => {
-        setVisibleModal(true)
+    const onChangeAddress = (postCode: string, fullAddress: string) => {
+        setFormData(prev => {
+            return {
+                ...prev,
+                postCode: postCode,
+                address: fullAddress,
+            }
+        })
+        setVisibleModal(false)
     }
 
     const onSave = () => {}
@@ -32,7 +39,11 @@ export default function MyPageModifyPage() {
     return (
         <>
             {visibleModal && (
-                <DaumPostCode setFormData={setFormData} visibleModal={visibleModal} setVisibleModal={setVisibleModal} />
+                <DaumPostModal
+                    onChangeAddress={onChangeAddress}
+                    visibleModal={visibleModal}
+                    setVisibleModal={setVisibleModal}
+                />
             )}
             <MyPageHeader title="마이페이지" />
             <Container maxWidth="lg">
@@ -42,7 +53,6 @@ export default function MyPageModifyPage() {
                             className="pointFont"
                             color={theme.palette.secondary.dark}
                             mb={4}
-                            fontWeight={800}
                             fontSize={22}
                             sx={{alignSelf: "flex-start"}}
                         >
@@ -87,7 +97,7 @@ export default function MyPageModifyPage() {
                             type="date"
                             label="생년월일"
                             name="birth"
-                            value={formData.birth}
+                            value={formData.birth || ""}
                             onChange={onChangeInput}
                         />
                         <Stack flexDirection="row" mb={4}>
@@ -99,7 +109,11 @@ export default function MyPageModifyPage() {
                                 value={formData.postCode}
                                 sx={{marginBottom: "0 !important"}}
                             />
-                            <Button className={classes.button2} variant="outlined" onClick={onChangeAddress}>
+                            <Button
+                                className={classes.button2}
+                                variant="outlined"
+                                onClick={() => setVisibleModal(true)}
+                            >
                                 주소검색
                             </Button>
                         </Stack>

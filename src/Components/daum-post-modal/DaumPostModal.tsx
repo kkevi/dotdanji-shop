@@ -2,16 +2,15 @@ import React from "react"
 import DaumPostcode from "react-daum-postcode"
 
 import {Dialog} from "@mui/material"
-import {MyPageModifyFormProps} from "./mypage-modify-type"
-
 type DaumPostModalTypes = {
-    setFormData: React.Dispatch<React.SetStateAction<MyPageModifyFormProps>>
+    onChangeAddress: (val: string, val2: string) => void
     visibleModal: boolean
     setVisibleModal: (val: boolean) => void
 }
 
 export default function DaumPostModal(prop: DaumPostModalTypes) {
-    const {setFormData, visibleModal, setVisibleModal} = prop
+    const {onChangeAddress, visibleModal, setVisibleModal} = prop
+
     const handleComplete = (data: any) => {
         let postCode: string = data.zonecode
         let fullAddress: string = data.address
@@ -27,14 +26,7 @@ export default function DaumPostModal(prop: DaumPostModalTypes) {
             fullAddress += extraAddress !== "" ? ` (${extraAddress})` : ""
         }
 
-        setFormData(prev => {
-            return {
-                ...prev,
-                postCode: postCode,
-                address: fullAddress,
-            }
-        })
-        setVisibleModal(false)
+        onChangeAddress(postCode, fullAddress)
     }
 
     const onClose = () => {
