@@ -122,15 +122,9 @@ export default function CartSection2(props: Props) {
 
             <Divider className={classes.divider} flexItem />
 
-            <CartForm />
+            <CartForm onClickOrder={onClickOrder} />
 
             <CartPayment />
-
-            {/* <Stack className={classes.rootStack} mb={16}>
-                <Button variant="contained" onClick={onClickOrder} disableElevation>
-                    <Typography variant="h6">결제하기</Typography>
-                </Button>
-            </Stack> */}
         </>
     )
 }

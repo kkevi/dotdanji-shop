@@ -6,7 +6,12 @@ import {useTheme} from "@mui/system"
 import {CartFormProps, CartFormDefaultData} from "./cart-form-type"
 import DaumPostModal from "Components/daum-post-modal/DaumPostModal"
 
-export default function CartForm() {
+type props = {
+    onClickOrder: () => void
+}
+
+export default function CartForm(props: props) {
+    const {onClickOrder} = props
     const theme = useTheme()
     const classes = useStyles()
     const [formData, setFormData] = useState<CartFormProps>(CartFormDefaultData)
