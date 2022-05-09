@@ -71,7 +71,7 @@ export default function Topbar() {
                                 </Button>
                             ))}
 
-                            <Button onClick={() => Router.push("/notice")} style={textColor}>
+                            <Button onClick={() => Router.push("/customer-service")} style={textColor}>
                                 고객센터
                             </Button>
                         </Stack>

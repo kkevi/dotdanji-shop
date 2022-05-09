@@ -1,9 +1,13 @@
 import React from "react"
-import {useRouter} from "next/router"
 import {Container, Typography, Stack, Tabs, Tab} from "@mui/material"
 
-import ImageBox from "Components/image-box/ImageBox"
+import {customerServiceTabs} from "lib/customer-service-tabs"
 import {useTheme} from "@mui/system"
+import {routerPush} from "lib/routerPush"
+
+import Notice from "Notice"
+import FAQ from "FAQ"
+import Inquiry from "Inquiry"
 
 function tabProps(index: number) {
     return {
@@ -13,15 +17,14 @@ function tabProps(index: number) {
 }
 
 type ServiceLayoutProps = {
-    index: number
-    children: React.ReactNode
+    tab?: number
+    children?: React.ReactNode
 }
 
-export default function ServiceLayout({index, children}: ServiceLayoutProps) {
+export default function ServiceLayout({tab, children}: ServiceLayoutProps) {
     const theme = useTheme()
-    const route = useRouter()
 
-    const tabs = [
+    const tabList = [
         {
             phrase: "심키즈의 새로운 소식입니다.",
             title: "공지사항",
@@ -44,38 +47,45 @@ export default function ServiceLayout({index, children}: ServiceLayoutProps) {
         },
     ]
 
+    const handleTabChange = (tab: number) => {
+        const tabId = Object.keys(customerServiceTabs)[tab]
+        if (tabId) {
+            routerPush(`/customer-service/${tabId}`)
+        }
+    }
+
     return (
         <Stack>
-            <Stack justifyContent="center" alignItems="center" height={300} sx={{backgroundColor: tabs[index].color}}>
+            <Stack
+                justifyContent="center"
+                alignItems="center"
+                height={300}
+                sx={{backgroundColor: tabList[tab ? tab : 0].color}}
+            >
                 <Typography className="pointFont" fontSize={32} color="white">
-                    {tabs[index].phrase}
+                    {tabList[tab ? tab : 0].phrase}
                 </Typography>
                 <Typography className="pointFont" mt={1} fontSize={18} color={theme.palette.secondary.light}>
-                    {tabs[index].title}
+                    {tabList[tab ? tab : 0].title}
                 </Typography>
-                {/* <div><ImageBox /></div> */}
             </Stack>
             <Stack>
                 <Container maxWidth="lg">
-                    <Tabs centered value={index}>
-                        <Tab
-                            sx={{padding: 3}}
-                            label={<Typography fontSize={18}>공지사항</Typography>}
-                            onClick={() => route.push("/notice")}
-                            {...tabProps(0)}
-                        />
-                        <Tab
-                            label={<Typography fontSize={18}>FAQ</Typography>}
-                            onClick={() => route.push("/faq")}
-                            {...tabProps(1)}
-                        />
-                        <Tab
-                            label={<Typography fontSize={18}>1:1 문의</Typography>}
-                            onClick={() => route.push("/inquiry")}
-                            {...tabProps(2)}
-                        />
+                    <Tabs centered value={tab} onChange={(event, value) => handleTabChange(value)}>
+                        {Object.values(customerServiceTabs).map((tabName, idx) => (
+                            <Tab
+                                key={"customer-service" + idx}
+                                sx={{padding: 3}}
+                                label={<Typography fontSize={18}>{tabName}</Typography>}
+                                value={idx}
+                                {...tabProps(idx)}
+                            />
+                        ))}
                     </Tabs>
 
+                    {tab === 0 && <Notice />}
+                    {tab === 1 && <FAQ />}
+                    {tab === 2 && <Inquiry />}
                     <Stack py={8}>{children}</Stack>
                 </Container>
             </Stack>
