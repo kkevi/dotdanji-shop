@@ -9,6 +9,7 @@ import ProposalTerms from "./proposal-terms/ProposalTerms"
 import ProposalForm from "./proposal-form/ProposalForm"
 
 import {ProposalFormProps, proposalFormDefaultData} from "./ProposalDataType"
+import {toast} from "react-toastify"
 
 export default function Index() {
     const theme = useTheme()
@@ -31,7 +32,7 @@ export default function Index() {
         let reader = new FileReader()
         if (!files || files.length === 0 || files[0].size === 0) return
         else if (files[0]?.size > maxSize) {
-            return alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다.")
+            return toast.error("첨부파일 사이즈는 20MB 이내로 등록 가능합니다.")
         } else {
             reader.readAsDataURL(files[0])
             reader.onloadend = () => {
@@ -53,7 +54,7 @@ export default function Index() {
         let reader = new FileReader()
         if (!files || files.length === 0 || files[0].size === 0) return
         else if (files[0]?.size > maxSize) {
-            return alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다.")
+            return toast.error("첨부파일 사이즈는 20MB 이내로 등록 가능합니다.")
         } else {
             reader.readAsDataURL(files[0])
             reader.onloadend = () => {

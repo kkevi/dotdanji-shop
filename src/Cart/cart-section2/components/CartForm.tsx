@@ -3,18 +3,18 @@ import {Typography, Button, Stack, TextField, InputAdornment, Divider} from "@mu
 import useStyles from "../style"
 import {useTheme} from "@mui/system"
 
-import {CartFormProps, CartFormDefaultData} from "./cart-form-type"
 import DaumPostModal from "Components/daum-post-modal/DaumPostModal"
+import {CartFormProps} from "./cart-form-type"
 
 type props = {
-    onClickOrder: () => void
+    formData: CartFormProps
+    setFormData: React.Dispatch<React.SetStateAction<CartFormProps>>
 }
 
 export default function CartForm(props: props) {
-    const {onClickOrder} = props
+    const {formData, setFormData} = props
     const theme = useTheme()
     const classes = useStyles()
-    const [formData, setFormData] = useState<CartFormProps>(CartFormDefaultData)
     const [visibleModal, setVisibleModal] = useState(false)
 
     const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -116,7 +116,6 @@ export default function CartForm(props: props) {
                     <TextField
                         className={classes.textField}
                         sx={{marginBottom: "0 !important"}}
-                        required
                         fullWidth
                         label="배송요청사항"
                         name="memo"

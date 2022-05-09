@@ -7,6 +7,8 @@ export type CartFormProps = {
     phoneNumber: string // 휴대전화번호*
     phoneNumber2: string // 휴대전화번호*
     memo: string //배송요청사항
+    payment: string //결제방법*
+    agree: boolean //약관동의*
 }
 
 export const CartFormDefaultData: CartFormProps = {
@@ -17,4 +19,6 @@ export const CartFormDefaultData: CartFormProps = {
     phoneNumber: "",
     phoneNumber2: "",
     memo: "",
+    payment: "",
+    agree: false,
 }

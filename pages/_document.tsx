@@ -1,4 +1,4 @@
-import Document, {Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps} from "next/document"
+import Document, {Html, Head, Main, NextScript, DocumentContext} from "next/document"
 import {ServerStyleSheets} from "@mui/styles"
 
 class MyDocument extends Document {

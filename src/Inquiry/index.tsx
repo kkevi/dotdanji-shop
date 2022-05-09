@@ -5,6 +5,7 @@ import {useTheme} from "@mui/system"
 import useStyles from "./styles"
 import {InquiryFormProps, inquiryFormDefaultData, categoryList} from "./InquiryDataType"
 import InquiryTerms from "./inquiry-terms/InquiryTerms"
+import {toast} from "react-toastify"
 
 export default function Index() {
     const theme = useTheme()
@@ -27,7 +28,7 @@ export default function Index() {
         let reader = new FileReader()
         if (!files || files.length === 0 || files[0].size === 0) return
         else if (files[0]?.size > maxSize) {
-            return alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.")
+            return toast.error("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.")
         } else {
             reader.readAsDataURL(files[0])
             reader.onloadend = () => {

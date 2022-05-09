@@ -4,8 +4,17 @@ import useStyles from "../style"
 import {useTheme} from "@mui/system"
 
 import TermsDialog from "SignUp/signup-section1/TermsDialog"
+import {CartFormProps} from "./cart-form-type"
+import {RequestPayProps, RequestPayResponse} from "./payment-type"
 
-export default function CartPayment() {
+type CartPaymentProps = {
+    onClickOrder: () => void
+    formData: CartFormProps
+    setFormData: React.Dispatch<React.SetStateAction<CartFormProps>>
+}
+
+export default function CartPayment(props: CartPaymentProps) {
+    const {onClickOrder, formData, setFormData} = props
     const theme = useTheme()
     const classes = useStyles()
 
@@ -24,8 +33,13 @@ export default function CartPayment() {
                     <FormControl>
                         <RadioGroup
                             row
-                            aria-labelledby="demo-row-radio-buttons-group-label"
-                            name="row-radio-buttons-group"
+                            name="payment"
+                            onChange={e =>
+                                setFormData({
+                                    ...formData,
+                                    payment: (e.target as HTMLInputElement).value,
+                                })
+                            }
                         >
                             <FormControlLabel
                                 value="credit"
@@ -68,13 +82,14 @@ export default function CartPayment() {
                         <FormControlLabel
                             control={
                                 <Checkbox
-                                // value={formData.agree}
-                                // onChange={e => {
-                                //     setFormData({
-                                //         ...formData,
-                                //         agree: !formData.agree,
-                                //     })
-                                // }}
+                                    name="agree"
+                                    value={formData.agree}
+                                    onChange={e => {
+                                        setFormData({
+                                            ...formData,
+                                            agree: !formData.agree,
+                                        })
+                                    }}
                                 />
                             }
                             label={
@@ -89,7 +104,7 @@ export default function CartPayment() {
                 <Stack width="24%" mb={2}>
                     <Button
                         variant="contained"
-                        // onClick={onClickOrder}
+                        onClick={onClickOrder}
                         sx={{backgroundColor: theme.palette.secondary.dark}}
                         disableElevation
                     >
