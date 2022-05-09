@@ -24,7 +24,7 @@ export default function NoticeDetailPage({noticeId}: NoticeDetailPageProps) {
             </Stack>
             <Divider flexItem />
             <Stack pt={4} pb={8} px={6}>
-                <Typography>{current.content} 내요냉욘애뇽ㅇ</Typography>
+                <Typography>{current.content}</Typography>
             </Stack>
             <Divider flexItem />
             <Button

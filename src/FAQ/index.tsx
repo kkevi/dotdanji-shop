@@ -6,13 +6,19 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded"
 import FaqAccordion from "./faq-accordion/FaqAccordion"
 
 import {categoryList} from "Inquiry/InquiryDataType"
+import PaginationBox from "Components/pagination-box/PaginationBox"
 
 export default function Index() {
     const theme = useTheme()
     const [expanded, setExpanded] = useState<string | false>("panel")
+    const [activePage, setActivePage] = useState(1)
 
     const handleChange = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
         setExpanded(newExpanded ? panel : false)
+    }
+
+    const handlePageChange = (pageNumber: number) => {
+        setActivePage(pageNumber)
     }
 
     const handleClick = () => {
@@ -85,6 +91,12 @@ export default function Index() {
                         />
                     )
                 })}
+
+                <PaginationBox
+                    activePage={activePage}
+                    dataLength={fakeAccordionData.length}
+                    handlePageChange={handlePageChange}
+                />
             </Stack>
         </Stack>
     )
