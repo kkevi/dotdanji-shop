@@ -55,6 +55,30 @@ const styles = makeStyles((theme: Theme) =>
                 border: `1px solid ${theme.palette.primary.dark}`,
             },
         },
+        rightStack: {
+            "& .rightStackColumn": {
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+            },
+            "& .MuiTypography-root": {
+                fontSize: 15,
+                color: "#757575",
+            },
+        },
+        payButton: {
+            // marginTop: "2rem",
+            background: "#fff",
+            color: "#222",
+            height: 40,
+            border: "1px solid #222",
+        },
+
+        link: {
+            fontWeight: 700,
+            textDecoration: "underline",
+            cursor: "pointer",
+        },
     }),
 )
 

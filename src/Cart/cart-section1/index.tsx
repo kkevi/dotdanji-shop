@@ -58,10 +58,10 @@ export default function CartSection1(props: Props) {
         loadData()
     }, [])
 
-    useEffect(() => {
-        console.log("checkList", checkList)
-        console.log("cartItemList", cartItemList)
-    }, [checkList])
+    // useEffect(() => {
+    //     console.log("checkList", checkList)
+    //     console.log("cartItemList", cartItemList)
+    // }, [checkList])
 
     const loadData = async () => {
         try {

@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {Typography, Button, Stack, TextField, InputAdornment} from "@mui/material"
+import {Typography, Button, Stack, TextField, InputAdornment, Divider} from "@mui/material"
 import useStyles from "../style"
 import {useTheme} from "@mui/system"
 
@@ -40,8 +40,10 @@ export default function CartForm() {
                     setVisibleModal={setVisibleModal}
                 />
             )}
-            <Stack direction="row" mt={12} justifyContent="space-between" spacing={4}>
-                <Stack width={700}>
+
+            <Stack width="100%" direction="row" mt={8} justifyContent="space-between">
+                {/* 왼쪽 입력란 */}
+                <Stack width="68%">
                     <Typography variant="h5" mb={4} className="pointFont" color={theme.palette.secondary.dark}>
                         # 배송지 정보
                     </Typography>
@@ -108,6 +110,7 @@ export default function CartForm() {
                     />
                     <TextField
                         className={classes.textField}
+                        sx={{marginBottom: "0 !important"}}
                         required
                         fullWidth
                         label="배송요청사항"
@@ -116,24 +119,48 @@ export default function CartForm() {
                         onChange={onChangeInput}
                     />
                 </Stack>
-                <Stack width={420}>
-                    <Typography variant="h5" mb={4} className="pointFont" color={theme.palette.secondary.dark}>
-                        # 주문자 정보
-                    </Typography>
 
-                    <Typography fontSize={16} mb={1} color="#757575">
-                        김퐁구
-                    </Typography>
-                    <Typography fontSize={16} mb={1} color="#757575">
-                        010-0000-0000
-                    </Typography>
-                    <Typography fontSize={16} mb={1} color="#757575">
-                        ponggu@simbaat.com
-                    </Typography>
+                {/* 오른쪽 추가정보 */}
+                <Stack width="24%" mt={2} justifyContent="space-between">
+                    <Stack>
+                        <Typography fontSize={20} mb={2} className="pointFont" color={theme.palette.secondary.dark}>
+                            # 주문자 정보
+                        </Typography>
 
-                    <Typography variant="h5" mb={4} className="pointFont" color={theme.palette.secondary.dark}>
-                        # 결제 상세
-                    </Typography>
+                        <Stack className={classes.rightStack} spacing={1}>
+                            <Typography>김퐁구</Typography>
+                            <Typography>010-0000-0000</Typography>
+                            <Typography>ponggu@simbaat.com</Typography>
+                        </Stack>
+                    </Stack>
+
+                    <Stack>
+                        <Typography fontSize={20} mb={2} className="pointFont" color={theme.palette.secondary.dark}>
+                            # 결제 상세
+                        </Typography>
+
+                        <Stack className={classes.rightStack} spacing={1}>
+                            <Stack className="rightStackColumn">
+                                <Typography>주문금액</Typography>
+                                <Typography>30,000원</Typography>
+                            </Stack>
+                            <Stack className="rightStackColumn" pb={0.5}>
+                                <Typography>배송비</Typography>
+                                <Typography>2,500원</Typography>
+                            </Stack>
+
+                            <Divider className={classes.divider} flexItem />
+
+                            <Stack className="rightStackColumn" pt={0.5}>
+                                <Typography fontWeight={800} color={`${theme.palette.secondary.dark} !important`}>
+                                    결제금액
+                                </Typography>
+                                <Typography fontWeight={800} color={`${theme.palette.secondary.dark} !important`}>
+                                    32,500원
+                                </Typography>
+                            </Stack>
+                        </Stack>
+                    </Stack>
                 </Stack>
             </Stack>
         </>

@@ -126,11 +126,11 @@ export default function CartSection2(props: Props) {
 
             <CartPayment />
 
-            <Stack className={classes.rootStack} mb={16}>
+            {/* <Stack className={classes.rootStack} mb={16}>
                 <Button variant="contained" onClick={onClickOrder} disableElevation>
                     <Typography variant="h6">결제하기</Typography>
                 </Button>
-            </Stack>
+            </Stack> */}
         </>
     )
 }
