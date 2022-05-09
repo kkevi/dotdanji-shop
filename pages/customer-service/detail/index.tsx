@@ -16,7 +16,7 @@ export default function Index() {
     return (
         <MainLayout>
             <Stack py={13.5}>
-                <ServiceLayout index={0}>
+                <ServiceLayout tab={0}>
                     <NoticeDetailPage noticeId={noticeId as string} />
                 </ServiceLayout>
             </Stack>
