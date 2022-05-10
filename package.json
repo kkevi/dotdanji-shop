@@ -77,8 +77,8 @@
             "src/*": [
                 "./src/*"
             ],
-            "Component/*": [
-                "./src/Component/*"
+            "components/*": [
+                "./src/components/*"
             ],
             "store/*": [
                 "./store/*"

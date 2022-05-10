@@ -5,7 +5,7 @@ import {useTheme} from "@mui/system"
 
 import useStyles from "./style"
 
-import CartTable from "Cart/cart-section2/Component/CartTable"
+import CartTable from "Cart/cart-section2/components/CartTable"
 
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded"
 import {CartOptionsType} from "Cart/cart-type"

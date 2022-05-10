@@ -4,8 +4,8 @@ import {keyframes} from "styled-components"
 import {Container, Link, Stack, Typography, Zoom} from "@mui/material"
 import {useTheme} from "@mui/system"
 
-import ImageBox from "Component/image-box/ImageBox"
-import {fakeNewArrivalData} from "Component/fake-data/fake-event"
+import ImageBox from "components/image-box/ImageBox"
+import {fakeNewArrivalData} from "components/fake-data/fake-event"
 
 const fadeIn = keyframes`
     0% {

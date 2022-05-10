@@ -4,7 +4,7 @@ import {useRouter} from "next/router"
 import {Container, Typography, Stack, Button} from "@mui/material"
 import {makeStyles} from "@mui/styles"
 
-import ImageBox from "Component/image-box/ImageBox"
+import ImageBox from "components/image-box/ImageBox"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"

@@ -12,8 +12,8 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import {sliderSettings} from "./sliderSetting"
 import {useTheme} from "@mui/system"
-import ImageBox from "Component/image-box/ImageBox"
-import {fakeHomeSliderData, fakeVerticalData} from "Component/fake-data/fake-event"
+import ImageBox from "components/image-box/ImageBox"
+import {fakeHomeSliderData, fakeVerticalData} from "components/fake-data/fake-event"
 
 export default function Home() {
     const theme = useTheme()

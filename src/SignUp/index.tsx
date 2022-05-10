@@ -3,7 +3,7 @@ import React, {useState} from "react"
 import {Stack, Typography} from "@mui/material"
 import {useTheme} from "@mui/system"
 
-import ImageBox from "Component/image-box/ImageBox"
+import ImageBox from "components/image-box/ImageBox"
 import SignUpSection1 from "./signup-section1/SignUpSection1"
 import SignUpSection2 from "./signup-section2/SignUpSection2"
 import SignUpSection3 from "./signup-section3/SignUpSection3"

@@ -5,7 +5,7 @@ import {Button, ButtonGroup, Container, Stack} from "@mui/material"
 import {useTheme} from "@mui/system"
 //icon
 //fake data
-import {GOODS_CATEGORY_DATA} from "Component/fake-data/fake-goods"
+import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 import UserLoginButton from "./user-login-button/UserLoginButton"
 import ShopCartButton from "./shop-cart-button/ShopCartButton"
 import useStore from "store/useStore"

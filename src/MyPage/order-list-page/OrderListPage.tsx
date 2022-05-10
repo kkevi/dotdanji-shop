@@ -2,7 +2,7 @@ import {Container, Divider, Stack, Typography} from "@mui/material"
 import {useTheme} from "@mui/system"
 
 import useStyles from "./style"
-import OredrListTable from "./Component/OrderListTable"
+import OredrListTable from "./components/OrderListTable"
 
 export default function OrderListPage() {
     const classes = useStyles()

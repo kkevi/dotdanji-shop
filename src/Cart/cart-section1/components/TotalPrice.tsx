@@ -1,5 +1,5 @@
 import {Stack, Typography} from "@mui/material"
-import ImageBox from "Component/image-box/ImageBox"
+import ImageBox from "components/image-box/ImageBox"
 import useStyles from "../style"
 
 type Props = {

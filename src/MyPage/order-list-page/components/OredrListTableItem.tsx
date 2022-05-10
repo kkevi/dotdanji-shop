@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import {Stack, TableCell, Typography, Button} from "@mui/material"
 
 import useStyles from "../style"
-import ImageBox from "Component/image-box/ImageBox"
+import ImageBox from "components/image-box/ImageBox"
 import OrderReturnModal from "./OrderReturnModal"
 
 type OredrListTableItemProps = {
