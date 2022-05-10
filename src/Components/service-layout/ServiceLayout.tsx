@@ -8,6 +8,7 @@ import {routerPush} from "lib/routerPush"
 import Notice from "Notice"
 import FAQ from "FAQ"
 import Inquiry from "Inquiry"
+import NoticeDetailPage from "Notice/notice-detail-page/NoticeDetailPage"
 
 function tabProps(index: number) {
     return {
@@ -19,9 +20,10 @@ function tabProps(index: number) {
 type ServiceLayoutProps = {
     tab?: number
     children?: React.ReactNode
+    noticeId?: string | string[] | undefined
 }
 
-export default function ServiceLayout({tab, children}: ServiceLayoutProps) {
+export default function ServiceLayout({tab, children, noticeId}: ServiceLayoutProps) {
     const theme = useTheme()
 
     const tabList = [
@@ -71,7 +73,12 @@ export default function ServiceLayout({tab, children}: ServiceLayoutProps) {
             </Stack>
             <Stack>
                 <Container maxWidth="lg">
-                    <Tabs centered value={tab} onChange={(event, value) => handleTabChange(value)}>
+                    <Tabs
+                        sx={{marginBottom: 8}}
+                        centered
+                        value={tab}
+                        onChange={(event, value) => handleTabChange(value)}
+                    >
                         {Object.values(customerServiceTabs).map((tabName, idx) => (
                             <Tab
                                 key={"customer-service" + idx}
@@ -83,7 +90,7 @@ export default function ServiceLayout({tab, children}: ServiceLayoutProps) {
                         ))}
                     </Tabs>
 
-                    {tab === 0 && <Notice />}
+                    {tab === 0 && (noticeId ? <NoticeDetailPage noticeId={noticeId as string} /> : <Notice />)}
                     {tab === 1 && <FAQ />}
                     {tab === 2 && <Inquiry />}
                     <Stack py={8}>{children}</Stack>

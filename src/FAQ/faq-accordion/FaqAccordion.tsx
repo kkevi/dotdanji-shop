@@ -49,15 +49,19 @@ type FaqAccordionProps = {
     title: string
     content: string
     expanded: string | boolean
-    handleChange: (val: string) => void
+    setExpanded: React.Dispatch<React.SetStateAction<string | false>>
 }
 
 export default function FaqAccordion(prop: FaqAccordionProps) {
-    const {idx, title, content, expanded, handleChange} = prop
+    const {idx, title, content, expanded, setExpanded} = prop
     const theme = useTheme()
 
+    const handleChange = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+        setExpanded(newExpanded ? panel : false)
+    }
+
     return (
-        <Accordion expanded={expanded === `panel${idx}`} onChange={() => handleChange(`panel${idx}`)}>
+        <Accordion expanded={expanded === `panel${idx}`} onChange={handleChange(`panel${idx}`)}>
             <AccordionSummary
                 expandIcon={<ExpandMoreRoundedIcon fontSize="large" color="primary" />}
                 aria-controls="panel1a-content"

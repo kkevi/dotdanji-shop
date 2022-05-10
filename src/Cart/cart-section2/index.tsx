@@ -17,11 +17,11 @@ type Props = {
     onChangeNextStep: (index: number) => void
 }
 
-declare global {
-    interface Window {
-        IMP: any
-    }
-}
+// declare global {
+//     interface Window {
+//         IMP: any
+//     }
+// }
 
 export default function CartSection2(props: Props) {
     const theme = useTheme()
@@ -108,46 +108,46 @@ export default function CartSection2(props: Props) {
         }
     }
 
-    const IMP = window.IMP // 생략 가능
-    IMP.init("{Merchant ID}") // Example: imp00000000
+    // const IMP = window.IMP // 생략 가능
+    // IMP.init("{Merchant ID}") // Example: imp00000000
 
-    const handlePayment = () => {
-        window.IMP?.init("iamport")
+    // const handlePayment = () => {
+    //     window.IMP?.init("iamport")
 
-        // 휴대폰번호 자르기
-        const subPhonNumber = formData.phoneNumber.substring(0, 3)
-        const subPhonNumber2 = formData.phoneNumber.substring(2, 4)
-        const subPhonNumber3 = formData.phoneNumber.substring(6, 4)
-        const phoneNumber = `${subPhonNumber}-${subPhonNumber2}-${subPhonNumber3}`
+    //     // 휴대폰번호 자르기
+    //     const subPhonNumber = formData.phoneNumber.substring(0, 3)
+    //     const subPhonNumber2 = formData.phoneNumber.substring(2, 4)
+    //     const subPhonNumber3 = formData.phoneNumber.substring(6, 4)
+    //     const phoneNumber = `${subPhonNumber}-${subPhonNumber2}-${subPhonNumber3}`
 
-        // 주소 합치기
-        const address = formData.address
-        const addressDetailed = formData.addressDetailed
-        const totalAddress = addressDetailed ? `${address} ${addressDetailed}` : address
+    //     // 주소 합치기
+    //     const address = formData.address
+    //     const addressDetailed = formData.addressDetailed
+    //     const totalAddress = addressDetailed ? `${address} ${addressDetailed}` : address
 
-        const data: RequestPayProps = {
-            pg: "html5_inicis",
-            pay_method: "card",
-            merchant_uid: "ORD20180131-0000011",
-            name: "노르웨이 회전 의자",
-            amount: 35000,
-            buyer_email: "gildong@gmail.com",
-            buyer_name: formData.name,
-            buyer_tel: phoneNumber,
-            buyer_addr: totalAddress,
-            buyer_postcode: formData.postCode,
-        }
+    //     const data: RequestPayProps = {
+    //         pg: "html5_inicis",
+    //         pay_method: "card",
+    //         merchant_uid: "ORD20180131-0000011",
+    //         name: "노르웨이 회전 의자",
+    //         amount: 35000,
+    //         buyer_email: "gildong@gmail.com",
+    //         buyer_name: formData.name,
+    //         buyer_tel: phoneNumber,
+    //         buyer_addr: totalAddress,
+    //         buyer_postcode: formData.postCode,
+    //     }
 
-        const callback = (response: RequestPayResponse) => {
-            const {success, merchant_uid, error_msg, imp_uid, error_code} = response
-            if (success) {
-                console.log(response)
-            } else {
-                console.log(response, "error_code:", error_code)
-            }
-        }
-        window.IMP?.request_pay(data, callback)
-    }
+    //     const callback = (response: RequestPayResponse) => {
+    //         const {success, merchant_uid, error_msg, imp_uid, error_code} = response
+    //         if (success) {
+    //             console.log(response)
+    //         } else {
+    //             console.log(response, "error_code:", error_code)
+    //         }
+    //     }
+    //     window.IMP?.request_pay(data, callback)
+    // }
 
     // 결제하기 버튼 눌렀을 때
     const onClickOrder = () => {
@@ -174,10 +174,6 @@ export default function CartSection2(props: Props) {
         // }
         onChangeNextStep(2)
     }
-
-    useEffect(() => {
-        console.log("formData", formData)
-    }, [formData])
 
     return (
         <>

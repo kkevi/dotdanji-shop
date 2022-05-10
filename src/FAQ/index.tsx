@@ -13,16 +13,12 @@ export default function Index() {
     const [expanded, setExpanded] = useState<string | false>("panel")
     const [activePage, setActivePage] = useState(1)
 
-    const handleChange = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-        setExpanded(newExpanded ? panel : false)
-    }
-
     const handlePageChange = (pageNumber: number) => {
         setActivePage(pageNumber)
     }
 
     const handleClick = () => {
-        console.info("You clicked the Chip.")
+        console.log("You clicked the Chip.")
     }
 
     return (
@@ -86,7 +82,7 @@ export default function Index() {
                             idx={idx}
                             title={itm.title}
                             content={itm.content}
-                            handleChange={handleChange}
+                            setExpanded={setExpanded}
                             expanded={expanded}
                         />
                     )

@@ -14,7 +14,7 @@ export default function Index() {
     }
 
     const onClickRouter = (noticeId: string) => {
-        route.push({pathname: "/notice/detail", query: {noticeId: noticeId}})
+        route.push({pathname: "/customer-service/detail", query: {noticeId: noticeId}})
     }
 
     return (
