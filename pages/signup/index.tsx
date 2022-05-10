@@ -1,10 +1,13 @@
 import MainLayout from "components/main-layout/MainLayout"
+import LoginLayout from "components/login-layout/LoginLayout"
 import SignUp from "src/SignUp"
 
 export default function Index() {
     return (
         <MainLayout>
-            <SignUp />
+            <LoginLayout>
+                <SignUp />
+            </LoginLayout>
         </MainLayout>
     )
 }

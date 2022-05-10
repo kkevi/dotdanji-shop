@@ -3,12 +3,11 @@ import React, {useState} from "react"
 import {Stack, Typography} from "@mui/material"
 import {useTheme} from "@mui/system"
 
-import ImageBox from "components/image-box/ImageBox"
 import SignUpSection1 from "./signup-section1/SignUpSection1"
 import SignUpSection2 from "./signup-section2/SignUpSection2"
 import SignUpSection3 from "./signup-section3/SignUpSection3"
 import SignUpSection4 from "./signup-section4/SignUpSection4"
-import userPool from "src/Login/login-section/UserPool"
+import userPool from "src/Login/UserPool"
 import {toast} from "react-toastify"
 import {CognitoUserAttribute} from "amazon-cognito-identity-js"
 
@@ -68,38 +67,15 @@ export default function SignUp() {
     ]
 
     return (
-        <Stack justifyContent="center" sx={{backgroundColor: theme.palette.primary.light}}>
-            <div style={{maxWidth: 1800, width: "100%", alignSelf: "center"}}>
-                <Stack
-                    sx={{mt: 17, mb: 4, backgroundColor: "white"}}
-                    direction="row"
-                    justifyContent="space-between"
-                    padding={2}
-                >
-                    <Stack sx={{flex: 1.2}} height={"85vh"}>
-                        <ImageBox height={"100%"} src="/images/illust/dottdanji-illust1.png" />
-                    </Stack>
-                    <Stack sx={{flex: 0.8}} height={"85vh"} alignItems="center">
-                        <Stack
-                            justifyContent="center"
-                            alignItems="flex-start"
-                            width="100%"
-                            maxWidth={400}
-                            height={"100%"}
-                        >
-                            {/* <img src="/images/logo_new3.png" style={{height: 35}} /> */}
-                            <Typography mt={4} variant="h4" fontWeight={700}>
-                                간편가입
-                            </Typography>
-                            <Typography sx={{mt: 0.5}} variant="subtitle2" color="#757575">
-                                {section[step].subTitle}
-                            </Typography>
+        <Stack justifyContent="center" alignItems="flex-start" width="100%" maxWidth={400} height={"100%"}>
+            <Typography mt={4} variant="h4" fontWeight={700}>
+                간편가입
+            </Typography>
+            <Typography sx={{mt: 0.5}} variant="subtitle2" color="#757575">
+                {section[step].subTitle}
+            </Typography>
 
-                            {section[step].render}
-                        </Stack>
-                    </Stack>
-                </Stack>
-            </div>
+            {section[step].render}
         </Stack>
     )
 }

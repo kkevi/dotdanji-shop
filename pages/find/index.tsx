@@ -1,13 +1,14 @@
 import React, {useState} from "react"
+
 import MainLayout from "components/main-layout/MainLayout"
 import LoginLayout from "components/login-layout/LoginLayout"
-import Login from "src/Login"
+import Find from "src/Find"
 
 export default function Index() {
     return (
         <MainLayout>
             <LoginLayout>
-                <Login />
+                <Find />
             </LoginLayout>
         </MainLayout>
     )

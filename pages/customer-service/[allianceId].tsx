@@ -6,11 +6,8 @@ import {customerServiceTabs} from "src/lib/customer-service-tabs"
 import MainLayout from "src/Components/main-layout/MainLayout"
 import ServiceLayout from "src/Components/service-layout/ServiceLayout"
 
-// declare function queryParam(value: string | string[] | null | undefined): string | undefined
-
 export default function Index() {
     const router = useRouter()
-    // const allianceId = queryParam(router.query?.["allianceId"]) ?? ""
     const allianceId = router.query?.["allianceId"] ?? ""
     const tabIndex = Object.keys(customerServiceTabs).indexOf(allianceId as string)
 

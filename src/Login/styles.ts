@@ -62,6 +62,13 @@ const styles = makeStyles((theme: Theme) =>
             fontWeight: 700,
             color: "black",
         },
+        findLink: {
+            color: "#757575",
+            fontSize: 14,
+            "&:hover": {
+                cursor: "pointer",
+            },
+        },
     }),
 )
 
