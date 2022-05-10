@@ -1,14 +1,14 @@
 import React from "react"
 import {Container, Typography, Stack, Tabs, Tab} from "@mui/material"
 
-import {customerServiceTabs} from "lib/customer-service-tabs"
+import {customerServiceTabs} from "src/lib/customer-service-tabs"
 import {useTheme} from "@mui/system"
-import {routerPush} from "lib/routerPush"
+import {routerPush} from "src/lib/routerPush"
 
-import Notice from "Notice"
-import FAQ from "FAQ"
-import Inquiry from "Inquiry"
-import NoticeDetailPage from "Notice/notice-detail-page/NoticeDetailPage"
+import Notice from "src/Notice"
+import FAQ from "src/FAQ"
+import Inquiry from "src/Inquiry"
+import NoticeDetailPage from "src/Notice/notice-detail-page/NoticeDetailPage"
 
 function tabProps(index: number) {
     return {

@@ -4,7 +4,7 @@ import {Stack} from "@mui/material"
 import MainLayout from "components/main-layout/MainLayout"
 import ServiceLayout from "components/service-layout/ServiceLayout"
 
-import {customerServiceTabs} from "lib/customer-service-tabs"
+import {customerServiceTabs} from "src/lib/customer-service-tabs"
 
 // declare function queryParam(value: string | string[] | null | undefined): string | undefined
 
