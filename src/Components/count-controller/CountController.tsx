@@ -1,9 +1,9 @@
-import AddRoundedIcon from "@mui/icons-material/AddRounded"
-//icon
-import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
-import {Divider, IconButton, Stack, Typography} from "@mui/material"
-import React, {useEffect} from "react"
+import React from "react"
 import {toast} from "react-toastify"
+import {Divider, IconButton, Stack, Typography} from "@mui/material"
+//icon
+import AddRoundedIcon from "@mui/icons-material/AddRounded"
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
 
 type CountControllerProps = {
     idx: number

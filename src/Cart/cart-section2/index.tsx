@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import {Typography, Divider, Stack} from "@mui/material"
 import useStyles from "./style"
 import {useTheme} from "@mui/system"
+import {toast} from "react-toastify"
 
 import {CartFormDefaultData, CartFormProps} from "./components/cart-form-type"
 import {CART_ITEMS_DATA} from "Components/fake-data/fake-cart"
@@ -10,7 +11,6 @@ import {CartOptionsType} from "Cart/cart-type"
 import CartTable from "./components/CartTable"
 import CartForm from "./components/CartForm"
 import CartPayment from "./components/CartPayment"
-import {toast} from "react-toastify"
 import {RequestPayProps, RequestPayResponse} from "./components/payment-type"
 
 type Props = {
@@ -151,28 +151,28 @@ export default function CartSection2(props: Props) {
 
     // 결제하기 버튼 눌렀을 때
     const onClickOrder = () => {
-        if (formData.name === "") return toast.error("수령인을 입력해주세요.")
-        if (formData.postCode === "" || formData.address === "") return toast.error("주소를 입력해주세요.")
-        if (formData.phoneNumber === "") return toast.error("전화번호를 입력해주세요.")
-        if (formData.payment === "") return toast.error("결제방법을 선택해주세요.")
-        if (!formData.agree) return toast.error("약관동의를 해주세요.")
+        // if (formData.name === "") return toast.error("수령인을 입력해주세요.")
+        // if (formData.postCode === "" || formData.address === "") return toast.error("주소를 입력해주세요.")
+        // if (formData.phoneNumber === "") return toast.error("전화번호를 입력해주세요.")
+        // if (formData.payment === "") return toast.error("결제방법을 선택해주세요.")
+        // if (!formData.agree) return toast.error("약관동의를 해주세요.")
 
-        if (formData.payment === "credit") {
-            // 신용/체크카드
-            console.log("신용/체크카드")
-            // handlePayment()
-        } else if (formData.payment === "cash") {
-            // 무통장입금
-            console.log("무통장입금")
-            // handlePayment()
-        } else if (formData.payment === "naver") {
-            // 네이버페이
-            console.log("네이버페이")
-        } else if (formData.payment === "kakao") {
-            // 카카오페이
-            console.log("카카오페이")
-        }
-        // onChangeNextStep(2)
+        // if (formData.payment === "credit") {
+        //     // 신용/체크카드
+        //     console.log("신용/체크카드")
+        //     // handlePayment()
+        // } else if (formData.payment === "cash") {
+        //     // 무통장입금
+        //     console.log("무통장입금")
+        //     // handlePayment()
+        // } else if (formData.payment === "naver") {
+        //     // 네이버페이
+        //     console.log("네이버페이")
+        // } else if (formData.payment === "kakao") {
+        //     // 카카오페이
+        //     console.log("카카오페이")
+        // }
+        onChangeNextStep(2)
     }
 
     useEffect(() => {

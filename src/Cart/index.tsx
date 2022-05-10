@@ -1,12 +1,15 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {Stack, Container, Typography} from "@mui/material"
+import {useRouter} from "next/router"
 
 import CartSection1 from "./cart-section1"
 import CartSection2 from "./cart-section2"
+import CartSection3 from "./cart-section3"
 
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded"
 
 export default function Cart() {
+    const route = useRouter()
     const [step, setStep] = useState(0)
 
     const title = ["장바구니", "주문하기", "주문서 확인"]
@@ -14,6 +17,12 @@ export default function Cart() {
     const onChangeNextStep = (index: number) => {
         setStep(index)
     }
+
+    useEffect(() => {
+        if (route.query.sectionNum === "1") {
+            setStep(1)
+        }
+    }, [])
 
     return (
         <Container maxWidth="lg">
@@ -41,6 +50,7 @@ export default function Cart() {
 
                 {step === 0 && <CartSection1 onChangeNextStep={onChangeNextStep} />}
                 {step === 1 && <CartSection2 onChangeNextStep={onChangeNextStep} />}
+                {step === 2 && <CartSection3 />}
             </Stack>
         </Container>
     )

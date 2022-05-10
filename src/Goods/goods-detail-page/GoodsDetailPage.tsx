@@ -9,7 +9,7 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-import {useRouter} from "next/router"
+import Router, {useRouter} from "next/router"
 import useStore from "Components/store/useStore"
 import {CartItemProps, OptionCart} from "Cart/cart-type"
 import ImageBox from "Components/image-box/ImageBox"
@@ -88,6 +88,21 @@ export default function GoodsDetailPage(props: Props) {
         if (confirm("장바구니를 확인하시겠습니까?")) {
             route.push("/cart")
         }
+    }
+
+    const onClickBuy = () => {
+        if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
+
+        const newArray: CartItemProps = {
+            goodsId: goodsId,
+            options: selectValueList,
+        }
+        // if (userStore.isLoggedIn) {
+        //     //TODO: 서버 장바구니에 저장 기능 추가
+        // } else {
+        //     goodsStore.cartItemList.push(newArray)
+        // }
+        Router.push({pathname: "/cart", query: {sectionNum: "1"}})
     }
 
     return (
@@ -216,7 +231,7 @@ export default function GoodsDetailPage(props: Props) {
                         <Button variant="contained" sx={{height: 55}} fullWidth onClick={onCickCart}>
                             <Typography variant="h6">장바구니 담기</Typography>
                         </Button>
-                        <Button variant="contained" sx={{height: 55}} fullWidth onClick={() => {}}>
+                        <Button variant="contained" sx={{height: 55}} fullWidth onClick={onClickBuy}>
                             <Typography variant="h6">바로 구매하기</Typography>
                         </Button>
                     </Stack>
