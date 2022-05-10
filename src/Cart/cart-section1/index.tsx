@@ -4,12 +4,12 @@ import {toast} from "react-toastify"
 import useStyles from "./style"
 import {useTheme} from "@mui/system"
 
-import TotalPrice from "./components/TotalPrice"
-import CartTable from "./components/CartTable"
-import {CART_ITEMS_DATA} from "components/fake-data/fake-cart"
-import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
-import {CartOptionsType} from "src/Cart/cart-type"
+import {CartOptionsType, OptionCart} from "src/Cart/cart-type"
 import {GoodsItemProps, OptionsType} from "src/Goods/goods-type"
+import {CART_ITEMS_DATA} from "src/Components/fake-data/fake-cart"
+import {GOODS_ITEMS_DATA} from "src/Components/fake-data/fake-goods"
+import CartTable from "./components/CartTable"
+import TotalPrice from "./components/TotalPrice"
 
 type Props = {
     onChangeNextStep: (index: number) => void
@@ -78,16 +78,16 @@ export default function CartSection1(props: Props) {
 
                 //새로운 장바구니 리스트 생성
                 list.push(
-                    ...itm.options.reduce((acc: CartOptionsType[], cur: CartOptionsType) => {
+                    ...itm.options.reduce((acc: CartOptionsType[], cur: OptionCart) => {
                         //상품의 옵셥정보를 optionId로 맵핑
                         const data = optionData.filter(it => it.optionId === cur.optionId)[0]
                         acc.push({
                             goodsId: goodsId,
                             count: cur.count,
-                            price: goodsData.price + data.value,
+                            price: goodsData.price + data.addPlace,
                             optionId: cur.optionId,
-                            optionName: data.text,
-                            optionValue: data.value,
+                            optionName: data.name,
+                            optionAddPlace: data.addPlace,
                         })
                         return acc
                     }, []),

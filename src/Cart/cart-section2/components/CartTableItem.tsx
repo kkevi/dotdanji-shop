@@ -51,9 +51,9 @@ export default function CartTableItem(props: CartListProps) {
                             <Typography fontSize={14} mr={1}>
                                 {cartItem.optionName}
                             </Typography>
-                            {cartItem.optionValue > 0 && (
+                            {cartItem.optionAddPlace > 0 && (
                                 <Typography fontSize={14} color="#999">
-                                    +{cartItem.optionValue.toLocaleString("ko")}원
+                                    +{cartItem.optionAddPlace.toLocaleString("ko")}원
                                 </Typography>
                             )}
                         </Stack>

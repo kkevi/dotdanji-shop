@@ -103,7 +103,7 @@ export default function Index() {
 
             <Stack flexDirection="row" justifyContent="center" alignItems="center">
                 {process.map((itm, idx) => (
-                    <ProposalProcess idx={idx} title={itm} />
+                    <ProposalProcess idx={idx} title={itm} key={"ProposalProcess" + idx} />
                 ))}
             </Stack>
 

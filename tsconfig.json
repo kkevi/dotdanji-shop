@@ -43,7 +43,7 @@
         "baseUrl": "." /* non-absolute한 모듈 이름을 처리할 기준 디렉토리 */,
         "paths": {
             "src/*": ["src/*"],
-            "components/*": ["src/components/*"],
+            "components/*": ["src/Components/*"],
             "store/*": ["store/*"],
             "styles/*": ["src/styles/*"]
         } /* 'baseUrl'를 기준으로 불러올 모듈의 위치를 재지정하는 엔트리 시리즈 */,
@@ -72,6 +72,6 @@
         "isolatedModules": true,
         "incremental": true
     },
-    "include": ["src", "public", "next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.tsx", "backend/config/config.js", "pages/customer-service/[allianceId].js", "store"],
+    "include": ["src", "public", "next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.tsx", "backend/config/config.js", "store"],
     "exclude": ["node_modules"]
 }

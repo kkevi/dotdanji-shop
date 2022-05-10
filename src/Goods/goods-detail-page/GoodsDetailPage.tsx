@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 import Router, {useRouter} from "next/router"
-import {CartItemProps, OptionCart} from "src/Cart/cart-type"
+import {CartItemProps, CartOptionsType, OptionCart} from "src/Cart/cart-type"
 import GoodsOptions from "./GoodsOptions"
 import ImageBox from "components/image-box/ImageBox"
 import useStore from "store/useStore"
@@ -28,6 +28,11 @@ export default function GoodsDetailPage(props: Props) {
     //데이터
     const [goodsItemData, setGoodsItemData] = useState<GoodsItemProps>(GOODS_ITEMS_DATA[0])
     const {name, thumbnails, infoText, options = [], tags} = goodsItemData
+    //할인 계산식
+    var resultPrice =
+        goodsItemData.sale > 0
+            ? goodsItemData.price - goodsItemData.price * (goodsItemData.sale / 100)
+            : goodsItemData.price
 
     //옵션 선택 박스
     const defaultOption = "옵션 선택"
@@ -40,8 +45,8 @@ export default function GoodsDetailPage(props: Props) {
         setTotalPrice(
             selectValueList.reduce((acc, cur) => {
                 if (!goodsItemData.options) return acc
-                const optionValue = goodsItemData.options.filter(it => it.optionId === "fake-goodsId-0_opt1")[0].value
-                acc += (optionValue + goodsItemData.price) * cur.count
+                const optionValue = goodsItemData.options.filter(it => it.optionId === cur.optionId)[0].addPlace
+                acc += (optionValue + resultPrice) * cur.count
                 return acc
             }, 0),
         )
@@ -56,6 +61,7 @@ export default function GoodsDetailPage(props: Props) {
 
     //선택 옵션 배열 추가
     const onAddOptionList = (id: string) => {
+        if (id === defaultOption) return
         const search = selectValueList.findIndex(it => it.optionId === id)
         if (search === -1) {
             // 옵션 선택하여 추가
@@ -74,7 +80,7 @@ export default function GoodsDetailPage(props: Props) {
     // 옵션 배열 삭제
     const onDeleteOption = (optionId: string) => {
         setSelectValueList(prev => prev.filter(it => it.optionId !== optionId))
-        setSelectValue("옵션 선택")
+        setSelectValue(defaultOption)
     }
 
     const onCickCart = () => {
@@ -84,29 +90,41 @@ export default function GoodsDetailPage(props: Props) {
             goodsId: goodsId,
             options: selectValueList,
         }
-        if (userStore.isLoggedIn) {
-            //TODO: 서버 장바구니에 저장 기능 추가
+        if (!userStore.isLoggedIn) {
+            alert("로그인 후 이용이 가능합니다.")
         } else {
-            goodsStore.cartItemList.push(newArray)
+            //TODO: 서버 장바구니에 저장 기능 추가
         }
         if (confirm("장바구니를 확인하시겠습니까?")) {
             route.push("/cart")
         }
     }
 
-    const onClickBuy = () => {
+    const onClickBuy = async () => {
         if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
 
-        const newArray: CartItemProps = {
-            goodsId: goodsId,
-            options: selectValueList,
+        if (!userStore.isLoggedIn) {
+            alert("로그인 후 이용이 가능합니다.")
+        } else {
+            try {
+                const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, idx) => {
+                    const goodsOptionData = goodsItemData.options.filter(it => it.optionId === cur.optionId)[0]
+                    acc.push({
+                        goodsId: goodsId,
+                        count: cur.count,
+                        price: (goodsOptionData.addPlace + resultPrice) * cur.count,
+                        optionId: cur.optionId,
+                        optionName: goodsOptionData.name,
+                        optionAddPlace: goodsOptionData.addPlace,
+                    })
+                    return acc
+                }, [])
+                await goodsStore.setCartItem(data)
+                Router.push({pathname: "/cart", query: {sectionNum: "1"}})
+            } catch (e) {
+                console.log("e:", e)
+            }
         }
-        // if (userStore.isLoggedIn) {
-        //     //TODO: 서버 장바구니에 저장 기능 추가
-        // } else {
-        //     goodsStore.cartItemList.push(newArray)
-        // }
-        Router.push({pathname: "/cart", query: {sectionNum: "1"}})
     }
 
     return (
@@ -139,13 +157,13 @@ export default function GoodsDetailPage(props: Props) {
 
                 {/* right box */}
                 <div className={classes.infoBox}>
-                    {/* 이름,태그, 가격 */}
+                    {/* 이름, 태그, 가격 */}
                     <Typography variant="subtitle2">{tags.map((tag, idx) => `#${tag} `)}</Typography>
                     <Typography fontSize={28} fontWeight={800}>
                         {name}
                     </Typography>
                     <Typography fontSize={24} fontWeight={800} mt={2}>
-                        {goodsItemData.price.toLocaleString()}원
+                        {resultPrice.toLocaleString()}원
                     </Typography>
                     <Typography fontSize={20} mt={3} mb={8}>
                         {infoText}
@@ -170,9 +188,9 @@ export default function GoodsDetailPage(props: Props) {
                                     value={option.optionId}
                                     style={{display: "flex", justifyContent: "space-between"}}
                                 >
-                                    <Typography fontSize={20}>{option.text}</Typography>
+                                    <Typography fontSize={20}>{option.name}</Typography>
                                     <Typography fontSize={16} color="#888">
-                                        {option.value > 0 && `+${option.value.toLocaleString()}원`}
+                                        {option.addPlace > 0 && `+${option.addPlace.toLocaleString()}원`}
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -191,10 +209,10 @@ export default function GoodsDetailPage(props: Props) {
                                         <GoodsOptions
                                             key={"option" + idx}
                                             idx={idx}
-                                            optionName={optionData?.text}
+                                            optionName={optionData?.name}
                                             optionId={selected.optionId}
                                             count={selected.count}
-                                            optionPrice={optionData.value + goodsItemData.price || 0}
+                                            optionPrice={optionData.addPlace + resultPrice || 0}
                                             selectValueList={selectValueList}
                                             onDeleteOption={onDeleteOption}
                                             setSelectValueList={setSelectValueList}

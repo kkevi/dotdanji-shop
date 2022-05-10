@@ -1,7 +1,7 @@
 import log from "./log"
 import {RootStoreInitialState} from "./types"
 import UserStore from "./UserStore"
-import GoodsStore from "./UserStore copy"
+import GoodsStore from "./GoodsStore"
 
 /**
  * @class Mobx 루트 스토어

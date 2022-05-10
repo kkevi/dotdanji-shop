@@ -9,7 +9,6 @@ import {GlobalStyle} from "styles/global-styles"
 import {ToastContainer} from "react-toastify"
 
 import StoreProvider from "../store/StoreProvider"
-import UserLoginObserver from "components/observer/UserLoginObserver"
 
 function MyApp(props: AppProps) {
     const {Component, pageProps} = props
@@ -33,15 +32,13 @@ function MyApp(props: AppProps) {
                 <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
             </Head>
             <StoreProvider rootStoreInitialState={undefined}>
-                <UserLoginObserver>
-                    <ThemeProvider theme={theme}>
-                        <>
-                            <CssBaseline />
-                            <GlobalStyle />
-                            <Component {...pageProps} />
-                        </>
-                    </ThemeProvider>
-                </UserLoginObserver>
+                <ThemeProvider theme={theme}>
+                    <>
+                        <CssBaseline />
+                        <GlobalStyle />
+                        <Component {...pageProps} />
+                    </>
+                </ThemeProvider>
             </StoreProvider>
             <ToastContainer autoClose={2000} pauseOnHover={false} hideProgressBar />
         </React.Fragment>

@@ -5,7 +5,7 @@ import {Stack, IconButton, InputBase, Typography, Divider, Chip} from "@mui/mate
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded"
 import FaqAccordion from "./faq-accordion/FaqAccordion"
 
-import {categoryList} from "Inquiry/InquiryDataType"
+import {categoryList} from "src/Inquiry/InquiryDataType"
 import PaginationBox from "components/pagination-box/PaginationBox"
 
 export default function Index() {
@@ -65,6 +65,7 @@ export default function Index() {
                 />
                 {Object.values(categoryList).map((itm, idx) => (
                     <Chip
+                        key={"faqchips" + idx}
                         label={<Typography fontSize={16}>{itm}</Typography>}
                         sx={{padding: "12px 8px"}}
                         variant="outlined"
@@ -80,6 +81,7 @@ export default function Index() {
                     return (
                         <FaqAccordion
                             idx={idx}
+                            key={"faqAccordion" + idx}
                             title={itm.title}
                             content={itm.content}
                             setExpanded={setExpanded}

@@ -14,5 +14,5 @@ export type CartOptionsType = {
     price: number
     optionId: string
     optionName: string
-    optionValue: number
+    optionAddPlace: number
 }

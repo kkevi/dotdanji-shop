@@ -7,12 +7,13 @@ import {toast} from "react-toastify"
 import {CartFormDefaultData, CartFormProps} from "./components/cart-form-type"
 import {CART_ITEMS_DATA} from "components/fake-data/fake-cart"
 import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
-import {CartOptionsType} from "src/Cart/cart-type"
+import {CartItemProps, CartOptionsType, OptionCart} from "src/Cart/cart-type"
 import CartTable from "./components/CartTable"
 import CartForm from "./components/CartForm"
 import CartPayment from "./components/CartPayment"
 import {RequestPayProps, RequestPayResponse} from "./components/payment-type"
 import {GoodsItemProps, OptionsType} from "src/Goods/goods-type"
+import useStore from "store/useStore"
 
 type Props = {
     onChangeNextStep: (index: number) => void
@@ -27,6 +28,7 @@ declare global {
 export default function CartSection2(props: Props) {
     const theme = useTheme()
     const classes = useStyles()
+    const {userStore, goodsStore} = useStore()
     const {onChangeNextStep} = props
     const [formData, setFormData] = useState<CartFormProps>(CartFormDefaultData)
 
@@ -64,40 +66,39 @@ export default function CartSection2(props: Props) {
      * 장바구니 데이터 가져오기
      */
     useEffect(() => {
-        loadData()
+        if (goodsStore.cartItem !== undefined) {
+            setCartItemList(goodsStore.cartItem)
+        } else loadData()
     }, [])
 
     const loadData = async () => {
         try {
-            const list: CartOptionsType[] = []
             //카트 정보 = goodsId,optionId,count
-            const result = await CART_ITEMS_DATA
+            const result: CartItemProps[] = await CART_ITEMS_DATA
 
             result.map((itm, idx) => {
                 //해당 id의 상품 정보를 가져온다.
                 const goodsId = itm.goodsId
                 const goodsData = GOODS_ITEMS_DATA.filter(it => it.goodsId === goodsId)[0] as GoodsItemProps
-                const optionData = goodsData.options as OptionsType[]
 
                 //새로운 장바구니 리스트 생성
-                list.push(
-                    ...itm.options.reduce((acc: CartOptionsType[], cur: CartOptionsType) => {
+                setCartItemList(
+                    itm.options.reduce((acc, cur: OptionCart) => {
                         //상품의 옵셥정보를 optionId로 맵핑
-                        const data = optionData.filter(it => it.optionId === cur.optionId)[0]
+                        const data = goodsData.options.filter(it => it.optionId === cur.optionId)[0]
                         acc.push({
                             goodsId: goodsId,
                             count: cur.count,
-                            price: goodsData.price + data.value,
+                            price: goodsData.price + data.addPlace,
                             optionId: cur.optionId,
-                            optionName: data.text,
-                            optionValue: data.value,
+                            optionName: data.name,
+                            optionAddPlace: data.addPlace,
                         })
                         return acc
-                    }),
+                    }, [] as CartOptionsType[]),
                 )
+                //
             })
-
-            setCartItemList(list)
 
             // list.map(({optionId}) => (checkList[optionId] = true))
         } catch (e) {
