@@ -40,6 +40,17 @@ const styles = makeStyles((theme: Theme) =>
                 borderColor: "black",
             },
         },
+        smallButton: {
+            marginLeft: 8,
+            fontSize: 12,
+            color: "#646566",
+            border: "1px solid #babcbc",
+            backgroundColor: "rgba(208,235,245,0.1)",
+            "&:active": {
+                color: theme.palette.primary.dark,
+                border: `1px solid ${theme.palette.primary.dark}`,
+            },
+        },
     }),
 )
 

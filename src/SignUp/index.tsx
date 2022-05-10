@@ -16,12 +16,12 @@ export default function SignUp() {
     const theme = useTheme()
     const [step, setStep] = useState(0)
     const [email, setEmail] = useState("")
-    const [userName, setUserName] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
     const [password, setPassword] = useState("")
     const [validPassword, setValidPassword] = useState("")
 
     const onSignUp = () => {
-        var attributeName = new CognitoUserAttribute({Name: "name", Value: userName})
+        var attributeName = new CognitoUserAttribute({Name: "name", Value: phoneNumber})
         userPool.signUp(email, password, [attributeName], [], (err, data) => {
             if (err) {
                 return console.error("SignUp error: ", err)
@@ -41,8 +41,8 @@ export default function SignUp() {
             render: (
                 <SignUpSection2
                     email={email}
-                    userName={userName}
-                    setUserName={setUserName}
+                    phoneNumber={phoneNumber}
+                    setPhoneNumber={setPhoneNumber}
                     setEmail={setEmail}
                     setStep={setStep}
                 />

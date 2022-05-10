@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 
 import {Stack, Button, TextField, Typography} from "@mui/material"
 import useStyles from "../styles"
@@ -6,51 +6,97 @@ import useStyles from "../styles"
 type SignUpSection2Prop = {
     email: string
     setEmail: (val: string) => void
-    userName: string
-    setUserName: (val: string) => void
+    phoneNumber: string
+    setPhoneNumber: (val: string) => void
     setStep: (val: number) => void
 }
 
 export default function SignUpSection2(prop: SignUpSection2Prop) {
-    const {email, setEmail, setStep, userName, setUserName} = prop
+    const {email, setEmail, setStep, phoneNumber, setPhoneNumber} = prop
     const classes = useStyles()
-    const [warningName, setWarningName] = useState("")
-    const [warningEmail, setWarningEmail] = useState("")
+    const [warningEmail, setWarningEmail] = useState<string>("")
+    const [warningPhone, setWarningPhone] = useState<string>("")
+    const [validAll, setValidAll] = useState({
+        email: false,
+        phone: false,
+    })
 
-    const regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
+    // const IMP = window.IMP; // 생략 가능
+    // IMP.init("{가맹점 식별코드}"); // 예: imp00000000
+
     const isValidEmail = (email: string) => {
-        if (regEmail.test(email)) {
+        if (email === "") return setWarningEmail("이메일을 입력해주세요.")
+        const regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
+        const validEmail = regEmail.test(email)
+
+        if (!validEmail) return setWarningEmail("올바른 이메일 형식이 아닙니다.")
+        if (validEmail) {
+            setWarningEmail("")
+            // TODO : 이메일 중복확인
+
+            setValidAll({
+                ...validAll,
+                email: true,
+            })
+        }
+    }
+
+    const isValidPhone = (phoneNumber: string) => {
+        if (phoneNumber === "") return setWarningPhone("휴대폰번호를 입력해주세요.")
+        const regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/
+        const validPhone = regPhone.test(phoneNumber)
+
+        if (!validPhone) return setWarningPhone("올바른 휴대폰번호 형식이 아닙니다.")
+        if (validPhone) {
+            setWarningPhone("")
+            // TODO : 본인인증
+
+            setValidAll({
+                ...validAll,
+                phone: true,
+            })
+        }
+    }
+
+    const isValidAll = () => {
+        if (validAll.email && validAll.phone) {
             setStep(2)
-        } else {
-            setWarningEmail("올바른 이메일 형식이 아닙니다.")
         }
     }
 
     return (
         <Stack width={"100%"}>
-            <TextField
-                sx={{mt: 6}}
-                className={classes.textField}
-                label="이름"
-                variant="outlined"
-                fullWidth
-                value={userName}
-                onChange={e => setUserName(e.target.value)}
-            />
-            <Typography ml={1} mt={1} variant="caption" height={10} color="red">
-                {warningName}
-            </Typography>
-            <TextField
-                sx={{mt: 2}}
-                className={classes.textField}
-                label="이메일"
-                variant="outlined"
-                fullWidth
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-            />
+            <Stack direction="row" mt={6}>
+                <TextField
+                    className={classes.textField}
+                    label="이메일"
+                    variant="outlined"
+                    fullWidth
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                />
+                <Button className={classes.smallButton} onClick={() => isValidEmail(email)}>
+                    중복확인
+                </Button>
+            </Stack>
             <Typography ml={1} mt={1} variant="caption" height={10} color="red">
                 {warningEmail}
+            </Typography>
+            <Stack direction="row" mt={2}>
+                <TextField
+                    className={classes.textField}
+                    label="휴대폰번호"
+                    variant="outlined"
+                    fullWidth
+                    value={phoneNumber}
+                    onChange={e => setPhoneNumber(e.target.value)}
+                />
+                <Button className={classes.smallButton} onClick={() => isValidPhone(phoneNumber)}>
+                    본인인증
+                </Button>
+            </Stack>
+            <Typography ml={1} mt={1} variant="caption" height={10} color="red">
+                {warningPhone}
             </Typography>
 
             <Button
@@ -58,9 +104,9 @@ export default function SignUpSection2(prop: SignUpSection2Prop) {
                 className={classes.containedButton}
                 variant="contained"
                 fullWidth
+                disabled={validAll.email && validAll.phone ? false : true}
                 onClick={() => {
-                    if (userName === "") return setWarningName("이름을 입력해주세요.")
-                    isValidEmail(email)
+                    isValidAll()
                 }}
             >
                 다음으로
