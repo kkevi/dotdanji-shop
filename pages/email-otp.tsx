@@ -1,7 +1,5 @@
 import {Button, Container, Stack, TextField, Typography} from "@mui/material"
-import UserPool from "Login/login-section/UserPool"
 import {useState} from "react"
-import * as AWS from "aws-sdk"
 
 export default function EmailOtp() {
     const [emailCode, setEmailCode] = useState("")

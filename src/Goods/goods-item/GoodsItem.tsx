@@ -2,14 +2,14 @@ import {useCallback, useState} from "react"
 import {useRouter} from "next/router"
 import useStyles from "./styles"
 import {GoodsItemProps} from "../goods-type"
-import useStore from "Components/store/useStore"
 //component
-import {IconButton, Stack, Typography, ButtonBase} from "@mui/material"
-import ImageBox from "Components/image-box/ImageBox"
+import {IconButton, Typography, ButtonBase} from "@mui/material"
+import ImageBox from "components/image-box/ImageBox"
 //icon
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import ShareIcon from "@mui/icons-material/Share"
+import useStore from "store/useStore"
 
 type props = {
     data: GoodsItemProps

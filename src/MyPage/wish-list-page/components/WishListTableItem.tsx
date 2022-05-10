@@ -1,6 +1,6 @@
 import React from "react"
 import {Checkbox, FormControlLabel, Stack, TableCell, Typography} from "@mui/material"
-import ImageBox from "Components/image-box/ImageBox"
+import ImageBox from "components/image-box/ImageBox"
 
 type WishListTableItemProps = {
     idx: number

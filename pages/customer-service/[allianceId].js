@@ -1,8 +1,8 @@
 import React from "react"
 import {useRouter} from "next/router"
 import {Stack} from "@mui/material"
-import MainLayout from "Components/main-layout/MainLayout"
-import ServiceLayout from "Components/service-layout/ServiceLayout"
+import MainLayout from "components/main-layout/MainLayout"
+import ServiceLayout from "components/service-layout/ServiceLayout"
 
 import {customerServiceTabs} from "lib/customer-service-tabs"
 

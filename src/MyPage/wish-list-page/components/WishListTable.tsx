@@ -1,4 +1,3 @@
-import React, {useState} from "react"
 import {Table, TableHead, TableBody, TableRow, TableCell, FormControlLabel, Checkbox} from "@mui/material"
 
 import WishListTableItem from "./WishListTableItem"

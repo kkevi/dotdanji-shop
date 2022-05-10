@@ -4,7 +4,7 @@ import {useTheme} from "@mui/system"
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded"
 
 import useStyles from "../styles"
-import MyPageHeader from "MyPage/mypage-header/MyPageHeader"
+import MyPageHeader from "src/MyPage/mypage-header/MyPageHeader"
 
 type MyPagePwEditFormProps = {
     currentPw: string

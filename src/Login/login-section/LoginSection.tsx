@@ -7,7 +7,7 @@ import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js"
 import {toast} from "react-toastify"
 import {userEmailCheck, userPasswordCheck} from "./validation-check"
 import UserPool, {KAKAO_AUTH_URL} from "./UserPool"
-import useStore from "Components/store/useStore"
+import useStore from "store/useStore"
 
 export default function LoginSection() {
     const classes = useStyles()

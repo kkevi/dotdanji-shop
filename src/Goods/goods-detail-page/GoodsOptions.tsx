@@ -1,8 +1,8 @@
 //icon
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded"
 import {IconButton, Stack, Typography} from "@mui/material"
-import {OptionCart} from "Cart/cart-type"
-import CountController from "Components/count-controller/CountController"
+import {OptionCart} from "src/Cart/cart-type"
+import CountController from "components/count-controller/CountController"
 import React, {useEffect, useState} from "react"
 //components
 import useStyles from "./style"

@@ -1,5 +1,5 @@
-import MainLayout from "Components/main-layout/MainLayout"
-import Login from "Login"
+import MainLayout from "components/main-layout/MainLayout"
+import Login from "src/Login"
 
 export default function Index() {
     return (

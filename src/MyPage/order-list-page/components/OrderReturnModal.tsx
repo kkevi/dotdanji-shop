@@ -18,7 +18,7 @@ import {
 import {useTheme} from "@mui/system"
 
 import useStyles from "../style"
-import ImageBox from "Components/image-box/ImageBox"
+import ImageBox from "components/image-box/ImageBox"
 import {categoryList, inquiryFormDefaultData} from "../order-list-item-type"
 
 type OrderReturnModalTypes = {

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
-import {GOODS_ITEMS_DATA} from "Components/fake-data/fake-goods"
-import {GoodsItemProps, OptionsType} from "Goods/goods-type"
+import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
+import {GoodsItemProps, OptionsType} from "src/Goods/goods-type"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
@@ -10,10 +10,10 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 import Router, {useRouter} from "next/router"
-import useStore from "Components/store/useStore"
-import {CartItemProps, OptionCart} from "Cart/cart-type"
-import ImageBox from "Components/image-box/ImageBox"
+import {CartItemProps, OptionCart} from "src/Cart/cart-type"
 import GoodsOptions from "./GoodsOptions"
+import ImageBox from "components/image-box/ImageBox"
+import useStore from "store/useStore"
 
 type Props = {
     goodsId: string

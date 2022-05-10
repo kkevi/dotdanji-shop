@@ -1,5 +1,5 @@
 import {Container, Stack, Typography} from "@mui/material"
-import MainLayout from "Components/main-layout/MainLayout"
+import MainLayout from "components/main-layout/MainLayout"
 
 export default function Index() {
     return (

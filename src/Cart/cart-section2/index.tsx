@@ -5,13 +5,14 @@ import {useTheme} from "@mui/system"
 import {toast} from "react-toastify"
 
 import {CartFormDefaultData, CartFormProps} from "./components/cart-form-type"
-import {CART_ITEMS_DATA} from "Components/fake-data/fake-cart"
-import {GOODS_ITEMS_DATA} from "Components/fake-data/fake-goods"
-import {CartOptionsType} from "Cart/cart-type"
+import {CART_ITEMS_DATA} from "components/fake-data/fake-cart"
+import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
+import {CartOptionsType} from "src/Cart/cart-type"
 import CartTable from "./components/CartTable"
 import CartForm from "./components/CartForm"
 import CartPayment from "./components/CartPayment"
 import {RequestPayProps, RequestPayResponse} from "./components/payment-type"
+import {GoodsItemProps, OptionsType} from "src/Goods/goods-type"
 
 type Props = {
     onChangeNextStep: (index: number) => void
@@ -75,12 +76,12 @@ export default function CartSection2(props: Props) {
             result.map((itm, idx) => {
                 //해당 id의 상품 정보를 가져온다.
                 const goodsId = itm.goodsId
-                const goodsData = GOODS_ITEMS_DATA.filter(it => it.goodsId === goodsId)[0]
-                const optionData = goodsData.options || []
+                const goodsData = GOODS_ITEMS_DATA.filter(it => it.goodsId === goodsId)[0] as GoodsItemProps
+                const optionData = goodsData.options as OptionsType[]
 
                 //새로운 장바구니 리스트 생성
                 list.push(
-                    ...itm.options.reduce((acc, cur) => {
+                    ...itm.options.reduce((acc: CartOptionsType[], cur: CartOptionsType) => {
                         //상품의 옵셥정보를 optionId로 맵핑
                         const data = optionData.filter(it => it.optionId === cur.optionId)[0]
                         acc.push({
@@ -92,7 +93,7 @@ export default function CartSection2(props: Props) {
                             optionValue: data.value,
                         })
                         return acc
-                    }, [] as CartOptionsType[]),
+                    }),
                 )
             })
 

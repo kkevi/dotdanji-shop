@@ -1,7 +1,7 @@
 import {Stack, TableCell, Typography} from "@mui/material"
-import {CartOptionsType} from "Cart/cart-type"
-import {GOODS_ITEMS_DATA} from "Components/fake-data/fake-goods"
-import ImageBox from "Components/image-box/ImageBox"
+import {CartOptionsType} from "src/Cart/cart-type"
+import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
+import ImageBox from "components/image-box/ImageBox"
 import React, {useEffect, useState} from "react"
 
 type CartListProps = {

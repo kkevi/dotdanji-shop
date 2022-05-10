@@ -2,7 +2,7 @@ import React from "react"
 import {Stack} from "@mui/material"
 import {useTheme} from "@mui/system"
 
-import ImageBox from "Components/image-box/ImageBox"
+import ImageBox from "components/image-box/ImageBox"
 import LoginSection from "./login-section/LoginSection"
 
 export default function Login() {

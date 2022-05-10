@@ -1,11 +1,7 @@
-import {observer} from "mobx-react"
-import {useRouter} from "next/router"
-import React, {ReactChild, useEffect} from "react"
-import {useLocalStorage} from "react-use"
-import userPool from "../../Login/login-section/UserPool"
-import UserPool from "Login/login-section/UserPool"
 import {CognitoUser} from "amazon-cognito-identity-js"
-import useStore from "Components/store/useStore"
+import UserPool from "src/Login/login-section/UserPool"
+import React, {ReactChild, useEffect} from "react"
+import useStore from "store/useStore"
 
 type Props = {
     children: ReactChild

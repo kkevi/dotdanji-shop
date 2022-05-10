@@ -1,5 +1,5 @@
-import MainLayout from "Components/main-layout/MainLayout"
-import Home from "Home"
+import MainLayout from "components/main-layout/MainLayout"
+import Home from "src/Home"
 
 export default function Index() {
     return (

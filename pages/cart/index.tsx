@@ -1,5 +1,5 @@
-import MainLayout from "Components/main-layout/MainLayout"
-import Cart from "Cart"
+import MainLayout from "components/main-layout/MainLayout"
+import Cart from "src/Cart"
 
 export default function Index() {
     return (
