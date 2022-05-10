@@ -1,4 +1,4 @@
-import MainLayout from "components/main-layout/MainLayout"
+import MainLayout from "Component/main-layout/MainLayout"
 import GoodsLayout from "src/Goods"
 import {useRouter} from "next/router"
 import {useEffect, useState} from "react"

@@ -4,7 +4,7 @@ import {useRouter} from "next/router"
 import {Stack, Button, Divider, Typography} from "@mui/material"
 import useStyles from "../styles"
 
-import ImageBox from "components/image-box/ImageBox"
+import ImageBox from "Component/image-box/ImageBox"
 
 export default function SignUpSection4() {
     const classes = useStyles()

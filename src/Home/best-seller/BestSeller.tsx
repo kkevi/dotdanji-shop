@@ -3,7 +3,7 @@ import React, {useState} from "react"
 import {Button, Container, Grid, Stack, Typography} from "@mui/material"
 import {useTheme} from "@mui/system"
 import useStyles from "./styles"
-import ImageBox from "Components/image-box/ImageBox"
+import ImageBox from "Component/image-box/ImageBox"
 
 export default function BestSeller() {
     const theme = useTheme()

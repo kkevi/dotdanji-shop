@@ -3,7 +3,7 @@ import React from "react"
 import {useTheme} from "@mui/styles"
 import {Button, Stack, Typography} from "@mui/material"
 
-import ImageBox from "Components/image-box/ImageBox"
+import ImageBox from "Component/image-box/ImageBox"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"

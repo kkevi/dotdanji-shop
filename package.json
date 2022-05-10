@@ -74,16 +74,16 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@src/*": [
+            "src/*": [
                 "./src/*"
             ],
-            "@components/*": [
-                "./src/Components/*"
+            "Component/*": [
+                "./src/Component/*"
             ],
-            "@store/*": [
+            "store/*": [
                 "./store/*"
             ],
-            "@styles/*": [
+            "styles/*": [
                 "./src/styles/*"
             ]
         }

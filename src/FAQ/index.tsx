@@ -6,7 +6,7 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded"
 import FaqAccordion from "./faq-accordion/FaqAccordion"
 
 import {categoryList} from "Inquiry/InquiryDataType"
-import PaginationBox from "Components/pagination-box/PaginationBox"
+import PaginationBox from "Component/pagination-box/PaginationBox"
 
 export default function Index() {
     const theme = useTheme()

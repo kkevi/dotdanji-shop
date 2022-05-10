@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import {Container, Stack} from "@mui/material"
-import MainLayout from "components/main-layout/MainLayout"
-import ServiceLayout from "components/service-layout/ServiceLayout"
+import MainLayout from "Component/main-layout/MainLayout"
+import ServiceLayout from "Component/service-layout/ServiceLayout"
 import NoticeDetailPage from "src/Notice/notice-detail-page/NoticeDetailPage"
 
 export default function Index() {

@@ -4,7 +4,7 @@ import useStyles from "./styles"
 import {GoodsItemProps} from "../goods-type"
 //component
 import {IconButton, Typography, ButtonBase} from "@mui/material"
-import ImageBox from "components/image-box/ImageBox"
+import ImageBox from "Component/image-box/ImageBox"
 //icon
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"

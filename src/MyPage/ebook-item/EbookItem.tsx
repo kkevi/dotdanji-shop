@@ -2,7 +2,7 @@ import React from "react"
 import {useRouter} from "next/router"
 import {Stack, Typography} from "@mui/material"
 
-import ImageBox from "components/image-box/ImageBox"
+import ImageBox from "Component/image-box/ImageBox"
 
 type EBookItemProps = {
     title: string

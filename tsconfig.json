@@ -43,7 +43,7 @@
         "baseUrl": "." /* non-absolute한 모듈 이름을 처리할 기준 디렉토리 */,
         "paths": {
             "src/*": ["src/*"],
-            "components/*": ["src/Components/*"],
+            "Component/*": ["src/Component/*"],
             "store/*": ["store/*"],
             "styles/*": ["src/styles/*"]
         } /* 'baseUrl'를 기준으로 불러올 모듈의 위치를 재지정하는 엔트리 시리즈 */,

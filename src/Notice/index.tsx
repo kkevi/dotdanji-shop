@@ -3,7 +3,7 @@ import {useRouter} from "next/router"
 import {Stack, Divider, Table, TableHead, TableRow, TableCell, TableBody} from "@mui/material"
 
 import {NoticeDetailProps} from "./notice-type"
-import PaginationBox from "components/pagination-box/PaginationBox"
+import PaginationBox from "Component/pagination-box/PaginationBox"
 
 export default function Index() {
     const route = useRouter()

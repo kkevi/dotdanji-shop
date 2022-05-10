@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react"
 import {Container, Stack, Typography, Button, Divider} from "@mui/material"
 
 import useStyles from "./style"
-import WishListTable from "./components/WishListTable"
+import WishListTable from "./Component/WishListTable"
 import {useTheme} from "@mui/system"
 
 export default function WishListPage() {
