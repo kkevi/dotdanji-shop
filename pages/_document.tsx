@@ -25,6 +25,10 @@ class MyDocument extends Document {
 
                     {/* 소셜 미디어, 블로그 등의 메타정보 표시 */}
                     {/* <meta property="twitter:card" content="" /> */}
+                    {/* <!-- jQuery --> */}
+                    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" />
+                    {/* <!-- iamport.payment.js --> */}
+                    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js" />
                 </Head>
                 <body>
                     <Main />

@@ -31,11 +31,6 @@ function MyApp(props: AppProps) {
                 <meta name="theme-color" content="#fff9bf" />
                 {/* font */}
                 <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
-
-                {/* <!-- jQuery --> */}
-                {/* <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script> */}
-                {/* <!-- iamport.payment.js --> */}
-                {/* <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script> */}
             </Head>
             <StoreProvider rootStoreInitialState={undefined}>
                 <UserLoginObserver>
