@@ -9,10 +9,10 @@ import useStyles from "./style"
 
 type Props = {
     idx: number
-    option: any
+    optionName: string
+    optionId: string
     count: number
-    defaultPrice: number
-    optionDefaultPrice: number
+    optionPrice: number
     selectValueList: OptionCart[]
     onDeleteOption: (val: string) => void
     setSelectValueList: React.Dispatch<React.SetStateAction<OptionCart[]>>
@@ -20,9 +20,7 @@ type Props = {
 
 export default function GoodsOptions(props: Props) {
     const classes = useStyles()
-    const {idx, option, count, defaultPrice, optionDefaultPrice, selectValueList, onDeleteOption, setSelectValueList} =
-        props
-    const optionPrice = defaultPrice + optionDefaultPrice
+    const {idx, optionName, optionId, count, optionPrice, selectValueList, onDeleteOption, setSelectValueList} = props
     const [optionPriceTotal, setOptionPriceTotal] = useState<number>(optionPrice)
 
     useEffect(() => {
@@ -31,7 +29,7 @@ export default function GoodsOptions(props: Props) {
 
     return (
         <Stack
-            key={option.optionId}
+            key={optionId}
             bgcolor="rgba(255,255,255,0.7)"
             my={0.5}
             width="100%"
@@ -43,7 +41,7 @@ export default function GoodsOptions(props: Props) {
             <Stack className={classes.rootStack}>
                 {/* 선택상품 */}
                 <Stack direction="column">
-                    <Typography fontSize={14}>{option.text}</Typography>
+                    <Typography fontSize={14}>{optionName}</Typography>
                     <Typography mt={0.5} fontSize={18} fontWeight={700}>
                         {optionPriceTotal.toLocaleString("ko")}원
                     </Typography>
@@ -53,14 +51,14 @@ export default function GoodsOptions(props: Props) {
                 <Stack direction="row" alignItems="center">
                     <CountController
                         idx={idx}
-                        optionId={option.optionId}
+                        optionId={optionId}
                         count={count}
                         valueList={selectValueList}
                         setValueList={setSelectValueList}
                         mr={1}
                     />
 
-                    <IconButton onClick={() => onDeleteOption(option.optionId)}>
+                    <IconButton onClick={() => onDeleteOption(optionId)}>
                         <ClearRoundedIcon />
                     </IconButton>
                 </Stack>

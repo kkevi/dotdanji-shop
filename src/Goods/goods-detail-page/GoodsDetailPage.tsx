@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
 import {GOODS_ITEMS_DATA} from "Components/fake-data/fake-goods"
-import {GoodsItemProps} from "Goods/goods-type"
+import {GoodsItemProps, OptionsType} from "Goods/goods-type"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
@@ -13,6 +13,7 @@ import Router, {useRouter} from "next/router"
 import useStore from "Components/store/useStore"
 import {CartItemProps, OptionCart} from "Cart/cart-type"
 import ImageBox from "Components/image-box/ImageBox"
+import GoodsOptions from "./GoodsOptions"
 
 type Props = {
     goodsId: string
@@ -49,23 +50,26 @@ export default function GoodsDetailPage(props: Props) {
     // 옵션 선택
     const onSelectOption = (event: SelectChangeEvent) => {
         const {value} = event.target
-        // onAddOptionList(value)
+        onAddOptionList(value)
         setSelectValue(value)
     }
 
-    // 옵션 배열 검사
-    // const onAddOptionList = (id: string) => {
-    //     const search = selectValueList.findIndex(it => it.option.optionId === id)
-    //     if (search === -1) {
-    //         // 옵션 선택하여 추가
-    //         const arr = options
-    //         const newItm = arr.filter(it => it.optionId === id)[0]
-    //         selectValueList.push({option: newItm, price: Number(newItm.value), count: 1})
-    //     } else {
-    //         // 이미 추가되어있는 옵션 추가 선택
-    //         alert("이미 선택 되어있는 옵션입니다. 수량변경을 통해 개수를 조절 해주세요.")
-    //     }
-    // }
+    //선택 옵션 배열 추가
+    const onAddOptionList = (id: string) => {
+        const search = selectValueList.findIndex(it => it.optionId === id)
+        if (search === -1) {
+            // 옵션 선택하여 추가
+            const arr = options
+            const selectOptionId = arr.filter(it => it.optionId === id)[0].optionId
+            selectValueList.push({
+                optionId: selectOptionId,
+                count: 1,
+            })
+        } else {
+            // 이미 추가되어있는 옵션 추가 선택
+            alert("이미 선택 되어있는 옵션입니다. 수량변경을 통해 개수를 조절 해주세요.")
+        }
+    }
 
     // 옵션 배열 삭제
     const onDeleteOption = (optionId: string) => {
@@ -179,19 +183,24 @@ export default function GoodsDetailPage(props: Props) {
                     {selectValueList.length > 0 && (
                         <>
                             <Stack mb={3} width="100%">
-                                {/* {selectValueList.map(({option, count, price}, idx) => (
-                                    <GoodsOptions
-                                        key={"option" + idx}
-                                        idx={idx}
-                                        option={option}
-                                        count={count}
-                                        defaultPrice={goodsItemData.price}
-                                        optionDefaultPrice={price}
-                                        selectValueList={selectValueList}
-                                        onDeleteOption={onDeleteOption}
-                                        setSelectValueList={setSelectValueList}
-                                    />
-                                ))} */}
+                                {selectValueList.map((selected, idx) => {
+                                    const optionData = goodsItemData.options?.filter(
+                                        it => it.optionId === selected.optionId,
+                                    )[0] as OptionsType
+                                    return (
+                                        <GoodsOptions
+                                            key={"option" + idx}
+                                            idx={idx}
+                                            optionName={optionData?.text}
+                                            optionId={selected.optionId}
+                                            count={selected.count}
+                                            optionPrice={optionData.value + goodsItemData.price || 0}
+                                            selectValueList={selectValueList}
+                                            onDeleteOption={onDeleteOption}
+                                            setSelectValueList={setSelectValueList}
+                                        />
+                                    )
+                                })}
                             </Stack>
                             <Divider orientation="horizontal" flexItem sx={{backgroundColor: "rgba(0, 0, 0, .4)"}} />
                         </>

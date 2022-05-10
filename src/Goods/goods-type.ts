@@ -9,7 +9,7 @@ export interface GoodsItemProps {
     goodsId: string //필수
     categoryId: string //필수
     thumbnails: Thumbnail //필수
-    options?: Options[]
+    options?: OptionsType[]
     name: string //필수
     tags: string[]
     infoText: string //필수
@@ -25,7 +25,7 @@ export type Thumbnail = {
     bgColor: string
 }
 
-type Options = {
+export type OptionsType = {
     optionId: string
     text: string
     value: number
