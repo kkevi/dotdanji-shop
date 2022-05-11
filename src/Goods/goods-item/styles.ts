@@ -25,6 +25,10 @@ const styles = makeStyles((theme: Theme) =>
             "& > .MuiButtonBase-root": {
                 width: "100%",
             },
+
+            "& img:hover": {
+                filter: "brightness(0.8)",
+            },
         },
         titleArea: {
             display: "flex",

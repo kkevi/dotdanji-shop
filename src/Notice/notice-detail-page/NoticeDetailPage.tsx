@@ -1,60 +1,54 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import {Stack, Divider, Typography, Button} from "@mui/material"
 
 import {NoticeDetailProps} from "../notice-type"
+import {FAKE_NOTICE_DATA} from "src/Components/fake-data/fake-service"
+import useStyles from "./style"
+import Link from "next/link"
 
-type NoticeDetailPageProps = {
+type Props = {
     noticeId: string
 }
 
-export default function NoticeDetailPage({noticeId}: NoticeDetailPageProps) {
+export default function NoticeDetailPage(props: Props) {
+    const classes = useStyles()
+    const {noticeId} = props
     const route = useRouter()
+    const [data, setData] = useState<NoticeDetailProps>({
+        title: "",
+        noticeId: noticeId,
+        content: "",
+        date: "",
+    })
 
-    const current = fakeTableListItem[Number(noticeId)]
+    useEffect(() => {
+        setData(FAKE_NOTICE_DATA.filter(it => it.noticeId === noticeId)[0])
+    }, [])
 
     return (
         <Stack>
             <Divider flexItem sx={{borderBottomWidth: 2}} />
             <Stack direction="row" justifyContent="space-between" alignItems="center" py={4} px={6}>
                 <Typography fontSize={22} fontWeight={700}>
-                    {current.title}
+                    {data.title}
                 </Typography>
-                <Typography fontSize={15}>{current.date}</Typography>
+                <Typography fontSize={15}>{data.date}</Typography>
             </Stack>
             <Divider flexItem />
             <Stack pt={4} pb={8} px={6}>
-                <Typography>{current.content}</Typography>
+                <Typography>{}</Typography>
+                <div dangerouslySetInnerHTML={{__html: data.content}} className={classes.htmlContainer} />
             </Stack>
             <Divider flexItem />
             <Button
                 variant="contained"
                 sx={{alignSelf: "center", marginTop: 4, width: 150, height: 50, fontSize: 18, fontWeight: 700}}
                 onClick={() => route.back()}
+                disableElevation
             >
                 목 록
             </Button>
         </Stack>
     )
 }
-
-const fakeTableListItem: NoticeDetailProps[] = [
-    {
-        noticeId: "0",
-        title: "똑똑하고 흥미로운 언어교육, 돛단지 출시!",
-        content: "내용0",
-        date: "2022-04-04",
-    },
-    {
-        noticeId: "1",
-        title: "돛단지 전용 학습기기 A/S 안내",
-        content: "내용1",
-        date: "2022-04-04",
-    },
-    {
-        noticeId: "2",
-        title: "돛단지 전용 학습 단말기 사용 안내",
-        content: "내용2",
-        date: "2022-04-04",
-    },
-]

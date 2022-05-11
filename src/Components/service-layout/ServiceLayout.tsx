@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import {Container, Typography, Stack, Tabs, Tab} from "@mui/material"
 
 import {customerServiceTabs} from "src/lib/customer-service-tabs"
@@ -9,6 +9,7 @@ import Notice from "src/Notice"
 import FAQ from "src/FAQ"
 import Inquiry from "src/Inquiry"
 import NoticeDetailPage from "src/Notice/notice-detail-page/NoticeDetailPage"
+import {FAKE_NOTICE_DATA} from "../fake-data/fake-service"
 
 function tabProps(index: number) {
     return {
@@ -17,14 +18,16 @@ function tabProps(index: number) {
     }
 }
 
-type ServiceLayoutProps = {
+type Props = {
     tab?: number
     children?: React.ReactNode
     noticeId?: string | string[] | undefined
 }
 
-export default function ServiceLayout({tab, children, noticeId}: ServiceLayoutProps) {
+export default function ServiceLayout(props: Props) {
+    const {tab, children, noticeId} = props
     const theme = useTheme()
+    const [noticeData, setNoticeData] = useState()
 
     const tabList = [
         {

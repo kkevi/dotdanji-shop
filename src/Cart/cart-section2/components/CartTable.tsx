@@ -5,7 +5,7 @@ import CartTableItem from "./CartTableItem"
 type Props = {
     cartItemList: CartOptionsType[]
     totalPrice: number
-    deliveryPrice: 0 | 2500
+    deliveryPrice: 0 | 3000
 }
 
 export default function CartTable(props: Props) {

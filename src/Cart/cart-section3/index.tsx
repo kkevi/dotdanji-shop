@@ -26,7 +26,7 @@ export default function CartSection3(props: Props) {
     const [checkList, setCheckList] = useState<Record<string, boolean>>(new Object() as Record<string, boolean>)
     const [totalPrice, setTotalPrice] = useState<number>(0)
     //배송비 - 50,000원이상 무료
-    const deliveryPrice = totalPrice >= 50000 ? 0 : 2500
+    const deliveryPrice = totalPrice >= 50000 ? 0 : 3000
 
     /*
      * 총 금액 계산

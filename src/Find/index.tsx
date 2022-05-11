@@ -23,6 +23,9 @@ export default function Find(props: FindProps) {
             <Typography mt={4} variant="h4" fontWeight={700}>
                 {findEmail ? "이메일 찾기" : "비밀번호 찾기"}
             </Typography>
+            <Typography mt={2} variant="body2" fontWeight={400} color="#888">
+                SNS를 통해 회원가입을 하셨다면, 해당 SNS 서비스를 통해 계정 정보를 찾을 수 있습니다.
+            </Typography>
 
             {findEmail ? <FindEmail /> : <FindPw />}
         </Stack>

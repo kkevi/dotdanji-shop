@@ -20,7 +20,7 @@ const styles = makeStyles((theme: Theme) =>
         slideBox: {},
         infoBox: {
             width: "40%",
-            backdropFilter: "brightness(95%)",
+            backdropFilter: "brightness(105%)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",

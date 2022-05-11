@@ -10,6 +10,7 @@ import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import ShareIcon from "@mui/icons-material/Share"
 import useStore from "store/useStore"
+import {toast} from "react-toastify"
 
 type props = {
     data: GoodsItemProps
@@ -32,6 +33,11 @@ export default function GoodsItem(props: props) {
     //상세페이지 이동
     const onClickRouter = () => {
         route.push({pathname: "/goods/detail", query: {goodsId: goodsId}})
+    }
+
+    //공유하기 버튼 클릭
+    const onClickShare = () => {
+        toast.info("상품 url주소가 복사되었습니다.")
     }
 
     //찜하기 버튼 클릭
@@ -75,7 +81,7 @@ export default function GoodsItem(props: props) {
                     <IconButton size="small" onClick={onClickFavorBtn}>
                         {favorState ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />}
                     </IconButton>
-                    <IconButton size="small">
+                    <IconButton size="small" onClick={onClickShare}>
                         <ShareIcon />
                     </IconButton>
                 </div>

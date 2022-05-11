@@ -8,6 +8,7 @@ import MuiAccordionDetails from "@mui/material/AccordionDetails"
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded"
 import {useTheme} from "@mui/system"
+import {categoryList, CategoryTypeKey} from "src/Inquiry/InquiryDataType"
 
 // 아코디언 메인
 const Accordion = styled((props: AccordionProps) => <MuiAccordion disableGutters elevation={0} square {...props} />)(
@@ -46,6 +47,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({theme}) => ({
 
 type FaqAccordionProps = {
     idx: number
+    category: CategoryTypeKey
     title: string
     content: string
     expanded: string | boolean
@@ -53,8 +55,10 @@ type FaqAccordionProps = {
 }
 
 export default function FaqAccordion(prop: FaqAccordionProps) {
-    const {idx, title, content, expanded, setExpanded} = prop
+    const {idx, category, title, content, expanded, setExpanded} = prop
     const theme = useTheme()
+
+    const categoryName = categoryList[category]
 
     const handleChange = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
         setExpanded(newExpanded ? panel : false)
@@ -70,10 +74,10 @@ export default function FaqAccordion(prop: FaqAccordionProps) {
                 <Typography fontSize={20} fontWeight={700} mr={2} color={theme.palette.primary.main}>
                     Q.
                 </Typography>
-                <Typography fontSize={18}>
-                    {title}
-                    {idx}
+                <Typography fontSize={14} mr={3} color={theme.palette.primary.main} fontWeight={600}>
+                    {categoryName}
                 </Typography>
+                <Typography fontSize={18}>{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
                 <Typography color="#757575">{content}</Typography>

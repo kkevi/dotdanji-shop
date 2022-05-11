@@ -27,12 +27,9 @@ export default function GoodsDetailPage(props: Props) {
 
     //데이터
     const [goodsItemData, setGoodsItemData] = useState<GoodsItemProps>(GOODS_ITEMS_DATA[0])
-    const {name, thumbnails, infoText, options = [], tags} = goodsItemData
+    const {name, sale, price, thumbnails, infoText, options = [], tags} = goodsItemData
     //할인 계산식
-    var resultPrice =
-        goodsItemData.sale > 0
-            ? goodsItemData.price - goodsItemData.price * (goodsItemData.sale / 100)
-            : goodsItemData.price
+    var resultPrice = sale > 0 ? price - price * (sale / 100) : price
 
     //옵션 선택 박스
     const defaultOption = "옵션 선택"
@@ -44,8 +41,8 @@ export default function GoodsDetailPage(props: Props) {
         //전체 금액 표시
         setTotalPrice(
             selectValueList.reduce((acc, cur) => {
-                if (!goodsItemData.options) return acc
-                const optionValue = goodsItemData.options.filter(it => it.optionId === cur.optionId)[0].addPlace
+                if (!options) return acc
+                const optionValue = options.filter(it => it.optionId === cur.optionId)[0].addPlace
                 acc += (optionValue + resultPrice) * cur.count
                 return acc
             }, 0),
@@ -83,47 +80,45 @@ export default function GoodsDetailPage(props: Props) {
         setSelectValue(defaultOption)
     }
 
+    //장바구니 담기 클릭
     const onCickCart = () => {
-        if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
-
-        const newArray: CartItemProps = {
-            goodsId: goodsId,
-            options: selectValueList,
-        }
         if (!userStore.isLoggedIn) {
-            alert("로그인 후 이용이 가능합니다.")
-        } else {
+            return alert("로그인 후 이용이 가능합니다.")
+        } else if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
+
+        try {
             //TODO: 서버 장바구니에 저장 기능 추가
-        }
-        if (confirm("장바구니를 확인하시겠습니까?")) {
-            route.push("/cart")
+            if (confirm("장바구니를 확인하시겠습니까?")) {
+                route.push("/cart")
+            }
+        } catch (e) {
+            console.log("e:", e)
         }
     }
 
+    //바로 구매하기 클릭
     const onClickBuy = async () => {
-        if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
-
         if (!userStore.isLoggedIn) {
-            alert("로그인 후 이용이 가능합니다.")
-        } else {
-            try {
-                const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, idx) => {
-                    const goodsOptionData = goodsItemData.options.filter(it => it.optionId === cur.optionId)[0]
-                    acc.push({
-                        goodsId: goodsId,
-                        count: cur.count,
-                        price: (goodsOptionData.addPlace + resultPrice) * cur.count,
-                        optionId: cur.optionId,
-                        optionName: goodsOptionData.name,
-                        optionAddPlace: goodsOptionData.addPlace,
-                    })
-                    return acc
-                }, [])
-                await goodsStore.setCartItem(data)
-                Router.push({pathname: "/cart", query: {sectionNum: "1"}})
-            } catch (e) {
-                console.log("e:", e)
-            }
+            return alert("로그인 후 이용이 가능합니다.")
+        } else if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
+
+        try {
+            const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, idx) => {
+                const goodsOptionData = options.filter(it => it.optionId === cur.optionId)[0]
+                acc.push({
+                    goodsId: goodsId,
+                    count: cur.count,
+                    price: (goodsOptionData.addPlace + resultPrice) * cur.count,
+                    optionId: cur.optionId,
+                    optionName: goodsOptionData.name,
+                    optionAddPlace: goodsOptionData.addPlace,
+                })
+                return acc
+            }, [])
+            await goodsStore.setCartItem(data)
+            Router.push({pathname: "/cart", query: {sectionNum: "1"}})
+        } catch (e) {
+            console.log("e:", e)
         }
     }
 
@@ -162,7 +157,15 @@ export default function GoodsDetailPage(props: Props) {
                     <Typography fontSize={28} fontWeight={800}>
                         {name}
                     </Typography>
-                    <Typography fontSize={24} fontWeight={800} mt={2}>
+                    <Typography variant="body2" mt={2} sx={{opacity: 0.5}}>
+                        {sale > 0 && (
+                            <>
+                                <span>{sale}% </span>
+                                <span style={{textDecoration: "line-through"}}> {price.toLocaleString()}원</span>
+                            </>
+                        )}
+                    </Typography>
+                    <Typography fontSize={24} fontWeight={800} mt={0}>
                         {resultPrice.toLocaleString()}원
                     </Typography>
                     <Typography fontSize={20} mt={3} mb={8}>
@@ -202,7 +205,7 @@ export default function GoodsDetailPage(props: Props) {
                         <>
                             <Stack mb={3} width="100%">
                                 {selectValueList.map((selected, idx) => {
-                                    const optionData = goodsItemData.options?.filter(
+                                    const optionData = options?.filter(
                                         it => it.optionId === selected.optionId,
                                     )[0] as OptionsType
                                     return (
@@ -238,7 +241,7 @@ export default function GoodsDetailPage(props: Props) {
                             배송예정일
                         </Typography>
                         <Typography fontSize={13} fontWeight={700} color="rgba(0, 0, 0, .4)">
-                            1일 이내 출고
+                            2일 이내 출고
                         </Typography>
                     </Stack>
 
@@ -255,10 +258,10 @@ export default function GoodsDetailPage(props: Props) {
 
                     {/* 구매버튼 */}
                     <Stack className={classes.rootStack}>
-                        <Button variant="contained" sx={{height: 55}} fullWidth onClick={onCickCart}>
+                        <Button variant="contained" sx={{height: 55}} fullWidth onClick={onCickCart} disableElevation>
                             <Typography variant="h6">장바구니 담기</Typography>
                         </Button>
-                        <Button variant="contained" sx={{height: 55}} fullWidth onClick={onClickBuy}>
+                        <Button variant="contained" sx={{height: 55}} fullWidth onClick={onClickBuy} disableElevation>
                             <Typography variant="h6">바로 구매하기</Typography>
                         </Button>
                     </Stack>

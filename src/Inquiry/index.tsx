@@ -49,6 +49,10 @@ export default function Index() {
         setCategory(value)
     }
 
+    const onClickSubmit = () => {
+        alert("죄송합니다. 현재 서비스를 이용하실 수 없습니다.")
+    }
+
     return (
         <Stack>
             <Stack mt={2} flexDirection="column" justifyContent="center" alignItems="center">
@@ -194,8 +198,13 @@ export default function Index() {
                     </Typography>
                 </Stack>
 
-                <Button className={classes.button} sx={{alignSelf: "center"}} variant="outlined" onClick={() => {}}>
-                    제휴제안 보내기
+                <Button
+                    className={classes.button}
+                    sx={{alignSelf: "center"}}
+                    variant="outlined"
+                    onClick={onClickSubmit}
+                >
+                    문의 보내기
                 </Button>
             </Stack>
         </Stack>

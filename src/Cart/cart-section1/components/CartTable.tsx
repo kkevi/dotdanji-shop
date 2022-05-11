@@ -6,7 +6,7 @@ type Props = {
     cartItemList: CartOptionsType[]
     setCartItemList: React.Dispatch<React.SetStateAction<CartOptionsType[]>>
     totalPrice: number
-    deliveryPrice: 0 | 2500
+    deliveryPrice: 0 | 3000
     //check
     checkList: Record<string, boolean>
     setCheckList: React.Dispatch<React.SetStateAction<Record<string, boolean>>>

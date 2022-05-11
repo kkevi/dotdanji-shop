@@ -29,7 +29,7 @@ export default function CartSection1(props: Props) {
     const [checkAll, setCheckAll] = useState(true)
     const [totalPrice, setTotalPrice] = useState<number>(0)
     //배송비 - 50,000원이상 무료
-    const deliveryPrice = totalPrice >= 50000 ? 0 : 2500
+    const deliveryPrice = totalPrice >= 50000 ? 0 : 3000
 
     /*
      * 총 금액 계산
