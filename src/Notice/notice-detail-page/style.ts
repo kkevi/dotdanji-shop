@@ -5,6 +5,16 @@ const styles = makeStyles((theme: Theme) =>
     createStyles({
         htmlContainer: {
             fontWeight: 200,
+            "& h1": {
+                fontSize: "1.3rem",
+                fontWeight: 800,
+                fontFamily: "'yg-jalnan'",
+            },
+            "& h2": {
+                fontSize: "1.1rem",
+                fontWeight: 800,
+                lineHeight: 2.3,
+            },
             "& img": {
                 maxWidth: "100%",
                 margin: "40px 0 ",

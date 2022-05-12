@@ -5,6 +5,7 @@ import {styled} from "@mui/material/styles"
 import CloseIcon from "@mui/icons-material/Close"
 
 import {contents} from "./Terms"
+import useStyles from "src/Notice/notice-detail-page/style"
 
 type TermsDialogProps = {
     id: number
@@ -12,6 +13,7 @@ type TermsDialogProps = {
 }
 
 export default function TermsDialog(prop: TermsDialogProps) {
+    const classes = useStyles()
     const {id, setVisibleDialog} = prop
     const BootstrapDialog = styled(Dialog)(({theme}) => ({
         "& .MuiDialogContent-root": {
@@ -47,7 +49,10 @@ export default function TermsDialog(prop: TermsDialogProps) {
 
                 <DialogContent dividers style={{maxHeight: 700}}>
                     <Typography variant="subtitle2" gutterBottom>
-                        {contents[id - 1].content}
+                        <div
+                            dangerouslySetInnerHTML={{__html: contents[id - 1].content}}
+                            className={classes.htmlContainer}
+                        />
                     </Typography>
                 </DialogContent>
             </BootstrapDialog>

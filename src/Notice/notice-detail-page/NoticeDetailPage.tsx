@@ -5,7 +5,6 @@ import {Stack, Divider, Typography, Button} from "@mui/material"
 import {NoticeDetailProps} from "../notice-type"
 import {FAKE_NOTICE_DATA} from "src/Components/fake-data/fake-service"
 import useStyles from "./style"
-import Link from "next/link"
 
 type Props = {
     noticeId: string
@@ -37,7 +36,6 @@ export default function NoticeDetailPage(props: Props) {
             </Stack>
             <Divider flexItem />
             <Stack pt={4} pb={8} px={6}>
-                <Typography>{}</Typography>
                 <div dangerouslySetInnerHTML={{__html: data.content}} className={classes.htmlContainer} />
             </Stack>
             <Divider flexItem />
