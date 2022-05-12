@@ -1,5 +1,5 @@
 import React from "react"
-import {AppProps} from "next/app"
+import type {AppProps} from "next/app"
 import Head from "next/head"
 
 import {CssBaseline, ThemeProvider} from "@mui/material"
@@ -7,12 +7,9 @@ import "react-toastify/dist/ReactToastify.css"
 import {theme} from "styles/theme"
 import {GlobalStyle} from "styles/global-styles"
 import {ToastContainer} from "react-toastify"
-
 import StoreProvider from "../store/StoreProvider"
 
-function MyApp(props: AppProps) {
-    const {Component, pageProps} = props
-
+function MyApp({Component, pageProps}: AppProps) {
     return (
         <React.Fragment>
             <Head>
