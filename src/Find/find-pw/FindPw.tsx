@@ -1,6 +1,5 @@
 import React, {useState} from "react"
 import {useRouter} from "next/router"
-import {useTheme} from "@mui/system"
 
 import {Button, Stack, Typography} from "@mui/material"
 import useStyles from "../styles"
@@ -15,7 +14,6 @@ type FindPwProps = {}
 export default function FindPw(props: FindPwProps) {
     const {} = props
     const route = useRouter()
-    const theme = useTheme()
     const classes = useStyles()
     const [findStep, setFindStep] = useState<string>("before")
     const [email, setEmail] = useState<string>("")

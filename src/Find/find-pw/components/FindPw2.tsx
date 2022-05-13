@@ -23,6 +23,7 @@ export default function FindPw2(props: FindPw2Props) {
             </Typography>
             <TextField
                 className={classes.textField}
+                type="password"
                 label="새 비밀번호"
                 variant="outlined"
                 fullWidth
@@ -31,6 +32,7 @@ export default function FindPw2(props: FindPw2Props) {
             />
             <TextField
                 className={classes.textField}
+                type="password"
                 label="새 비밀번호 확인"
                 variant="outlined"
                 fullWidth
