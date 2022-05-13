@@ -10,7 +10,7 @@ export default function KidsBTI() {
     return (
         <Stack sx={{backgroundColor: theme.palette.primary.light}}>
             <Container maxWidth="sm" className={classes.container}>
-                <Typography>제목</Typography>
+                <Typography className={classes.contents}>제목</Typography>
             </Container>
         </Stack>
     )

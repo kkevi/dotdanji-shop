@@ -10,8 +10,15 @@ const styles = makeStyles((theme: Theme) =>
             borderRadius: "20px",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: "flex-start",
             alignItems: "center",
+            padding: "130px 15px",
+        },
+
+        contents: {
+            fontSize: 18,
+            fontWeight: 800,
+            marginBottom: 20,
         },
     }),
 )
