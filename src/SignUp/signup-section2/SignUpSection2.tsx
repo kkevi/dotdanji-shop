@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 
 import {Stack, Button, TextField, Typography} from "@mui/material"
 import useStyles from "../styles"
+import {useVerfiyPhone, useVerfiyEmail} from "src/lib/useVerifyData"
 
 type SignUpSection2Prop = {
     email: string
@@ -24,10 +25,9 @@ export default function SignUpSection2(prop: SignUpSection2Prop) {
     // const IMP = window.IMP; // 생략 가능
     // IMP.init("{가맹점 식별코드}"); // 예: imp00000000
 
+    const validEmail = useVerfiyEmail(email)
     const isValidEmail = (email: string) => {
         if (email === "") return setWarningEmail("이메일을 입력해주세요.")
-        const regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
-        const validEmail = regEmail.test(email)
 
         if (!validEmail) return setWarningEmail("올바른 이메일 형식이 아닙니다.")
         if (validEmail) {
@@ -41,10 +41,9 @@ export default function SignUpSection2(prop: SignUpSection2Prop) {
         }
     }
 
+    const validPhone = useVerfiyPhone(phoneNumber)
     const isValidPhone = (phoneNumber: string) => {
         if (phoneNumber === "") return setWarningPhone("휴대폰번호를 입력해주세요.")
-        const regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/
-        const validPhone = regPhone.test(phoneNumber)
 
         if (!validPhone) return setWarningPhone("올바른 휴대폰번호 형식이 아닙니다.")
         if (validPhone) {

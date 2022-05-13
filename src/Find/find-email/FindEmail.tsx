@@ -1,46 +1,60 @@
 import React, {useState} from "react"
-import {Button, Stack, TextField, Typography} from "@mui/material"
+import {useRouter} from "next/router"
+
+import {Button, Stack} from "@mui/material"
 import useStyles from "../styles"
+import {useVerfiyPhone} from "src/lib/useVerifyData"
+
+import FindEmail1 from "./components/FindEmail1"
+import FindEmail2 from "./components/FindEmail2"
 
 type FindEmailProps = {}
 
 export default function FindEmail(props: FindEmailProps) {
     const {} = props
+    const route = useRouter()
     const classes = useStyles()
+    const [fintStep, setFindStep] = useState<string>("before")
     const [phoneNumber, setPhoneNumber] = useState<string>("")
     const [warningPhone, setWarningPhone] = useState<string>("")
     const [validFind, setValidFind] = useState<boolean>(false)
 
+    const validPhone = useVerfiyPhone(phoneNumber)
+
     const onClickCheck = () => {
         if (phoneNumber === "") return setWarningPhone("휴대폰번호를 입력해주세요.")
-        const regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/
-        const validPhone = regPhone.test(phoneNumber)
 
         if (!validPhone) return setWarningPhone("올바른 휴대폰번호 형식이 아닙니다.")
         // TODO : 입력된 휴대폰번호로 가입된 계정이 있는지 먼저 찾기
         // if(phoneNumber){}
         // TODO : 아임포트 본인인증
+
+        setValidFind(true)
     }
+
+    const foundEmail = () => {
+        let email: string = "bora_kim980@naver.com"
+        let subStrEmail: string[] = email.split("@")
+        let showingEmail: string = subStrEmail[0].slice(0, subStrEmail[0].length - 3)
+        let hiddenEmail: string = showingEmail + "***@" + subStrEmail[1]
+
+        return hiddenEmail
+    }
+
+    const email = foundEmail()
 
     return (
         <Stack width="100%">
-            <Stack width="100%" direction="row" mt={6}>
-                <TextField
-                    className={classes.textField}
-                    label="휴대폰번호"
-                    variant="outlined"
-                    fullWidth
-                    value={phoneNumber}
-                    onChange={e => setPhoneNumber(e.target.value)}
+            {fintStep === "before" ? (
+                <FindEmail1
+                    phoneNumber={phoneNumber}
+                    setPhoneNumber={setPhoneNumber}
+                    onClickCheck={onClickCheck}
+                    warningPhone={warningPhone}
                 />
-                <Button className={classes.smallButton} onClick={() => onClickCheck()}>
-                    본인인증
-                </Button>
-            </Stack>
-            <Typography ml={1} mt={1} variant="caption" height={10} color="red">
-                {warningPhone}
-            </Typography>
-
+            ) : (
+                <FindEmail2 email={email} />
+            )}
             <Button
                 sx={{mt: 6, mb: 3}}
                 className={classes.containedButton}
@@ -48,10 +62,12 @@ export default function FindEmail(props: FindEmailProps) {
                 fullWidth
                 disabled={!validFind}
                 onClick={() => {
-                    onClickCheck()
+                    if (fintStep === "before") {
+                        setFindStep("after")
+                    } else route.push("/login")
                 }}
             >
-                다음으로
+                {fintStep === "before" ? "다음으로" : "로그인 하러가기"}
             </Button>
         </Stack>
     )

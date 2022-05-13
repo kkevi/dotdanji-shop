@@ -5,6 +5,8 @@ import CheckRoundedIcon from "@mui/icons-material/CheckRounded"
 import useStyles from "../styles"
 import {theme} from "styles/theme"
 
+import {useVerfiyPw} from "src/lib/useVerifyData"
+
 type SignUpSection2Prop = {
     password: string
     setPassword: (val: string) => void
@@ -18,8 +20,7 @@ export default function SignUpSection3(prop: SignUpSection2Prop) {
     const {password, setPassword, validPassword, setValidPassword, setStep, onSignUp} = prop
     const classes = useStyles()
 
-    const regPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/
-    const validPw = regPw.test(password)
+    const validPw = useVerfiyPw(password)
     const validPwLength = password.length < 21 && password.length > 7
     const correspondPw = password !== "" && password === validPassword
     const validPwAll = validPw && validPwLength && password === validPassword
