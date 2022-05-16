@@ -1,4 +1,4 @@
-import {GoodsItemProps, GoodsCategoryProps} from "src/Goods/goods-type"
+import {GoodsItemProps, GoodsCategoryProps} from "types/goods-type"
 
 export const GOODS_CATEGORY_DATA: GoodsCategoryProps[] = [
     {categoryId: "ebook", title: "E-BOOK"},
@@ -26,7 +26,5 @@ export const GOODS_ITEMS_DATA: GoodsItemProps[] = [
         infoHtml: "",
         price: 99000,
         sale: 10,
-        isFavor: false,
-        isCart: false,
     },
 ]

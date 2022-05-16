@@ -45,7 +45,8 @@
             "src/*": ["src/*"],
             "components/*": ["src/Components/*"],
             "store/*": ["store/*"],
-            "styles/*": ["src/styles/*"]
+            "styles/*": ["src/styles/*"],
+            "types/*": ["types/*"]
         } /* 'baseUrl'를 기준으로 불러올 모듈의 위치를 재지정하는 엔트리 시리즈 */,
         // "rootDirs": [], /* 결합된 컨텐츠가 런타임에서의 프로젝트 구조를 나타내는 루트 폴더들의 목록 */
         // "typeRoots": [], /* 타입 정의를 포함할 폴더 목록, 설정 안 할 시 기본적으로 ./node_modules/@types로 설정 */

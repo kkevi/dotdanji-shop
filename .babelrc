@@ -9,7 +9,8 @@
                     "src": "./src",
                     "components": "./src/Components",
                     "store": "./store",
-                    "styles": "./src/styles"
+                    "styles": "./src/styles",
+                    "types": "./types"
                 }
             }
         ],

@@ -2,18 +2,19 @@ import React, {useEffect, useState} from "react"
 import {Typography, Divider, Stack} from "@mui/material"
 import useStyles from "./style"
 import {useTheme} from "@mui/system"
-import {toast} from "react-toastify"
 
-import {CartFormDefaultData, CartFormProps} from "./components/cart-form-type"
-import {CART_ITEMS_DATA} from "components/fake-data/fake-cart"
-import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
-import {CartItemProps, CartOptionsType, OptionCart} from "src/Cart/cart-type"
 import CartTable from "./components/CartTable"
 import CartForm from "./components/CartForm"
 import CartPayment from "./components/CartPayment"
-import {RequestPayProps, RequestPayResponse} from "./components/payment-type"
-import {GoodsItemProps, OptionsType} from "src/Goods/goods-type"
 import useStore from "store/useStore"
+//fake data
+import {CART_ITEMS_DATA} from "components/fake-data/fake-cart"
+import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
+//types
+import {CartItemProps, CartOptionsType, OptionCart} from "types/cart-type"
+import {CartFormDefaultData, CartFormProps} from "types/cart-type"
+import {RequestPayProps, RequestPayResponse} from "types/payment-type"
+import {GoodsItemProps, OptionsType} from "types/goods-type"
 
 type Props = {
     onChangeNextStep: (index: number) => void

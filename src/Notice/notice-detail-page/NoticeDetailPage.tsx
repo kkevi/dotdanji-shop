@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import {Stack, Divider, Typography, Button} from "@mui/material"
 
-import {NoticeDetailProps} from "../notice-type"
-import {FAKE_NOTICE_DATA} from "src/Components/fake-data/fake-service"
+import {NoticeDetailProps} from "types/service-type"
+import {FAKE_NOTICE_DATA} from "components/fake-data/fake-service"
 import useStyles from "./style"
 
 type Props = {

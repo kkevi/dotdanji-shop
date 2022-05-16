@@ -8,7 +8,7 @@ import MuiAccordionDetails from "@mui/material/AccordionDetails"
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded"
 import {useTheme} from "@mui/system"
-import {categoryList, CategoryTypeKey} from "src/Inquiry/InquiryDataType"
+import {categoryList, CategoryTypeKey} from "types/service-type"
 
 // 아코디언 메인
 const Accordion = styled((props: AccordionProps) => <MuiAccordion disableGutters elevation={0} square {...props} />)(

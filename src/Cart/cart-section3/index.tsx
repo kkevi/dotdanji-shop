@@ -8,7 +8,7 @@ import useStyles from "./style"
 import CartTable from "src/Cart/cart-section2/components/CartTable"
 
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded"
-import {CartOptionsType} from "src/Cart/cart-type"
+import {CartOptionsType} from "types/cart-type"
 
 type Props = {}
 

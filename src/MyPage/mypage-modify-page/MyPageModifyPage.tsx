@@ -6,7 +6,7 @@ import {useTheme} from "@mui/system"
 import useStyles from "../styles"
 import MyPageHeader from "src/MyPage/mypage-header/MyPageHeader"
 import DaumPostModal from "components/daum-post-modal/DaumPostModal"
-import {MyPageModifyFormProps, MyPageModifyFormDefaultData} from "./mypage-modify-type"
+import {MyPageModifyFormDefaultData, MyPageModifyFormProps} from "types/service-type"
 
 export default function MyPageModifyPage() {
     const theme = useTheme()

@@ -11,7 +11,7 @@ import {
 } from "@mui/material"
 import {useEffect, useState} from "react"
 import GoodsItem from "./goods-item/GoodsItem"
-import {GoodsCategoryProps, GoodsItemProps} from "./goods-type"
+import {GoodsCategoryProps, GoodsItemProps} from "types/goods-type"
 //fake data
 import {GOODS_ITEMS_DATA, GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 

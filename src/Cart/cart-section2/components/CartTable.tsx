@@ -1,5 +1,5 @@
 import {Table, TableHead, TableBody, TableRow, TableCell} from "@mui/material"
-import {CartOptionsType} from "src/Cart/cart-type"
+import {CartOptionsType} from "types/cart-type"
 import CartTableItem from "./CartTableItem"
 
 type Props = {

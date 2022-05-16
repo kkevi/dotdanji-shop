@@ -4,7 +4,7 @@ import useStyles from "../style"
 import {useTheme} from "@mui/system"
 
 import TermsDialog from "src/SignUp/signup-section1/TermsDialog"
-import {CartFormProps} from "./cart-form-type"
+import {CartFormProps} from "types/cart-type"
 
 type CartPaymentProps = {
     onClickOrder: () => void

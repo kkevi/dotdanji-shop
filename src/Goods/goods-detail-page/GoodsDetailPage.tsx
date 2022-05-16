@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
 import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
-import {GoodsItemProps, OptionsType} from "src/Goods/goods-type"
+import {GoodsItemProps, OptionsType} from "types/goods-type"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 import Router, {useRouter} from "next/router"
-import {CartItemProps, CartOptionsType, OptionCart} from "src/Cart/cart-type"
+import {CartItemProps, CartOptionsType, OptionCart} from "types/cart-type"
 import GoodsOptions from "./GoodsOptions"
 import ImageBox from "components/image-box/ImageBox"
 import useStore from "store/useStore"

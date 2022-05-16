@@ -1,5 +1,4 @@
-import {FaqDataType} from "src/FAQ"
-import {NoticeDetailProps} from "src/Notice/notice-type"
+import {NoticeDetailProps, FaqDataType} from "types/service-type"
 
 export const FAKE_NOTICE_DATA: NoticeDetailProps[] = [
     {

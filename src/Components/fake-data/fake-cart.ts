@@ -1,4 +1,4 @@
-import {CartItemProps} from "src/Cart/cart-type"
+import {CartItemProps} from "types/cart-type"
 
 export const CART_ITEMS_DATA: CartItemProps[] = [
     {

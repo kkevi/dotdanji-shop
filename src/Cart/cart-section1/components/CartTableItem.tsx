@@ -1,5 +1,5 @@
 import {Checkbox, FormControlLabel, Stack, TableCell, Typography} from "@mui/material"
-import {CartOptionsType} from "src/Cart/cart-type"
+import {CartOptionsType} from "types/cart-type"
 import CountController from "components/count-controller/CountController"
 import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
 import ImageBox from "components/image-box/ImageBox"

@@ -5,15 +5,10 @@ import {Stack, IconButton, InputBase, Divider, ButtonGroup, Button} from "@mui/m
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded"
 import FaqAccordion from "./faq-accordion/FaqAccordion"
 
-import {categoryList, CategoryTypeKey} from "src/Inquiry/InquiryDataType"
+import {categoryList, CategoryTypeKey} from "types/service-type"
 import PaginationBox from "components/pagination-box/PaginationBox"
 import {FAKE_FAQ_DATA} from "src/Components/fake-data/fake-service"
-
-export type FaqDataType = {
-    category: CategoryTypeKey
-    title: string
-    content: string
-}
+import {FaqDataType} from "types/service-type"
 
 export default function Index() {
     const theme = useTheme()

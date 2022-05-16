@@ -1,7 +1,7 @@
 import {useCallback, useState} from "react"
 import {useRouter} from "next/router"
 import useStyles from "./styles"
-import {GoodsItemProps} from "../goods-type"
+import {GoodsItemProps} from "types/goods-type"
 //component
 import {IconButton, Typography, ButtonBase} from "@mui/material"
 import ImageBox from "components/image-box/ImageBox"
@@ -17,13 +17,13 @@ type props = {
 }
 
 export default function GoodsItem(props: props) {
-    const {goodsId, categoryId, thumbnails, name, price, sale, isFavor, isCart} = props.data
+    const {goodsId, categoryId, thumbnails, name, price, sale} = props.data
     const classes = useStyles()
     const route = useRouter()
     const {userStore} = useStore()
     //state
-    const [favorState, setFavorState] = useState(isFavor)
-    const [cartState, setCartState] = useState(isCart)
+    const [favorState, setFavorState] = useState(false)
+    const [cartState, setCartState] = useState(false)
     const [disabled, setDisabled] = useState(false)
     const [loading, setLoading] = useState(false)
 
@@ -45,7 +45,7 @@ export default function GoodsItem(props: props) {
         if (!userStore.isLoggedIn) {
             return alert("로그인 후 이용이 가능합니다.")
         }
-        doFavor(goodsId, isFavor)
+        doFavor(goodsId, false)
         setFavorState(it => !it)
     }
 

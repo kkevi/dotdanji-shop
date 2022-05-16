@@ -1,10 +1,16 @@
-//상품 카테고리
+/*
+ * 상품 카테고리
+ *
+ */
 export interface GoodsCategoryProps {
     categoryId: string
     title: string
 }
 
-//상품 데이터
+/*
+ * 상품 정보
+ *
+ */
 export interface GoodsItemProps {
     goodsId: string //필수
     categoryId: string //필수
@@ -16,8 +22,6 @@ export interface GoodsItemProps {
     infoHtml: string
     price: number
     sale: number
-    isFavor: boolean
-    isCart: boolean
 }
 
 export type Thumbnail = {

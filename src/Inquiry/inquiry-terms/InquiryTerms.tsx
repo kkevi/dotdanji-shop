@@ -1,7 +1,7 @@
 import React from "react"
 import {Typography, Stack, Divider, FormControlLabel, Checkbox} from "@mui/material"
 
-import {InquiryFormProps} from "../InquiryDataType"
+import {InquiryFormProps} from "types/service-type"
 
 type InquiryTermsProps = {
     formData: InquiryFormProps

@@ -1,9 +1,9 @@
 import React, {useState, useRef} from "react"
 import {Stack, Typography, TextField, Button, Select, MenuItem, SelectChangeEvent} from "@mui/material"
-
 import {useTheme} from "@mui/system"
+
 import useStyles from "./styles"
-import {InquiryFormProps, inquiryFormDefaultData, categoryList} from "./InquiryDataType"
+import {InquiryFormProps, categoryList, inquiryFormDefaultData} from "types/service-type"
 import InquiryTerms from "./inquiry-terms/InquiryTerms"
 import {toast} from "react-toastify"
 

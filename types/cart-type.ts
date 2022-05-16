@@ -1,5 +1,36 @@
+/*
+ * 장바구니 저장되어 있는 데이터
+ *
+ */
+export interface CartItemProps {
+    goodsId: string
+    options: OptionCart[]
+}
+
+export type OptionCart = {
+    optionId: string
+    count: number
+}
+
+/*
+ * 장바구니 표시하는 데이터
+ *
+ */
+export type CartOptionsType = {
+    goodsId: string
+    optionId: string
+    count: number
+    price: number
+    optionName: string
+    optionAddPlace: number
+}
+
+/*
+ * 주문 form type
+ *
+ */
+
 export type CartFormProps = {
-    // 문의자 정보
     name: string //이름*
     postCode: string //우편번호*
     address: string //기본주소*

@@ -1,4 +1,4 @@
-import {CartOptionsType} from "src/Cart/cart-type"
+import {CartOptionsType} from "types/cart-type"
 import {action, computed, makeObservable, observable} from "mobx"
 
 export default class GoodsStore {
