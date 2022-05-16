@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import {Stack} from "@mui/material"
 
-import {customerServiceTabs} from "src/lib/customer-service-tabs"
+import {customerServiceTabs} from "lib/customer-service-tabs"
 import MainLayout from "src/Components/main-layout/MainLayout"
 import ServiceLayout from "src/Components/service-layout/ServiceLayout"
 

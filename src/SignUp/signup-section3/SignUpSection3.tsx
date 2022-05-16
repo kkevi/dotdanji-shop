@@ -1,11 +1,14 @@
-import React from "react"
+import React, {useState} from "react"
 
-import {Stack, Button, TextField, Typography} from "@mui/material"
+import {Stack, Button, TextField, Typography, InputAdornment, IconButton} from "@mui/material"
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded"
 import useStyles from "../styles"
 import {theme} from "styles/theme"
 
-import {useVerfiyPw} from "src/lib/useVerifyData"
+import {useVerfiyPw} from "lib/useVerifyData"
+
+import Visibility from "@mui/icons-material/Visibility"
+import VisibilityOff from "@mui/icons-material/VisibilityOff"
 
 type SignUpSection2Prop = {
     password: string
@@ -20,6 +23,9 @@ export default function SignUpSection3(prop: SignUpSection2Prop) {
     const {password, setPassword, validPassword, setValidPassword, setStep, onSignUp} = prop
     const classes = useStyles()
 
+    const [visibility, setVisibility] = useState<boolean>(false)
+    const [visibility2, setVisibility2] = useState<boolean>(false)
+
     const validPw = useVerfiyPw(password)
     const validPwLength = password.length < 21 && password.length > 7
     const correspondPw = password !== "" && password === validPassword
@@ -30,12 +36,25 @@ export default function SignUpSection3(prop: SignUpSection2Prop) {
             <TextField
                 sx={{mt: 6}}
                 className={classes.textField}
-                type="password"
+                type={visibility ? "text" : "password"}
                 label="비밀번호"
                 variant="outlined"
                 fullWidth
                 value={password}
                 onChange={e => setPassword(e.target.value)}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={() => setVisibility(!visibility)}
+                                edge="end"
+                            >
+                                {visibility ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
             />
             <Stack ml={1} mt={1} height={10} direction="row">
                 <CheckRoundedIcon
@@ -59,12 +78,25 @@ export default function SignUpSection3(prop: SignUpSection2Prop) {
             <TextField
                 sx={{mt: 4}}
                 className={classes.textField}
-                type="password"
+                type={visibility2 ? "text" : "password"}
                 label="비밀번호 확인"
                 variant="outlined"
                 fullWidth
                 value={validPassword}
                 onChange={e => setValidPassword(e.target.value)}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle password visibility2"
+                                onClick={() => setVisibility2(!visibility2)}
+                                edge="end"
+                            >
+                                {visibility2 ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
             />
             <Stack ml={1} mt={1} height={10} direction="row">
                 <CheckRoundedIcon

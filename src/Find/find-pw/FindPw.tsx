@@ -4,7 +4,7 @@ import {useRouter} from "next/router"
 import {Button, Stack, Typography} from "@mui/material"
 import useStyles from "../styles"
 
-import {useVerfiyPhone, useVerfiyEmail, useVerfiyPw} from "src/lib/useVerifyData"
+import {useVerfiyPhone, useVerfiyEmail, useVerfiyPw} from "lib/useVerifyData"
 
 import FindPw1 from "./components/FindPw1"
 import FindPw2 from "./components/FindPw2"

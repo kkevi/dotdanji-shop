@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 
 import {Stack, Button, TextField, Typography} from "@mui/material"
 import useStyles from "../styles"
-import {useVerfiyPhone, useVerfiyEmail} from "src/lib/useVerifyData"
+import {useVerfiyPhone, useVerfiyEmail} from "lib/useVerifyData"
 
 type SignUpSection2Prop = {
     email: string

@@ -3,7 +3,7 @@ import {useRouter} from "next/router"
 
 import {Button, Stack} from "@mui/material"
 import useStyles from "../styles"
-import {useVerfiyPhone} from "src/lib/useVerifyData"
+import {useVerfiyPhone} from "lib/useVerifyData"
 
 import FindEmail1 from "./components/FindEmail1"
 import FindEmail2 from "./components/FindEmail2"

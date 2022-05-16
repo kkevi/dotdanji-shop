@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import Router, {useRouter} from "next/router"
-import {Button, Stack, TextField, Typography, Divider, Link} from "@mui/material"
+import {Button, Stack, TextField, Typography, Divider, InputAdornment, IconButton} from "@mui/material"
 
 import useStyles from "./styles"
 import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js"
@@ -9,6 +9,9 @@ import {userEmailCheck, userPasswordCheck} from "./validation-check"
 import UserPool, {KAKAO_AUTH_URL} from "./UserPool"
 import useStore from "store/useStore"
 
+import Visibility from "@mui/icons-material/Visibility"
+import VisibilityOff from "@mui/icons-material/VisibilityOff"
+
 export default function Login() {
     const classes = useStyles()
     const route = useRouter()
@@ -16,6 +19,7 @@ export default function Login() {
 
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
+    const [visibility, setVisibility] = useState<boolean>(false)
     const [loading, setLoading] = useState(false)
 
     //error
@@ -96,7 +100,6 @@ export default function Login() {
 
     return (
         <Stack justifyContent="center" alignItems="flex-start" width="100%" maxWidth={400} height={"100%"}>
-            {/* <img src="/images/logo_new3.png" style={{height: 35}} /> */}
             <Typography mt={4} variant="h4" fontWeight={700}>
                 다시 만나서 반가워요!
             </Typography>
@@ -115,13 +118,27 @@ export default function Login() {
             <TextField
                 className={classes.textField}
                 sx={{mt: 2}}
-                type="password"
+                type={visibility ? "text" : "password"}
                 label="비밀번호"
                 value={password}
-                onChange={onChangePasswordInput}
                 variant="outlined"
+                onChange={onChangePasswordInput}
                 fullWidth
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={() => setVisibility(!visibility)}
+                                edge="end"
+                            >
+                                {visibility ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
             />
+
             <Button
                 sx={{mt: 3, mb: 3}}
                 className={classes.containedButton}
