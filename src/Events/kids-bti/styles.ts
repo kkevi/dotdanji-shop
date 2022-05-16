@@ -11,7 +11,6 @@ const styles = makeStyles((theme: Theme) =>
             justifyContent: "center",
             alignItems: "center",
             padding: "130px 15px",
-            // backgroundColor: "#f0f0f0",
         },
 
         title: {
@@ -60,6 +59,19 @@ const styles = makeStyles((theme: Theme) =>
                 backgroundColor: theme.palette.primary.light,
                 color: theme.palette.primary.dark,
                 fontWeight: 700,
+            },
+        },
+
+        resultContainer: {
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+            borderRadius: 20,
+            backgroundColor: "rgba(208, 235, 245, 0.5)",
+
+            ".result": {
+                fontSize: 40,
             },
         },
     }),

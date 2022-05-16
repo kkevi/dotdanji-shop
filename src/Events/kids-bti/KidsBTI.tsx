@@ -4,7 +4,7 @@ import useStyles from "./styles"
 
 import {Container} from "@mui/material"
 
-import InitialStep from "./components/initialStep"
+import InitialStep from "./components/InitialStep"
 import Steps from "./components/Steps"
 import ResultStep from "./components/ResultStep"
 
