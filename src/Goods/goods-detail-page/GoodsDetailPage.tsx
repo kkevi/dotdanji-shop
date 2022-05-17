@@ -10,10 +10,12 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 import Router, {useRouter} from "next/router"
-import {CartItemProps, CartOptionsType, OptionCart} from "types/cart-type"
+import {CartOptionsType, OptionCart} from "types/cart-type"
 import GoodsOptions from "./GoodsOptions"
 import ImageBox from "components/image-box/ImageBox"
 import useStore from "store/useStore"
+
+import StorySelfIntroSection from "./StorySelfIntroSection"
 
 type Props = {
     goodsId: string
@@ -27,7 +29,7 @@ export default function GoodsDetailPage(props: Props) {
 
     //데이터
     const [goodsItemData, setGoodsItemData] = useState<GoodsItemProps>(GOODS_ITEMS_DATA[0])
-    const {name, sale, price, thumbnails, infoText, options = [], tags} = goodsItemData
+    const {name, sale, price, thumbnails, infoText, options = [], tags, categoryId} = goodsItemData
     //할인 계산식
     var resultPrice = sale > 0 ? price - price * (sale / 100) : price
 
@@ -134,7 +136,7 @@ export default function GoodsDetailPage(props: Props) {
                                 key={"thumbnail" + idx}
                                 width="100%"
                                 className={classes.slideBox}
-                                height={1000}
+                                height={1050}
                                 justifyContent="center"
                                 alignItems="center"
                                 display="flex !important"
@@ -267,6 +269,8 @@ export default function GoodsDetailPage(props: Props) {
                     </Stack>
                 </div>
             </Stack>
+
+            {categoryId === "ebook" && <StorySelfIntroSection />}
         </div>
     )
 }
