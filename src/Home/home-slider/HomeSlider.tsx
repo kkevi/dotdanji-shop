@@ -15,6 +15,7 @@ type HomeSliderProps = {
     subTitle: string
     image: string
     url: string
+    mobile?: boolean
 }
 
 const useStyles = makeStyles({
@@ -35,15 +36,15 @@ const useStyles = makeStyles({
 })
 
 export default function HomeSlider(props: HomeSliderProps) {
-    const {id, title, subTitle, image, url} = props
+    const {id, title, subTitle, image, url, mobile} = props
     const classes = useStyles()
     const route = useRouter()
 
     return (
         <div style={{position: "relative"}}>
-            <Container maxWidth="lg">
-                <Stack position="absolute" top="40%" zIndex={10} fontWeight={800} color="white">
-                    <Typography variant="h3" className="pointFont">
+            <Container maxWidth={mobile ? "sm" : "lg"}>
+                <Stack position="absolute" top="40%" zIndex={10} px={mobile ? 2 : 0} fontWeight={800} color="white">
+                    <Typography variant={mobile ? "h4" : "h3"} className="pointFont">
                         {title}
                     </Typography>
                     <Typography variant="h5" mt={2}>
@@ -52,7 +53,14 @@ export default function HomeSlider(props: HomeSliderProps) {
 
                     <Button
                         variant="outlined"
-                        className={classes.button}
+                        style={{
+                            marginTop: 60,
+                            width: mobile ? 150 : 200,
+                            height: mobile ? 40 : 50,
+                            fontSize: mobile ? 14 : 18,
+                            color: "white",
+                            border: `${mobile ? 1 : 2}px solid white`,
+                        }}
                         onClick={() => {
                             route.push("/")
                         }}
@@ -61,7 +69,7 @@ export default function HomeSlider(props: HomeSliderProps) {
                     </Button>
                 </Stack>
             </Container>
-            <ImageBox height={720} src={image} brightness={0.7} />
+            <ImageBox height={mobile ? 700 : 720} src={image} brightness={0.7} />
         </div>
     )
 }

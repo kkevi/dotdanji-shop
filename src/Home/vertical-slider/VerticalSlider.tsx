@@ -17,27 +17,28 @@ type VerticalSliderProps = {
     caption: string
     image: string
     url: string
+    mobile?: boolean
 }
 
 export default function VerticalSlider(props: VerticalSliderProps) {
-    const {eventId, title, startDate, endDate, caption, image, url} = props
+    const {eventId, title, startDate, endDate, caption, image, url, mobile} = props
     const theme = useTheme()
 
     return (
         <Stack>
             <Stack
-                sx={{height: 350, backgroundColor: "#fff", padding: 3}}
+                sx={{height: mobile ? 260 : 350, backgroundColor: "#fff", padding: 3}}
                 justifyContent="space-between"
                 alignItems="flex-start"
             >
                 <Stack>
-                    <Typography className="pointFont" my={2} fontWeight={800} fontSize={20}>
+                    <Typography className="pointFont" mt={2} fontWeight={800} fontSize={20}>
                         {title}
                     </Typography>
-                    <Typography fontWeight={800} fontSize={14} color="#bbb">
+                    <Typography mt={mobile ? 1 : 2} fontWeight={800} fontSize={mobile ? 12 : 14} color="#bbb">
                         {startDate} - {endDate}
                     </Typography>
-                    <Typography mt={4} fontWeight={300} fontSize={15} color="#777">
+                    <Typography mt={mobile ? 2 : 4} fontWeight={300} fontSize={mobile ? 14 : 15} color="#777">
                         {caption}
                     </Typography>
                 </Stack>
@@ -46,8 +47,8 @@ export default function VerticalSlider(props: VerticalSliderProps) {
                     확인하기
                 </Button>
             </Stack>
-            <div style={{height: 300, backgroundColor: "pink"}}>
-                <ImageBox height={300} src={image} />
+            <div style={{height: mobile ? 200 : 300, backgroundColor: "pink"}}>
+                <ImageBox height={mobile ? 200 : 300} src={image} />
             </div>
         </Stack>
     )

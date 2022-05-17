@@ -16,8 +16,7 @@ export const sliderSettings = {
         {
             breakpoint: 960, //화면 사이즈 960px
             settings: {
-                //화면사이즈에 맞춰 옵션변경
-                slidesToShow: 3,
+                slidesToShow: 1, //화면사이즈에 맞춰 옵션변경
             },
         },
         //…추가가능
