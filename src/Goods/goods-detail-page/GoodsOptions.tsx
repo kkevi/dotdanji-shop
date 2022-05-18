@@ -16,11 +16,13 @@ type Props = {
     selectValueList: OptionCart[]
     onDeleteOption: (val: string) => void
     setSelectValueList: React.Dispatch<React.SetStateAction<OptionCart[]>>
+    mobile?: boolean
 }
 
 export default function GoodsOptions(props: Props) {
     const classes = useStyles()
-    const {idx, optionName, optionId, count, optionPrice, selectValueList, onDeleteOption, setSelectValueList} = props
+    const {idx, optionName, optionId, count, optionPrice, selectValueList, onDeleteOption, setSelectValueList, mobile} =
+        props
     const [optionPriceTotal, setOptionPriceTotal] = useState<number>(optionPrice)
 
     useEffect(() => {
@@ -41,9 +43,9 @@ export default function GoodsOptions(props: Props) {
             <Stack className={classes.rootStack}>
                 {/* 선택상품 */}
                 <Stack direction="column">
-                    <Typography fontSize={14}>{optionName}</Typography>
+                    <Typography fontSize={mobile ? 12 : 14}>{optionName}</Typography>
                     <Typography mt={0.5} fontSize={18} fontWeight={700}>
-                        {optionPriceTotal.toLocaleString("ko")}원
+                        {optionPriceTotal.toLocaleString("ko")} 원
                     </Typography>
                 </Stack>
 

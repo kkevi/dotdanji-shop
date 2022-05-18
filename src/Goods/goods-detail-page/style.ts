@@ -11,11 +11,33 @@ const styles = makeStyles((theme: Theme) =>
                 bottom: "2rem",
             },
         },
+        rootMobile: {
+            position: "relative",
+            width: "100%",
+            marginTop: 78,
+            padding: theme.spacing(2),
+            paddingTop: 0,
+
+            "& .slick-dots": {
+                bottom: "2rem",
+            },
+        },
         rootStack: {
             width: "100%",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
+        },
+        mobileButton: {
+            height: 45,
+            background: "#fff",
+            color: "#222",
+            fontSize: 14,
+            "&:last-child": {
+                marginLeft: "1rem",
+                background: "#222",
+                color: "#fff",
+            },
         },
         slideBox: {},
         infoBox: {
