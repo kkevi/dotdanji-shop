@@ -49,15 +49,9 @@ export default function BestSellerMobile() {
     ]
 
     return (
-        <Container maxWidth="sm" sx={{mt: 4, mb: 30}}>
+        <Container maxWidth="sm" sx={{mt: 4}}>
             <Stack bgcolor="#fff" borderRadius="20px" p={2} py={4}>
-                <Typography
-                    className="pointFont"
-                    color={theme.palette.primary.dark}
-                    variant="h5"
-                    fontWeight={800}
-                    mt={2}
-                >
+                <Typography className="pointFont" color={theme.palette.primary.dark} variant="h5" mt={2}>
                     #이 달의 인기 상품
                 </Typography>
                 <Typography color={theme.palette.primary.dark} variant="body1" fontWeight={300}>

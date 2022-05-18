@@ -12,7 +12,6 @@ export const sliderSettings = {
     draggable: true, //드래그 가능 여부
     vertical: false, // 세로 방향 슬라이드 옵션
     responsive: [
-        // 반응형 웹 구현 옵션
         {
             breakpoint: 960, //화면 사이즈 960px
             settings: {

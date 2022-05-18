@@ -5,15 +5,14 @@ import {Container, Typography, Stack} from "@mui/material"
 import HomeSlider from "./home-slider/HomeSlider"
 import HomeVideo from "./home-video/HomeVideo"
 import VerticalSlider from "./vertical-slider/VerticalSlider"
-import NewArrival from "./new-arrival/NewArrival"
+import NewArrivalMobile from "./new-arrival/NewArrivalMobile"
 import BestSellerMobile from "./best-seller/BestSellerMobile"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import {sliderSettings} from "./sliderSetting"
 import {useTheme} from "@mui/system"
-import ImageBox from "components/image-box/ImageBox"
-import {fakeHomeSliderData, fakeVerticalData} from "components/fake-data/fake-event"
+import {fakeHomeSliderData, fakeVerticalData, fakeNewArrivalData} from "components/fake-data/fake-event"
 
 export default function HomeMobile() {
     const theme = useTheme()
@@ -71,26 +70,24 @@ export default function HomeMobile() {
             <BestSellerMobile />
 
             {/* 신상품 */}
-            {/* <NewArrival /> */}
-
-            {/* <div
-                style={{
-                    width: "100%",
-                    maxHeight: 150,
-                    backgroundColor: "#E6E7EB",
-                    padding: "50px 0",
+            <Typography
+                color={theme.palette.primary.dark}
+                className="pointFont"
+                variant="h5"
+                sx={{
+                    mt: 4,
+                    mb: 2,
+                    ml: 4,
+                    alignSelf: "flex-start",
                 }}
             >
-                <Container maxWidth="sm">
-                    <Stack direction="row" justifyContent="space-around" alignItems="center">
-                        <ImageBox src="/images/logo2.png" height={40} width={150} />
-                        <ImageBox src="/images/logo2.png" height={40} width={150} />
-                        <ImageBox src="/images/logo2.png" height={40} width={150} />
-                        <ImageBox src="/images/logo2.png" height={40} width={150} />
-                        <ImageBox src="/images/logo2.png" height={40} width={150} />
-                    </Stack>
-                </Container>
-            </div> */}
+                #최근 출시한 신작소개
+            </Typography>
+            <Slider {...sliderSettings}>
+                {fakeNewArrivalData.map((itm, idx) => {
+                    return <NewArrivalMobile idx={idx} id={itm.id} title={itm.title} image={itm.image} />
+                })}
+            </Slider>
         </div>
     )
 }
