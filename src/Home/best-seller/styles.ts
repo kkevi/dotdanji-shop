@@ -33,10 +33,18 @@ const styles = makeStyles((theme: Theme) =>
             fontSize: 18,
             color: "white",
         },
+        titleMobile: {
+            fontSize: 14,
+            color: "#777777",
+        },
         price: {
             fontSize: 15,
             fontWeight: 700,
             color: "white",
+        },
+        priceMobile: {
+            fontSize: 12,
+            color: "#777777",
         },
     }),
 )

@@ -6,7 +6,7 @@ import HomeSlider from "./home-slider/HomeSlider"
 import HomeVideo from "./home-video/HomeVideo"
 import VerticalSlider from "./vertical-slider/VerticalSlider"
 import NewArrival from "./new-arrival/NewArrival"
-import BestSeller from "./best-seller/BestSeller"
+import BestSellerMobile from "./best-seller/BestSellerMobile"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -19,7 +19,7 @@ export default function HomeMobile() {
     const theme = useTheme()
 
     return (
-        <div style={{background: "#F4F5F7"}}>
+        <div>
             {/* 메인 슬라이더 */}
             <Slider {...sliderSettings}>
                 {fakeHomeSliderData.map((itm, idx) => (
@@ -45,6 +45,7 @@ export default function HomeMobile() {
                             height: 450,
                             borderRadius: 20,
                             overflow: "hidden",
+                            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.2)",
                         }}
                     >
                         <Slider {...sliderSettings}>
@@ -67,7 +68,7 @@ export default function HomeMobile() {
             </Stack>
 
             {/* 베스트 셀러 */}
-            {/* <BestSeller /> */}
+            <BestSellerMobile />
 
             {/* 신상품 */}
             {/* <NewArrival /> */}

@@ -43,18 +43,25 @@ export default function HomeSlider(props: HomeSliderProps) {
     return (
         <div style={{position: "relative"}}>
             <Container maxWidth={mobile ? "sm" : "lg"}>
-                <Stack position="absolute" top="40%" zIndex={10} px={mobile ? 2 : 0} fontWeight={800} color="white">
-                    <Typography variant={mobile ? "h4" : "h3"} className="pointFont">
+                <Stack
+                    position="absolute"
+                    top={mobile ? "48%" : "40%"}
+                    zIndex={10}
+                    px={mobile ? 2 : 0}
+                    fontWeight={800}
+                    color="white"
+                >
+                    <Typography variant={mobile ? "h5" : "h3"} className="pointFont">
                         {title}
                     </Typography>
-                    <Typography variant="h5" mt={2}>
+                    <Typography variant={mobile ? "body1" : "h5"} mt={2}>
                         {subTitle}
                     </Typography>
 
                     <Button
                         variant="outlined"
                         style={{
-                            marginTop: 60,
+                            marginTop: mobile ? 30 : 60,
                             width: mobile ? 150 : 200,
                             height: mobile ? 40 : 50,
                             fontSize: mobile ? 14 : 18,

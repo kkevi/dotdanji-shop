@@ -25,9 +25,13 @@ export default function VerticalSlider(props: VerticalSliderProps) {
     const theme = useTheme()
 
     return (
-        <Stack>
+        <>
             <Stack
-                sx={{height: mobile ? 260 : 350, backgroundColor: "#fff", padding: 3}}
+                sx={{
+                    height: mobile ? 260 : 350,
+                    backgroundColor: "#fff",
+                    padding: 3,
+                }}
                 justifyContent="space-between"
                 alignItems="flex-start"
             >
@@ -50,6 +54,6 @@ export default function VerticalSlider(props: VerticalSliderProps) {
             <div style={{height: mobile ? 200 : 300, backgroundColor: "pink"}}>
                 <ImageBox height={mobile ? 200 : 300} src={image} />
             </div>
-        </Stack>
+        </>
     )
 }
