@@ -1,5 +1,5 @@
 import React from "react"
-import {Container, Typography, Stack, Tabs, Tab, useMediaQuery} from "@mui/material"
+import {Container, Typography, Stack, Tabs, Tab} from "@mui/material"
 
 import {customerServiceTabs} from "lib/customer-service-tabs"
 import {useTheme} from "@mui/system"
@@ -23,10 +23,9 @@ type Props = {
     noticeId?: string | string[] | undefined
 }
 
-export default function ServiceLayout(props: Props) {
+export default function ServiceLayoutMobile(props: Props) {
     const {tab, children, noticeId} = props
     const theme = useTheme()
-    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
 
     const tabList = [
         {
@@ -59,45 +58,38 @@ export default function ServiceLayout(props: Props) {
     }
 
     return (
-        <Stack py={13.5}>
+        <Container maxWidth="sm" sx={{mt: 9.9, p: 0}}>
             <Stack
                 justifyContent="center"
                 alignItems="center"
-                height={300}
+                height={200}
                 sx={{backgroundColor: tabList[tab ? tab : 0].color}}
             >
-                <Typography className="pointFont" fontSize={32} color="white">
+                <Typography className="pointFont" fontSize={24} color="white">
                     {tabList[tab ? tab : 0].phrase}
                 </Typography>
-                <Typography className="pointFont" mt={1} fontSize={18} color={theme.palette.secondary.light}>
+                <Typography className="pointFont" fontSize={18} color={theme.palette.secondary.light}>
                     {tabList[tab ? tab : 0].title}
                 </Typography>
             </Stack>
             <Stack>
-                <Container maxWidth="lg">
-                    <Tabs
-                        sx={{marginBottom: 8}}
-                        centered
-                        value={tab}
-                        onChange={(event, value) => handleTabChange(value)}
-                    >
-                        {Object.values(customerServiceTabs).map((tabName, idx) => (
-                            <Tab
-                                key={"customer-service" + idx}
-                                sx={{padding: 3}}
-                                label={<Typography fontSize={18}>{tabName}</Typography>}
-                                value={idx}
-                                {...tabProps(idx)}
-                            />
-                        ))}
-                    </Tabs>
+                <Tabs sx={{marginBottom: 6}} centered value={tab} onChange={(event, value) => handleTabChange(value)}>
+                    {Object.values(customerServiceTabs).map((tabName, idx) => (
+                        <Tab
+                            key={"customer-service" + idx}
+                            sx={{padding: 1.5}}
+                            label={<Typography>{tabName}</Typography>}
+                            value={idx}
+                            {...tabProps(idx)}
+                        />
+                    ))}
+                </Tabs>
 
-                    {tab === 0 && (noticeId ? <NoticeDetailPage noticeId={noticeId as string} /> : <Notice />)}
-                    {tab === 1 && <FAQ />}
-                    {tab === 2 && <Inquiry />}
-                    <Stack py={8}>{children}</Stack>
-                </Container>
+                {tab === 0 && (noticeId ? <NoticeDetailPage noticeId={noticeId as string} /> : <Notice />)}
+                {tab === 1 && <FAQ />}
+                {tab === 2 && <Inquiry />}
+                <Stack py={8}>{children}</Stack>
             </Stack>
-        </Stack>
+        </Container>
     )
 }

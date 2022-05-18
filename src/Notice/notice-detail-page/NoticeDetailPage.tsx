@@ -1,19 +1,24 @@
 import React, {useEffect, useState} from "react"
 import {useRouter} from "next/router"
-import {Stack, Divider, Typography, Button} from "@mui/material"
+import {Stack, Divider, Typography, Button, useMediaQuery} from "@mui/material"
+import {useTheme} from "@mui/system"
 
+import useStyles from "./style"
 import {NoticeDetailProps} from "types/service-type"
 import {FAKE_NOTICE_DATA} from "components/fake-data/fake-service"
-import useStyles from "./style"
+import NoticeDetailWeb from "./NoticeDetailWeb"
+import NoticeDetailMobile from "./NoticeDetailMobile"
 
 type Props = {
     noticeId: string
 }
 
 export default function NoticeDetailPage(props: Props) {
-    const classes = useStyles()
     const {noticeId} = props
+    const classes = useStyles()
     const route = useRouter()
+    const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const [data, setData] = useState<NoticeDetailProps>({
         title: "",
         noticeId: noticeId,
@@ -23,30 +28,8 @@ export default function NoticeDetailPage(props: Props) {
 
     useEffect(() => {
         setData(FAKE_NOTICE_DATA.filter(it => it.noticeId === noticeId)[0])
+        console.log("data", data)
     }, [])
 
-    return (
-        <Stack>
-            <Divider flexItem sx={{borderBottomWidth: 2}} />
-            <Stack direction="row" justifyContent="space-between" alignItems="center" py={4} px={6}>
-                <Typography fontSize={22} fontWeight={700}>
-                    {data.title}
-                </Typography>
-                <Typography fontSize={15}>{data.date}</Typography>
-            </Stack>
-            <Divider flexItem />
-            <Stack pt={4} pb={8} px={6}>
-                <div dangerouslySetInnerHTML={{__html: data.content}} className={classes.htmlContainer} />
-            </Stack>
-            <Divider flexItem />
-            <Button
-                variant="contained"
-                sx={{alignSelf: "center", marginTop: 4, width: 150, height: 50, fontSize: 18, fontWeight: 700}}
-                onClick={() => route.back()}
-                disableElevation
-            >
-                목 록
-            </Button>
-        </Stack>
-    )
+    return <>{mobile ? <NoticeDetailMobile data={data} /> : <NoticeDetailWeb data={data} />}</>
 }

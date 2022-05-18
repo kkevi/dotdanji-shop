@@ -4,7 +4,6 @@ import {SelectChangeEvent, useMediaQuery} from "@mui/material"
 //components
 import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
 import {GoodsItemProps} from "types/goods-type"
-import useStyles from "./style"
 
 import Router, {useRouter} from "next/router"
 import {CartOptionsType, OptionCart} from "types/cart-type"
@@ -21,13 +20,12 @@ export default function GoodsDetailPage(props: Props) {
     const {goodsId} = props
     const route = useRouter()
     const theme = useTheme()
-    const classes = useStyles()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const {userStore, goodsStore} = useStore()
 
     //데이터
     const [goodsItemData, setGoodsItemData] = useState<GoodsItemProps>(GOODS_ITEMS_DATA[0])
-    const {name, sale, price, thumbnails, infoText, options = [], tags, categoryId} = goodsItemData
+    const {sale, price, options = []} = goodsItemData
     //할인 계산식
     var resultPrice = sale > 0 ? price - price * (sale / 100) : price
 
@@ -151,14 +149,4 @@ export default function GoodsDetailPage(props: Props) {
             )}
         </>
     )
-}
-
-const sliderSettings = {
-    dots: true,
-    dotsClass: "slick-dots",
-    arrows: false,
-    infinite: true,
-    speed: 1000,
-    draggable: true,
-    vertical: false,
 }
