@@ -14,10 +14,12 @@ import {toast} from "react-toastify"
 
 type props = {
     data: GoodsItemProps
+    mobile: boolean
 }
 
 export default function GoodsItem(props: props) {
     const {goodsId, categoryId, thumbnails, name, price, sale} = props.data
+    const {mobile} = props
     const classes = useStyles()
     const route = useRouter()
     const {userStore} = useStore()
@@ -74,25 +76,29 @@ export default function GoodsItem(props: props) {
         <div className={classes.root}>
             <div className={classes.thumbnail}>
                 <ButtonBase onClick={onClickRouter} disabled={disabled}>
-                    <ImageBox src={thumbnails.images[0]} height="400px" />
+                    <ImageBox src={thumbnails.images[0]} height={mobile ? "180px" : "400px"} />
                 </ButtonBase>
 
-                <div className={classes.iconButtonList}>
-                    <IconButton size="small" onClick={onClickFavorBtn}>
-                        {favorState ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />}
+                <div className={mobile ? classes.iconButtonListMobile : classes.iconButtonList}>
+                    <IconButton onClick={onClickFavorBtn}>
+                        {favorState ? (
+                            <FavoriteRoundedIcon sx={{fontSize: mobile ? 16 : 24}} />
+                        ) : (
+                            <FavoriteBorderRoundedIcon sx={{fontSize: mobile ? 16 : 24}} />
+                        )}
                     </IconButton>
-                    <IconButton size="small" onClick={onClickShare}>
-                        <ShareIcon />
+                    <IconButton onClick={onClickShare}>
+                        <ShareIcon sx={{fontSize: mobile ? 16 : 24}} />
                     </IconButton>
                 </div>
             </div>
 
             <ButtonBase className={classes.titleArea} onClick={onClickRouter} disabled={disabled}>
-                <Typography variant="body2" mt={2}>
-                    {sale > 0 && <span>{price} ₩</span>}
-                    {`${resultPrice.toLocaleString()} ₩`}
+                <Typography fontSize={mobile ? 12 : 14} variant="body2" mt={2}>
+                    {sale > 0 && <span>{price} 원</span>}
+                    {`${resultPrice.toLocaleString()} 원`}
                 </Typography>
-                <Typography>{name}</Typography>
+                <Typography fontSize={mobile ? 14 : 16}>{name}</Typography>
             </ButtonBase>
         </div>
     )

@@ -12,7 +12,7 @@ const styles = makeStyles((theme: Theme) =>
             "&:hover": {},
 
             "& .MuiTypography-body2  span": {
-                marginRight: theme.spacing(2),
+                marginRight: theme.spacing(1.5),
                 textDecoration: "line-through", //텍스트 중간선
                 color: theme.palette.secondary.light,
             },
@@ -43,13 +43,26 @@ const styles = makeStyles((theme: Theme) =>
             fiexDirection: "row",
             position: "absolute",
             bottom: 0,
-            right: "1rem",
+            right: "0.5rem",
             zIndex: 5,
             background: "#fff",
             transition: "0.5s",
 
             "&:hover": {
                 bottom: 12,
+            },
+        },
+
+        iconButtonListMobile: {
+            display: "flex",
+            fiexDirection: "row",
+            position: "absolute",
+            bottom: 0,
+            right: "0.5rem",
+            zIndex: 5,
+            background: "#fff",
+            "& button": {
+                padding: 6,
             },
         },
     }),

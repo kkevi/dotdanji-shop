@@ -1,3 +1,4 @@
+import {useEffect, useState} from "react"
 import {
     Container,
     Grid,
@@ -7,21 +8,23 @@ import {
     Stack,
     TextField,
     Typography,
+    useMediaQuery,
     useTheme,
 } from "@mui/material"
-import {useEffect, useState} from "react"
-import GoodsItem from "./goods-item/GoodsItem"
 import {GoodsCategoryProps, GoodsItemProps} from "types/goods-type"
 //fake data
 import {GOODS_ITEMS_DATA, GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
+
+import GoodsItem from "./goods-item/GoodsItem"
 
 type Props = {
     categoryId?: string | string[] | undefined
 }
 
 export default function GoodsLayout(props: Props) {
-    const theme = useTheme()
     const {categoryId} = props
+    const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const [goodsFilter, setGoodsFilter] = useState<string>("newest")
     const [categoryList, setCategoryList] = useState<GoodsCategoryProps[]>(GOODS_CATEGORY_DATA)
     const [categoryTitle, setCategoryTitle] = useState<string>("")
@@ -49,22 +52,33 @@ export default function GoodsLayout(props: Props) {
     }
 
     return (
-        <Container maxWidth="lg" sx={{my: 24}}>
+        <Container maxWidth={mobile ? "sm" : "lg"} sx={{my: mobile ? 16 : 24}}>
             {/* search*/}
-            <Stack direction="row" justifyContent="space-between" alignItems="flex-end" mb={2}>
+            <Stack direction="row" justifyContent="space-between" alignItems="flex-end" mb={3}>
                 <Stack direction="row" alignItems="flex-end">
-                    <Typography className="pointFont" variant="h4" color="#333">
+                    <Typography className="pointFont" variant={mobile ? "h5" : "h4"} color="#333">
                         {categoryTitle}
                     </Typography>
-                    <Typography variant="body1" ml={1}>
+                    <Typography fontSize={mobile ? 14 : 18} ml={1}>
                         [{goodsList.length}]
                     </Typography>
                 </Stack>
 
-                <Stack direction="row" alignItems="flex-end">
-                    <Select variant="standard" value={goodsFilter} onChange={onChangeSelect}>
+                <Stack
+                    direction="row"
+                    alignItems="flex-end"
+                    sx={{
+                        width: mobile ? 200 : "auto",
+                    }}
+                >
+                    <Select
+                        variant="standard"
+                        value={goodsFilter}
+                        onChange={onChangeSelect}
+                        sx={{fontSize: mobile ? 14 : 16}}
+                    >
                         {goodsArr.map(({name, value}, idx) => (
-                            <MenuItem value={value} key={value + idx}>
+                            <MenuItem value={value} key={value + idx} sx={{fontSize: mobile ? 14 : 16}}>
                                 {name}
                             </MenuItem>
                         ))}
@@ -76,15 +90,15 @@ export default function GoodsLayout(props: Props) {
             {goodsList.length > 0 && (
                 <Grid container spacing={3}>
                     {goodsList.map((data: GoodsItemProps, idx) => (
-                        <Grid item key={data.goodsId + idx} lg={4} md={4} sm={6} xs={12}>
-                            <GoodsItem data={data} />
+                        <Grid item key={data.goodsId + idx} lg={4} md={4} sm={6} xs={6}>
+                            <GoodsItem data={data} mobile={mobile} />
                         </Grid>
                     ))}
                 </Grid>
             )}
 
             {goodsList.length === 0 && (
-                <Stack height="70vh" justifyContent="center" alignItems="center" bgcolor="#f9f9f9">
+                <Stack height={mobile ? "50vh" : "70vh"} justifyContent="center" alignItems="center" bgcolor="#f9f9f9">
                     <Typography sx={{opacity: 0.5}}>현재 상품이 준비중입니다.</Typography>
                 </Stack>
             )}
