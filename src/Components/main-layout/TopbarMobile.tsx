@@ -52,7 +52,7 @@ export default function TopbarMobile() {
                 maxWidth="sm"
                 sx={{
                     py: scrollPosition < 120 ? 2 : 1,
-                    px: 4,
+                    px: 1,
                     transition: "0.5s",
                 }}
             >

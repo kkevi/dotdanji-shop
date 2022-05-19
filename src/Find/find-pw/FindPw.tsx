@@ -9,10 +9,12 @@ import {useVerfiyPhone, useVerfiyEmail, useVerfiyPw} from "lib/useVerifyData"
 import FindPw1 from "./components/FindPw1"
 import FindPw2 from "./components/FindPw2"
 
-type FindPwProps = {}
+type FindPwProps = {
+    mobile: boolean
+}
 
 export default function FindPw(props: FindPwProps) {
-    const {} = props
+    const {mobile} = props
     const route = useRouter()
     const classes = useStyles()
     const [findStep, setFindStep] = useState<string>("before")
@@ -71,6 +73,7 @@ export default function FindPw(props: FindPwProps) {
                     setPhoneNumber={setPhoneNumber}
                     onClickCheck={onClickCheck}
                     warningPhone={warningPhone}
+                    mobile={mobile}
                 />
             )}
             {findStep === "after" && (
@@ -80,10 +83,11 @@ export default function FindPw(props: FindPwProps) {
                     confirmNewPw={confirmNewPw}
                     setConfirmNewPw={setConfirmNewPw}
                     warningPw={warningPw}
+                    mobile={mobile}
                 />
             )}
             {findStep === "finished" && (
-                <Typography mt={6} fontSize={18}>
+                <Typography mt={mobile ? 3 : 6} fontSize={18}>
                     회원님의 비밀번호 재설정이 완료 되었습니다.
                     <br />새 비밀번호로 로그인 해주세요.
                 </Typography>

@@ -4,10 +4,11 @@ import {Theme} from "@mui/material"
 const styles = makeStyles((theme: Theme) =>
     createStyles({
         containedButton: {
+            marginTop: theme.breakpoints.down("sm") ? theme.spacing(3) : theme.spacing(6),
             height: 56,
             backgroundColor: "black",
             color: "white",
-            fontSize: 16,
+            fontSize: theme.breakpoints.down("sm") ? 14 : 16,
             fontWeight: 700,
             "&:hover": {
                 backgroundColor: "black",

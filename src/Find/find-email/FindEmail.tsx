@@ -8,10 +8,12 @@ import {useVerfiyPhone} from "lib/useVerifyData"
 import FindEmail1 from "./components/FindEmail1"
 import FindEmail2 from "./components/FindEmail2"
 
-type FindEmailProps = {}
+type FindEmailProps = {
+    mobile: boolean
+}
 
 export default function FindEmail(props: FindEmailProps) {
-    const {} = props
+    const {mobile} = props
     const route = useRouter()
     const classes = useStyles()
     const [fintStep, setFindStep] = useState<string>("before")
@@ -51,12 +53,12 @@ export default function FindEmail(props: FindEmailProps) {
                     setPhoneNumber={setPhoneNumber}
                     onClickCheck={onClickCheck}
                     warningPhone={warningPhone}
+                    mobile={mobile}
                 />
             ) : (
-                <FindEmail2 email={email} />
+                <FindEmail2 email={email} mobile={mobile} />
             )}
             <Button
-                sx={{mt: 6, mb: 3}}
                 className={classes.containedButton}
                 variant="contained"
                 fullWidth
