@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 
-import {Stack, Typography} from "@mui/material"
+import {Stack, Typography, useMediaQuery} from "@mui/material"
 import {useTheme} from "@mui/system"
 
 import SignUpSection1 from "./signup-section1/SignUpSection1"
@@ -13,6 +13,7 @@ import {CognitoUserAttribute} from "amazon-cognito-identity-js"
 
 export default function SignUp() {
     const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const [step, setStep] = useState(0)
     const [email, setEmail] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
@@ -55,7 +56,6 @@ export default function SignUp() {
                     setPassword={setPassword}
                     validPassword={validPassword}
                     setValidPassword={setValidPassword}
-                    setStep={setStep}
                     onSignUp={onSignUp}
                 />
             ),
@@ -67,11 +67,18 @@ export default function SignUp() {
     ]
 
     return (
-        <Stack justifyContent="center" alignItems="flex-start" width="100%" maxWidth={400} height={"100%"}>
-            <Typography mt={4} variant="h4" fontWeight={700}>
+        <Stack
+            justifyContent="center"
+            alignItems="flex-start"
+            alignSelf="center"
+            width="100%"
+            maxWidth={mobile ? "90%" : 400}
+            height={"100%"}
+        >
+            <Typography mt={4} variant={mobile ? "h6" : "h4"} fontWeight={700}>
                 간편가입
             </Typography>
-            <Typography sx={{mt: 0.5}} variant="subtitle2" color="#757575">
+            <Typography sx={{mt: 0.5}} variant={mobile ? "body2" : "subtitle2"} color="#757575">
                 {section[step].subTitle}
             </Typography>
 

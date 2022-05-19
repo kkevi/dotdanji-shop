@@ -4,10 +4,11 @@ import {Theme} from "@mui/material"
 const styles = makeStyles((theme: Theme) =>
     createStyles({
         containedButton: {
-            height: 56,
+            marginTop: theme.breakpoints.down("sm") ? theme.spacing(3) : theme.spacing(6),
+            height: theme.breakpoints.down("sm") ? 45 : 56,
             backgroundColor: "black",
             color: "white",
-            fontSize: 16,
+            fontSize: theme.breakpoints.down("sm") ? 14 : 16,
             fontWeight: 700,
             "&:hover": {
                 backgroundColor: "black",
@@ -42,6 +43,7 @@ const styles = makeStyles((theme: Theme) =>
         },
         smallButton: {
             marginLeft: 8,
+            marginBottom: theme.breakpoints.down("sm") ? 15 : 30,
             fontSize: 12,
             color: "#646566",
             border: "1px solid #babcbc",

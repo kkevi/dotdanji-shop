@@ -4,16 +4,8 @@ import {Theme} from "@mui/material"
 const styles = makeStyles((theme: Theme) =>
     createStyles({
         autocomplete: {
-            marginBottom: 30,
-            backgroundColor: "rgba(208,235,245,0.1)",
-        },
-        textField: {
             marginBottom: theme.breakpoints.down("sm") ? 15 : 30,
             backgroundColor: "rgba(208,235,245,0.1)",
-            borderRadius: 4,
-        },
-        resize: {
-            fontSize: theme.breakpoints.down("sm") ? 14 : 16,
         },
         lastTextField: {
             color: "#646566",
@@ -37,6 +29,7 @@ const styles = makeStyles((theme: Theme) =>
         },
         button2: {
             marginLeft: 8,
+            marginBottom: theme.breakpoints.down("sm") ? 15 : 30,
             fontSize: 13,
             color: "#646566",
             border: "1px solid #babcbc",

@@ -10,11 +10,12 @@ import useStyles from "src/Notice/notice-detail-page/style"
 type TermsDialogProps = {
     id: number
     setVisibleDialog: (val: boolean) => void
+    mobile: boolean
 }
 
 export default function TermsDialog(prop: TermsDialogProps) {
+    const {id, setVisibleDialog, mobile} = prop
     const classes = useStyles()
-    const {id, setVisibleDialog} = prop
     const BootstrapDialog = styled(Dialog)(({theme}) => ({
         "& .MuiDialogContent-root": {
             padding: theme.spacing(2),
@@ -31,7 +32,7 @@ export default function TermsDialog(prop: TermsDialogProps) {
                 aria-labelledby="customized-dialog-title"
                 open={true}
             >
-                <DialogTitle sx={{m: 0, p: 2, fontSize: 16}}>
+                <DialogTitle sx={{m: 0, p: 2, fontSize: mobile ? 14 : 16}}>
                     {contents[id - 1].title}
                     <IconButton
                         aria-label="close"

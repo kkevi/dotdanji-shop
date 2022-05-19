@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
-import {Button, Stack, Typography, FormControlLabel, Checkbox, FormGroup, Divider} from "@mui/material"
+import {Button, Stack, Typography, FormControlLabel, Checkbox, FormGroup, Divider, useMediaQuery} from "@mui/material"
+import {useTheme} from "@mui/system"
 
 import useStyles from "../styles"
 
@@ -12,6 +13,8 @@ type SignUpSection1Props = {
 export default function SignUpSection1(prop: SignUpSection1Props) {
     const {setStep} = prop
     const classes = useStyles()
+    const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
 
     const [isAllChecked, setIsAllChecked] = useState(false)
     const [checkedItems, setCheckedItems] = useState<string[]>([])
@@ -65,7 +68,7 @@ export default function SignUpSection1(prop: SignUpSection1Props) {
 
     return (
         <>
-            {visibleDialog ? <TermsDialog id={dialogId} setVisibleDialog={setVisibleDialog} /> : null}
+            {visibleDialog ? <TermsDialog id={dialogId} setVisibleDialog={setVisibleDialog} mobile={mobile} /> : null}
 
             <Stack width={"100%"} mt={4}>
                 <FormControlLabel
@@ -111,7 +114,6 @@ export default function SignUpSection1(prop: SignUpSection1Props) {
             </Stack>
 
             <Button
-                sx={{mt: 6, mb: 3}}
                 disabled={!avaliableAll}
                 className={classes.containedButton}
                 variant="contained"

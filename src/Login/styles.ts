@@ -4,8 +4,8 @@ import {Theme} from "@mui/material"
 const styles = makeStyles((theme: Theme) =>
     createStyles({
         socialLogin: {
-            width: 45,
-            height: 45,
+            width: theme.breakpoints.down("sm") ? 35 : 45,
+            height: theme.breakpoints.down("sm") ? 35 : 45,
             borderRadius: "50%",
             display: "flex",
             justifyContent: "center",
@@ -16,8 +16,8 @@ const styles = makeStyles((theme: Theme) =>
             },
         },
         socialImage: {
-            width: 30,
-            height: 30,
+            width: theme.breakpoints.down("sm") ? 20 : 30,
+            height: theme.breakpoints.down("sm") ? 20 : 30,
             borderRadius: "50%",
             objectFit: "contain",
         },
@@ -33,7 +33,7 @@ const styles = makeStyles((theme: Theme) =>
             height: 56,
             backgroundColor: "black",
             color: "white",
-            fontSize: 16,
+            fontSize: theme.breakpoints.down("sm") ? 14 : 16,
             fontWeight: 700,
             "&:hover": {
                 backgroundColor: "black",
@@ -64,7 +64,7 @@ const styles = makeStyles((theme: Theme) =>
         },
         findLink: {
             color: "#757575",
-            fontSize: 14,
+            fontSize: theme.breakpoints.down("sm") ? 12 : 14,
             "&:hover": {
                 cursor: "pointer",
             },

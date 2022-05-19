@@ -1,7 +1,8 @@
 import React from "react"
 import {useRouter} from "next/router"
+import {useTheme} from "@mui/system"
 
-import {Stack, Button, Divider, Typography} from "@mui/material"
+import {Stack, Button, Divider, Typography, useMediaQuery} from "@mui/material"
 import useStyles from "../styles"
 
 import ImageBox from "components/image-box/ImageBox"
@@ -9,10 +10,12 @@ import ImageBox from "components/image-box/ImageBox"
 export default function SignUpSection4() {
     const classes = useStyles()
     const route = useRouter()
+    const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
 
     return (
         <Stack width={"100%"}>
-            <Typography variant="h6" fontWeight={700} mt={2} mb={2}>
+            <Typography variant={mobile ? "body2" : "h6"} fontWeight={700} mt={mobile ? 0 : 2} mb={2}>
                 심키즈와 함께 다양한 이야기들을 읽어보세요!
             </Typography>
 

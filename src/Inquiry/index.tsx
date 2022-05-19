@@ -1,11 +1,13 @@
 import React, {useState, useRef} from "react"
-import {Stack, Typography, TextField, Button, Select, MenuItem, SelectChangeEvent, useMediaQuery} from "@mui/material"
+import {Stack, Typography, Button, Select, MenuItem, SelectChangeEvent, useMediaQuery} from "@mui/material"
 import {useTheme} from "@mui/system"
 
 import useStyles from "./styles"
 import {InquiryFormProps, categoryList, inquiryFormDefaultData} from "types/service-type"
 import InquiryTerms from "./inquiry-terms/InquiryTerms"
 import {toast} from "react-toastify"
+
+import {CustomedTextField} from "components/customed-textfield/CustomedTextField"
 
 export default function Index() {
     const theme = useTheme()
@@ -67,58 +69,22 @@ export default function Index() {
                     # 고객정보
                 </Typography>
 
-                <TextField
-                    className={classes.textField}
+                <CustomedTextField required label="이름" name="name" value={formData.name} onChange={onChangeInput} />
+                <CustomedTextField
                     required
-                    fullWidth
-                    label="이름"
-                    name="name"
-                    value={formData.name}
-                    onChange={onChangeInput}
-                    InputProps={{
-                        classes: {
-                            input: classes.resize,
-                        },
-                    }}
-                    InputLabelProps={{
-                        style: {fontSize: mobile ? 14 : 16},
-                    }}
-                />
-                <TextField
-                    className={classes.textField}
-                    required
-                    fullWidth
                     type="email"
                     label="메일주소"
                     name="email"
                     value={formData.email}
                     onChange={onChangeInput}
-                    InputProps={{
-                        classes: {
-                            input: classes.resize,
-                        },
-                    }}
-                    InputLabelProps={{
-                        style: {fontSize: mobile ? 14 : 16},
-                    }}
                 />
-                <TextField
-                    className={classes.textField}
+                <CustomedTextField
                     required
-                    fullWidth
                     type="number"
                     label="전화번호"
                     name="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={onChangeInput}
-                    InputProps={{
-                        classes: {
-                            input: classes.resize,
-                        },
-                    }}
-                    InputLabelProps={{
-                        style: {fontSize: mobile ? 14 : 16},
-                    }}
                 />
 
                 <Typography
@@ -133,7 +99,6 @@ export default function Index() {
                 </Typography>
                 <Select
                     className={classes.autocomplete}
-                    fullWidth
                     id="category"
                     value={category}
                     onChange={onSelectCategory}
@@ -149,28 +114,16 @@ export default function Index() {
                         </MenuItem>
                     ))}
                 </Select>
-                <TextField
-                    className={classes.textField}
+                <CustomedTextField
                     required
-                    fullWidth
                     type="title"
                     label="제목"
                     name="title"
                     value={formData.title}
                     onChange={onChangeInput}
-                    InputProps={{
-                        classes: {
-                            input: classes.resize,
-                        },
-                    }}
-                    InputLabelProps={{
-                        style: {fontSize: mobile ? 14 : 16},
-                    }}
                 />
-                <TextField
-                    className={classes.textField}
+                <CustomedTextField
                     required
-                    fullWidth
                     type="content"
                     label="내용"
                     name="content"
@@ -178,20 +131,12 @@ export default function Index() {
                     rows={10}
                     value={formData.content}
                     onChange={onChangeInput}
-                    InputProps={{
-                        classes: {
-                            input: classes.resize,
-                        },
-                    }}
-                    InputLabelProps={{
-                        style: {fontSize: mobile ? 14 : 16},
-                    }}
                 />
                 <Stack flexDirection="row">
-                    <TextField
+                    <CustomedTextField
                         className={classes.lastTextField}
                         disabled
-                        fullWidth
+                        // fullWidth
                         defaultValue={"회사 소개서 첨부"}
                         value={formData.imageFile?.fileName}
                     />

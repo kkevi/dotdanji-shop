@@ -1,27 +1,30 @@
 import React, {useState} from "react"
+import {useTheme} from "@mui/system"
 
-import {Stack, Button, TextField, Typography, InputAdornment, IconButton} from "@mui/material"
+import {Stack, Button, Typography, InputAdornment, IconButton, useMediaQuery} from "@mui/material"
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded"
 import useStyles from "../styles"
-import {theme} from "styles/theme"
 
 import {useVerfiyPw} from "lib/useVerifyData"
 
 import Visibility from "@mui/icons-material/Visibility"
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
 
+import {CustomedTextField} from "components/customed-textfield/CustomedTextField"
+
 type SignUpSection2Prop = {
     password: string
     setPassword: (val: string) => void
     validPassword: string
     setValidPassword: (val: string) => void
-    setStep: (val: number) => void
     onSignUp: () => void
 }
 
 export default function SignUpSection3(prop: SignUpSection2Prop) {
-    const {password, setPassword, validPassword, setValidPassword, setStep, onSignUp} = prop
+    const {password, setPassword, validPassword, setValidPassword, onSignUp} = prop
     const classes = useStyles()
+    const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
 
     const [visibility, setVisibility] = useState<boolean>(false)
     const [visibility2, setVisibility2] = useState<boolean>(false)
@@ -33,9 +36,8 @@ export default function SignUpSection3(prop: SignUpSection2Prop) {
 
     return (
         <Stack width={"100%"}>
-            <TextField
-                sx={{mt: 6}}
-                className={classes.textField}
+            <CustomedTextField
+                sx={{mt: mobile ? 3 : 6, mb: 0}}
                 type={visibility ? "text" : "password"}
                 label="비밀번호"
                 variant="outlined"
@@ -58,26 +60,25 @@ export default function SignUpSection3(prop: SignUpSection2Prop) {
             />
             <Stack ml={1} mt={1} height={10} direction="row">
                 <CheckRoundedIcon
-                    sx={{marginRight: "2px", color: validPw ? theme.palette.primary.light : "#757575", fontSize: 18}}
+                    sx={{marginRight: "2px", color: validPw ? theme.palette.primary.main : "#757575", fontSize: 18}}
                 />
-                <Typography mr={2} variant="caption" color={validPw ? theme.palette.primary.light : "#757575"}>
+                <Typography mr={2} variant="caption" color={validPw ? theme.palette.primary.main : "#757575"}>
                     특수문자 포함
                 </Typography>
 
                 <CheckRoundedIcon
                     sx={{
                         marginRight: "2px",
-                        color: validPwLength ? theme.palette.primary.light : "#757575",
+                        color: validPwLength ? theme.palette.primary.main : "#757575",
                         fontSize: 18,
                     }}
                 />
-                <Typography variant="caption" color={validPwLength ? theme.palette.primary.light : "#757575"}>
+                <Typography variant="caption" color={validPwLength ? theme.palette.primary.main : "#757575"}>
                     8~20자 이내
                 </Typography>
             </Stack>
-            <TextField
-                sx={{mt: 4}}
-                className={classes.textField}
+            <CustomedTextField
+                sx={{mt: mobile ? 2 : 4, mb: 0}}
                 type={visibility2 ? "text" : "password"}
                 label="비밀번호 확인"
                 variant="outlined"
@@ -102,17 +103,16 @@ export default function SignUpSection3(prop: SignUpSection2Prop) {
                 <CheckRoundedIcon
                     sx={{
                         marginRight: "2px",
-                        color: correspondPw ? theme.palette.primary.light : "#757575",
+                        color: correspondPw ? theme.palette.primary.main : "#757575",
                         fontSize: 18,
                     }}
                 />
-                <Typography variant="caption" color={correspondPw ? theme.palette.primary.light : "#757575"}>
+                <Typography variant="caption" color={correspondPw ? theme.palette.primary.main : "#757575"}>
                     비밀번호 일치
                 </Typography>
             </Stack>
 
             <Button
-                sx={{mt: 6, mb: 3}}
                 disabled={!validPwAll}
                 className={classes.containedButton}
                 variant="contained"

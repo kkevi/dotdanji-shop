@@ -6,12 +6,12 @@ const styles = makeStyles((theme: Theme) =>
         htmlContainer: {
             fontWeight: 200,
             "& h1": {
-                fontSize: "1.3rem",
+                fontSize: theme.breakpoints.down("sm") ? "1.2rem" : "1.3rem",
                 fontWeight: 800,
                 fontFamily: "'yg-jalnan'",
             },
             "& h2": {
-                fontSize: "1.1rem",
+                fontSize: theme.breakpoints.down("sm") ? "1rem" : "1.1rem",
                 fontWeight: 800,
                 lineHeight: 2.3,
             },

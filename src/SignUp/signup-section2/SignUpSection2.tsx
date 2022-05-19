@@ -1,8 +1,12 @@
-import React, {useEffect, useState} from "react"
+import React, {useState} from "react"
 
-import {Stack, Button, TextField, Typography} from "@mui/material"
+import {Stack, Button, useMediaQuery, Typography} from "@mui/material"
+import {useTheme} from "@mui/system"
 import useStyles from "../styles"
+
 import {useVerfiyPhone, useVerfiyEmail} from "lib/useVerifyData"
+
+import {CustomedTextField} from "components/customed-textfield/CustomedTextField"
 
 type SignUpSection2Prop = {
     email: string
@@ -15,6 +19,8 @@ type SignUpSection2Prop = {
 export default function SignUpSection2(prop: SignUpSection2Prop) {
     const {email, setEmail, setStep, phoneNumber, setPhoneNumber} = prop
     const classes = useStyles()
+    const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const [warningEmail, setWarningEmail] = useState<string>("")
     const [warningPhone, setWarningPhone] = useState<string>("")
     const [validAll, setValidAll] = useState({
@@ -65,41 +71,35 @@ export default function SignUpSection2(prop: SignUpSection2Prop) {
 
     return (
         <Stack width={"100%"}>
-            <Stack direction="row" mt={6}>
-                <TextField
-                    className={classes.textField}
-                    label="이메일"
-                    variant="outlined"
-                    fullWidth
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                />
-                <Button className={classes.smallButton} onClick={() => isValidEmail(email)}>
+            <Stack direction="row" mt={mobile ? 3 : 6}>
+                <CustomedTextField sx={{mb: 0}} label="이메일" value={email} onChange={e => setEmail(e.target.value)} />
+                <Button className={classes.smallButton} sx={{mb: "0 !important"}} onClick={() => isValidEmail(email)}>
                     중복확인
                 </Button>
             </Stack>
-            <Typography ml={1} mt={1} variant="caption" height={10} color="red">
+            <Typography ml={1} variant="caption" mt={mobile ? 0.5 : 1} height={10} color="red">
                 {warningEmail}
             </Typography>
             <Stack direction="row" mt={2}>
-                <TextField
-                    className={classes.textField}
+                <CustomedTextField
+                    sx={{mb: 0}}
                     label="휴대폰번호"
-                    variant="outlined"
-                    fullWidth
                     value={phoneNumber}
                     onChange={e => setPhoneNumber(e.target.value)}
                 />
-                <Button className={classes.smallButton} onClick={() => isValidPhone(phoneNumber)}>
+                <Button
+                    className={classes.smallButton}
+                    sx={{mb: "0 !important"}}
+                    onClick={() => isValidPhone(phoneNumber)}
+                >
                     본인인증
                 </Button>
             </Stack>
-            <Typography ml={1} mt={1} variant="caption" height={10} color="red">
+            <Typography ml={1} variant="caption" mt={mobile ? 0.5 : 1} height={10} color="red">
                 {warningPhone}
             </Typography>
 
             <Button
-                sx={{mt: 6, mb: 3}}
                 className={classes.containedButton}
                 variant="contained"
                 fullWidth
