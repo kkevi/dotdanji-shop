@@ -13,6 +13,9 @@ export default function NoticeMobile({noticeList, onClickRouter}: NoticeMobilePr
     const route = useRouter()
     const [activePage, setActivePage] = useState(10)
 
+    console.log("activePage", activePage)
+    console.log("noticeList.length", noticeList.length)
+
     return (
         <>
             <Divider flexItem sx={{borderBottomWidth: 1}} />
@@ -31,16 +34,18 @@ export default function NoticeMobile({noticeList, onClickRouter}: NoticeMobilePr
                         .slice(0, activePage)}
                 </TableBody>
             </Table>
-            <Button
-                variant="contained"
-                sx={{alignSelf: "center", marginTop: 4, width: "90%", height: 40, fontSize: 14, fontWeight: 700}}
-                onClick={() => {
-                    setActivePage(prev => prev + 10)
-                }}
-                disableElevation
-            >
-                더보기
-            </Button>
+            {activePage < noticeList.length ? (
+                <Button
+                    variant="contained"
+                    sx={{alignSelf: "center", marginTop: 4, width: "90%", height: 40, fontSize: 14, fontWeight: 700}}
+                    onClick={() => {
+                        setActivePage(prev => prev + 10)
+                    }}
+                    disableElevation
+                >
+                    더보기
+                </Button>
+            ) : undefined}
         </>
     )
 }

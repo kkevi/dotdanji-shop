@@ -18,6 +18,9 @@ const Accordion = styled((props: AccordionProps) => <MuiAccordion disableGutters
         "&:before": {
             display: "none",
         },
+        "& .MuiSvgIcon-root": {
+            fontSize: "1.8rem",
+        },
     }),
 )
 
@@ -52,10 +55,11 @@ type FaqAccordionProps = {
     content: string
     expanded: string | boolean
     setExpanded: React.Dispatch<React.SetStateAction<string | false>>
+    mobile?: boolean
 }
 
 export default function FaqAccordion(prop: FaqAccordionProps) {
-    const {idx, category, title, content, expanded, setExpanded} = prop
+    const {idx, category, title, content, expanded, setExpanded, mobile} = prop
     const theme = useTheme()
 
     const categoryName = categoryList[category]
@@ -71,16 +75,18 @@ export default function FaqAccordion(prop: FaqAccordionProps) {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
             >
-                <Typography fontSize={20} fontWeight={700} mr={2} color={theme.palette.primary.main}>
+                <Typography fontSize={mobile ? 14 : 20} fontWeight={700} mr={2} color={theme.palette.primary.main}>
                     Q.
                 </Typography>
-                <Typography fontSize={14} mr={3} color={theme.palette.primary.main} fontWeight={600}>
+                <Typography fontSize={mobile ? 12 : 14} mr={3} color={theme.palette.primary.main} fontWeight={600}>
                     {categoryName}
                 </Typography>
-                <Typography fontSize={18}>{title}</Typography>
+                <Typography fontSize={mobile ? 14 : 18}>{title}</Typography>
             </AccordionSummary>
-            <AccordionDetails>
-                <Typography color="#757575">{content}</Typography>
+            <AccordionDetails sx={{p: mobile ? 5 : "auto"}}>
+                <Typography fontSize={mobile ? 14 : 16} color="#757575">
+                    {content}
+                </Typography>
             </AccordionDetails>
         </Accordion>
     )

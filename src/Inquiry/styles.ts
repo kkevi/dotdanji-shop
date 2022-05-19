@@ -8,9 +8,12 @@ const styles = makeStyles((theme: Theme) =>
             backgroundColor: "rgba(208,235,245,0.1)",
         },
         textField: {
-            marginBottom: 30,
+            marginBottom: theme.breakpoints.down("sm") ? 15 : 30,
             backgroundColor: "rgba(208,235,245,0.1)",
             borderRadius: 4,
+        },
+        resize: {
+            fontSize: theme.breakpoints.down("sm") ? 14 : 16,
         },
         lastTextField: {
             color: "#646566",
@@ -22,7 +25,7 @@ const styles = makeStyles((theme: Theme) =>
         },
         button: {
             padding: "12px 28px",
-            fontSize: 16,
+            fontSize: theme.breakpoints.down("sm") ? 14 : 16,
             fontWeight: 700,
             color: theme.palette.primary.dark,
             border: `1px solid ${theme.palette.primary.dark}`,
