@@ -10,6 +10,7 @@ import {CART_ITEMS_DATA} from "src/Components/fake-data/fake-cart"
 import {GOODS_ITEMS_DATA} from "src/Components/fake-data/fake-goods"
 import CartTable from "./components/CartTable"
 import TotalPrice from "./components/TotalPrice"
+import useStore from "store/useStore"
 
 type Props = {
     onChangeNextStep: (index: number) => void
@@ -18,6 +19,7 @@ type Props = {
 export default function CartSection1(props: Props) {
     const classes = useStyles()
     const theme = useTheme()
+    const {goodsStore} = useStore()
     const {onChangeNextStep} = props
     //장바구니 데이터 표시
     const [cartItemList, setCartItemList] = useState<CartOptionsType[]>([])
@@ -56,13 +58,11 @@ export default function CartSection1(props: Props) {
      * 장바구니 데이터 가져오기
      */
     useEffect(() => {
-        loadData()
+        if (goodsStore.cartItem === undefined) return
+        console.log("goodsStore.cartItem", goodsStore.cartItem)
+        setCartItemList(goodsStore.cartItem)
+        // else loadData()
     }, [])
-
-    // useEffect(() => {
-    //     console.log("checkList", checkList)
-    //     console.log("cartItemList", cartItemList)
-    // }, [checkList])
 
     const loadData = async () => {
         try {
@@ -81,6 +81,7 @@ export default function CartSection1(props: Props) {
                     ...itm.options.reduce((acc: CartOptionsType[], cur: OptionCart) => {
                         //상품의 옵셥정보를 optionId로 맵핑
                         const data = optionData.filter(it => it.optionId === cur.optionId)[0]
+
                         acc.push({
                             goodsId: goodsId,
                             count: cur.count,
@@ -89,6 +90,7 @@ export default function CartSection1(props: Props) {
                             optionName: data.name,
                             optionAddPlace: data.addPlace,
                         })
+
                         return acc
                     }, []),
                 )
@@ -108,8 +110,14 @@ export default function CartSection1(props: Props) {
      * 체크기능
      */
     useEffect(() => {
+        console.log(cartItemList)
+        console.log("checklist", checkList)
         setCheckList(checkList)
     }, [checkList])
+
+    const checking = () => {
+        cartItemList.map((itm, idx) => setCheckList({[itm.goodsId]: true}))
+    }
 
     const onCheckAll = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCheckAll(event.target.checked)

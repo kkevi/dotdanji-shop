@@ -79,15 +79,29 @@ export default function GoodsDetailPage(props: Props) {
     }
 
     //장바구니 담기 클릭
-    const onCickCart = () => {
-        if (!userStore.isLoggedIn) {
-            return alert("로그인 후 이용이 가능합니다.")
-        } else if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
+    const onCickCart = async () => {
+        // if (!userStore.isLoggedIn) {
+        //     return alert("로그인 후 이용이 가능합니다.")
+        // }
+        if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
 
         try {
             //TODO: 서버 장바구니에 저장 기능 추가
             if (confirm("장바구니를 확인하시겠습니까?")) {
-                route.push("/cart")
+                const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, idx) => {
+                    const goodsOptionData = options.filter(it => it.optionId === cur.optionId)[0]
+                    acc.push({
+                        goodsId: goodsId,
+                        count: cur.count,
+                        price: (goodsOptionData.addPlace + resultPrice) * cur.count,
+                        optionId: cur.optionId,
+                        optionName: goodsOptionData.name,
+                        optionAddPlace: goodsOptionData.addPlace,
+                    })
+                    return acc
+                }, [])
+                await goodsStore.setCartItem(data)
+                Router.push({pathname: "/cart", query: {sectionNum: "0"}})
             }
         } catch (e) {
             console.log("e:", e)
@@ -96,9 +110,10 @@ export default function GoodsDetailPage(props: Props) {
 
     //바로 구매하기 클릭
     const onClickBuy = async () => {
-        if (!userStore.isLoggedIn) {
-            return alert("로그인 후 이용이 가능합니다.")
-        } else if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
+        // if (!userStore.isLoggedIn) {
+        //     return alert("로그인 후 이용이 가능합니다.")
+        // }
+        if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
 
         try {
             const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, idx) => {

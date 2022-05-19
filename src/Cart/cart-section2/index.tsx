@@ -69,45 +69,8 @@ export default function CartSection2(props: Props) {
     useEffect(() => {
         if (goodsStore.cartItem !== undefined) {
             setCartItemList(goodsStore.cartItem)
-        } else loadData()
-    }, [])
-
-    const loadData = async () => {
-        try {
-            //카트 정보 = goodsId,optionId,count
-            const result: CartItemProps[] = await CART_ITEMS_DATA
-
-            result.map((itm, idx) => {
-                //해당 id의 상품 정보를 가져온다.
-                const goodsId = itm.goodsId
-                const goodsData = GOODS_ITEMS_DATA.filter(it => it.goodsId === goodsId)[0] as GoodsItemProps
-
-                //새로운 장바구니 리스트 생성
-                setCartItemList(
-                    itm.options.reduce((acc, cur: OptionCart) => {
-                        //상품의 옵셥정보를 optionId로 맵핑
-                        const data = goodsData.options.filter(it => it.optionId === cur.optionId)[0]
-                        acc.push({
-                            goodsId: goodsId,
-                            count: cur.count,
-                            price: goodsData.price + data.addPlace,
-                            optionId: cur.optionId,
-                            optionName: data.name,
-                            optionAddPlace: data.addPlace,
-                        })
-                        return acc
-                    }, [] as CartOptionsType[]),
-                )
-                //
-            })
-
-            // list.map(({optionId}) => (checkList[optionId] = true))
-        } catch (e) {
-            console.log(e)
-        } finally {
-            console.log(cartItemList)
         }
-    }
+    }, [])
 
     const IMP = window.IMP // 생략 가능
     IMP.init("{Merchant ID}") // Example: imp00000000
