@@ -21,35 +21,17 @@ type Props = {
     tab?: number
     children?: React.ReactNode
     noticeId?: string | string[] | undefined
+    tablist: {
+        phrase: string
+        title: string
+        color: string
+        image: string
+    }
 }
 
 export default function ServiceLayout(props: Props) {
-    const {tab, children, noticeId} = props
+    const {tab, children, noticeId, tablist} = props
     const theme = useTheme()
-    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
-
-    const tabList = [
-        {
-            phrase: "심키즈의 새로운 소식입니다.",
-            title: "공지사항",
-            color: theme.palette.primary.light,
-            image: "",
-        },
-
-        {
-            phrase: "무엇을 도와드릴까요?",
-            title: "FAQ",
-            color: theme.palette.primary.main,
-            image: "",
-        },
-
-        {
-            phrase: "소중한 문의에 답변드립니다.",
-            title: "1:1 문의",
-            color: theme.palette.primary.dark,
-            image: "",
-        },
-    ]
 
     const handleTabChange = (tab: number) => {
         const tabId = Object.keys(customerServiceTabs)[tab]
@@ -60,17 +42,12 @@ export default function ServiceLayout(props: Props) {
 
     return (
         <Stack py={13.5}>
-            <Stack
-                justifyContent="center"
-                alignItems="center"
-                height={300}
-                sx={{backgroundColor: tabList[tab ? tab : 0].color}}
-            >
+            <Stack justifyContent="center" alignItems="center" height={300} sx={{backgroundColor: tablist?.color}}>
                 <Typography className="pointFont" fontSize={32} color="white">
-                    {tabList[tab ? tab : 0].phrase}
+                    {tablist?.phrase}
                 </Typography>
                 <Typography className="pointFont" mt={1} fontSize={18} color={theme.palette.secondary.light}>
-                    {tabList[tab ? tab : 0].title}
+                    {tablist?.title}
                 </Typography>
             </Stack>
             <Stack>

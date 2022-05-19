@@ -55,7 +55,7 @@ export default function Index() {
     }
 
     return (
-        <Stack mt={2} flexDirection="column" justifyContent="center" alignItems="center">
+        <Stack mt={mobile ? 0 : 2} flexDirection="column" justifyContent="center" alignItems="center">
             <Stack width={mobile ? "90%" : 700}>
                 <Typography
                     className="pointFont"
