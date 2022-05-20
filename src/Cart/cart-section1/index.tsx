@@ -1,24 +1,24 @@
 import React, {useEffect, useState} from "react"
-import {Typography, Divider, Button, Stack} from "@mui/material"
+import {useMediaQuery} from "@mui/material"
 import {toast} from "react-toastify"
-import useStyles from "./style"
 import {useTheme} from "@mui/system"
 
 import {CartOptionsType, OptionCart} from "types/cart-type"
 import {GoodsItemProps, OptionsType} from "types/goods-type"
 import {CART_ITEMS_DATA} from "src/Components/fake-data/fake-cart"
 import {GOODS_ITEMS_DATA} from "src/Components/fake-data/fake-goods"
-import CartTable from "./components/CartTable"
-import TotalPrice from "./components/TotalPrice"
 import useStore from "store/useStore"
+
+import CartSection1Web from "./CartSection1Web"
+import CartSection1Mobile from "./CartSection1Mobile"
 
 type Props = {
     onChangeNextStep: (index: number) => void
 }
 
 export default function CartSection1(props: Props) {
-    const classes = useStyles()
     const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const {goodsStore} = useStore()
     const {onChangeNextStep} = props
     //장바구니 데이터 표시
@@ -135,46 +135,35 @@ export default function CartSection1(props: Props) {
     const onDeleteCartItem = () => {
         confirm("선택 상품을 모두 삭제하시겠습니까?")
     }
-
     return (
         <>
-            <Stack className={classes.rootStack}>
-                <Typography variant="h5" mb={1} className="pointFont" color={theme.palette.secondary.dark}>
-                    # 제품
-                </Typography>
-                <Button sx={{color: "black"}} onClick={onDeleteCartItem}>
-                    선택상품 삭제
-                </Button>
-            </Stack>
-            <Divider className={classes.divider} flexItem />
-
-            {/* 장바구니 목록 */}
-            <CartTable
-                cartItemList={cartItemList}
-                setCartItemList={setCartItemList}
-                totalPrice={totalPrice}
-                deliveryPrice={deliveryPrice}
-                //check
-                checkList={checkList}
-                setCheckList={setCheckList}
-                checkAll={checkAll}
-                onCheckAll={onCheckAll}
-            />
-
-            <Divider className={classes.divider} flexItem />
-
-            {/* 총 결제 금액 계산 */}
-            <TotalPrice deliveryPrice={deliveryPrice} totalPrice={totalPrice} />
-
-            {/* 주문결제버튼 */}
-            <Stack className={classes.rootStack} width={"50% !important"} mb={16}>
-                <Button variant="outlined" fullWidth onClick={() => {}}>
-                    <Typography variant="h6">쇼핑 계속하기</Typography>
-                </Button>
-                <Button variant="contained" fullWidth onClick={onClickOrder} disableElevation>
-                    <Typography variant="h6">주문하기</Typography>
-                </Button>
-            </Stack>
+            {mobile ? (
+                <CartSection1Mobile
+                    onCheckAll={onCheckAll}
+                    onClickOrder={onClickOrder}
+                    onDeleteCartItem={onDeleteCartItem}
+                    cartItemList={cartItemList}
+                    setCartItemList={setCartItemList}
+                    checkList={checkList}
+                    setCheckList={setCheckList}
+                    checkAll={checkAll}
+                    totalPrice={totalPrice}
+                    deliveryPrice={deliveryPrice}
+                />
+            ) : (
+                <CartSection1Web
+                    onCheckAll={onCheckAll}
+                    onClickOrder={onClickOrder}
+                    onDeleteCartItem={onDeleteCartItem}
+                    cartItemList={cartItemList}
+                    setCartItemList={setCartItemList}
+                    checkList={checkList}
+                    setCheckList={setCheckList}
+                    checkAll={checkAll}
+                    totalPrice={totalPrice}
+                    deliveryPrice={deliveryPrice}
+                />
+            )}
         </>
     )
 }
