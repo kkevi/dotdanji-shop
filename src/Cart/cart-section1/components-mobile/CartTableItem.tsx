@@ -35,57 +35,60 @@ export default function CartTableItem(props: CartListProps) {
     }
 
     return (
-        <Stack
-            width="100%"
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            py={3}
-            sx={{borderTop: "1px solid #D3D3D3"}}
-        >
-            <FormControlLabel
-                color="primary"
-                label=""
-                control={
-                    <Checkbox
-                        checked={checkList[cartItem.optionId] || false}
-                        onChange={onChangeCheckbox}
-                        name={cartItem.optionId}
-                    />
-                }
-            />
-
-            <Stack direction="column" width="60%">
-                {/* 상품명 */}
-                <Typography fontWeight={700} mb={0.2}>
-                    {goodsName}
-                </Typography>
-                {/* 옵션정보 */}
-                <Stack direction="row" alignItems="center" justifyContent="flex-start" sx={{color: "#999"}} mb={1.2}>
-                    <Typography fontSize={12} mr={1}>
-                        {cartItem.optionName}
-                    </Typography>
-                    {cartItem.optionAddPlace > 0 && (
-                        <Typography fontSize={12}>+{cartItem.optionAddPlace.toLocaleString("ko")}원</Typography>
-                    )}
-                </Stack>
-
-                <Typography fontSize={17} fontWeight={800} color="#333" mb={2}>
-                    {(cartItem.price * cartItem.count).toLocaleString("ko")} 원
-                </Typography>
-
-                <CountController
-                    idx={idx}
-                    optionId={cartItem.optionId}
-                    count={cartItem.count}
-                    valueList={cartItemList}
-                    setValueList={setCartItemList}
-                    mr={15}
-                    mobile
+        <Stack width="100%" direction="row" justifyContent="space-between" py={3} sx={{borderTop: "1px solid #D3D3D3"}}>
+            <Stack direction="row" alignItems="flex-start">
+                <FormControlLabel
+                    color="primary"
+                    label=""
+                    control={
+                        <Checkbox
+                            checked={checkList[cartItem.optionId] || false}
+                            onChange={onChangeCheckbox}
+                            name={cartItem.optionId}
+                            sx={{pt: 0}}
+                        />
+                    }
                 />
+
+                <Stack direction="column">
+                    {/* 상품명 */}
+                    <Typography fontWeight={700} mb={0.2}>
+                        {goodsName}
+                    </Typography>
+                    {/* 옵션정보 */}
+                    <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="flex-start"
+                        sx={{color: "#999"}}
+                        mb={1.2}
+                    >
+                        <Typography fontSize={12} mr={1}>
+                            {cartItem.optionName}
+                        </Typography>
+                        {cartItem.optionAddPlace > 0 && (
+                            <Typography fontSize={12}>+{cartItem.optionAddPlace.toLocaleString("ko")}원</Typography>
+                        )}
+                    </Stack>
+
+                    <Typography fontSize={17} fontWeight={800} color="#333" mb={2}>
+                        {(cartItem.price * cartItem.count).toLocaleString("ko")} 원
+                    </Typography>
+
+                    <Stack width={110}>
+                        <CountController
+                            idx={idx}
+                            optionId={cartItem.optionId}
+                            count={cartItem.count}
+                            valueList={cartItemList}
+                            setValueList={setCartItemList}
+                            mobile
+                        />
+                    </Stack>
+                </Stack>
             </Stack>
 
-            <ImageBox width={80} height={80} src={goodsThumbnail} style={{marginLeft: 20}} />
+            <ImageBox width={130} height={130} src={goodsThumbnail} />
         </Stack>
     )
 }

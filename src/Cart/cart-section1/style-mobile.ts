@@ -15,20 +15,9 @@ const styles = makeStyles((theme: Theme) =>
             background: "#222",
             color: "#fff",
         },
-        columnStack: {
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-        },
         divider: {
             height: 1,
             backgroundColor: theme.palette.secondary.dark,
-        },
-        countButtonBox: {
-            marginRight: 16,
-            flexDirection: "row",
-            alignItems: "center",
-            border: "1px solid #726C60",
         },
     }),
 )

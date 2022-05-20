@@ -10,7 +10,7 @@ import useStyles from "src/Notice/notice-detail-page/style"
 type TermsDialogProps = {
     id: number
     setVisibleDialog: (val: boolean) => void
-    mobile: boolean
+    mobile?: boolean
 }
 
 export default function TermsDialog(prop: TermsDialogProps) {

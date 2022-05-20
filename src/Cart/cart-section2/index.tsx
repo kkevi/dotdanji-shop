@@ -1,20 +1,16 @@
 import React, {useEffect, useState} from "react"
-import {Typography, Divider, Stack} from "@mui/material"
-import useStyles from "./style"
+import {useMediaQuery} from "@mui/material"
 import {useTheme} from "@mui/system"
 
-import CartTable from "./components/CartTable"
-import CartForm from "./components/CartForm"
-import CartPayment from "./components/CartPayment"
 import useStore from "store/useStore"
-//fake data
-import {CART_ITEMS_DATA} from "components/fake-data/fake-cart"
-import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
+
 //types
-import {CartItemProps, CartOptionsType, OptionCart} from "types/cart-type"
+import {CartOptionsType} from "types/cart-type"
 import {CartFormDefaultData, CartFormProps} from "types/cart-type"
 import {RequestPayProps, RequestPayResponse} from "types/payment-type"
-import {GoodsItemProps, OptionsType} from "types/goods-type"
+
+import CartSection2Web from "./CartSection2Web"
+import CartSection2Mobile from "./CartSection2Mobile"
 
 type Props = {
     onChangeNextStep: (index: number) => void
@@ -27,10 +23,10 @@ declare global {
 }
 
 export default function CartSection2(props: Props) {
-    const theme = useTheme()
-    const classes = useStyles()
-    const {userStore, goodsStore} = useStore()
     const {onChangeNextStep} = props
+    const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
+    const {userStore, goodsStore} = useStore()
     const [formData, setFormData] = useState<CartFormProps>(CartFormDefaultData)
 
     //장바구니 데이터 표시
@@ -141,27 +137,25 @@ export default function CartSection2(props: Props) {
 
     return (
         <>
-            <Stack sx={{width: "100%"}}>
-                <Typography
-                    variant="h5"
-                    mb={1}
-                    sx={{alignSelf: "flex-start"}}
-                    className="pointFont"
-                    color={theme.palette.secondary.dark}
-                >
-                    # 상품정보
-                </Typography>
-            </Stack>
-            <Divider className={classes.divider} flexItem />
-
-            {/* 장바구니 목록 */}
-            <CartTable cartItemList={cartItemList} totalPrice={totalPrice} deliveryPrice={deliveryPrice} />
-
-            <Divider className={classes.divider} flexItem />
-
-            <CartForm formData={formData} setFormData={setFormData} />
-
-            <CartPayment formData={formData} setFormData={setFormData} onClickOrder={onClickOrder} />
+            {mobile ? (
+                <CartSection2Mobile
+                    cartItemList={cartItemList}
+                    formData={formData}
+                    setFormData={setFormData}
+                    deliveryPrice={deliveryPrice}
+                    totalPrice={totalPrice}
+                    onClickOrder={onClickOrder}
+                />
+            ) : (
+                <CartSection2Web
+                    cartItemList={cartItemList}
+                    formData={formData}
+                    setFormData={setFormData}
+                    deliveryPrice={deliveryPrice}
+                    totalPrice={totalPrice}
+                    onClickOrder={onClickOrder}
+                />
+            )}
         </>
     )
 }
