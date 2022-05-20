@@ -3,78 +3,70 @@ import {Typography, TextField, Stack, Button} from "@mui/material"
 import useStyles from "../styles"
 import {ProposalFormProps as formProps} from "../ProposalDataType"
 
+import {CustomedTextField} from "components/customed-textfield/CustomedTextField"
+
 type ProposalFormProps = {
     formData: formProps
     setFormData: React.Dispatch<React.SetStateAction<formProps>>
     onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
     onChangeOperationFile: (val: React.ChangeEvent<HTMLInputElement>) => void
     onChangeProposalFile: (val: React.ChangeEvent<HTMLInputElement>) => void
+    mobile: boolean
 }
 
 export default function ProposalForm(props: ProposalFormProps) {
-    const {formData, setFormData, onChangeInput, onChangeOperationFile, onChangeProposalFile} = props
+    const {formData, setFormData, onChangeInput, onChangeOperationFile, onChangeProposalFile, mobile} = props
     const classes = useStyles()
     const operaionFileInputRef = useRef<HTMLInputElement>(null)
     const proposalFileInputRef = useRef<HTMLInputElement>(null)
 
     return (
         <Stack flexDirection="column" justifyContent="center">
-            <Stack flexDirection="row" my={2}>
-                <Typography variant="subtitle1" fontWeight={700} width={200}>
+            <Stack flexDirection={mobile ? "column" : "row"} my={2}>
+                <Typography variant="subtitle1" fontWeight={700} width={200} mb={mobile ? 2 : 0}>
                     담당자 및 회사 정보
                 </Typography>
-                <Stack width={700}>
-                    <TextField
-                        className={classes.textField}
+                <Stack width={mobile ? "100%" : 700}>
+                    <CustomedTextField
                         required
-                        fullWidth
                         label="회사명"
                         name="operation"
                         value={formData.operation}
                         onChange={onChangeInput}
                     />
-                    <TextField
-                        className={classes.textField}
+                    <CustomedTextField
                         required
-                        fullWidth
                         label="담당자명"
                         name="name"
                         value={formData.name}
                         onChange={onChangeInput}
                     />
-                    <TextField
-                        className={classes.textField}
+                    <CustomedTextField
                         required
-                        fullWidth
                         type="number"
                         label="전화번호"
                         name="phoneNumber"
                         value={formData.phoneNumber}
                         onChange={onChangeInput}
                     />
-                    <TextField
-                        className={classes.textField}
+                    <CustomedTextField
                         required
-                        fullWidth
                         type="email"
                         label="메일주소"
                         name="email"
                         value={formData.email}
                         onChange={onChangeInput}
                     />
-                    <TextField
-                        className={classes.textField}
-                        fullWidth
+                    <CustomedTextField
                         label="홈페이지"
                         name="homepage"
                         value={formData.homepage}
                         onChange={onChangeInput}
                     />
                     <Stack flexDirection="row">
-                        <TextField
+                        <CustomedTextField
                             className={classes.lastTextField}
                             disabled
-                            fullWidth
                             defaultValue={"회사 소개서 첨부"}
                             value={formData.operationFile?.fileName}
                         />
@@ -102,24 +94,20 @@ export default function ProposalForm(props: ProposalFormProps) {
                 </Stack>
             </Stack>
 
-            <Stack flexDirection="row" mt={4} mb={8}>
+            <Stack flexDirection={mobile ? "column" : "row"} mt={4} mb={mobile ? 2 : 8}>
                 <Typography variant="subtitle1" fontWeight={700} width={200}>
                     제휴/제안 내용
                 </Typography>
-                <Stack width={700}>
-                    <TextField
-                        className={classes.textField}
+                <Stack width={mobile ? "100%" : 700}>
+                    <CustomedTextField
                         required
-                        fullWidth
                         label="제휴/제안 제목"
                         name="title"
                         value={formData.title}
                         onChange={onChangeInput}
                     />
-                    <TextField
-                        className={classes.textField}
+                    <CustomedTextField
                         required
-                        fullWidth
                         multiline
                         rows={10}
                         label="제휴/제안 내용"
@@ -128,13 +116,11 @@ export default function ProposalForm(props: ProposalFormProps) {
                         onChange={onChangeInput}
                     />
                     <Stack flexDirection="row">
-                        <TextField
+                        <CustomedTextField
                             className={classes.lastTextField}
                             disabled
-                            fullWidth
                             defaultValue="제휴/제안서 첨부"
                             value={formData.proposalFile?.fileName}
-                            // label="제휴/제안서 첨부"
                         />
                         <Button
                             className={classes.button2}

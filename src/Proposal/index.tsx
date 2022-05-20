@@ -1,10 +1,11 @@
 import React, {useState} from "react"
-import {Typography, Stack, Divider, Button} from "@mui/material"
+import {Typography, Stack, Divider, Button, useMediaQuery} from "@mui/material"
 
 import {useTheme} from "@mui/system"
 import useStyles from "./styles"
 
 import ProposalProcess from "./proposal-process/ProposalProcess"
+import ProposalProcessMobile from "./proposal-process/ProposalProcessMobile"
 import ProposalTerms from "./proposal-terms/ProposalTerms"
 import ProposalForm from "./proposal-form/ProposalForm"
 
@@ -13,6 +14,7 @@ import {toast} from "react-toastify"
 
 export default function Index() {
     const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const classes = useStyles()
     const [formData, setFormData] = useState<ProposalFormProps>(proposalFormDefaultData)
 
@@ -76,45 +78,52 @@ export default function Index() {
             <Typography
                 className="pointFont"
                 color={theme.palette.secondary.dark}
-                variant="h4"
-                mt={10}
-                mb={2}
-                fontWeight={800}
+                variant={mobile ? "h6" : "h4"}
+                mt={mobile ? 0 : 10}
+                mb={mobile ? 1 : 2}
             >
                 # 심키즈와 함께 성장해요!
             </Typography>
-            <Typography variant="h6" color="#757575">
+            <Typography fontSize={mobile ? 14 : 18} color="#757575">
                 심키즈와 함께할 수 있는 다양한 제휴&제안을 해주세요.
             </Typography>
-            <Typography variant="h6" color="#757575">
+            <Typography fontSize={mobile ? 14 : 18} color="#757575">
                 등록하신 내용은 담당자가 검토 후 연락을 드립니다.
             </Typography>
 
             <Typography
                 className="pointFont"
                 color={theme.palette.secondary.dark}
-                mt={8}
+                mt={mobile ? 4 : 8}
                 mb={4}
-                fontWeight={800}
-                fontSize={22}
+                fontSize={mobile ? 18 : 22}
             >
                 # 제휴/제안 진행과정
             </Typography>
 
             <Stack flexDirection="row" justifyContent="center" alignItems="center">
-                {process.map((itm, idx) => (
-                    <ProposalProcess idx={idx} title={itm} key={"ProposalProcess" + idx} />
-                ))}
+                {mobile ? (
+                    <>
+                        {process.map((itm, idx) => (
+                            <ProposalProcessMobile idx={idx} title={itm} key={"ProposalProcess" + idx} />
+                        ))}
+                    </>
+                ) : (
+                    <>
+                        {process.map((itm, idx) => (
+                            <ProposalProcess idx={idx} title={itm} key={"ProposalProcess" + idx} />
+                        ))}
+                    </>
+                )}
             </Stack>
 
             {/* 약관동의란 */}
             <Typography
                 className="pointFont"
                 color={theme.palette.secondary.dark}
-                mt={10}
-                mb={4}
-                fontWeight={800}
-                fontSize={22}
+                mt={mobile ? 4 : 10}
+                mb={mobile ? 2 : 4}
+                fontSize={mobile ? 18 : 22}
             >
                 # 개인정보 이용 동의
             </Typography>
@@ -124,10 +133,9 @@ export default function Index() {
             <Typography
                 className="pointFont"
                 color={theme.palette.secondary.dark}
-                mt={10}
-                mb={4}
-                fontWeight={800}
-                fontSize={22}
+                mt={mobile ? 4 : 10}
+                mb={mobile ? 2 : 4}
+                fontSize={mobile ? 18 : 22}
             >
                 # 제휴/제안
             </Typography>
@@ -137,6 +145,7 @@ export default function Index() {
                 onChangeInput={onChangeInput}
                 onChangeOperationFile={onChangeOperationFile}
                 onChangeProposalFile={onChangeProposalFile}
+                mobile={mobile}
             />
             <Divider />
             <Typography mt={2} mb={6} variant="subtitle2" color="#757575">

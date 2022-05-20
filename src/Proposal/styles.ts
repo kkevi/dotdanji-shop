@@ -3,12 +3,6 @@ import {Theme} from "@mui/material"
 
 const styles = makeStyles((theme: Theme) =>
     createStyles({
-        terms: {},
-        textField: {
-            marginBottom: 30,
-            backgroundColor: "rgba(208,235,245,0.1)",
-            borderRadius: 4,
-        },
         lastTextField: {
             color: "#646566",
             backgroundColor: "rgba(208,235,245,0.1)",
@@ -35,6 +29,7 @@ const styles = makeStyles((theme: Theme) =>
             color: "#646566",
             border: "1px solid #babcbc",
             backgroundColor: "rgba(208,235,245,0.1)",
+            marginBottom: theme.breakpoints.down("sm") ? 15 : 30,
             "&:active": {
                 color: theme.palette.primary.dark,
                 border: `1px solid ${theme.palette.primary.dark}`,
