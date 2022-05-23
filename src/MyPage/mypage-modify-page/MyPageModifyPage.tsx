@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {useRouter} from "next/router"
-import {Container, Stack, TextField, Typography, Button, InputAdornment} from "@mui/material"
+import {Container, Stack, TextField, Typography, Button, InputAdornment, useMediaQuery} from "@mui/material"
 import {useTheme} from "@mui/system"
 
 import useStyles from "../styles"
@@ -8,8 +8,11 @@ import MyPageHeader from "src/MyPage/mypage-header/MyPageHeader"
 import DaumPostModal from "components/daum-post-modal/DaumPostModal"
 import {MyPageModifyFormDefaultData, MyPageModifyFormProps} from "types/service-type"
 
+import {CustomedTextField} from "src/Components/customed-textfield/CustomedTextField"
+
 export default function MyPageModifyPage() {
     const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const classes = useStyles()
     const route = useRouter()
     const [formData, setFormData] = useState<MyPageModifyFormProps>(MyPageModifyFormDefaultData)
@@ -37,7 +40,7 @@ export default function MyPageModifyPage() {
     const onSave = () => {}
 
     return (
-        <>
+        <Stack py={mobile ? 9.9 : 13.5}>
             {visibleModal && (
                 <DaumPostModal
                     onChangeAddress={onChangeAddress}
@@ -45,41 +48,37 @@ export default function MyPageModifyPage() {
                     setVisibleModal={setVisibleModal}
                 />
             )}
-            <MyPageHeader title="마이페이지" />
-            <Container maxWidth="lg">
-                <Stack mt={12} direction="column" justifyContent="center" alignItems="center">
-                    <Stack width={700}>
+            <MyPageHeader title="마이페이지" mobile={mobile} />
+            <Container maxWidth={mobile ? "sm" : "md"}>
+                <Stack mt={mobile ? 6 : 12} direction="column" justifyContent="center" alignItems="center">
+                    <Stack width={mobile ? "100%" : "100%"}>
                         <Typography
                             className="pointFont"
                             color={theme.palette.secondary.dark}
                             mb={4}
-                            fontSize={22}
+                            fontSize={mobile ? 20 : 22}
                             sx={{alignSelf: "flex-start"}}
                         >
                             # 내 정보 수정
                         </Typography>
-                        <TextField
+                        <CustomedTextField
                             className={classes.disabledTextField}
                             required
-                            fullWidth
                             name="email"
                             value={"borakim@simbaat.com"}
                             // value={formData.email}
                             disabled
                         />
-                        <TextField
-                            className={classes.textField}
+                        <CustomedTextField
                             required
-                            fullWidth
                             label="이름"
                             name="name"
                             value={formData.name}
                             onChange={onChangeInput}
+                            style={{marginTop: theme.spacing(-2)}}
                         />
-                        <TextField
-                            className={classes.textField}
+                        <CustomedTextField
                             required
-                            fullWidth
                             type="number"
                             label="연락처"
                             placeholder="-제외, 숫자만 입력"
@@ -90,22 +89,19 @@ export default function MyPageModifyPage() {
                                 startAdornment: <InputAdornment position="start">010</InputAdornment>,
                             }}
                         />
-                        <TextField
-                            className={classes.textField}
+                        <CustomedTextField
                             required
-                            fullWidth
                             type="date"
                             label="생년월일"
                             name="birth"
                             value={formData.birth || ""}
                             onChange={onChangeInput}
                         />
-                        <Stack flexDirection="row" mb={4}>
-                            <TextField
+                        <Stack flexDirection="row" mb={2}>
+                            <CustomedTextField
                                 className={classes.disabledTextField}
                                 required
                                 disabled
-                                fullWidth
                                 value={formData.postCode}
                                 sx={{marginBottom: "0 !important"}}
                             />
@@ -117,21 +113,19 @@ export default function MyPageModifyPage() {
                                 주소검색
                             </Button>
                         </Stack>
-                        <TextField
+                        <CustomedTextField
                             className={classes.disabledTextField}
                             required
-                            fullWidth
                             value={formData.address}
                             onChange={onChangeInput}
                             disabled
                         />
-                        <TextField
-                            className={classes.textField}
-                            fullWidth
+                        <CustomedTextField
                             label="상세주소"
                             name="addressDetailed"
                             value={formData.addressDetailed}
                             onChange={onChangeInput}
+                            style={{marginTop: theme.spacing(-2)}}
                         />
                         <Button
                             className={classes.button}
@@ -155,6 +149,6 @@ export default function MyPageModifyPage() {
                     </Stack>
                 </Stack>
             </Container>
-        </>
+        </Stack>
     )
 }

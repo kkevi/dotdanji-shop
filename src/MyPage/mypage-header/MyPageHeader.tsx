@@ -4,18 +4,20 @@ import {useTheme} from "@mui/system"
 
 type MyPageHeaderProps = {
     title: string
+    mobile?: boolean
 }
 
-export default function MyPageHeader({title}: MyPageHeaderProps) {
+export default function MyPageHeader({title, mobile}: MyPageHeaderProps) {
     const theme = useTheme()
     return (
         <Stack
+            py={mobile ? 9.9 : 13.5}
             justifyContent="center"
             alignItems="center"
-            height={300}
+            height={mobile ? 200 : 300}
             sx={{backgroundColor: theme.palette.primary.main}}
         >
-            <Typography className="pointFont" fontSize={32} color="white">
+            <Typography className="pointFont" fontSize={mobile ? 24 : 32} color="white">
                 {title}
             </Typography>
             {/* <Typography className="pointFont" mt={1} fontSize={18} color={theme.palette.secondary.light}></Typography> */}

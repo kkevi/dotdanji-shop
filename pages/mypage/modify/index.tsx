@@ -6,9 +6,7 @@ import MyPageModifyPage from "src/MyPage/mypage-modify-page/MyPageModifyPage"
 export default function Index() {
     return (
         <MainLayout>
-            <Stack py={13.5}>
-                <MyPageModifyPage />
-            </Stack>
+            <MyPageModifyPage />
         </MainLayout>
     )
 }

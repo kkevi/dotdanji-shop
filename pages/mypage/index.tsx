@@ -6,9 +6,7 @@ import MyPage from "src/MyPage"
 export default function Index() {
     return (
         <MainLayout>
-            <Stack py={13.5} sx={{backgroundColor: "#f9fafb"}}>
-                <MyPage />
-            </Stack>
+            <MyPage />
         </MainLayout>
     )
 }
