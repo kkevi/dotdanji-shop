@@ -1,5 +1,5 @@
 import React from "react"
-import {Container, Typography, Stack, Tabs, Tab, useMediaQuery} from "@mui/material"
+import {Container, Typography, Stack, Tabs, Tab} from "@mui/material"
 
 import {customerServiceTabs} from "lib/customer-service-tabs"
 import {useTheme} from "@mui/system"

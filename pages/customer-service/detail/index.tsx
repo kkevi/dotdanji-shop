@@ -17,12 +17,35 @@ export default function Index() {
         setQueryNoticeId(route.query.noticeId)
     }, [route])
 
+    const tabList = [
+        {
+            phrase: "심키즈의 새로운 소식입니다.",
+            title: "공지사항",
+            color: theme.palette.primary.light,
+            image: "",
+        },
+
+        {
+            phrase: "무엇을 도와드릴까요?",
+            title: "FAQ",
+            color: theme.palette.primary.main,
+            image: "",
+        },
+
+        {
+            phrase: "소중한 문의에 답변드립니다.",
+            title: "1:1 문의",
+            color: theme.palette.primary.dark,
+            image: "",
+        },
+    ]
+
     return (
         <MainLayout>
             {mobile ? (
-                <ServiceLayoutMobile tab={0} noticeId={queryNoticeId} />
+                <ServiceLayoutMobile tab={0} tablist={tabList[0]} noticeId={queryNoticeId} />
             ) : (
-                <ServiceLayout tab={0} noticeId={queryNoticeId} />
+                <ServiceLayout tab={0} tablist={tabList[0]} noticeId={queryNoticeId} />
             )}
         </MainLayout>
     )

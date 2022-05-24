@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {Button, Container, IconButton, InputAdornment, Stack, TextField, Typography} from "@mui/material"
+import {Button, Container, IconButton, InputAdornment, Stack, TextField, Typography, useMediaQuery} from "@mui/material"
 import {useTheme} from "@mui/system"
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded"
 
@@ -23,7 +23,9 @@ const MyPagePwEditFormDefaultData: MyPagePwEditFormProps = {
 
 export default function MyPagePwEditPage() {
     const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const classes = useStyles()
+
     const [formData, setFormData] = useState<MyPagePwEditFormProps>(MyPagePwEditFormDefaultData)
     const [visibility, setVisibility] = useState<boolean>(false)
     const [visibility2, setVisibility2] = useState<boolean>(false)
@@ -45,15 +47,14 @@ export default function MyPagePwEditPage() {
     const onSave = () => {
         // if(formData.currentPw !== currentPassword) alert('기존 비밀번호가 일치하지 않습니다.')
         if (validPwAll) {
-            console.log("work on here")
         } else return
     }
 
     return (
-        <>
-            <MyPageHeader title="마이페이지" />
+        <Stack py={mobile ? 9.9 : 13.5}>
+            <MyPageHeader title="마이페이지" mobile={mobile} />
             <Container maxWidth="sm">
-                <Stack mt={12} direction="column" justifyContent="center" alignItems="flex-start">
+                <Stack mt={mobile ? 6 : 12} direction="column" justifyContent="center" alignItems="flex-start">
                     <Typography
                         className="pointFont"
                         color={theme.palette.secondary.dark}
@@ -181,6 +182,6 @@ export default function MyPagePwEditPage() {
                     </Button>
                 </Stack>
             </Container>
-        </>
+        </Stack>
     )
 }
