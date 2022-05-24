@@ -45,6 +45,13 @@ const styles = makeStyles((theme: Theme) =>
                 border: `1px solid ${theme.palette.primary.main}`,
             },
         },
+        submitButton2: {
+            padding: "12px 20px",
+            fontSize: 14,
+            fontWeight: 700,
+            color: theme.palette.primary.dark,
+            border: `1px solid ${theme.palette.primary.dark}`,
+        },
         countButtonBox: {
             marginRight: 16,
             flexDirection: "row",
@@ -60,6 +67,10 @@ const styles = makeStyles((theme: Theme) =>
         autocomplete: {
             marginBottom: 30,
             width: 200,
+            backgroundColor: "rgba(208,235,245,0.1)",
+        },
+        autocompleteMobile: {
+            marginBottom: 15,
             backgroundColor: "rgba(208,235,245,0.1)",
         },
         textField: {
