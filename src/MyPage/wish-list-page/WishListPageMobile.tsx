@@ -3,7 +3,7 @@ import React from "react"
 import {Container, Stack, Typography, Button, Divider} from "@mui/material"
 
 import useStyles from "./style"
-import WishListTableItem from "./components/WishListTableItemMobile"
+import WishListItemMobile from "./components/WishListItemMobile"
 import {useTheme} from "@mui/system"
 
 type WishListPageProps = {
@@ -43,25 +43,17 @@ export default function WishListPageMobile(prop: WishListPageProps) {
                     </Button>
                 </Stack>
                 <Divider className={classes.divider} flexItem />
-                {/* <WishListTableItem idx={0} /> */}
+                <WishListItemMobile />
 
-                {/* <WishListTable
-                    wishItemList={wishItemList}
-                    setWishItemList={setWishItemList}
-                    checkList={checkList}
-                    setCheckList={setCheckList}
-                    checkAll={checkAll}
-                    onCheckAll={onCheckAll}
-                /> */}
                 <Divider className={classes.divider} flexItem />
 
                 {/* 주문결제버튼 */}
-                <Stack className={classes.rootStack} alignSelf="center" mt={8} width={"50% !important"} mb={16}>
+                <Stack className={classes.rootStack} alignSelf="center">
                     <Button variant="outlined" fullWidth onClick={() => {}}>
-                        <Typography variant="h6">장바구니에 넣기</Typography>
+                        <Typography variant="body2">장바구니에 넣기</Typography>
                     </Button>
                     <Button variant="contained" fullWidth onClick={() => {}} disableElevation>
-                        <Typography variant="h6">선택상품 구매하기</Typography>
+                        <Typography variant="body2">선택상품 구매하기</Typography>
                     </Button>
                 </Stack>
             </Stack>

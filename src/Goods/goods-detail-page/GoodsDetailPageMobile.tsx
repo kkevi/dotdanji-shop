@@ -13,7 +13,7 @@ import {OptionCart} from "types/cart-type"
 import GoodsOptions from "./GoodsOptions"
 import ImageBox from "components/image-box/ImageBox"
 
-import StorySelfIntroSection from "./StorySelfIntroSection"
+import ExtraInformationModule from "./ExtraInformationModule"
 
 type Props = {
     goodsId: string
@@ -185,7 +185,7 @@ export default function GoodsDetailPageMobile(props: Props) {
                 </Stack>
             </Stack>
 
-            {categoryId === "ebook" && <StorySelfIntroSection />}
+            {categoryId === "ebook" && <ExtraInformationModule />}
         </div>
     )
 }

@@ -13,7 +13,7 @@ import {OptionCart} from "types/cart-type"
 import GoodsOptions from "./GoodsOptions"
 import ImageBox from "components/image-box/ImageBox"
 
-import StorySelfIntroSection from "./StorySelfIntroSection"
+import ExtraInformationModule from "./ExtraInformationModule"
 
 type Props = {
     goodsId: string
@@ -63,7 +63,7 @@ export default function GoodsDetailPageWeb(props: Props) {
                                 key={"thumbnail" + idx}
                                 width="100%"
                                 className={classes.slideBox}
-                                height={1050}
+                                height={950}
                                 justifyContent="center"
                                 alignItems="center"
                                 display="flex !important"
@@ -197,7 +197,7 @@ export default function GoodsDetailPageWeb(props: Props) {
                 </div>
             </Stack>
 
-            {categoryId === "ebook" && <StorySelfIntroSection />}
+            {categoryId === "ebook" && <ExtraInformationModule />}
         </div>
     )
 }
