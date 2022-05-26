@@ -1,7 +1,7 @@
 import React, {useState} from "react"
-import {useTheme} from "@mui/system"
-import useStyles from "../styles"
 
+import useStyles from "../styles"
+import {useTheme} from "@mui/material"
 import {Button, Stack, Typography} from "@mui/material"
 
 type ReserachStepProps = {

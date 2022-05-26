@@ -1,11 +1,10 @@
 import React from "react"
 import {useRouter} from "next/router"
 import {useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 import EventWeb from "./EventWeb"
 import {EventDetailProps} from "types/service-type"
-
+import {useTheme} from "@mui/material"
 export default function Event() {
     const route = useRouter()
     const theme = useTheme()

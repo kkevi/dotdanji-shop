@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import {useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
-
+import {useTheme} from "@mui/material"
 import MainLayout from "components/main-layout/MainLayout"
 import ServiceLayout from "components/service-layout/ServiceLayout"
 import ServiceLayoutMobile from "components/service-layout/ServiceLayoutMobile"
@@ -33,7 +32,7 @@ export default function Index() {
         {
             phrase: "함께 즐길 수 있는 새 이벤트!",
             title: "이벤트",
-            color: theme.palette.secondary.primary,
+            color: theme.palette.secondary.main,
             image: "",
         },
         {

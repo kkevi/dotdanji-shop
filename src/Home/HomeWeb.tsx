@@ -1,6 +1,6 @@
 import React from "react"
 import Slider from "react-slick"
-import {Container, Typography, Stack} from "@mui/material"
+import {Container, Typography, Stack, useTheme} from "@mui/material"
 
 import HomeSlider from "./home-slider/HomeSlider"
 import HomeVideo from "./home-video/HomeVideo"
@@ -11,7 +11,7 @@ import BestSeller from "./best-seller/BestSeller"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import {sliderSettings} from "./sliderSetting"
-import {useTheme} from "@mui/system"
+
 import ImageBox from "components/image-box/ImageBox"
 import {fakeHomeSliderData, fakeVerticalData} from "components/fake-data/fake-event"
 

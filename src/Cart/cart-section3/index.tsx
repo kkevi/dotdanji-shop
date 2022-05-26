@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
+import {useTheme} from "@mui/material"
 import {CartOptionsType} from "types/cart-type"
 
 import CartSection3Web from "./CartSection3Web"

@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {useTheme} from "@mui/system"
+
 import useStyles from "./styles"
 
 import {Container, Stack} from "@mui/material"
@@ -8,7 +8,7 @@ import InitialStep from "./components/InitialStep"
 import Steps from "./components/Steps"
 import ReserachStep from "./components/ReserachStep"
 import ResultStep from "./components/ResultStep"
-
+import {useTheme} from "@mui/material"
 export default function KidsBTI() {
     const theme = useTheme()
     const classes = useStyles()

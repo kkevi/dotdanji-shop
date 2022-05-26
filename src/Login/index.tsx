@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 import Router, {useRouter} from "next/router"
 import {Button, Stack, Typography, Divider, InputAdornment, IconButton, useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 import useStyles from "./styles"
 import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js"

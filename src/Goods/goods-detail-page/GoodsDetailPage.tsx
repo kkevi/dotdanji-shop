@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {useTheme} from "@mui/system"
+
 import {SelectChangeEvent, useMediaQuery} from "@mui/material"
 //components
 import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"

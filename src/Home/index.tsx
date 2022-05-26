@@ -1,6 +1,6 @@
 import React from "react"
-import {useTheme} from "@mui/system"
-import {useMediaQuery} from "@mui/material"
+
+import {useMediaQuery, useTheme} from "@mui/material"
 
 import HomeWeb from "./HomeWeb"
 import HomeMobile from "./HomeMobile"

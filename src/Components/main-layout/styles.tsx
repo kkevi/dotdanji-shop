@@ -1,5 +1,5 @@
-import {createStyles, makeStyles} from "@mui/styles"
 import {Theme} from "@mui/material"
+import {makeStyles, createStyles} from "@mui/styles"
 
 const styles = makeStyles((theme: Theme) =>
     createStyles({
@@ -13,7 +13,7 @@ const styles = makeStyles((theme: Theme) =>
 
             //Link
             "& .MuiLink-root": {
-                color: theme.palette.primary.light,
+                // color: theme.palette.primary.light,
             },
         },
         footerTextArea: {

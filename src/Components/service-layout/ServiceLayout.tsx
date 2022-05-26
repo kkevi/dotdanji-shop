@@ -2,9 +2,9 @@ import React from "react"
 import {Container, Typography, Stack, Tabs, Tab} from "@mui/material"
 
 import {customerServiceTabs} from "lib/customer-service-tabs"
-import {useTheme} from "@mui/system"
-import {routerPush} from "lib/routerPush"
 
+import {routerPush} from "lib/routerPush"
+import {useTheme} from "@mui/material"
 import Notice from "src/Notice"
 import FAQ from "src/FAQ"
 import Event from "src/Event"
@@ -72,9 +72,9 @@ export default function ServiceLayout(props: Props) {
                         ))}
                     </Tabs>
 
-                    {tab === 0 && (noticeId ? <NoticeDetailPage noticeId={noticeId as string} /> : <Notice />)}
+                    {tab === 0 && <Notice />}
                     {tab === 1 && <FAQ />}
-                    {tab === 2 && eventId ? <></> : <Event />}
+                    {tab === 2 && <Event />}
                     {tab === 3 && <Inquiry />}
                     <Stack py={8}>{children}</Stack>
                 </Container>

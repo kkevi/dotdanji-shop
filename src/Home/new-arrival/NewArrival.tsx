@@ -1,8 +1,7 @@
 import React, {useState} from "react"
 import {keyframes} from "styled-components"
 
-import {Container, Link, Stack, Typography, Zoom} from "@mui/material"
-import {useTheme} from "@mui/system"
+import {Container, Link, Stack, Typography, useTheme, Zoom} from "@mui/material"
 
 import ImageBox from "components/image-box/ImageBox"
 import {fakeNewArrivalData} from "components/fake-data/fake-event"

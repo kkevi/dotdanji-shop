@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {Stack, useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
+
 import UserPool from "src/Login/UserPool"
 import Router from "next/router"
 

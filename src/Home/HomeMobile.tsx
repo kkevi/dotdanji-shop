@@ -11,7 +11,7 @@ import BestSellerMobile from "./best-seller/BestSellerMobile"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import {sliderSettings} from "./sliderSetting"
-import {useTheme} from "@mui/system"
+
 import {fakeHomeSliderData, fakeVerticalData, fakeNewArrivalData} from "components/fake-data/fake-event"
 
 export default function HomeMobile() {

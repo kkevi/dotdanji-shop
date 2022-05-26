@@ -1,5 +1,4 @@
 import React from "react"
-import {useTheme} from "@mui/system"
 
 import {Typography} from "@mui/material"
 

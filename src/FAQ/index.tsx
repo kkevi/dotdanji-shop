@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {useTheme} from "@mui/system"
+
 import {useMediaQuery} from "@mui/material"
 
 import {CategoryTypeKey} from "types/service-type"

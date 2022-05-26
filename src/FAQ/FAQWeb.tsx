@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {useTheme} from "@mui/system"
+
 import {Stack, IconButton, InputBase, Divider, ButtonGroup, Button} from "@mui/material"
 
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded"

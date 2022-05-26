@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 
-import {Stack, Button, useMediaQuery, Typography} from "@mui/material"
-import {useTheme} from "@mui/system"
+import {Stack, Button, useMediaQuery, Typography, useTheme} from "@mui/material"
 import useStyles from "../styles"
 
 import {useVerfiyPhone, useVerfiyEmail} from "lib/useVerifyData"

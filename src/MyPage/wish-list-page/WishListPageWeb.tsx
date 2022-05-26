@@ -1,10 +1,9 @@
 import React from "react"
 
-import {Container, Stack, Typography, Button, Divider} from "@mui/material"
+import {Container, Stack, Typography, Button, Divider, useTheme} from "@mui/material"
 
 import useStyles from "./style"
 import WishListTable from "./components/WishListTable"
-import {useTheme} from "@mui/system"
 
 type WishListPageProps = {
     wishItemList: never[]

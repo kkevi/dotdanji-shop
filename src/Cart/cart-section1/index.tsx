@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from "react"
 import {useMediaQuery} from "@mui/material"
 import {toast} from "react-toastify"
-import {useTheme} from "@mui/system"
 
 import {CartOptionsType, OptionCart} from "types/cart-type"
 import {GoodsItemProps, OptionsType} from "types/goods-type"
 import {CART_ITEMS_DATA} from "src/Components/fake-data/fake-cart"
 import {GOODS_ITEMS_DATA} from "src/Components/fake-data/fake-goods"
 import useStore from "store/useStore"
-
+import {useTheme} from "@mui/material"
 import CartSection1Web from "./CartSection1Web"
 import CartSection1Mobile from "./CartSection1Mobile"
 

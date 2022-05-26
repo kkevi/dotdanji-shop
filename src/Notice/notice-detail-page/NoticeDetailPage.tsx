@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import {Stack, Divider, Typography, Button, useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 import useStyles from "./style"
 import {NoticeDetailProps} from "types/service-type"

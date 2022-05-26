@@ -1,7 +1,8 @@
 import {IconButton, Badge} from "@mui/material"
 import {useRouter} from "next/router"
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded"
-import {useTheme} from "@mui/system"
+import {useTheme} from "@mui/material"
+
 type Props = {
     badgeContent: number
 }

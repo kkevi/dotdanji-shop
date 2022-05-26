@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {Container, Stack, Typography, Button, InputAdornment, useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 import useStyles from "../styles"
 import MyPageHeader from "src/MyPage/mypage-header/MyPageHeader"

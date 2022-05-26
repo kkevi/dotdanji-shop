@@ -1,7 +1,6 @@
 import React, {useState} from "react"
-import {useTheme} from "@mui/system"
 
-import {Stack, Button, Typography, InputAdornment, IconButton, useMediaQuery} from "@mui/material"
+import {Stack, Button, Typography, InputAdornment, IconButton, useMediaQuery, useTheme} from "@mui/material"
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded"
 import useStyles from "../styles"
 

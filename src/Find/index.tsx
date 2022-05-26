@@ -2,7 +2,6 @@ import React from "react"
 import {useRouter} from "next/router"
 
 import {Stack, Typography, useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 import FindEmail from "./find-email/FindEmail"
 import FindPw from "./find-pw/FindPw"

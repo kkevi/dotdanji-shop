@@ -1,11 +1,10 @@
 import React from "react"
 import {Typography, Divider, Stack, Button} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 import useStyles from "./style-mobile"
 
 import CartTableItem from "src/Cart/cart-section2/components-mobile/CartTableItem"
-
+import {useTheme} from "@mui/material"
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded"
 import {CartOptionsType} from "types/cart-type"
 

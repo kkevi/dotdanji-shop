@@ -1,7 +1,7 @@
 import React from "react"
 import {Container, Grid, Stack, Typography} from "@mui/material"
 import {useRouter} from "next/router"
-import {useTheme} from "@mui/system"
+
 import useStyles from "./styles-mobile"
 import EBookItem from "./ebook-item/EbookItem"
 //icons

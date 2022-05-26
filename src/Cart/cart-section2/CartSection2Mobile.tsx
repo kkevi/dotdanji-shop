@@ -1,12 +1,11 @@
 import React from "react"
 import {Typography, Divider} from "@mui/material"
 import useStyles from "./style-mobile"
-import {useTheme} from "@mui/system"
 
 import CartTableItem from "./components-mobile/CartTableItem"
 import CartForm from "./components-mobile/CartForm"
 import CartPayment from "./components-mobile/CartPayment"
-
+import {useTheme} from "@mui/material"
 //types
 import {CartOptionsType} from "types/cart-type"
 import {CartFormProps} from "types/cart-type"

@@ -2,8 +2,7 @@ import React from "react"
 import useStyles from "./styles"
 
 import {Container, Divider, Link, Stack, useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
-
+import {useTheme} from "@mui/material"
 export default function Footer() {
     const classes = useStyles()
     const theme = useTheme()

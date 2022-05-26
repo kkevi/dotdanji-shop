@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react"
 import {useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 import useStore from "store/useStore"
 
@@ -8,7 +7,7 @@ import useStore from "store/useStore"
 import {CartOptionsType} from "types/cart-type"
 import {CartFormDefaultData, CartFormProps} from "types/cart-type"
 import {RequestPayProps, RequestPayResponse} from "types/payment-type"
-
+import {useTheme} from "@mui/material"
 import CartSection2Web from "./CartSection2Web"
 import CartSection2Mobile from "./CartSection2Mobile"
 

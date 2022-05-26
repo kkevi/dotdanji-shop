@@ -1,7 +1,7 @@
-import {createStyles, makeStyles} from "@mui/styles"
+import {makeStyles, createStyles} from "@mui/styles"
 import {Theme} from "@mui/material"
 
-const styles = makeStyles((theme: Theme) =>
+const styles = makeStyles((theme: any) =>
     createStyles({
         deliveryMessage: {
             marginBottom: 4,

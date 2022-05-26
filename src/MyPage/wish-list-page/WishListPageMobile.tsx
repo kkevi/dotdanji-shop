@@ -4,7 +4,6 @@ import {Container, Stack, Typography, Button, Divider} from "@mui/material"
 
 import useStyles from "./style"
 import WishListItemMobile from "./components/WishListItemMobile"
-import {useTheme} from "@mui/system"
 
 type WishListPageProps = {
     wishItemList: never[]

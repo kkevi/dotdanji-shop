@@ -1,10 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import Pagination from "react-js-pagination"
-import {useTheme} from "@mui/system"
 
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded"
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded"
+import {useTheme} from "@mui/material"
 
 type Props = {
     activePage: number

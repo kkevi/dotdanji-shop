@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 import {useRouter} from "next/router"
-import {useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
+import {useMediaQuery, useTheme} from "@mui/material"
 
 import {FAKE_NOTICE_DATA} from "src/Components/fake-data/fake-service"
 

@@ -1,11 +1,10 @@
 import React, {useState} from "react"
 import {Typography, Button, Stack, FormControlLabel, Checkbox, Radio, FormControl, RadioGroup} from "@mui/material"
 import useStyles from "../style"
-import {useTheme} from "@mui/system"
 
 import TermsDialog from "src/SignUp/signup-section1/TermsDialog"
 import {CartFormProps} from "types/cart-type"
-
+import {useTheme} from "@mui/material"
 type CartPaymentProps = {
     onClickOrder: () => void
     formData: CartFormProps

@@ -1,7 +1,7 @@
-import {IconButton, Stack, Typography} from "@mui/material"
+import {IconButton, Stack, Typography, useTheme} from "@mui/material"
 import {useRouter} from "next/router"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
-import {useTheme} from "@mui/system"
+
 import React from "react"
 
 type Props = {

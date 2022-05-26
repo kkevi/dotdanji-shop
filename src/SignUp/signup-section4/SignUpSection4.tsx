@@ -1,8 +1,7 @@
 import React from "react"
 import {useRouter} from "next/router"
-import {useTheme} from "@mui/system"
 
-import {Stack, Button, Divider, Typography, useMediaQuery} from "@mui/material"
+import {Stack, Button, Divider, Typography, useMediaQuery, useTheme} from "@mui/material"
 import useStyles from "../styles"
 
 import ImageBox from "components/image-box/ImageBox"

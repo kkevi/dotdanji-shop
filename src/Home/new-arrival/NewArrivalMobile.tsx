@@ -1,7 +1,6 @@
 import React from "react"
 
 import {Stack, Typography} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 import ImageBox from "components/image-box/ImageBox"
 

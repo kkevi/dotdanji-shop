@@ -1,6 +1,15 @@
 import React, {useState, useEffect} from "react"
-import {Button, Stack, Typography, FormControlLabel, Checkbox, FormGroup, Divider, useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
+import {
+    Button,
+    Stack,
+    Typography,
+    FormControlLabel,
+    Checkbox,
+    FormGroup,
+    Divider,
+    useMediaQuery,
+    useTheme,
+} from "@mui/material"
 
 import useStyles from "../styles"
 

@@ -1,9 +1,8 @@
 import React from "react"
 import {Stack, useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 import ImageBox from "components/image-box/ImageBox"
-
+import {useTheme} from "@mui/material"
 type LoginLayoutProps = {
     children: React.ReactNode
 }

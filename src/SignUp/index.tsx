@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 
-import {Stack, Typography, useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
+import {Stack, Typography, useMediaQuery, useTheme} from "@mui/material"
 
 import SignUpSection1 from "./signup-section1/SignUpSection1"
 import SignUpSection2 from "./signup-section2/SignUpSection2"

@@ -2,11 +2,10 @@ import React, {useEffect, useState} from "react"
 import {useRouter} from "next/router"
 
 import {useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 import {customerServiceTabs} from "lib/customer-service-tabs"
 import MainLayout from "src/Components/main-layout/MainLayout"
-
+import {useTheme} from "@mui/material"
 import ServiceLayout from "components/service-layout/ServiceLayout"
 import ServiceLayoutMobile from "components/service-layout/ServiceLayoutMobile"
 

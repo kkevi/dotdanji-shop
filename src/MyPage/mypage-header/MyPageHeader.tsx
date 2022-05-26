@@ -1,6 +1,5 @@
 import React from "react"
 import {Stack, Typography} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 type MyPageHeaderProps = {
     title: string

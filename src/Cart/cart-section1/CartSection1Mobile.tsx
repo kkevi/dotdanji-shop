@@ -1,12 +1,11 @@
 import React from "react"
 import {Typography, Divider, Button, Stack, FormControlLabel, Checkbox} from "@mui/material"
 import useStyles from "./style-mobile"
-import {useTheme} from "@mui/system"
 
 import {CartOptionsType} from "types/cart-type"
 import TotalPrice from "./components-mobile/TotalPrice"
 import CartTableItem from "./components-mobile/CartTableItem"
-
+import {useTheme} from "@mui/material"
 type Props = {
     onCheckAll: (event: React.ChangeEvent<HTMLInputElement>) => void
     onClickOrder: () => void

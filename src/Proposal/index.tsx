@@ -1,7 +1,6 @@
 import React, {useState} from "react"
-import {Typography, Stack, Divider, Button, useMediaQuery} from "@mui/material"
+import {Typography, Stack, Divider, Button, useMediaQuery, useTheme} from "@mui/material"
 
-import {useTheme} from "@mui/system"
 import useStyles from "./styles"
 
 import ProposalProcess from "./proposal-process/ProposalProcess"

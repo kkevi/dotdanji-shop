@@ -1,6 +1,5 @@
 import React, {useState, useRef} from "react"
 import {Stack, Typography, Button, Select, MenuItem, SelectChangeEvent, useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/system"
 
 import useStyles from "./styles"
 import {InquiryFormProps, categoryList, inquiryFormDefaultData} from "types/service-type"

@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react"
 import Router, {useRouter} from "next/router"
 //ui components
-import {Button, ButtonGroup, Container, Stack} from "@mui/material"
-import {useTheme} from "@mui/system"
+import {Button, ButtonGroup, Container, Stack, useTheme} from "@mui/material"
 //icon
 //fake data
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"

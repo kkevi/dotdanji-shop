@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 
 import {Container, Grid, Stack, Typography} from "@mui/material"
-import {useTheme} from "@mui/system"
+
 import useStyles from "./styles"
 import ImageBox from "components/image-box/ImageBox"
 
