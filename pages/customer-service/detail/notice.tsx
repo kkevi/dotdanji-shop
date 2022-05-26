@@ -24,14 +24,18 @@ export default function Index() {
             color: theme.palette.primary.light,
             image: "",
         },
-
         {
             phrase: "무엇을 도와드릴까요?",
             title: "FAQ",
             color: theme.palette.primary.main,
             image: "",
         },
-
+        {
+            phrase: "함께 즐길 수 있는 새 이벤트!",
+            title: "이벤트",
+            color: theme.palette.secondary.primary,
+            image: "",
+        },
         {
             phrase: "소중한 문의에 답변드립니다.",
             title: "1:1 문의",

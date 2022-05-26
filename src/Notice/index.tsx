@@ -15,10 +15,8 @@ export default function Index() {
     const [noticeList, setNoticeList] = useState(FAKE_NOTICE_DATA)
 
     const onClickRouter = (noticeId: string) => {
-        route.push({pathname: "/customer-service/detail", query: {noticeId: noticeId}})
+        route.push({pathname: "/customer-service/detail/notice", query: {noticeId: noticeId}})
     }
-
-    const tableTitle: string[] = ["번호", "제목", "등록일"]
 
     return (
         <>

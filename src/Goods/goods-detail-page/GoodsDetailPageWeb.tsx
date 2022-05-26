@@ -13,7 +13,7 @@ import {OptionCart} from "types/cart-type"
 import GoodsOptions from "./GoodsOptions"
 import ImageBox from "components/image-box/ImageBox"
 
-import ExtraInformationModule from "./ExtraInformationModule"
+import ExtraInformationModule from "./components/ExtraInformationModule"
 
 type Props = {
     goodsId: string
@@ -63,7 +63,7 @@ export default function GoodsDetailPageWeb(props: Props) {
                                 key={"thumbnail" + idx}
                                 width="100%"
                                 className={classes.slideBox}
-                                height={950}
+                                height={1000}
                                 justifyContent="center"
                                 alignItems="center"
                                 display="flex !important"

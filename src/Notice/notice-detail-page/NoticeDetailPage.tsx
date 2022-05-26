@@ -15,8 +15,6 @@ type Props = {
 
 export default function NoticeDetailPage(props: Props) {
     const {noticeId} = props
-    const classes = useStyles()
-    const route = useRouter()
     const theme = useTheme()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const [data, setData] = useState<NoticeDetailProps>({

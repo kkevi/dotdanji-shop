@@ -13,7 +13,7 @@ import {OptionCart} from "types/cart-type"
 import GoodsOptions from "./GoodsOptions"
 import ImageBox from "components/image-box/ImageBox"
 
-import ExtraInformationModule from "./ExtraInformationModule"
+import ExtraInformationModule from "./components/ExtraInformationModule"
 
 type Props = {
     goodsId: string

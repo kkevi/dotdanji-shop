@@ -108,3 +108,16 @@ type ImageFile = {
     fileName: string
     downloadUrl: string | ArrayBuffer | null
 }
+
+/*
+ * 이벤트
+ *
+ */
+
+export interface EventDetailProps {
+    eventId: string
+    title: string
+    content: string
+    startDate: string
+    endDate: string
+}

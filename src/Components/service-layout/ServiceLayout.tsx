@@ -7,8 +7,10 @@ import {routerPush} from "lib/routerPush"
 
 import Notice from "src/Notice"
 import FAQ from "src/FAQ"
+import Event from "src/Event"
 import Inquiry from "src/Inquiry"
 import NoticeDetailPage from "src/Notice/notice-detail-page/NoticeDetailPage"
+import EventDetailPage from "src/Event/event-detail-page/EventDetailPage"
 
 function tabProps(index: number) {
     return {
@@ -21,6 +23,7 @@ type Props = {
     tab?: number
     children?: React.ReactNode
     noticeId?: string | string[] | undefined
+    eventId?: string | string[] | undefined
     tablist: {
         phrase: string
         title: string
@@ -30,7 +33,7 @@ type Props = {
 }
 
 export default function ServiceLayout(props: Props) {
-    const {tab, children, noticeId, tablist} = props
+    const {tab, children, noticeId, eventId, tablist} = props
     const theme = useTheme()
 
     const handleTabChange = (tab: number) => {
@@ -39,6 +42,9 @@ export default function ServiceLayout(props: Props) {
             routerPush(`/customer-service/${tabId}`)
         }
     }
+
+    console.log("noticeId", noticeId)
+    console.log("eventId", eventId)
 
     return (
         <Stack py={13.5}>
@@ -71,7 +77,9 @@ export default function ServiceLayout(props: Props) {
 
                     {tab === 0 && (noticeId ? <NoticeDetailPage noticeId={noticeId as string} /> : <Notice />)}
                     {tab === 1 && <FAQ />}
-                    {tab === 2 && <Inquiry />}
+                    {tab === 2 && eventId && <EventDetailPage />}
+                    {tab === 2 && !eventId && <Event />}
+                    {tab === 3 && <Inquiry />}
                     <Stack py={8}>{children}</Stack>
                 </Container>
             </Stack>

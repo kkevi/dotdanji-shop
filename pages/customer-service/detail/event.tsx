@@ -1,32 +1,27 @@
 import React, {useEffect, useState} from "react"
 import {useRouter} from "next/router"
-
 import {useMediaQuery} from "@mui/material"
 import {useTheme} from "@mui/system"
 
-import {customerServiceTabs} from "lib/customer-service-tabs"
-import MainLayout from "src/Components/main-layout/MainLayout"
-
+import MainLayout from "components/main-layout/MainLayout"
 import ServiceLayout from "components/service-layout/ServiceLayout"
 import ServiceLayoutMobile from "components/service-layout/ServiceLayoutMobile"
 
 export default function Index() {
-    const router = useRouter()
+    const route = useRouter()
     const theme = useTheme()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
-    const [tabIndex, setTabIndex] = useState<number>(0)
+    const [queryEventId, setQueryEventId] = useState<string | string[] | undefined>("")
 
     useEffect(() => {
-        if (router.query.allianceId !== "") {
-            setTabIndex(Object.keys(customerServiceTabs).indexOf(router.query.allianceId as string))
-        }
-    }, [router])
+        setQueryEventId(route.query.eventId)
+    }, [route])
 
     const tabList = [
         {
             phrase: "심키즈의 새로운 소식입니다.",
             title: "공지사항",
-            color: "#95D6EE",
+            color: theme.palette.primary.light,
             image: "",
         },
         {
@@ -38,7 +33,7 @@ export default function Index() {
         {
             phrase: "함께 즐길 수 있는 새 이벤트!",
             title: "이벤트",
-            color: theme.palette.secondary.main,
+            color: theme.palette.secondary.primary,
             image: "",
         },
         {
@@ -52,9 +47,9 @@ export default function Index() {
     return (
         <MainLayout>
             {mobile ? (
-                <ServiceLayoutMobile tab={tabIndex} tablist={tabList[tabIndex]} />
+                <ServiceLayoutMobile tab={0} tablist={tabList[0]} />
             ) : (
-                <ServiceLayout tab={tabIndex} tablist={tabList[tabIndex]} />
+                <ServiceLayout tab={0} tablist={tabList[0]} eventId={queryEventId} />
             )}
         </MainLayout>
     )

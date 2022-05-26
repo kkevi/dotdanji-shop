@@ -7,6 +7,7 @@ import {routerPush} from "lib/routerPush"
 
 import Notice from "src/Notice"
 import FAQ from "src/FAQ"
+import Event from "src/Event"
 import Inquiry from "src/Inquiry"
 import NoticeDetailPage from "src/Notice/notice-detail-page/NoticeDetailPage"
 
@@ -65,7 +66,8 @@ export default function ServiceLayoutMobile(props: Props) {
 
                 {tab === 0 && (noticeId ? <NoticeDetailPage noticeId={noticeId as string} /> : <Notice />)}
                 {tab === 1 && <FAQ />}
-                {tab === 2 && <Inquiry />}
+                {tab === 2 && <Event />}
+                {tab === 3 && <Inquiry />}
                 <Stack py={8}>{children}</Stack>
             </Stack>
         </Container>
