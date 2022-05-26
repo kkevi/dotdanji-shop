@@ -3,7 +3,7 @@ import {Stack, Typography} from "@mui/material"
 
 export default function ExtraInformationTab2() {
     return (
-        <Stack width="100%" height={"100vh"}>
+        <Stack width="100%" mb={16}>
             <Typography className="pointFont" color="#777" alignSelf="flex-start" mb={2}>
                 # 배송정보
             </Typography>
