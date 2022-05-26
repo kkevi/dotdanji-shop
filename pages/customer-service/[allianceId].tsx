@@ -17,7 +17,7 @@ export default function Index() {
     const [tabIndex, setTabIndex] = useState<number>(0)
 
     useEffect(() => {
-        if (router.query.allianceId !== "") {
+        if (router?.query.allianceId !== undefined || "") {
             setTabIndex(Object.keys(customerServiceTabs).indexOf(router.query.allianceId as string))
         }
     }, [router])

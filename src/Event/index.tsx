@@ -55,6 +55,7 @@ export default function Event() {
     ]
 
     const onClickRouter = (eventId: string) => {
+        console.log("eventId", eventId)
         route.push({pathname: "/customer-service/detail/event", query: {eventId: eventId}})
     }
 
