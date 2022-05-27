@@ -2,12 +2,21 @@ import React from "react"
 import type {AppProps} from "next/app"
 import Head from "next/head"
 
+import StoreProvider from "../store/StoreProvider"
+import LoginObserver from "components/login-observer/LoginObserver"
 import {CssBaseline, ThemeProvider} from "@mui/material"
-import "react-toastify/dist/ReactToastify.css"
+
 import {theme} from "styles/theme"
 import {GlobalStyle} from "styles/global-styles"
+
 import {ToastContainer} from "react-toastify"
-import StoreProvider from "../store/StoreProvider"
+import "react-toastify/dist/ReactToastify.css"
+
+declare global {
+    interface Window {
+        Kakao: any
+    }
+}
 
 function MyApp({Component, pageProps}: AppProps) {
     return (
@@ -30,11 +39,13 @@ function MyApp({Component, pageProps}: AppProps) {
             </Head>
             <StoreProvider rootStoreInitialState={undefined}>
                 <ThemeProvider theme={theme}>
-                    <>
-                        <CssBaseline />
-                        <GlobalStyle />
-                        <Component {...pageProps} />
-                    </>
+                    <LoginObserver>
+                        <>
+                            <CssBaseline />
+                            <GlobalStyle />
+                            <Component {...pageProps} />
+                        </>
+                    </LoginObserver>
                 </ThemeProvider>
             </StoreProvider>
             <ToastContainer autoClose={2000} pauseOnHover={false} hideProgressBar />

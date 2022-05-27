@@ -9,7 +9,6 @@ export default function Index() {
 
     useEffect(() => {
         setQueryEventId(route.query.eventId)
-        console.log("eventId", route.query.eventId)
     }, [route])
 
     return (

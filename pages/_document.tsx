@@ -29,6 +29,8 @@ class MyDocument extends Document {
                     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" />
                     {/* <!-- iamport.payment.js --> */}
                     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js" />
+                    {/* <!-- iamport.kakao.js --> */}
+                    <script src="https://developers.kakao.com/sdk/js/kakao.js" />
                 </Head>
                 <body>
                     <Main />

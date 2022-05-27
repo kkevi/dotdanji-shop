@@ -59,7 +59,6 @@ export default function Index() {
         } else {
             reader.readAsDataURL(files[0])
             reader.onloadend = () => {
-                console.log("you worked well until here", files)
                 setFormData({
                     ...formData,
                     proposalFile: {

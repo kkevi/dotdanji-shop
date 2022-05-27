@@ -58,9 +58,7 @@ export default function CartSection1(props: Props) {
      */
     useEffect(() => {
         if (goodsStore.cartItem === undefined) return
-        console.log("goodsStore.cartItem", goodsStore.cartItem)
         setCartItemList(goodsStore.cartItem)
-        // else loadData()
     }, [])
 
     const loadData = async () => {
@@ -100,8 +98,6 @@ export default function CartSection1(props: Props) {
             list.map(({optionId}) => (checkList[optionId] = true))
         } catch (e) {
             console.log(e)
-        } finally {
-            console.log(cartItemList)
         }
     }
 
@@ -109,8 +105,6 @@ export default function CartSection1(props: Props) {
      * 체크기능
      */
     useEffect(() => {
-        console.log(cartItemList)
-        console.log("checklist", checkList)
         setCheckList(checkList)
     }, [checkList])
 

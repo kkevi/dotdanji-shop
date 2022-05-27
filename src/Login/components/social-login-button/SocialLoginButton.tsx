@@ -6,7 +6,16 @@ export default function SocialLoginButton() {
     const classes = useStyles()
 
     // 카카오 로그인
-    const onLoggedInKakao = () => {}
+    const onLoggedInKakao = () => {
+        window.Kakao.Auth.authorize({
+            success: function (response: any) {
+                console.log("kakao-response:", response)
+            },
+            fail: function (error: Error) {
+                console.log(error)
+            },
+        })
+    }
 
     //네이버 로그인
     const onLoggedInNaver = () => {}
