@@ -52,8 +52,8 @@ export default function EventSliderWeb(props: Props) {
                     }}
                 >
                     <Slider {...sliderSetOption}>
-                        {eventList.map((eventData, index) => (
-                            <>
+                        {eventList.map((event, index) => (
+                            <div key={`home-event-${event.eventId}`}>
                                 <Stack
                                     sx={{
                                         height: 350,
@@ -65,13 +65,13 @@ export default function EventSliderWeb(props: Props) {
                                 >
                                     <Stack>
                                         <Typography className="pointFont" mt={2} fontWeight={800} fontSize={20}>
-                                            {eventData.title}
+                                            {event.title}
                                         </Typography>
                                         <Typography mt={2} fontWeight={800} fontSize={14} color="#bbb">
-                                            {eventData.startDate} - {eventData.endDate}
+                                            {event.startDate} - {event.endDate}
                                         </Typography>
                                         <Typography mt={4} fontWeight={300} fontSize={15} color="#777">
-                                            {eventData.homeCaption}
+                                            {event.homeCaption}
                                         </Typography>
                                     </Stack>
 
@@ -82,7 +82,7 @@ export default function EventSliderWeb(props: Props) {
                                         onClick={() =>
                                             route.push({
                                                 pathname: "/service/detail/event",
-                                                query: {eventId: eventData.eventId},
+                                                query: {eventId: event.eventId},
                                             })
                                         }
                                     >
@@ -90,9 +90,9 @@ export default function EventSliderWeb(props: Props) {
                                     </Button>
                                 </Stack>
                                 <div style={{height: 300, backgroundColor: "pink"}}>
-                                    <ImageBox height={300} src={eventData.homeImageUrl} />
+                                    <ImageBox height={300} src={event.homeImageUrl} />
                                 </div>
-                            </>
+                            </div>
                         ))}
                     </Slider>
                 </div>

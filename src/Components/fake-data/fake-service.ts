@@ -1,6 +1,6 @@
-import {NoticeDetailProps, FaqDataType} from "types/service-type"
+import {NoticeType, FaqDataType} from "types/service-type"
 
-export const FAKE_NOTICE_DATA: NoticeDetailProps[] = [
+export const FAKE_NOTICE_DATA: NoticeType[] = [
     {
         noticeId: "fake_notice_0",
         title: "심키즈몰이 오픈했습니다!",

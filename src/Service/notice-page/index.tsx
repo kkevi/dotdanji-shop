@@ -3,11 +3,10 @@ import {useRouter} from "next/router"
 import {useMediaQuery, useTheme} from "@mui/material"
 
 import {FAKE_NOTICE_DATA} from "src/Components/fake-data/fake-service"
-
 import NoticeWeb from "./NoticeWeb"
 import NoticeMobile from "./NoticeMobile"
 
-export default function Index() {
+export default function NoticePage() {
     const route = useRouter()
     const theme = useTheme()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))

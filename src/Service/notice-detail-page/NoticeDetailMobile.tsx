@@ -2,17 +2,18 @@ import React from "react"
 import {useRouter} from "next/router"
 import {Stack, Divider, Typography, Button} from "@mui/material"
 
-import {NoticeDetailProps} from "types/service-type"
+import {NoticeType} from "types/service-type"
 import useStyles from "./style"
 
 type Props = {
-    data: NoticeDetailProps
+    data: NoticeType
 }
 
 export default function NoticeDetailMobile(props: Props) {
     const {data} = props
-    const classes = useStyles()
     const route = useRouter()
+    const classes = useStyles()
+
     return (
         <Stack>
             <Divider flexItem sx={{borderBottomWidth: 2}} />

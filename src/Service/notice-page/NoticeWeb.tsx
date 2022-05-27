@@ -3,14 +3,15 @@ import {useRouter} from "next/router"
 import {Stack, Divider, Table, TableHead, TableRow, TableCell, TableBody} from "@mui/material"
 
 import PaginationBox from "src/Components/pagination-box/PaginationBox"
-import {NoticeDetailProps} from "types/service-type"
+import {NoticeType} from "types/service-type"
 
-type NoticeWebProps = {
-    noticeList: NoticeDetailProps[]
+type Props = {
+    noticeList: NoticeType[]
     onClickRouter: (val: string) => void
 }
 
-export default function NoticeWeb({noticeList, onClickRouter}: NoticeWebProps) {
+export default function NoticeWeb(props: Props) {
+    const {noticeList, onClickRouter} = props
     const route = useRouter()
     const [activePage, setActivePage] = useState(1)
 
@@ -41,7 +42,7 @@ export default function NoticeWeb({noticeList, onClickRouter}: NoticeWebProps) {
                 <TableBody>
                     {noticeList
                         .map((notice, index) => (
-                            <TableRow key={`tableRow ${index}`} sx={{cursor: "pointer"}}>
+                            <TableRow key={`notice-table-row-${index}`} sx={{cursor: "pointer"}}>
                                 <TableCell align="center" sx={{fontSize: "1rem"}}>
                                     {index + 1}
                                 </TableCell>

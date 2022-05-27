@@ -18,11 +18,18 @@ export type ServiceTabKey = "notice" | "faq" | "event" | "inquiry"
  *
  */
 
-export interface NoticeDetailProps {
+export interface NoticeType {
     noticeId: string
     title: string
     content: string
     date: string
+}
+
+export const noticeDefaultData: NoticeType = {
+    title: "",
+    noticeId: "",
+    content: "",
+    date: "",
 }
 
 /*

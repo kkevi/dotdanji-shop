@@ -2,15 +2,15 @@ import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {Divider, Table, TableRow, TableCell, TableBody, Button} from "@mui/material"
 
-import {NoticeDetailProps} from "types/service-type"
+import {NoticeType} from "types/service-type"
 
-type NoticeMobileProps = {
-    noticeList: NoticeDetailProps[]
+type Props = {
+    noticeList: NoticeType[]
     onClickRouter: (val: string) => void
 }
 
-export default function NoticeMobile({noticeList, onClickRouter}: NoticeMobileProps) {
-    const route = useRouter()
+export default function NoticeMobile(props: Props) {
+    const {noticeList, onClickRouter} = props
     const [activePage, setActivePage] = useState(10)
 
     return (

@@ -2,11 +2,11 @@ import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {Stack, Divider, Typography, Button} from "@mui/material"
 
-import {NoticeDetailProps} from "types/service-type"
+import {NoticeType} from "types/service-type"
 import useStyles from "./style"
 
 type Props = {
-    data: NoticeDetailProps
+    data: NoticeType
 }
 
 export default function NoticeDetailWeb(props: Props) {
