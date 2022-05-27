@@ -5,6 +5,7 @@ import {Button, Container, Grid, Stack, Typography, useTheme} from "@mui/materia
 import useStyles from "./styles"
 import ImageBox from "components/image-box/ImageBox"
 import {GoodsItemType} from "types/goods-type"
+import {useRouter} from "next/router"
 
 type Props = {
     bestSellerList: GoodsItemType[]
@@ -13,8 +14,9 @@ type Props = {
 export default function BestSellerWeb(props: Props) {
     const {bestSellerList} = props
     const theme = useTheme()
-    const [hover, setHover] = useState(-1)
+    const route = useRouter()
     const classes = useStyles()
+    const [hover, setHover] = useState(-1)
 
     return (
         <Container maxWidth="lg" sx={{my: 30}}>
@@ -45,7 +47,7 @@ export default function BestSellerWeb(props: Props) {
                                     style={{height: "100%", position: "relative"}}
                                     onMouseEnter={() => setHover(index)}
                                     onMouseLeave={() => setHover(-1)}
-                                    onClick={() => {}}
+                                    onClick={() => route.push({pathname: `/goods/detail`, query: goods.goodsId})}
                                 >
                                     <div className={classes.stack} style={{display: hovering ? "flex" : "none"}}>
                                         <Typography className={classes.title}>{goods.name}</Typography>

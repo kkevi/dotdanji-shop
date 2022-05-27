@@ -7,6 +7,7 @@ import {CustomedTextField} from "components/customed-textfield/CustomedTextField
 
 import Visibility from "@mui/icons-material/Visibility"
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
+import VisibilityButton from "src/Components/visibility-button/VisibilityButton"
 
 type FindPw2Props = {
     newPw: string
@@ -40,15 +41,7 @@ export default function FindPw2(props: FindPw2Props) {
                 onChange={e => setNewPw(e.target.value)}
                 InputProps={{
                     endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={() => setVisibility(!visibility)}
-                                edge="end"
-                            >
-                                {visibility ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
+                        <VisibilityButton position="end" visibility={visibility} setVisibility={setVisibility} />
                     ),
                 }}
             />
@@ -61,15 +54,7 @@ export default function FindPw2(props: FindPw2Props) {
                 onChange={e => setConfirmNewPw(e.target.value)}
                 InputProps={{
                     endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={() => setVisibility2(!visibility2)}
-                                edge="end"
-                            >
-                                {visibility2 ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
+                        <VisibilityButton position="end" visibility={visibility2} setVisibility={setVisibility2} />
                     ),
                 }}
             />

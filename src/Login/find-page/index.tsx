@@ -1,7 +1,7 @@
 import React from "react"
 import {useRouter} from "next/router"
 
-import {Stack, Typography, useMediaQuery} from "@mui/material"
+import {Stack, Typography, useMediaQuery, useTheme} from "@mui/material"
 
 import FindEmail from "./find-email/FindEmail"
 import FindPw from "./find-pw/FindPw"

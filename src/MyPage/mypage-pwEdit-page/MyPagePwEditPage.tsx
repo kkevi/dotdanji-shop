@@ -1,5 +1,15 @@
 import React, {useState} from "react"
-import {Button, Container, IconButton, InputAdornment, Stack, TextField, Typography, useMediaQuery} from "@mui/material"
+import {
+    Button,
+    Container,
+    IconButton,
+    InputAdornment,
+    Stack,
+    TextField,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from "@mui/material"
 
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded"
 
@@ -9,6 +19,7 @@ import MyPageHeader from "src/MyPage/mypage-header/MyPageHeader"
 
 import Visibility from "@mui/icons-material/Visibility"
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
+import VisibilityButton from "src/Components/visibility-button/VisibilityButton"
 
 type MyPagePwEditFormProps = {
     currentPw: string
@@ -76,15 +87,11 @@ export default function MyPagePwEditPage() {
                         onChange={onChangeInput}
                         InputProps={{
                             endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={() => setVisibility(!visibility)}
-                                        edge="end"
-                                    >
-                                        {visibility ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
+                                <VisibilityButton
+                                    position="end"
+                                    visibility={visibility}
+                                    setVisibility={setVisibility}
+                                />
                             ),
                         }}
                     />
@@ -100,15 +107,11 @@ export default function MyPagePwEditPage() {
                         onChange={onChangeInput}
                         InputProps={{
                             endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={() => setVisibility2(!visibility2)}
-                                        edge="end"
-                                    >
-                                        {visibility2 ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
+                                <VisibilityButton
+                                    position="end"
+                                    visibility={visibility2}
+                                    setVisibility={setVisibility2}
+                                />
                             ),
                         }}
                     />
@@ -147,15 +150,11 @@ export default function MyPagePwEditPage() {
                         onChange={onChangeInput}
                         InputProps={{
                             endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={() => setVisibility3(!visibility3)}
-                                        edge="end"
-                                    >
-                                        {visibility3 ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
+                                <VisibilityButton
+                                    position="end"
+                                    visibility={visibility}
+                                    setVisibility={setVisibility}
+                                />
                             ),
                         }}
                     />

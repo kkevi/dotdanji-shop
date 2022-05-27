@@ -10,6 +10,7 @@ import Visibility from "@mui/icons-material/Visibility"
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
 
 import {CustomedTextField} from "components/customed-textfield/CustomedTextField"
+import VisibilityButton from "src/Components/visibility-button/VisibilityButton"
 
 type SignUpSection2Prop = {
     password: string
@@ -45,15 +46,7 @@ export default function SignUpSection3(prop: SignUpSection2Prop) {
                 onChange={e => setPassword(e.target.value)}
                 InputProps={{
                     endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={() => setVisibility(!visibility)}
-                                edge="end"
-                            >
-                                {visibility ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
+                        <VisibilityButton position="end" visibility={visibility} setVisibility={setVisibility} />
                     ),
                 }}
             />
@@ -86,15 +79,7 @@ export default function SignUpSection3(prop: SignUpSection2Prop) {
                 onChange={e => setValidPassword(e.target.value)}
                 InputProps={{
                     endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility2"
-                                onClick={() => setVisibility2(!visibility2)}
-                                edge="end"
-                            >
-                                {visibility2 ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
+                        <VisibilityButton position="end" visibility={visibility2} setVisibility={setVisibility2} />
                     ),
                 }}
             />

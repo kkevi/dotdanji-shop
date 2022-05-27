@@ -1,34 +1,22 @@
 import React, {useState} from "react"
 import Router, {useRouter} from "next/router"
+import useStyles from "./styles"
 import {Button, Stack, Typography, Divider, InputAdornment, IconButton, useMediaQuery, useTheme} from "@mui/material"
 
-import useStyles from "./styles"
-import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js"
-import {toast} from "react-toastify"
-import {userEmailCheck, userPasswordCheck} from "./validation-check"
-import UserPool, {KAKAO_AUTH_URL} from "./user-pool"
-import useStore from "store/useStore"
-
-import Visibility from "@mui/icons-material/Visibility"
-import VisibilityOff from "@mui/icons-material/VisibilityOff"
-
 import {CustomedTextField} from "components/customed-textfield/CustomedTextField"
+import SocialLoginButton from "./components/social-login-button/SocialLoginButton"
+import DefaultLoginButton from "./components/default-login-button/DefaultLoginButton"
+import VisibilityButton from "src/Components/visibility-button/VisibilityButton"
 
 export default function Login() {
     const theme = useTheme()
     const classes = useStyles()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const route = useRouter()
-    const {userStore} = useStore()
 
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [visibility, setVisibility] = useState<boolean>(false)
-    const [loading, setLoading] = useState(false)
-
-    //error
-    const [errorEmail, setErrorEmail] = useState<boolean>(false)
-    const [errorPassword, setErrorPassword] = useState(false)
 
     const onChangeEmailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
@@ -36,71 +24,6 @@ export default function Login() {
     const onChangePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value)
     }
-
-    //aws cognito login api
-    const doLogin = () => {
-        setLoading(true)
-
-        try {
-            new CognitoUser({Username: email, Pool: UserPool}).authenticateUser(
-                new AuthenticationDetails({
-                    Username: email,
-                    Password: password,
-                    ValidationData: {email: email},
-                }),
-                {
-                    onSuccess: function (result: any) {
-                        userStore.setRefreshToken(result.refreshToken.token)
-                        userStore.setUserName(result.idToken.payload.name)
-                        userStore.setIsLoggedIn(true)
-                        toast.info(`${result.idToken.payload.name}님 환영합니다.`)
-                        route.push("/")
-                    },
-                    onFailure: function (err) {
-                        if (err.message == "User is not confirmed.") {
-                            toast.error("가입한 이메일을 인증해주세요.")
-                        } else if (err.message == "Incorrect username or password.") {
-                            toast.error("잘못 된 이메일 또는 비밀번호 입니다.")
-                        } else {
-                            console.log(err.message)
-                        }
-                    },
-                },
-            )
-        } catch (e) {
-            toast.error("로그인 중, 문제가 생겼습니다.")
-        } finally {
-            setLoading(false)
-        }
-    }
-
-    const onClickLogin = () => {
-        setErrorEmail(!userEmailCheck(email))
-        setErrorPassword(!userPasswordCheck(password))
-        if (errorEmail || errorPassword) return
-        doLogin()
-    }
-
-    const socialLogin = [
-        {
-            id: "naver",
-            image: "/images/logo-naver.png",
-            color: "#06BE34",
-            url: "/",
-        },
-        {
-            id: "kakao",
-            image: "/images/logo-kakao.png",
-            color: "#FFE617",
-            url: KAKAO_AUTH_URL,
-        },
-        {
-            id: "google",
-            image: "/images/logo-google.jpeg",
-            color: "white",
-            url: "/",
-        },
-    ]
 
     return (
         <Stack
@@ -125,37 +48,14 @@ export default function Login() {
                 onChange={onChangePasswordInput}
                 InputProps={{
                     endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={() => setVisibility(!visibility)}
-                                edge="end"
-                            >
-                                {visibility ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
+                        <VisibilityButton position="end" visibility={visibility} setVisibility={setVisibility} />
                     ),
                 }}
             />
 
-            <Button
-                sx={{mt: 3, mb: 3}}
-                className={classes.containedButton}
-                variant="contained"
-                fullWidth
-                disableElevation
-                onClick={onClickLogin}
-            >
-                로그인 하기
-            </Button>
-            {/* socialLogin */}
-            <Stack direction="row" width="40%" justifyContent="space-between" alignSelf="center">
-                {socialLogin.map((itm, index) => (
-                    <div className={classes.socialLogin} style={{backgroundColor: itm.color}} key={index}>
-                        <img className={classes.socialImage} src={itm.image} onClick={() => route.push(itm.url)} />
-                    </div>
-                ))}
-            </Stack>
+            <DefaultLoginButton email={email} password={password} />
+            <SocialLoginButton />
+
             <Button
                 sx={{mt: mobile ? 8 : 12, mb: 4}}
                 className={classes.outlinedButton}
@@ -169,7 +69,7 @@ export default function Login() {
                 <Typography
                     className={classes.findLink}
                     onClick={() => {
-                        Router.push({pathname: "/find", query: {find: "email"}})
+                        Router.push({pathname: "/login/find", query: {find: "email"}})
                     }}
                 >
                     아이디 (이메일) 찾기
@@ -178,7 +78,7 @@ export default function Login() {
                 <Typography
                     className={classes.findLink}
                     onClick={() => {
-                        Router.push({pathname: "/find", query: {find: "pw"}})
+                        Router.push({pathname: "/login/find", query: {find: "pw"}})
                     }}
                 >
                     비밀번호 찾기
