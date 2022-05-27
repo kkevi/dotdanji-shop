@@ -36,8 +36,8 @@ export default function WishListTable(props: WishListTableType) {
                         />
                     </TableCell>
 
-                    {tableTitle.map((title, idx) => (
-                        <TableCell key={"tableTitle" + idx} sx={{fontSize: ".9rem", padding: 2}} align="center">
+                    {tableTitle.map((title, index) => (
+                        <TableCell key={"tableTitle" + index} sx={{fontSize: ".9rem", padding: 2}} align="center">
                             {title}
                         </TableCell>
                     ))}
@@ -47,7 +47,7 @@ export default function WishListTable(props: WishListTableType) {
             <TableBody>
                 <TableRow key={"tableRow"}>
                     <WishListTableItem
-                        idx={0}
+                        index={0}
                         wishItemList={wishItemList}
                         setWishItemList={setWishItemList}
                         checkList={checkList}

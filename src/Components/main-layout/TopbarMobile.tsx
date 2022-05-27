@@ -76,13 +76,13 @@ export default function TopbarMobile() {
                                     style={{color: theme.palette.secondary.dark, fontSize: "20px"}}
                                 />
                             </IconButton>
-                            {category.map(({categoryId, title}, idx) => (
+                            {category.map(({categoryId, title}, index) => (
                                 <Stack onClick={() => onClickCategorys(categoryId)} key={categoryId} style={textColor}>
                                     {title}
                                 </Stack>
                             ))}
 
-                            <Stack onClick={() => Router.push("/customer-service")} style={textColor}>
+                            <Stack onClick={() => Router.push("/service")} style={textColor}>
                                 고객센터
                             </Stack>
                         </Stack>

@@ -64,13 +64,13 @@ export default function Topbar() {
                             justifyContent="space-between"
                             fontWeight={700}
                         >
-                            {category.map(({categoryId, title}, idx) => (
+                            {category.map(({categoryId, title}, index) => (
                                 <Button onClick={() => onClickCategorys(categoryId)} key={categoryId} style={textColor}>
                                     {title}
                                 </Button>
                             ))}
 
-                            <Button onClick={() => Router.push("/customer-service")} style={textColor}>
+                            <Button onClick={() => Router.push("/service")} style={textColor}>
                                 고객센터
                             </Button>
                         </Stack>

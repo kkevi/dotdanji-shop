@@ -91,9 +91,9 @@ export default function MyPageMobile(prop: MyPageProps) {
                 </Typography>
             </Stack>
             <Grid container alignItems="center" spacing={4}>
-                {fakeEbookList.map((itm, idx) => {
+                {fakeEbookList.map((itm, index) => {
                     return (
-                        <Grid key={"ebookitem" + idx} item xs={6}>
+                        <Grid key={"ebookitem" + index} item xs={6}>
                             <EBookItem title={itm.title} url={itm.url} images={itm.image} mobile />
                         </Grid>
                     )

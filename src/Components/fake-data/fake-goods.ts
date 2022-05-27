@@ -1,12 +1,12 @@
-import {GoodsItemProps, GoodsCategoryProps} from "types/goods-type"
+import {GoodsItemType, GoodsCategoryType} from "types/goods-type"
 
-export const GOODS_CATEGORY_DATA: GoodsCategoryProps[] = [
+export const GOODS_CATEGORY_DATA: GoodsCategoryType[] = [
     {categoryId: "ebook", title: "E-BOOK"},
     {categoryId: "textbook", title: "교재"},
     {categoryId: "maketool", title: "교구"},
 ]
 
-export const GOODS_ITEMS_DATA: GoodsItemProps[] = [
+export const GOODS_ITEMS_DATA: GoodsItemType[] = [
     {
         goodsId: "fake-goodsId-0",
         categoryId: "ebook",

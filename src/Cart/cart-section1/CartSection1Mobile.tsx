@@ -66,10 +66,10 @@ export default function CartSection1Mobile(props: Props) {
             </Stack>
 
             {/* 장바구니 목록 */}
-            {cartItemList.map((itm, idx) => {
+            {cartItemList.map((itm, index) => {
                 return (
                     <CartTableItem
-                        idx={idx}
+                        index={index}
                         cartItem={itm}
                         cartItemList={cartItemList}
                         checkList={checkList}

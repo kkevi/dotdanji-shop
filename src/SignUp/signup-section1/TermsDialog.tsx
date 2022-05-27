@@ -5,7 +5,7 @@ import {styled} from "@mui/material/styles"
 import CloseIcon from "@mui/icons-material/Close"
 
 import {contents} from "./Terms"
-import useStyles from "src/Notice/notice-detail-page/style"
+import useStyles from "src/Service/notice-detail-page/style"
 
 type TermsDialogProps = {
     id: number

@@ -5,12 +5,12 @@ import ImageBox from "components/image-box/ImageBox"
 import React, {useEffect, useState} from "react"
 
 type CartListProps = {
-    idx: number
+    index: number
     cartItem: CartOptionsType
 }
 
 export default function CartTableItem(props: CartListProps) {
-    const {idx, cartItem} = props
+    const {index, cartItem} = props
     const [goodsThumbnail, setGoodsThumbnail] = useState("")
     const [goodsName, setGoodsName] = useState("")
 

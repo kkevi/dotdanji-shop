@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
-import {Stack, useMediaQuery} from "@mui/material"
+import {Stack, useMediaQuery, useTheme} from "@mui/material"
 
-import UserPool from "src/Login/UserPool"
+import UserPool from "src/Login/user-pool"
 import Router from "next/router"
 
 import MyPageHeader from "./mypage-header/MyPageHeader"

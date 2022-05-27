@@ -1,6 +1,6 @@
-import {Container, Stack, Typography} from "@mui/material"
+import {Container, Stack} from "@mui/material"
 import MainLayout from "components/main-layout/MainLayout"
-import useStyles from "src/Notice/notice-detail-page/style"
+import useStyles from "src/Service/notice-detail-page/style"
 import {terms2} from "src/SignUp/signup-section1/terms-html-2"
 
 export default function Index() {

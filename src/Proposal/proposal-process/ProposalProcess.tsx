@@ -4,12 +4,12 @@ import {Typography, Stack} from "@mui/material"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 
 type ProposalProcessProps = {
-    idx: number
+    index: number
     title: string
 }
 
 export default function ProposalProcess(props: ProposalProcessProps) {
-    const {idx, title} = props
+    const {index, title} = props
 
     return (
         <>
@@ -23,13 +23,13 @@ export default function ProposalProcess(props: ProposalProcessProps) {
                 style={{borderRadius: 100, backgroundColor: "rgba(208,235,245,0.1)", border: "1px solid #babcbc"}}
             >
                 <Typography color="#757575" variant="caption" mb={0.5} fontWeight={800}>
-                    0{idx + 1}
+                    0{index + 1}
                 </Typography>
                 <Typography fontSize={20} fontWeight={800}>
                     {title}
                 </Typography>
             </Stack>
-            {idx < 2 ? <ArrowForwardRoundedIcon fontSize="large" /> : undefined}
+            {index < 2 ? <ArrowForwardRoundedIcon fontSize="large" /> : undefined}
         </>
     )
 }

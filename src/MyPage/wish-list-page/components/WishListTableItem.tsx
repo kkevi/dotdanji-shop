@@ -3,7 +3,7 @@ import {Checkbox, FormControlLabel, Stack, TableCell, Typography} from "@mui/mat
 import ImageBox from "components/image-box/ImageBox"
 
 type WishListTableItemProps = {
-    idx: number
+    index: number
     // wishItem: CartOptionsType
     wishItemList: any[]
     setWishItemList: React.Dispatch<React.SetStateAction<any[]>>

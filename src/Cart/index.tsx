@@ -34,17 +34,17 @@ export default function Cart() {
                     <></>
                 ) : (
                     <Stack direction="row" justifyContent="space-between" alignSelf="center" alignItems="center" mb={8}>
-                        {title.map((itm, idx) => (
-                            <Stack key={idx} direction="row" alignItems="center">
+                        {title.map((itm, index) => (
+                            <Stack key={index} direction="row" alignItems="center">
                                 <Typography
-                                    key={idx}
+                                    key={index}
                                     fontSize={18}
                                     fontWeight={700}
-                                    color={step === idx ? "black" : "rgba(0, 0, 0, 0.3)"}
+                                    color={step === index ? "black" : "rgba(0, 0, 0, 0.3)"}
                                 >
-                                    {`0${idx + 1} ${itm}`}
+                                    {`0${index + 1} ${itm}`}
                                 </Typography>
-                                {title.length - 1 !== idx ? (
+                                {title.length - 1 !== index ? (
                                     <ArrowForwardIosRoundedIcon
                                         fontSize="small"
                                         sx={{color: "rgba(0, 0, 0, 0.2)", mx: 2}}

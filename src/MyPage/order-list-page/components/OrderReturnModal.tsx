@@ -139,7 +139,7 @@ export default function OrderReturnModal(props: OrderReturnModalTypes) {
                         <MenuItem disabled value="사유 선택">
                             <em>사유 선택</em>
                         </MenuItem>
-                        {Object.values(categoryList).map((category, idx) => (
+                        {Object.values(categoryList).map((category, index) => (
                             <MenuItem
                                 key={category}
                                 value={category}

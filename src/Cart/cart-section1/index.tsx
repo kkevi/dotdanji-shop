@@ -3,7 +3,7 @@ import {useMediaQuery} from "@mui/material"
 import {toast} from "react-toastify"
 
 import {CartOptionsType, OptionCart} from "types/cart-type"
-import {GoodsItemProps, OptionsType} from "types/goods-type"
+import {GoodsItemType, OptionsType} from "types/goods-type"
 import {CART_ITEMS_DATA} from "src/Components/fake-data/fake-cart"
 import {GOODS_ITEMS_DATA} from "src/Components/fake-data/fake-goods"
 import useStore from "store/useStore"
@@ -69,10 +69,10 @@ export default function CartSection1(props: Props) {
             //카트 정보 = goodsId,optionId,count
             const result = await CART_ITEMS_DATA
 
-            result.map((itm, idx) => {
+            result.map((itm, index) => {
                 //해당 id의 상품 정보를 가져온다.
                 const goodsId = itm.goodsId
-                const goodsData = GOODS_ITEMS_DATA.filter(it => it.goodsId === goodsId)[0] as GoodsItemProps
+                const goodsData = GOODS_ITEMS_DATA.filter(it => it.goodsId === goodsId)[0] as GoodsItemType
                 const optionData = goodsData.options as OptionsType[]
 
                 //새로운 장바구니 리스트 생성
@@ -115,7 +115,7 @@ export default function CartSection1(props: Props) {
     }, [checkList])
 
     const checking = () => {
-        cartItemList.map((itm, idx) => setCheckList({[itm.goodsId]: true}))
+        cartItemList.map((itm, index) => setCheckList({[itm.goodsId]: true}))
     }
 
     const onCheckAll = (event: React.ChangeEvent<HTMLInputElement>) => {

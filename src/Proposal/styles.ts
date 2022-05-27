@@ -1,7 +1,7 @@
-import {makeStyles, createStyles} from "@mui/styles"
-import {Theme} from "@mui/material"
+import {makeStyles, createStyles, DefaultTheme} from "@mui/styles"
+import {theme} from "src/styles/theme"
 
-const styles = makeStyles((theme: any) =>
+const styles = makeStyles(() =>
     createStyles({
         lastTextField: {
             color: "#646566",

@@ -44,8 +44,8 @@ export default function CartSection2Mobile(props: Props) {
             <Divider className={classes.divider} flexItem />
 
             {/* 장바구니 목록 */}
-            {cartItemList?.map((cartItem, idx) => {
-                return <CartTableItem idx={idx} cartItem={cartItem} />
+            {cartItemList?.map((cartItem, index) => {
+                return <CartTableItem index={index} cartItem={cartItem} />
             })}
 
             <Divider className={classes.divider} flexItem />

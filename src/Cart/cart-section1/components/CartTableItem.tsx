@@ -6,7 +6,7 @@ import ImageBox from "components/image-box/ImageBox"
 import React, {useEffect, useState} from "react"
 
 type CartListProps = {
-    idx: number
+    index: number
     cartItem: CartOptionsType
     cartItemList: CartOptionsType[]
     checkList: Record<string, boolean>
@@ -15,7 +15,7 @@ type CartListProps = {
 }
 
 export default function CartTableItem(props: CartListProps) {
-    const {idx, cartItem, cartItemList, checkList, setCartItemList, onChangeCheckbox} = props
+    const {index, cartItem, cartItemList, checkList, setCartItemList, onChangeCheckbox} = props
     const [goodsThumbnail, setGoodsThumbnail] = useState("")
     const [goodsName, setGoodsName] = useState("")
 
@@ -82,7 +82,7 @@ export default function CartTableItem(props: CartListProps) {
 
             <TableCell width={120} align="center">
                 <CountController
-                    idx={idx}
+                    index={index}
                     optionId={cartItem.optionId}
                     count={cartItem.count}
                     valueList={cartItemList}

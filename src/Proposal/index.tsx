@@ -103,14 +103,14 @@ export default function Index() {
             <Stack flexDirection="row" justifyContent="center" alignItems="center">
                 {mobile ? (
                     <>
-                        {process.map((itm, idx) => (
-                            <ProposalProcessMobile idx={idx} title={itm} key={"ProposalProcess" + idx} />
+                        {process.map((itm, index) => (
+                            <ProposalProcessMobile index={index} title={itm} key={"ProposalProcess" + index} />
                         ))}
                     </>
                 ) : (
                     <>
-                        {process.map((itm, idx) => (
-                            <ProposalProcess idx={idx} title={itm} key={"ProposalProcess" + idx} />
+                        {process.map((itm, index) => (
+                            <ProposalProcess index={index} title={itm} key={"ProposalProcess" + index} />
                         ))}
                     </>
                 )}

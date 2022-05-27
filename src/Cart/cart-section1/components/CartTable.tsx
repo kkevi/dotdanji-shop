@@ -40,8 +40,8 @@ export default function CartTable(props: Props) {
                         />
                     </TableCell>
 
-                    {tableTitle.map((title, idx) => (
-                        <TableCell key={"tableTitle" + idx} sx={{fontSize: ".9rem", padding: 2}} align="center">
+                    {tableTitle.map((title, index) => (
+                        <TableCell key={"tableTitle" + index} sx={{fontSize: ".9rem", padding: 2}} align="center">
                             {title}
                         </TableCell>
                     ))}
@@ -49,18 +49,18 @@ export default function CartTable(props: Props) {
             </TableHead>
 
             <TableBody>
-                {cartItemList?.map((cartItem, idx) => {
+                {cartItemList?.map((cartItem, index) => {
                     return (
-                        <TableRow key={"tableRow" + idx} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
+                        <TableRow key={"tableRow" + index} sx={{"&:last-child td, &:last-child th": {border: 0}}}>
                             <CartTableItem
-                                idx={idx}
+                                index={index}
                                 cartItem={cartItem}
                                 cartItemList={cartItemList}
                                 checkList={checkList}
                                 setCartItemList={setCartItemList}
                                 onChangeCheckbox={onChangeCheckbox}
                             />
-                            {idx === 0 && (
+                            {index === 0 && (
                                 <TableCell
                                     rowSpan={cartItemList.length + 1}
                                     align="center"

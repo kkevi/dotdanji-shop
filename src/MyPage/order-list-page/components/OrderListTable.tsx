@@ -8,8 +8,8 @@ export default function OredrListTable() {
         <Table>
             <TableHead>
                 <TableRow>
-                    {tableTitle.map((title, idx) => (
-                        <TableCell key={"tableTitle" + idx} sx={{fontSize: ".9rem", padding: 2}} align="center">
+                    {tableTitle.map((title, index) => (
+                        <TableCell key={"tableTitle" + index} sx={{fontSize: ".9rem", padding: 2}} align="center">
                             {title}
                         </TableCell>
                     ))}

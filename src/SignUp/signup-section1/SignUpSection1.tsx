@@ -92,8 +92,8 @@ export default function SignUpSection1(prop: SignUpSection1Props) {
                 />
                 <Divider sx={{margin: "8px 0"}} />
                 <FormGroup>
-                    {checkedLists.map((itm, idx) => (
-                        <Stack direction="row" alignItems="center" key={idx}>
+                    {checkedLists.map((itm, index) => (
+                        <Stack direction="row" alignItems="center" key={index}>
                             <FormControlLabel
                                 control={
                                     <Checkbox

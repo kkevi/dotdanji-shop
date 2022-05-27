@@ -6,7 +6,7 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded"
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
 
 type CountControllerProps = {
-    idx: number
+    index: number
     optionId: string
     count: number
     valueList: any[]
@@ -16,11 +16,11 @@ type CountControllerProps = {
 }
 
 export default function CountController(props: CountControllerProps) {
-    const {idx, optionId, count, valueList, setValueList, mr, mobile} = props
+    const {index, optionId, count, valueList, setValueList, mr, mobile} = props
 
     const onClickReduce = (count: number) => {
         if (count <= 1) return
-        valueList[idx] = {...valueList[idx], count: count - 1}
+        valueList[index] = {...valueList[index], count: count - 1}
         setValueList(it => [...it])
     }
 
@@ -29,7 +29,7 @@ export default function CountController(props: CountControllerProps) {
             toast.info("30개 이상은 단체 문의를 이용해주세요.")
             return
         }
-        valueList[idx] = {...valueList[idx], count: count + 1}
+        valueList[index] = {...valueList[index], count: count + 1}
         setValueList(it => [...it])
     }
 

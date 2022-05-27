@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
-import {GoodsItemProps, OptionsType} from "types/goods-type"
+import {GoodsItemType, OptionsType} from "types/goods-type"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
@@ -17,7 +17,7 @@ import ExtraInformationModule from "./components/ExtraInformationModule"
 
 type Props = {
     goodsId: string
-    goodsItemData: GoodsItemProps
+    goodsItemData: GoodsItemType
     selectValueList: OptionCart[]
     setSelectValueList: React.Dispatch<React.SetStateAction<OptionCart[]>>
     onSelectOption: (event: SelectChangeEvent) => void
@@ -57,10 +57,10 @@ export default function GoodsDetailPageWeb(props: Props) {
                 {/* left box */}
                 <div style={{width: "60%", paddingTop: "2rem"}}>
                     <Slider {...sliderSettings}>
-                        {thumbnails.images.map((image, idx) => (
+                        {thumbnails.images.map((image, index) => (
                             <Stack
                                 mt={10}
-                                key={"thumbnail" + idx}
+                                key={"thumbnail" + index}
                                 width="100%"
                                 className={classes.slideBox}
                                 height={1000}
@@ -82,7 +82,7 @@ export default function GoodsDetailPageWeb(props: Props) {
                 {/* right box */}
                 <div className={classes.infoBox}>
                     {/* 이름, 태그, 가격 */}
-                    <Typography variant="subtitle2">{tags.map((tag, idx) => `#${tag} `)}</Typography>
+                    <Typography variant="subtitle2">{tags.map((tag, index) => `#${tag} `)}</Typography>
                     <Typography fontSize={28} fontWeight={800}>
                         {name}
                     </Typography>
@@ -114,7 +114,7 @@ export default function GoodsDetailPageWeb(props: Props) {
                             <MenuItem value={defaultOption} sx={{opacity: 0.6}}>
                                 <Typography fontSize={20}>{defaultOption}</Typography>
                             </MenuItem>
-                            {options.map((option, idx) => (
+                            {options.map((option, index) => (
                                 <MenuItem
                                     key={option.optionId}
                                     value={option.optionId}
@@ -133,14 +133,14 @@ export default function GoodsDetailPageWeb(props: Props) {
                     {selectValueList.length > 0 && (
                         <>
                             <Stack mb={3} width="100%">
-                                {selectValueList.map((selected, idx) => {
+                                {selectValueList.map((selected, index) => {
                                     const optionData = options?.filter(
                                         it => it.optionId === selected.optionId,
                                     )[0] as OptionsType
                                     return (
                                         <GoodsOptions
-                                            key={"option" + idx}
-                                            idx={idx}
+                                            key={"option" + index}
+                                            index={index}
                                             optionName={optionData?.name}
                                             optionId={selected.optionId}
                                             count={selected.count}

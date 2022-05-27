@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
-import {GoodsItemProps, OptionsType} from "types/goods-type"
+import {GoodsItemType, OptionsType} from "types/goods-type"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
@@ -17,7 +17,7 @@ import ExtraInformationModule from "./components/ExtraInformationModule"
 
 type Props = {
     goodsId: string
-    goodsItemData: GoodsItemProps
+    goodsItemData: GoodsItemType
     selectValueList: OptionCart[]
     setSelectValueList: React.Dispatch<React.SetStateAction<OptionCart[]>>
     onSelectOption: (event: SelectChangeEvent) => void
@@ -55,9 +55,9 @@ export default function GoodsDetailPageMobile(props: Props) {
         <div>
             <Stack className={classes.rootMobile} bgcolor={thumbnails.bgColor}>
                 <Slider {...sliderSettings}>
-                    {thumbnails.images.map((image, idx) => (
+                    {thumbnails.images.map((image, index) => (
                         <Stack
-                            key={"thumbnail" + idx}
+                            key={"thumbnail" + index}
                             position="relative"
                             display="flex !important"
                             justifyContent="center"
@@ -75,7 +75,7 @@ export default function GoodsDetailPageMobile(props: Props) {
                 </Slider>
 
                 <Typography mt={2} fontSize={12}>
-                    {tags.map((tag, idx) => `#${tag} `)}
+                    {tags.map((tag, index) => `#${tag} `)}
                 </Typography>
                 <Typography fontSize={20} fontWeight={800}>
                     {name}
@@ -105,7 +105,7 @@ export default function GoodsDetailPageMobile(props: Props) {
                         <MenuItem value={defaultOption} sx={{opacity: 0.6}}>
                             <Typography fontSize={14}>{defaultOption}</Typography>
                         </MenuItem>
-                        {options.map((option, idx) => (
+                        {options.map((option, index) => (
                             <MenuItem
                                 key={option.optionId}
                                 value={option.optionId}
@@ -123,14 +123,14 @@ export default function GoodsDetailPageMobile(props: Props) {
                 {/* 이름, 태그, 가격 */}
                 {selectValueList.length > 0 && (
                     <Stack mb={3} width="100%">
-                        {selectValueList.map((selected, idx) => {
+                        {selectValueList.map((selected, index) => {
                             const optionData = options?.filter(
                                 it => it.optionId === selected.optionId,
                             )[0] as OptionsType
                             return (
                                 <GoodsOptions
-                                    key={"option" + idx}
-                                    idx={idx}
+                                    key={"option" + index}
+                                    index={index}
                                     optionName={optionData?.name}
                                     optionId={selected.optionId}
                                     count={selected.count}

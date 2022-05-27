@@ -10,7 +10,7 @@ export default function ExtraInformationModule() {
     const classes = useStyles()
 
     const scrollRef = useRef([]) as MutableRefObject<any[]>
-    const scrollToElement = (idx: number) => scrollRef.current[idx]?.scrollIntoView({behavior: "smooth", top: 290})
+    const scrollToElement = (index: number) => scrollRef.current[index]?.scrollIntoView({behavior: "smooth", top: 290})
 
     const [tab, setTab] = useState(0)
     const tabs: string[] = ["상품상세정보", "배송/교환 및 반품안내"]
@@ -24,13 +24,13 @@ export default function ExtraInformationModule() {
                 alignItems="center"
             >
                 <Tabs centered value={tab} onChange={(event, value) => setTab(value)}>
-                    {tabs.map((tabName, idx) => (
+                    {tabs.map((tabName, index) => (
                         <Tab
-                            key={"customer-service" + idx}
+                            key={"service" + index}
                             sx={{width: 350, padding: 2}}
                             label={<Typography fontSize={15}>{tabName}</Typography>}
-                            value={idx}
-                            onClick={() => scrollToElement(idx)}
+                            value={index}
+                            onClick={() => scrollToElement(index)}
                         />
                     ))}
                 </Tabs>

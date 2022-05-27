@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react"
 
-import {SelectChangeEvent, useMediaQuery} from "@mui/material"
+import {SelectChangeEvent, useMediaQuery, useTheme} from "@mui/material"
 //components
 import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
-import {GoodsItemProps} from "types/goods-type"
+import {GoodsItemType} from "types/goods-type"
 
 import Router, {useRouter} from "next/router"
 import {CartOptionsType, OptionCart} from "types/cart-type"
@@ -24,7 +24,7 @@ export default function GoodsDetailPage(props: Props) {
     const {userStore, goodsStore} = useStore()
 
     //데이터
-    const [goodsItemData, setGoodsItemData] = useState<GoodsItemProps>(GOODS_ITEMS_DATA[0])
+    const [goodsItemData, setGoodsItemData] = useState<GoodsItemType>(GOODS_ITEMS_DATA[0])
     const {sale, price, options = []} = goodsItemData
     //할인 계산식
     var resultPrice = sale > 0 ? price - price * (sale / 100) : price
@@ -88,7 +88,7 @@ export default function GoodsDetailPage(props: Props) {
         try {
             //TODO: 서버 장바구니에 저장 기능 추가
             if (confirm("장바구니를 확인하시겠습니까?")) {
-                const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, idx) => {
+                const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, index) => {
                     const goodsOptionData = options.filter(it => it.optionId === cur.optionId)[0]
                     acc.push({
                         goodsId: goodsId,
@@ -116,7 +116,7 @@ export default function GoodsDetailPage(props: Props) {
         if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
 
         try {
-            const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, idx) => {
+            const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, index) => {
                 const goodsOptionData = options.filter(it => it.optionId === cur.optionId)[0]
                 acc.push({
                     goodsId: goodsId,

@@ -11,7 +11,7 @@ import {
     useMediaQuery,
     useTheme,
 } from "@mui/material"
-import {GoodsCategoryProps, GoodsItemProps} from "types/goods-type"
+import {GoodsCategoryType, GoodsItemType} from "types/goods-type"
 //fake data
 import {GOODS_ITEMS_DATA, GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 
@@ -26,9 +26,9 @@ export default function GoodsLayout(props: Props) {
     const theme = useTheme()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const [goodsFilter, setGoodsFilter] = useState<string>("newest")
-    const [categoryList, setCategoryList] = useState<GoodsCategoryProps[]>(GOODS_CATEGORY_DATA)
+    const [categoryList, setCategoryList] = useState<GoodsCategoryType[]>(GOODS_CATEGORY_DATA)
     const [categoryTitle, setCategoryTitle] = useState<string>("")
-    const [goodsList, setGoodsList] = useState<GoodsItemProps[]>([])
+    const [goodsList, setGoodsList] = useState<GoodsItemType[]>([])
 
     const goodsArr = [
         {name: "신상품순", value: "newest"},
@@ -39,11 +39,11 @@ export default function GoodsLayout(props: Props) {
 
     useEffect(() => {
         //최상단 title 표시
-        const category = categoryList.filter(it => it.categoryId === categoryId)[0] as GoodsCategoryProps
+        const category = categoryList.filter(it => it.categoryId === categoryId)[0] as GoodsCategoryType
         setCategoryTitle(category?.title)
 
         //item list 불러오기
-        const goods = GOODS_ITEMS_DATA.filter(it => it.categoryId === categoryId) as GoodsItemProps[]
+        const goods = GOODS_ITEMS_DATA.filter(it => it.categoryId === categoryId) as GoodsItemType[]
         setGoodsList(goods)
     }, [categoryId])
 
@@ -77,8 +77,8 @@ export default function GoodsLayout(props: Props) {
                         onChange={onChangeSelect}
                         sx={{fontSize: mobile ? 14 : 16}}
                     >
-                        {goodsArr.map(({name, value}, idx) => (
-                            <MenuItem value={value} key={value + idx} sx={{fontSize: mobile ? 14 : 16}}>
+                        {goodsArr.map(({name, value}, index) => (
+                            <MenuItem value={value} key={value + index} sx={{fontSize: mobile ? 14 : 16}}>
                                 {name}
                             </MenuItem>
                         ))}
@@ -89,8 +89,8 @@ export default function GoodsLayout(props: Props) {
 
             {goodsList.length > 0 && (
                 <Grid container spacing={3}>
-                    {goodsList.map((data: GoodsItemProps, idx) => (
-                        <Grid item key={data.goodsId + idx} lg={4} md={4} sm={6} xs={6}>
+                    {goodsList.map((data: GoodsItemType, index) => (
+                        <Grid item key={data.goodsId + index} lg={4} md={4} sm={6} xs={6}>
                             <GoodsItem data={data} mobile={mobile} />
                         </Grid>
                     ))}

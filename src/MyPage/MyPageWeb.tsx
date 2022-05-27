@@ -89,9 +89,9 @@ export default function MyPageWeb(prop: MyPageProps) {
                     <Typography color="#777777">{fakeEbookList.length}권</Typography>
                 </Stack>
                 <Grid container alignItems="center" spacing={4}>
-                    {fakeEbookList.map((itm, idx) => {
+                    {fakeEbookList.map((itm, index) => {
                         return (
-                            <Grid key={"ebookitem" + idx} item xs={3}>
+                            <Grid key={"ebookitem" + index} item xs={3}>
                                 <EBookItem title={itm.title} url={itm.url} images={itm.image} />
                             </Grid>
                         )

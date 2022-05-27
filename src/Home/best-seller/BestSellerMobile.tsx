@@ -1,52 +1,19 @@
-import React, {useState} from "react"
+import React from "react"
 
-import {Container, Grid, Stack, Typography} from "@mui/material"
+import {Container, Grid, Stack, Typography, useTheme} from "@mui/material"
 
 import useStyles from "./styles"
 import ImageBox from "components/image-box/ImageBox"
+import {GoodsItemType} from "types/goods-type"
 
-export default function BestSellerMobile() {
+type Props = {
+    bestSellerList: GoodsItemType[]
+}
+
+export default function BestSellerMobile(props: Props) {
+    const {bestSellerList} = props
     const theme = useTheme()
     const classes = useStyles()
-
-    const fakeBestSeller = [
-        {
-            id: "bestSeller1",
-            title: "베스트셀러1",
-            price: 10000,
-            image: "/images/fake/demo-goods-1.png",
-        },
-        {
-            id: "bestSeller2",
-            title: "베스트셀러2",
-            price: 15000,
-            image: "/images/fake/demo-goods-2.png",
-        },
-        {
-            id: "bestSeller3",
-            title: "베스트셀러3",
-            price: 12000,
-            image: "/images/fake/demo-goods-3.png",
-        },
-        {
-            id: "bestSeller4",
-            title: "베스트셀러4",
-            price: 20000,
-            image: "/images/fake/demo-goods-4.png",
-        },
-        {
-            id: "bestSeller5",
-            title: "베스트셀러5",
-            price: 12000,
-            image: "/images/fake/demo-goods-5.png",
-        },
-        {
-            id: "bestSeller6",
-            title: "베스트셀러6",
-            price: 11000,
-            image: "/images/fake/demo-goods-6.png",
-        },
-    ]
 
     return (
         <Container maxWidth="sm" sx={{mt: 4}}>
@@ -59,12 +26,12 @@ export default function BestSellerMobile() {
                 </Typography>
 
                 <Grid container alignItems="center" mt={2}>
-                    {fakeBestSeller.map((itm, idx) => {
+                    {bestSellerList.map((goods, index) => {
                         return (
                             <Grid
                                 item
                                 xs={6}
-                                key={"grid" + idx}
+                                key={`best-seller-grid${goods.goodsId}`}
                                 sx={{
                                     mb: 1,
                                     alignItems: "center",
@@ -82,19 +49,19 @@ export default function BestSellerMobile() {
                                 >
                                     <ImageBox
                                         height="100%"
-                                        src={itm.image}
+                                        src={goods.thumbnails.images[0]}
                                         style={{
-                                            borderTopLeftRadius: idx === 0 ? 20 : 0,
-                                            borderTopRightRadius: idx === 1 ? 20 : 0,
-                                            borderBottomLeftRadius: idx === 4 ? 20 : 0,
-                                            borderBottomRightRadius: idx === 5 ? 20 : 0,
+                                            borderTopLeftRadius: index === 0 ? 20 : 0,
+                                            borderTopRightRadius: index === 1 ? 20 : 0,
+                                            borderBottomLeftRadius: index === 4 ? 20 : 0,
+                                            borderBottomRightRadius: index === 5 ? 20 : 0,
                                         }}
                                     />
                                 </div>
                                 <Stack mt={1} px={1} direction="row" justifyContent="space-between" alignItems="center">
-                                    <Typography className={classes.titleMobile}>{itm.title}</Typography>
+                                    <Typography className={classes.titleMobile}>{goods.name}</Typography>
                                     <Typography className={classes.priceMobile}>
-                                        {itm.price.toLocaleString("ko")}원
+                                        {goods.price.toLocaleString("ko")}원
                                     </Typography>
                                 </Stack>
                             </Grid>

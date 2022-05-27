@@ -6,7 +6,7 @@ import useStyles from "./styles"
 import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js"
 import {toast} from "react-toastify"
 import {userEmailCheck, userPasswordCheck} from "./validation-check"
-import UserPool, {KAKAO_AUTH_URL} from "./UserPool"
+import UserPool, {KAKAO_AUTH_URL} from "./user-pool"
 import useStore from "store/useStore"
 
 import Visibility from "@mui/icons-material/Visibility"
@@ -150,8 +150,8 @@ export default function Login() {
             </Button>
             {/* socialLogin */}
             <Stack direction="row" width="40%" justifyContent="space-between" alignSelf="center">
-                {socialLogin.map((itm, idx) => (
-                    <div className={classes.socialLogin} style={{backgroundColor: itm.color}} key={idx}>
+                {socialLogin.map((itm, index) => (
+                    <div className={classes.socialLogin} style={{backgroundColor: itm.color}} key={index}>
                         <img className={classes.socialImage} src={itm.image} onClick={() => route.push(itm.url)} />
                     </div>
                 ))}

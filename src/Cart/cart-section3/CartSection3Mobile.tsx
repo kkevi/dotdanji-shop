@@ -40,8 +40,8 @@ export default function CartSection3Mobile(prop: Props) {
 
                 <Divider className={classes.divider} flexItem />
 
-                {cartItemList.map((itm, idx) => (
-                    <CartTableItem idx={idx} cartItem={itm} />
+                {cartItemList.map((itm, index) => (
+                    <CartTableItem index={index} cartItem={itm} />
                 ))}
 
                 <Divider className={classes.divider} flexItem />

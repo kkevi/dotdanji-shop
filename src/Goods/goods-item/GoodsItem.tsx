@@ -1,7 +1,7 @@
 import {useCallback, useState} from "react"
 import {useRouter} from "next/router"
 import useStyles from "./styles"
-import {GoodsItemProps} from "types/goods-type"
+import {GoodsItemType} from "types/goods-type"
 //component
 import {IconButton, Typography, ButtonBase} from "@mui/material"
 import ImageBox from "components/image-box/ImageBox"
@@ -13,7 +13,7 @@ import useStore from "store/useStore"
 import {toast} from "react-toastify"
 
 type props = {
-    data: GoodsItemProps
+    data: GoodsItemType
     mobile: boolean
 }
 

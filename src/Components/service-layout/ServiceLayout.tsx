@@ -1,84 +1,38 @@
-import React from "react"
-import {Container, Typography, Stack, Tabs, Tab} from "@mui/material"
-
-import {customerServiceTabs} from "lib/customer-service-tabs"
-
-import {routerPush} from "lib/routerPush"
-import {useTheme} from "@mui/material"
-import Notice from "src/Notice"
-import FAQ from "src/FAQ"
-import Event from "src/Event"
-import Inquiry from "src/Inquiry"
-import NoticeDetailPage from "src/Notice/notice-detail-page/NoticeDetailPage"
-import EventDetailPage from "src/Event/event-detail-page/EventDetailPage"
-
-function tabProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        "aria-controls": `simple-tabpanel-${index}`,
-    }
-}
+import {Container, useMediaQuery, useTheme} from "@mui/material"
+import {useEffect, useState} from "react"
+import {ServiceTabKey, ServiceBannerType} from "types/service-type"
+import {bannerList} from "./banner-list"
+import ServiceMobileTabs from "./ServiceMobileTabs"
+import ServiceWebTabs from "./ServiceWebTabs"
 
 type Props = {
-    tab?: number
-    children?: React.ReactNode
-    noticeId?: string | string[] | undefined
-    eventId?: string | string[] | undefined
-    tablist: {
-        phrase: string
-        title: string
-        color: string
-        image: string
-    }
+    tabId: ServiceTabKey
+    children: React.ReactNode
 }
 
 export default function ServiceLayout(props: Props) {
-    const {tab, children, noticeId, eventId, tablist} = props
+    const {tabId, children} = props
     const theme = useTheme()
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
+    const [topBanner, setTopBanner] = useState(bannerList[0])
 
-    const handleTabChange = (tab: number) => {
-        const tabId = Object.keys(customerServiceTabs)[tab]
-        if (tabId) {
-            routerPush(`/customer-service/${tabId}`)
-        }
-    }
+    useEffect(() => {
+        setTopBanner(bannerList.filter(it => it.tabId === tabId)[0])
+    }, [tabId])
 
     return (
-        <Stack py={13.5}>
-            <Stack justifyContent="center" alignItems="center" height={300} sx={{backgroundColor: tablist?.color}}>
-                <Typography className="pointFont" fontSize={32} color="white">
-                    {tablist?.phrase}
-                </Typography>
-                <Typography className="pointFont" mt={1} fontSize={18} color={theme.palette.secondary.light}>
-                    {tablist?.title}
-                </Typography>
-            </Stack>
-            <Stack>
-                <Container maxWidth="lg">
-                    <Tabs
-                        sx={{marginBottom: 8}}
-                        centered
-                        value={tab}
-                        onChange={(event, value) => handleTabChange(value)}
-                    >
-                        {Object.values(customerServiceTabs).map((tabName, idx) => (
-                            <Tab
-                                key={"customer-service" + idx}
-                                sx={{padding: 3}}
-                                label={<Typography fontSize={18}>{tabName}</Typography>}
-                                value={idx}
-                                {...tabProps(idx)}
-                            />
-                        ))}
-                    </Tabs>
-
-                    {tab === 0 && <Notice />}
-                    {tab === 1 && <FAQ />}
-                    {tab === 2 && <Event />}
-                    {tab === 3 && <Inquiry />}
-                    <Stack py={8}>{children}</Stack>
-                </Container>
-            </Stack>
-        </Stack>
+        <>
+            {mobile ? (
+                <>
+                    <ServiceMobileTabs topBanner={topBanner} tabId={tabId} />
+                    <Container maxWidth="sm">{children}</Container>
+                </>
+            ) : (
+                <>
+                    <ServiceWebTabs topBanner={topBanner} tabId={tabId} />
+                    <Container maxWidth="lg">{children}</Container>
+                </>
+            )}
+        </>
     )
 }

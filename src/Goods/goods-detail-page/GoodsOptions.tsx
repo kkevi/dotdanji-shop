@@ -8,7 +8,7 @@ import React, {useEffect, useState} from "react"
 import useStyles from "./style"
 
 type Props = {
-    idx: number
+    index: number
     optionName: string
     optionId: string
     count: number
@@ -21,8 +21,17 @@ type Props = {
 
 export default function GoodsOptions(props: Props) {
     const classes = useStyles()
-    const {idx, optionName, optionId, count, optionPrice, selectValueList, onDeleteOption, setSelectValueList, mobile} =
-        props
+    const {
+        index,
+        optionName,
+        optionId,
+        count,
+        optionPrice,
+        selectValueList,
+        onDeleteOption,
+        setSelectValueList,
+        mobile,
+    } = props
     const [optionPriceTotal, setOptionPriceTotal] = useState<number>(optionPrice)
 
     useEffect(() => {
@@ -52,7 +61,7 @@ export default function GoodsOptions(props: Props) {
                 {/* 상품수량조절 */}
                 <Stack direction="row" alignItems="center">
                     <CountController
-                        idx={idx}
+                        index={index}
                         optionId={optionId}
                         count={count}
                         valueList={selectValueList}

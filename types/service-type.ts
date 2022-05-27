@@ -1,4 +1,19 @@
 /*
+ * Top  Tab
+ *
+ */
+
+export type ServiceBannerType = {
+    tabId: ServiceTabKey
+    phrase: string
+    title: string
+    color: string
+    image: string
+}
+
+export type ServiceTabKey = "notice" | "faq" | "event" | "inquiry"
+
+/*
  * 공지사항
  *
  */
@@ -107,17 +122,4 @@ type ImageFile = {
     fileSize: number
     fileName: string
     downloadUrl: string | ArrayBuffer | null
-}
-
-/*
- * 이벤트
- *
- */
-
-export interface EventDetailProps {
-    eventId: string
-    title: string
-    content: string
-    startDate: string
-    endDate: string
 }
