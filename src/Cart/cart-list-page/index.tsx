@@ -72,6 +72,10 @@ export default function CartSection1(props: Props) {
         setCartItemList(goodsStore.cartItem)
     }, [cartItemList, goodsStore, checkList])
 
+    useEffect(() => {
+        loadData()
+    }, [])
+
     const loadData = async () => {
         try {
             const list: CartOptionsType[] = []
@@ -120,8 +124,6 @@ export default function CartSection1(props: Props) {
     }, [checkList])
 
     const onCheckAll = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("working?", checkList)
-
         setCheckAll(event.target.checked)
         for (const [key, value] of Object.entries(checkList)) {
             checkList[key] = event.target.checked

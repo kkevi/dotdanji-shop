@@ -3,13 +3,13 @@ import {Stack, Typography} from "@mui/material"
 
 export default function ExtraInformationTab2() {
     return (
-        <Stack width="100%" mb={16}>
+        <Stack width="100%" height={"30vh"} mb={16}>
             <Typography className="pointFont" color="#777" alignSelf="flex-start" mb={2}>
                 # 배송정보
             </Typography>
             <Typography variant="body2" color="#999">
-                배송비 : 기본 배송료 mb={2}는 3,000원이며, 5만원 이상 구매시 무료배송입니다. (도서, 산간, 오지 등 일부
-                지역은 배송비가 추가될 수 있습니다.)
+                배송비 : 기본 배송료는 3,000원이며, 5만원 이상 구매시 무료배송입니다. (도서, 산간, 오지 등 일부 지역은
+                배송비가 추가될 수 있습니다.)
             </Typography>
             <Typography variant="body2" color="#999">
                 택배사 : 우체국 택배를 이용하고 있습니다.

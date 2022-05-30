@@ -1,5 +1,4 @@
 import React, {useState} from "react"
-import {useRouter} from "next/router"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
 import {GoodsItemType, OptionsType} from "types/goods-type"
@@ -29,7 +28,6 @@ type Props = {
 
 export default function GoodsDetailPageWeb(props: Props) {
     const classes = useStyles()
-    const route = useRouter()
     const {
         goodsId,
         goodsItemData,
