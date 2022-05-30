@@ -34,8 +34,6 @@ function MyApp({Component, pageProps}: AppProps) {
                 <meta name="msapplication-TileColor" content="#ffe32d" />
                 <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
                 <meta name="theme-color" content="#fff9bf" />
-                {/* font */}
-                <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
             </Head>
             <StoreProvider rootStoreInitialState={undefined}>
                 <ThemeProvider theme={theme}>

@@ -5,7 +5,7 @@ import {Container, Stack, Typography, Button, InputAdornment, useMediaQuery, use
 import useStyles from "../styles"
 import MyPageHeader from "src/MyPage/mypage-header/MyPageHeader"
 import DaumPostModal from "components/daum-post-modal/DaumPostModal"
-import {MyPageModifyFormDefaultData, MyPageModifyFormProps} from "types/service-type"
+import {MyPageModifyFormDefaultData, UserDataType} from "types/user-type"
 
 import {CustomedTextField} from "src/Components/customed-textfield/CustomedTextField"
 
@@ -14,7 +14,7 @@ export default function MyPageModifyPage() {
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const classes = useStyles()
     const route = useRouter()
-    const [formData, setFormData] = useState<MyPageModifyFormProps>(MyPageModifyFormDefaultData)
+    const [formData, setFormData] = useState<UserDataType>(MyPageModifyFormDefaultData)
     const [visibleModal, setVisibleModal] = useState(false)
 
     const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {

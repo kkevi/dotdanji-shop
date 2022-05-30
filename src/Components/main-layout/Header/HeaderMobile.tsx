@@ -8,11 +8,11 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded"
 import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded"
 //fake data
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
-import UserLoginButton from "./user-login-button/UserLoginButton"
-import ShopCartButton from "./shop-cart-button/ShopCartButton"
+import UserLoginButton from "./components/user-login-button/UserLoginButton"
+import ShopCartButton from "./components/shop-cart-button/ShopCartButton"
 import useStore from "store/useStore"
 
-export default function TopbarMobile() {
+export default function HeaderMobile() {
     const route = useRouter()
     const theme = useTheme()
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)

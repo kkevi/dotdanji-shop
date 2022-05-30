@@ -1,8 +1,6 @@
 import {makeStyles, createStyles} from "@mui/styles"
 
-import {theme} from "src/styles/theme"
-
-const styles = makeStyles((theme: Theme) =>
+const styles = makeStyles(() =>
     createStyles({
         footer: {
             backgroundColor: "#2d2d2d",

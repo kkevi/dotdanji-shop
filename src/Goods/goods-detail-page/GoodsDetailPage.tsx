@@ -101,7 +101,7 @@ export default function GoodsDetailPage(props: Props) {
                     return acc
                 }, [])
                 await goodsStore.setCartItem(data)
-                Router.push({pathname: "/cart", query: {sectionNum: "0"}})
+                Router.push("/cart")
             }
         } catch (e) {
             console.log("e:", e)

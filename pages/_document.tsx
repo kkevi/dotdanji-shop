@@ -31,6 +31,11 @@ class MyDocument extends Document {
                     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js" />
                     {/* <!-- iamport.kakao.js --> */}
                     <script src="https://developers.kakao.com/sdk/js/kakao.js" />
+                    {/* <!-- font.Nanum Square round--> */}
+                    <link
+                        rel="stylesheet"
+                        href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css"
+                    />
                 </Head>
                 <body>
                     <Main />

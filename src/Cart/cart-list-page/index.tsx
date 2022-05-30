@@ -8,8 +8,8 @@ import {CART_ITEMS_DATA} from "src/Components/fake-data/fake-cart"
 import {GOODS_ITEMS_DATA} from "src/Components/fake-data/fake-goods"
 import useStore from "store/useStore"
 import {useTheme} from "@mui/material"
-import CartSection1Web from "./CartSection1Web"
-import CartSection1Mobile from "./CartSection1Mobile"
+import CartListPageWeb from "./CartListPageWeb/CartListPageWeb"
+import CartListPageMobile from "./CartListPageMobile/CartListPageMobile"
 
 type Props = {
     onChangeNextStep: (index: number) => void
@@ -57,9 +57,20 @@ export default function CartSection1(props: Props) {
      * 장바구니 데이터 가져오기
      */
     useEffect(() => {
+        //체크리스트 업데이트 - 초기 모두 true
+        setCheckList(
+            cartItemList.reduce((cur: any, acc: any, idx) => {
+                const id: string = cur.optionId as string
+                acc[id] = true
+                console.log("acc", acc)
+
+                return acc
+            }, {} as Record<string, boolean>),
+        )
+
         if (goodsStore.cartItem === undefined) return
         setCartItemList(goodsStore.cartItem)
-    }, [])
+    }, [cartItemList, goodsStore, checkList])
 
     const loadData = async () => {
         try {
@@ -105,9 +116,7 @@ export default function CartSection1(props: Props) {
      * 체크기능
      */
     useEffect(() => {
-        console.log("working?111")
         setCheckList(checkList)
-        console.log("working?222", checkList, cartItemList)
     }, [checkList])
 
     const onCheckAll = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -131,7 +140,7 @@ export default function CartSection1(props: Props) {
     return (
         <>
             {mobile ? (
-                <CartSection1Mobile
+                <CartListPageWeb
                     onCheckAll={onCheckAll}
                     onClickOrder={onClickOrder}
                     onDeleteCartItem={onDeleteCartItem}
@@ -144,7 +153,7 @@ export default function CartSection1(props: Props) {
                     deliveryPrice={deliveryPrice}
                 />
             ) : (
-                <CartSection1Web
+                <CartListPageMobile
                     onCheckAll={onCheckAll}
                     onClickOrder={onClickOrder}
                     onDeleteCartItem={onDeleteCartItem}

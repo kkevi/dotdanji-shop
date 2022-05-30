@@ -1,6 +1,6 @@
 import {Stack, Typography} from "@mui/material"
 import ImageBox from "components/image-box/ImageBox"
-import useStyles from "../style"
+import useStyles from "../../CartListPageWeb/style"
 
 type Props = {
     deliveryPrice: number

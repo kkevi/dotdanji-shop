@@ -5,11 +5,11 @@ import {Button, ButtonGroup, Container, Stack, useTheme} from "@mui/material"
 //icon
 //fake data
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
-import UserLoginButton from "./user-login-button/UserLoginButton"
-import ShopCartButton from "./shop-cart-button/ShopCartButton"
+import UserLoginButton from "./components/user-login-button/UserLoginButton"
+import ShopCartButton from "./components/shop-cart-button/ShopCartButton"
 import useStore from "store/useStore"
 
-export default function Topbar() {
+export default function HeaderWeb() {
     const route = useRouter()
     const theme = useTheme()
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)

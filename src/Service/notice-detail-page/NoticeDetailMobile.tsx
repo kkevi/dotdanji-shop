@@ -19,13 +19,13 @@ export default function NoticeDetailMobile(props: Props) {
             <Divider flexItem sx={{borderBottomWidth: 2}} />
             <Stack p={4}>
                 <Typography fontSize={16} fontWeight={700} mb={0.5}>
-                    {data.title}
+                    {data?.title}
                 </Typography>
-                <Typography fontSize={14}>{data.date}</Typography>
+                <Typography fontSize={14}>{data?.date}</Typography>
             </Stack>
             <Divider flexItem />
             <Stack p={4}>
-                <div dangerouslySetInnerHTML={{__html: data.content}} className={classes.htmlContainerMobile} />
+                <div dangerouslySetInnerHTML={{__html: data?.content}} className={classes.htmlContainerMobile} />
             </Stack>
             <Divider flexItem />
             <Button
