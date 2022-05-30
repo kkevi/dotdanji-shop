@@ -105,14 +105,14 @@ export default function CartSection1(props: Props) {
      * 체크기능
      */
     useEffect(() => {
+        console.log("working?111")
         setCheckList(checkList)
+        console.log("working?222", checkList, cartItemList)
     }, [checkList])
 
-    const checking = () => {
-        cartItemList.map((itm, index) => setCheckList({[itm.goodsId]: true}))
-    }
-
     const onCheckAll = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log("working?", checkList)
+
         setCheckAll(event.target.checked)
         for (const [key, value] of Object.entries(checkList)) {
             checkList[key] = event.target.checked

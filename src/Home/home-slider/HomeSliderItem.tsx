@@ -2,7 +2,6 @@ import React from "react"
 import {useRouter} from "next/router"
 
 import {Container, Typography, Stack, Button} from "@mui/material"
-import {makeStyles} from "@mui/styles"
 
 import ImageBox from "components/image-box/ImageBox"
 
@@ -14,29 +13,11 @@ type Props = {
     subTitle: string
     image: string
     url: string
-    mobile?: boolean
+    mobile: boolean
 }
-
-const useStyles = makeStyles({
-    button: {
-        marginTop: 60,
-        width: 200,
-        height: 50,
-        fontSize: 18,
-        color: "white",
-        border: "2px solid white",
-        "&:hover": {
-            backgroundColor: "rgba(0,0,0,0.3)",
-            color: "white",
-            fontWeight: 700,
-            border: "2px solid white",
-        },
-    },
-})
 
 export default function HomeSliderItem(props: Props) {
     const {title, subTitle, image, url, mobile} = props
-    const classes = useStyles()
     const route = useRouter()
 
     return (

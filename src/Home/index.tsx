@@ -12,9 +12,9 @@ export default function Home() {
     const smDown = useMediaQuery(theme.breakpoints.down("sm"))
 
     return (
-        <div style={{background: "#F4F5F7", width: "100%"}}>
+        <div style={{background: smDown ? "#fff" : "#F4F5F7", width: "100%"}}>
             {/* 메인 슬라이더 */}
-            <HomeSlider />
+            <HomeSlider isMobile={smDown} />
 
             {/* 이벤트 영역 (좌:영상, 우:슬라이드) */}
             <EventSlider isMobile={smDown} />
@@ -26,7 +26,7 @@ export default function Home() {
             <NewArrival isMobile={smDown} />
 
             {/* 파트너사 */}
-            <PartnerBenner />
+            {smDown ? undefined : <PartnerBenner />}
         </div>
     )
 }

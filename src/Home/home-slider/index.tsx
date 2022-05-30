@@ -5,7 +5,11 @@ import {MainSlideType} from "types/event-type"
 import {sliderSetOption} from "../slider-set-option"
 import HomeSliderItem from "./HomeSliderItem"
 
-export default function HomeSlider() {
+type HomeSliderProps = {
+    isMobile: boolean
+}
+
+export default function HomeSlider({isMobile}: HomeSliderProps) {
     const [mainSliderList, setMainSliderList] = useState<MainSlideType[]>(FAKE_SLIDER_LIST)
 
     return (
@@ -17,6 +21,7 @@ export default function HomeSlider() {
                     subTitle={itm.subTitle}
                     image={itm.image}
                     url={itm.url}
+                    mobile={isMobile}
                 />
             ))}
         </Slider>

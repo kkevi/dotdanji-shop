@@ -8,9 +8,8 @@ import InitialStep from "./components/InitialStep"
 import Steps from "./components/Steps"
 import ReserachStep from "./components/ReserachStep"
 import ResultStep from "./components/ResultStep"
-import {useTheme} from "@mui/material"
+
 export default function KidsBTI() {
-    const theme = useTheme()
     const classes = useStyles()
 
     const [step, setStep] = useState<number>(-1)

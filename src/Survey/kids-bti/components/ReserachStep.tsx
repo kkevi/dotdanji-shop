@@ -1,8 +1,7 @@
 import React, {useState} from "react"
 
 import useStyles from "../styles"
-import {useTheme} from "@mui/material"
-import {Button, Stack, Typography} from "@mui/material"
+import {Button, Stack, Typography, useTheme} from "@mui/material"
 
 type ReserachStepProps = {
     setStep: React.Dispatch<React.SetStateAction<number>>
