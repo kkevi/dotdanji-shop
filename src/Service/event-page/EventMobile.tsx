@@ -9,9 +9,10 @@ import ImageBox from "src/Components/image-box/ImageBox"
 type EventWebProps = {
     eventList: EventType[]
     onClickRouter: (val: string) => void
+    mobile: boolean
 }
 
-export default function EventWeb(props: EventWebProps) {
+export default function EventMobile(props: EventWebProps) {
     const {eventList, onClickRouter} = props
     const route = useRouter()
 
@@ -23,24 +24,23 @@ export default function EventWeb(props: EventWebProps) {
 
     return (
         <Stack mt={2}>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
                 {eventList.map((event, index) => {
                     return (
                         <Grid
                             item
-                            lg={4}
-                            md={4}
+                            xs={6}
                             key={`event-list-${index}`}
                             style={{cursor: "pointer"}}
                             onClick={() => onClickRouter(event.eventId)}
                         >
-                            <ImageBox height={220} src="" />
+                            <ImageBox height={150} src="" />
                             <Stack justifyContent="space-between" alignItems="cetner" mt={1}>
-                                <Typography variant="h6" className="pointFont">
+                                <Typography variant="body1" className="pointFont">
                                     {event.title}
                                 </Typography>
-                                <Typography fontSize={17}></Typography>
-                                <Typography fontSize={17} color="#999">
+                                <Typography fontSize={12}></Typography>
+                                <Typography fontSize={12} color="#999">
                                     {event.startDate} ~ {event.endDate}
                                 </Typography>
                             </Stack>

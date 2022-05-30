@@ -3,8 +3,10 @@ import {Stack, useMediaQuery, useTheme, Container} from "@mui/material"
 
 import {eventDefaultData, EventType} from "types/event-type"
 import ServiceLayout from "src/Components/service-layout/ServiceLayout"
-import EventDetailWeb from "./EventDetailWeb"
 import {FAKE_EVENT_LIST} from "src/Components/fake-data/fake-event"
+
+import EventDetailWeb from "./EventDetailWeb"
+import EventDetailMobile from "./EventDetailMobile"
 
 type Props = {
     eventId: string
@@ -22,8 +24,8 @@ export default function EventDetailPage(props: Props) {
 
     return (
         <ServiceLayout tabId="event">
-            <Container maxWidth="lg">
-                <Stack mb={8}>{mobile ? <EventDetailWeb data={data} /> : <EventDetailWeb data={data} />}</Stack>
+            <Container maxWidth="lg" sx={{p: 0}}>
+                <Stack mb={8}>{mobile ? <EventDetailMobile data={data} /> : <EventDetailWeb data={data} />}</Stack>
             </Container>
         </ServiceLayout>
     )

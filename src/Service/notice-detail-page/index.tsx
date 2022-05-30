@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react"
-import {useRouter} from "next/router"
-import {Stack, Divider, Typography, Button, useMediaQuery, useTheme, Container} from "@mui/material"
+import {Stack, useMediaQuery, useTheme, Container} from "@mui/material"
 
-import useStyles from "./style"
 import {noticeDefaultData, NoticeType} from "types/service-type"
 import {FAKE_NOTICE_DATA} from "components/fake-data/fake-service"
 import NoticeDetailWeb from "./NoticeDetailWeb"
@@ -25,7 +23,7 @@ export default function NoticeDetailPage(props: Props) {
 
     return (
         <ServiceLayout tabId="notice">
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" sx={{p: 0}}>
                 <Stack mb={8}>{mobile ? <NoticeDetailMobile data={data} /> : <NoticeDetailWeb data={data} />}</Stack>
             </Container>
         </ServiceLayout>

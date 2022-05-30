@@ -17,6 +17,7 @@ export default function ExtraInformationModule() {
                 {tabs.map((tabName, index) => (
                     <>
                         <Link
+                            key={"link" + index}
                             activeClass={classes.active}
                             className={classes.tab}
                             to={`move${index}`}
@@ -27,7 +28,7 @@ export default function ExtraInformationModule() {
                         >
                             {tabName}
                         </Link>
-                        {!(tabs.length - 1 === index) && <div className={classes.bar} />}
+                        {!(tabs.length - 1 === index) && <div className={classes.bar} key={"bar" + index} />}
                     </>
                 ))}
             </Stack>

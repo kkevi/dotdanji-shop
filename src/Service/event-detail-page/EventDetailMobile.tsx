@@ -2,14 +2,14 @@ import React from "react"
 import {useRouter} from "next/router"
 import {Stack, Divider, Typography, Button} from "@mui/material"
 
-import {NoticeType} from "types/service-type"
+import {EventType} from "types/event-type"
 import useStyles from "./style"
 
 type Props = {
-    data: NoticeType
+    data: EventType
 }
 
-export default function NoticeDetailMobile(props: Props) {
+export default function EventDetailMobile(props: Props) {
     const {data} = props
     const route = useRouter()
     const classes = useStyles()
@@ -21,7 +21,9 @@ export default function NoticeDetailMobile(props: Props) {
                 <Typography fontSize={16} fontWeight={700} mb={0.5}>
                     {data?.title}
                 </Typography>
-                <Typography fontSize={14}>{data?.date}</Typography>
+                <Typography fontSize={14}>
+                    {data?.startDate} ~ {data?.endDate}
+                </Typography>
             </Stack>
             <Divider flexItem />
             <Stack py={3} px={2}>

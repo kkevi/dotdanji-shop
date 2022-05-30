@@ -49,7 +49,7 @@ export default function ServiceMobileTabs(props: Props) {
                     <Tab
                         key={"customer-service" + index}
                         sx={{padding: 1.5}}
-                        label={<Typography>{tabName[1]}</Typography>}
+                        label={<Typography fontSize={13}>{tabName[1]}</Typography>}
                         value={tabName[0]}
                         {...tabProps(index)}
                     />

@@ -4,6 +4,7 @@ import {useMediaQuery, useTheme} from "@mui/material"
 
 import {FAKE_EVENT_LIST} from "src/Components/fake-data/fake-event"
 import EventWeb from "./EventWeb"
+import EventMobile from "./EventMobile"
 
 export default function EventPage() {
     const route = useRouter()
@@ -18,7 +19,7 @@ export default function EventPage() {
     return (
         <>
             {mobile ? (
-                <EventWeb eventList={eventList} onClickRouter={onClickRouter} />
+                <EventMobile eventList={eventList} onClickRouter={onClickRouter} mobile />
             ) : (
                 <EventWeb eventList={eventList} onClickRouter={onClickRouter} />
             )}

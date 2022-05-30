@@ -30,7 +30,6 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 ))(({theme}) => ({
     backgroundColor: "white",
     flexDirection: "row",
-    padding: `${theme.spacing(2)}`,
     "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
         transform: "rotate(180deg)",
     },
@@ -74,11 +73,22 @@ export default function FaqAccordion(prop: FaqAccordionProps) {
                 expandIcon={<ExpandMoreRoundedIcon fontSize="large" color="primary" />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
+                sx={{p: mobile ? `12px 0` : 2}}
             >
-                <Typography fontSize={mobile ? 14 : 20} fontWeight={700} mr={2} color={theme.palette.primary.main}>
+                <Typography
+                    fontSize={mobile ? 14 : 20}
+                    fontWeight={700}
+                    mr={mobile ? 1 : 2}
+                    color={theme.palette.primary.main}
+                >
                     Q.
                 </Typography>
-                <Typography fontSize={mobile ? 12 : 14} mr={3} color={theme.palette.primary.main} fontWeight={600}>
+                <Typography
+                    fontSize={mobile ? 12 : 14}
+                    mr={mobile ? 2 : 3}
+                    color={theme.palette.primary.main}
+                    fontWeight={600}
+                >
                     {categoryName}
                 </Typography>
                 <Typography fontSize={mobile ? 14 : 18}>{title}</Typography>

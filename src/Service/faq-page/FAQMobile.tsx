@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 
 import {Stack, IconButton, InputBase, Divider, ButtonGroup, Button} from "@mui/material"
 
@@ -41,35 +41,33 @@ export default function FAQMobile(props: FAQMobileProps) {
             </Stack>
 
             {/* chips */}
-            <Stack py={4} px={6} direction="row" justifyContent="center" alignItems="center" spacing={4}>
-                <ButtonGroup>
-                    <Button
-                        sx={{width: "3.5rem", fontSize: 12, px: 0}}
-                        variant={selected === "all" ? "contained" : "outlined"}
-                        onClick={() => handleClick("all")}
-                        disableElevation
-                        color="info"
-                    >
-                        전체
-                    </Button>
-                    {Object.entries(categoryList).map((category, index) => {
-                        const key = category[0] as CategoryTypeKey
-                        const name = category[1]
-                        return (
-                            <Button
-                                key={"faqchips" + index}
-                                sx={{width: "3.5rem", fontSize: 12, px: 0}}
-                                variant={selected === key ? "contained" : "outlined"}
-                                onClick={() => handleClick(key)}
-                                disableElevation
-                                color="info"
-                            >
-                                {name}
-                            </Button>
-                        )
-                    })}
-                </ButtonGroup>
-            </Stack>
+            <ButtonGroup sx={{py: 3}}>
+                <Button
+                    sx={{width: "3.5rem", fontSize: 12, px: 0}}
+                    variant={selected === "all" ? "contained" : "outlined"}
+                    onClick={() => handleClick("all")}
+                    disableElevation
+                    color="info"
+                >
+                    전체
+                </Button>
+                {Object.entries(categoryList).map((category, index) => {
+                    const key = category[0] as CategoryTypeKey
+                    const name = category[1]
+                    return (
+                        <Button
+                            key={"faqchips" + index}
+                            sx={{width: "3.5rem", fontSize: 12, px: 0}}
+                            variant={selected === key ? "contained" : "outlined"}
+                            onClick={() => handleClick(key)}
+                            disableElevation
+                            color="info"
+                        >
+                            {name}
+                        </Button>
+                    )
+                })}
+            </ButtonGroup>
 
             {/* 아코디언 */}
             <Stack direction="column" justifyContent="center" alignItems="center" px={2}>
