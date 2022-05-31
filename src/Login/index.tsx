@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import Router, {useRouter} from "next/router"
 import useStyles from "./styles"
-import {Button, Stack, Typography, Divider, InputAdornment, IconButton, useMediaQuery, useTheme} from "@mui/material"
+import {Button, Stack, Typography, Divider, useMediaQuery, useTheme} from "@mui/material"
 
 import {CustomedTextField} from "components/customed-textfield/CustomedTextField"
 import SocialLoginButton from "./components/social-login-button/SocialLoginButton"

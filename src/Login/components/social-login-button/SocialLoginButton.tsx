@@ -1,13 +1,42 @@
-import {Stack} from "@mui/material"
+import React, {MutableRefObject, useEffect, useRef} from "react"
 import {useRouter} from "next/router"
 import {useSessionStorage} from "react-use"
-import {socialList} from "./social-list"
+
+import {Stack, useTheme} from "@mui/material"
 import useStyles from "./styles"
+import {socialList} from "./social-list"
 
 export default function SocialLoginButton() {
     const classes = useStyles()
+    const theme = useTheme()
     const route = useRouter()
+
+    const naverRef = useRef() as MutableRefObject<HTMLDivElement>
     const [kakaoLoginStorage, setKakaoLoginStorage] = useSessionStorage("kakao", {})
+    const [naverLoginStorage, setNaverLoginStorage] = useSessionStorage("naver", {})
+
+    const naverLoginInitialize = () => {
+        const login = new window.naver.LoginWithNaverId({
+            clientId: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID,
+            callbackUrl: "http://localhost:3000/login",
+            isPopup: true,
+            loginButton: {color: "green", type: 1, height: theme.breakpoints.down("sm") ? 35 : 45},
+            callbackHandle: true,
+        })
+        login.init()
+        login.logout()
+        login.getLoginStatus((status: any) => {
+            if (status) {
+                const response = login.user
+                console.log("logging", response)
+                const {id, email, name} = response
+                setNaverLoginStorage({response})
+                route.push("/")
+            } else {
+                console.log("you're not login status")
+            }
+        })
+    }
 
     // 카카오 로그인
     const onLoggedInKakao = () => {
@@ -26,7 +55,10 @@ export default function SocialLoginButton() {
     }
 
     //네이버 로그인
-    const onLoggedInNaver = () => {}
+    const onLoggedInNaver = () => {
+        const button = naverRef.current.children[0] as HTMLElement
+        button.click()
+    }
 
     //구글 로그인
     const onLoggedInGoggle = () => {}
@@ -45,14 +77,20 @@ export default function SocialLoginButton() {
         }
     }
 
+    useEffect(() => {
+        naverLoginInitialize()
+    }, [])
+
     return (
         <Stack direction="row" width="40%" justifyContent="space-between" alignSelf="center">
+            <div id="naverIdLogin" ref={naverRef} style={{display: "none"}} />
             {socialList.map((sns, index) => (
                 <div className={classes.socialLogin} style={{backgroundColor: sns.color}} key={index}>
                     <img
                         className={classes.socialImage}
                         src={sns.image}
                         onClick={() => onClickSocialButton(sns.snsId)}
+                        style={{width: index === 1 ? 25 : 30, height: index === 1 ? 25 : 30}}
                     />
                 </div>
             ))}

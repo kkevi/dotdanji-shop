@@ -17,8 +17,6 @@ const styles = makeStyles(() =>
             },
         },
         socialImage: {
-            width: theme.breakpoints.down("sm") ? 20 : 30,
-            height: theme.breakpoints.down("sm") ? 20 : 30,
             borderRadius: "50%",
             objectFit: "contain",
         },

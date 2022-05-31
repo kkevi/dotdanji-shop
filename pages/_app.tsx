@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css"
 declare global {
     interface Window {
         Kakao: any
+        naver: any
     }
 }
 

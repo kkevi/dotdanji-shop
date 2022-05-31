@@ -38,6 +38,13 @@ class MyDocument extends Document {
                     />
                 </Head>
                 <body>
+                    {/* 네이버 로그인 */}
+                    <script
+                        defer
+                        type="text/javascript"
+                        src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+                        charSet="utf-8"
+                    />
                     <Main />
                     <NextScript />
                 </body>
