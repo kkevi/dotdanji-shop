@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 
-import {useMediaQuery} from "@mui/material"
+import {useMediaQuery, useTheme} from "@mui/material"
 
 import WishListPageWeb from "./WishListPageWeb"
 import WishListPageMobile from "./WishListPageMobile"
