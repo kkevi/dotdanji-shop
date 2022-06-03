@@ -23,8 +23,6 @@ module.exports = {
     extends: [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:react-hooks/recommended",
-        "prettier/react",
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended",
         "plugin:workspaces/recommended",
@@ -34,15 +32,7 @@ module.exports = {
         SharedArrayBuffer: "readonly",
     },
 
-    plugins: [
-        "react",
-        "react-hooks",
-        "prettier",
-        "workspaces",
-        "plugin:react-hooks/recommended",
-        "plugin:prettier/recommended",
-        "plugin:@typescript-eslint/recommended",
-    ],
+    plugins: ["react", "react-hooks", "prettier", "workspaces"],
     rules: {
         "@typescript-eslint/explicit-function-return-type": "off",
         "react-hooks/rules-of-hooks": "error",
@@ -63,7 +53,7 @@ module.exports = {
         //         functions: 'never',
         //     },
         // ],
-        quotes: [1, "single", {avoidEscape: true, allowTemplateLiterals: false}],
+        quotes: [2, "double", {avoidEscape: true, allowTemplateLiterals: false}],
         semi: [1, "never"],
         "max-len": [
             1,

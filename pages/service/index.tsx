@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import {useEffect} from "react"
 import {routerPush} from "lib/routerPush"
 
 export default function Index() {

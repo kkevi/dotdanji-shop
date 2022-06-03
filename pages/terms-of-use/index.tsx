@@ -1,4 +1,5 @@
-import {Container, Stack, Typography} from "@mui/material"
+import React from "react"
+import {Container, Stack} from "@mui/material"
 import MainLayout from "components/main-layout/MainLayout"
 import useStyles from "src/Service/notice-detail-page/style"
 import {terms1} from "src/SignUp/signup-section1/terms-html-1"

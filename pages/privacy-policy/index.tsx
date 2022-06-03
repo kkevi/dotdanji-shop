@@ -1,3 +1,4 @@
+import React from "react"
 import {Container, Stack} from "@mui/material"
 import MainLayout from "components/main-layout/MainLayout"
 import useStyles from "src/Service/notice-detail-page/style"

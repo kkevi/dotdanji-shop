@@ -12,7 +12,7 @@ export default function DaumPostModal(prop: DaumPostModalTypes) {
     const {onChangeAddress, visibleModal, setVisibleModal} = prop
 
     const handleComplete = (data: any) => {
-        let postCode: string = data.zonecode
+        const postCode: string = data.zonecode
         let fullAddress: string = data.address
         let extraAddress = ""
 

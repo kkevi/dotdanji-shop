@@ -16,7 +16,7 @@ type CountControllerProps = {
 }
 
 export default function CountController(props: CountControllerProps) {
-    const {index, optionId, count, valueList, setValueList, mr, mobile} = props
+    const {index, count, valueList, setValueList, mr, mobile} = props
 
     const onClickReduce = (count: number) => {
         if (count <= 1) return

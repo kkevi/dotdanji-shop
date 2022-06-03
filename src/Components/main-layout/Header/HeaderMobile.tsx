@@ -76,7 +76,7 @@ export default function HeaderMobile() {
                                     style={{color: theme.palette.secondary.dark, fontSize: "20px"}}
                                 />
                             </IconButton>
-                            {category.map(({categoryId, title}, index) => (
+                            {category.map(({categoryId, title}) => (
                                 <Stack onClick={() => onClickCategorys(categoryId)} key={categoryId} style={textColor}>
                                     {title}
                                 </Stack>

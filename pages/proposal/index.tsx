@@ -1,3 +1,4 @@
+import React from "react"
 import {Container, Stack} from "@mui/material"
 import MainLayout from "components/main-layout/MainLayout"
 import Proposal from "src/Proposal"

@@ -1,4 +1,4 @@
-import React, {useMemo} from "react"
+import {useMemo} from "react"
 
 export const useVerfiyPhone = (phone: string) => {
     return useMemo(() => {
@@ -11,7 +11,7 @@ export const useVerfiyPhone = (phone: string) => {
 
 export const useVerfiyEmail = (email: string) => {
     return useMemo(() => {
-        const regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/
+        const regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/ // eslint-disable-line
         //  /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
         const validEmail = regEmail.test(email)
 
@@ -22,7 +22,7 @@ export const useVerfiyEmail = (email: string) => {
 export const useVerfiyUrl = (url: string) => {
     return useMemo(() => {
         const regUrl =
-            /^(http\:\/\/)?((\w+)[.])+(asia|biz|cc|cn|com|de|eu|in|info|jobs|jp|kr|mobi|mx|name|net|nz|org|travel|tv|tw|uk|us)(\/(\w*))*$/i
+            /^(http\:\/\/)?((\w+)[.])+(asia|biz|cc|cn|com|de|eu|in|info|jobs|jp|kr|mobi|mx|name|net|nz|org|travel|tv|tw|uk|us)(\/(\w*))*$/i // eslint-disable-line
         const validUrl = regUrl.test(url)
 
         return validUrl
@@ -31,7 +31,7 @@ export const useVerfiyUrl = (url: string) => {
 
 export const useVerfiyPw = (pw: string) => {
     return useMemo(() => {
-        const regPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/
+        const regPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/ // eslint-disable-line
         const validPw = regPw.test(pw)
 
         return validPw

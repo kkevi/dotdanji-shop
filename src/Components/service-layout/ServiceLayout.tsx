@@ -1,6 +1,6 @@
 import {Container, useMediaQuery, useTheme} from "@mui/material"
-import {useEffect, useState} from "react"
-import {ServiceTabKey, ServiceBannerType} from "types/service-type"
+import React, {useEffect, useState} from "react"
+import {ServiceTabKey} from "types/service-type"
 import {bannerList} from "./banner-list"
 import ServiceMobileTabs from "./ServiceMobileTabs"
 import ServiceWebTabs from "./ServiceWebTabs"

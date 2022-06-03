@@ -1,10 +1,13 @@
+import React from "react"
 import {Button, Container, Stack, TextField, Typography} from "@mui/material"
 import {useState} from "react"
 
 export default function EmailOtp() {
     const [emailCode, setEmailCode] = useState("")
 
-    const onClickOtp = () => {}
+    const onClickOtp = () => {
+        console.log("otp")
+    }
 
     return (
         <Container maxWidth="lg">
