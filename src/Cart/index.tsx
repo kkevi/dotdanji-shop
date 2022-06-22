@@ -1,8 +1,7 @@
 import React, {useState} from "react"
 import {Stack, Container, Typography} from "@mui/material"
 import {useRouter} from "next/router"
-import {useMediaQuery} from "@mui/material"
-import {useTheme} from "@mui/material"
+import {useMediaQuery, useTheme} from "@mui/material"
 import CartListPage from "./cart-list-page"
 import CartSection2 from "./cart-section2"
 import CartSection3 from "./cart-section3"
@@ -10,7 +9,6 @@ import CartSection3 from "./cart-section3"
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded"
 
 export default function Cart() {
-    const route = useRouter()
     const theme = useTheme()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const [step, setStep] = useState(0)

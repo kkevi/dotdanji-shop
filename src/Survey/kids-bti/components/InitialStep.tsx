@@ -13,13 +13,7 @@ export default function InitialStep({setStep}: InitialStepProps) {
 
     return (
         <>
-            <ImageBox
-                height={"80%"}
-                style={{
-                    borderRadius: 20,
-                }}
-                src="/images/illust/dottdanji-illust1.png"
-            />
+            <ImageBox height={"80%"} style={{borderRadius: 20}} src="/images/illust/dottdanji-illust1.png" />
             <Typography mt={5} className={`${classes.title} pointFont`}>
                 우리 아이의 언어 발달은 어느정도?
             </Typography>
@@ -34,7 +28,7 @@ export default function InitialStep({setStep}: InitialStepProps) {
             <Button className={classes.containedButton} onClick={() => setStep(prev => prev + 1)}>
                 검사하기
             </Button>
-            <Typography mt={1} variant="caption">
+            <Typography mt={1} variant="caption" align="center">
                 본 검사는 검사 외의 다른 용도로 이용되지 않으며 결과를 저장하지 않습니다.
             </Typography>
         </>

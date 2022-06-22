@@ -6,7 +6,7 @@ const styles = makeStyles(() =>
     createStyles({
         container: {
             height: "calc(92vh - 108px)",
-            margin: "50px auto",
+            margin: theme.breakpoints.down("sm") ? "15px auto 45px" : "50px auto",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -15,8 +15,9 @@ const styles = makeStyles(() =>
         },
 
         title: {
-            fontSize: 22,
+            fontSize: theme.breakpoints.down("sm") ? 18 : 22,
             color: theme.palette.secondary.dark,
+            textAlign: "center",
         },
 
         contents: {
@@ -68,7 +69,6 @@ const styles = makeStyles(() =>
             justifyContent: "center",
             alignItems: "center",
             width: "100%",
-            // height: "100%",
             textAlign: "center",
             borderTopRightRadius: 40,
             borderBottomLeftRadius: 40,
@@ -90,7 +90,7 @@ const styles = makeStyles(() =>
             height: 56,
             border: `1px solid ${theme.palette.primary.dark}`,
             color: theme.palette.primary.dark,
-            fontSize: 16,
+            fontSize: theme.breakpoints.down("sm") ? 14 : 16,
             fontWeight: 700,
             "&:hover": {
                 backgroundColor: theme.palette.primary.light,
@@ -128,11 +128,11 @@ const styles = makeStyles(() =>
         },
 
         contentButton: {
-            width: "30%",
-            height: 56,
+            width: theme.breakpoints.down("sm") ? "20%" : "30%",
+            height: theme.breakpoints.down("sm") ? 46 : 56,
             border: `1px solid ${theme.palette.primary.dark}`,
             // color: theme.palette.primary.dark,
-            fontSize: 16,
+            fontSize: theme.breakpoints.down("sm") ? 14 : 16,
             fontWeight: 700,
             "&:hover": {
                 backgroundColor: theme.palette.primary.light,

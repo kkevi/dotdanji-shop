@@ -4,11 +4,12 @@ import useStyles from "../styles"
 import {Button, Stack, Typography, useTheme} from "@mui/material"
 
 type ReserachStepProps = {
+    mobile: boolean
     setStep: React.Dispatch<React.SetStateAction<number>>
 }
 
 export default function ReserachStep(props: ReserachStepProps) {
-    const {setStep} = props
+    const {mobile, setStep} = props
     const theme = useTheme()
     const classes = useStyles()
 
@@ -21,7 +22,11 @@ export default function ReserachStep(props: ReserachStepProps) {
                 자세한 분석을 위해 아이의 정보를 입력 해주세요.
             </Typography>
 
-            <Typography my={5} sx={{fontSize: "18px !important"}} className={`${classes.score} pointFont`}>
+            <Typography
+                my={5}
+                sx={{fontSize: mobile ? "16px !important" : "18px !important"}}
+                className={`${classes.score} pointFont`}
+            >
                 성별
             </Typography>
 
@@ -50,7 +55,11 @@ export default function ReserachStep(props: ReserachStepProps) {
                 </Button>
             </Stack>
 
-            <Typography my={5} sx={{fontSize: "18px !important"}} className={`${classes.score} pointFont`}>
+            <Typography
+                my={5}
+                sx={{fontSize: mobile ? "16px !important" : "18px !important"}}
+                className={`${classes.score} pointFont`}
+            >
                 나이
             </Typography>
 
