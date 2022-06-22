@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
-import MainLayout from "components/main-layout/MainLayout"
 import {useRouter} from "next/router"
+import MainLayout from "components/main-layout/MainLayout"
 import GoodsDetailPage from "src/Goods/goods-detail-page/GoodsDetailPage"
 
 export default function Index() {

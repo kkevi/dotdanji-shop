@@ -6,7 +6,7 @@ const styles = makeStyles(() =>
     createStyles({
         container: {
             height: "calc(92vh - 108px)",
-            margin: theme.breakpoints.down("sm") ? "15px auto 45px" : "50px auto",
+            margin: "15px auto 45px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -15,7 +15,7 @@ const styles = makeStyles(() =>
         },
 
         title: {
-            fontSize: theme.breakpoints.down("sm") ? 18 : 22,
+            fontSize: 20,
             color: theme.palette.secondary.dark,
             textAlign: "center",
         },
@@ -55,7 +55,7 @@ const styles = makeStyles(() =>
             height: 56,
             borderColor: theme.palette.secondary.dark,
             color: theme.palette.secondary.dark,
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: 700,
             "&:hover": {
                 backgroundColor: theme.palette.primary.light,
@@ -90,7 +90,7 @@ const styles = makeStyles(() =>
             height: 56,
             border: `1px solid ${theme.palette.primary.dark}`,
             color: theme.palette.primary.dark,
-            fontSize: theme.breakpoints.down("sm") ? 14 : 16,
+            fontSize: 14,
             fontWeight: 700,
             "&:hover": {
                 backgroundColor: theme.palette.primary.light,
@@ -128,11 +128,11 @@ const styles = makeStyles(() =>
         },
 
         contentButton: {
-            width: theme.breakpoints.down("sm") ? "20%" : "30%",
-            height: theme.breakpoints.down("sm") ? 46 : 56,
+            width: "20%",
+            height: 46,
             border: `1px solid ${theme.palette.primary.dark}`,
             // color: theme.palette.primary.dark,
-            fontSize: theme.breakpoints.down("sm") ? 14 : 16,
+            fontSize: 14,
             fontWeight: 700,
             "&:hover": {
                 backgroundColor: theme.palette.primary.light,
@@ -141,6 +141,21 @@ const styles = makeStyles(() =>
             },
             "&:after": {
                 backgroundColor: "red",
+            },
+        },
+
+        shareButton: {
+            flex: 1,
+            height: 56,
+            border: `1px solid ${theme.palette.primary.dark}`,
+            backgroundColor: "white",
+            color: theme.palette.primary.dark,
+            fontSize: 14,
+            fontWeight: 700,
+            "&:hover": {
+                backgroundColor: theme.palette.primary.light,
+                color: theme.palette.primary.dark,
+                fontWeight: 700,
             },
         },
     }),
