@@ -1,23 +1,41 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {useRouter} from "next/router"
 import useStyles from "../styles"
 
 import {Container, Button, Stack, Typography, useMediaQuery, useTheme} from "@mui/material"
 
-interface NameType {
-    Gandhi: string
-    Nightingale: string
-    Fabre: string
-    Helen: string
-    Columbus: string
-    Shakespeare: string
-    Lincoln: string
-    장영실: string
-    daVinci: string
+type NameType =
+    | "Gandhi"
+    | "Nightingale"
+    | "Fabre"
+    | "Helen"
+    | "Columbus"
+    | "Shakespeare"
+    | "Lincoln"
+    | "장영실"
+    | "daVinci"
+
+const categoryList: Record<NameType, string> = {
+    Gandhi: "마하트마 간디",
+    Nightingale: "플로렌스 나이팅게일",
+    Fabre: "앙리 파브르",
+    Helen: "헬런 애덤스 켈러",
+    Columbus: "크리스토퍼 콜럼버스",
+    Shakespeare: "윌리엄 셰익스피어",
+    Lincoln: "아브라함 링컨",
+    장영실: "장영실",
+    daVinci: "레오나르도 다빈치",
 }
 
 type ResultPageProps = {
     result: string
+}
+
+const onShowName = (result: string) => {
+    const nameData: string[] = Object.entries(categoryList).filter((it: string[]) => it[0] === result)[0]
+    //NameData = [key,value]
+
+    if (nameData && nameData.length !== 0) return nameData[1]
 }
 
 export default function ResultPage({result}: ResultPageProps) {
@@ -26,28 +44,12 @@ export default function ResultPage({result}: ResultPageProps) {
     const theme = useTheme()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
 
-    const name: NameType = {
-        Gandhi: "마하트마 간디",
-        Nightingale: "플로렌스 나이팅게일",
-        Fabre: "앙리 파브르",
-        Helen: "헬런 애덤스 켈러",
-        Columbus: "크리스토퍼 콜럼버스",
-        Shakespeare: "윌리엄 셰익스피어",
-        Lincoln: "아브라함 링컨",
-        장영실: "장영실",
-        daVinci: "레오나르도 다빈치",
-    }
-
-    const getValue = (key: keyof NameType) => {
-        return name[key]
-    }
-
     return (
         <Container maxWidth="sm">
             <Stack className={classes.resultContainer} mt={mobile ? 6 : 10} mb={6}>
                 <Typography className={`${classes.title} pointFont`}>언어발달 검사결과</Typography>
                 <Typography my={1} className={`${classes.score} pointFont`}>
-                    {name[result]}
+                    {onShowName(result)}
                 </Typography>
                 <Typography className={`${classes.contents} pointFont`}>
                     자녀분의 언어발달 정도는 현재 매우 뛰어납니다!
