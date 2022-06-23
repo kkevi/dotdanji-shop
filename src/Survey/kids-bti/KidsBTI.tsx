@@ -157,7 +157,7 @@ export default function KidsBTI() {
                 </Container>
             )}
 
-            {step >= testSheets.length && <ResultStep mobile />}
+            {/* {step >= testSheets.length && <ResultStep mobile />} */}
         </Stack>
     )
 }
