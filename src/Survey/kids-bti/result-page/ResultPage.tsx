@@ -1,8 +1,8 @@
-import React, {useEffect} from "react"
+import React from "react"
 import {useRouter} from "next/router"
 import useStyles from "../styles"
 
-import {Container, Button, Stack, Typography, useMediaQuery, useTheme} from "@mui/material"
+import {Container, Button, Stack, Typography} from "@mui/material"
 
 type NameType =
     | "Gandhi"
@@ -41,12 +41,19 @@ const onShowName = (result: string) => {
 export default function ResultPage({result}: ResultPageProps) {
     const route = useRouter()
     const classes = useStyles()
-    const theme = useTheme()
-    const mobile = useMediaQuery(theme.breakpoints.down("sm"))
+
+    const onCopyClipBoard = async (text: string) => {
+        try {
+            await navigator.clipboard.writeText(text)
+            alert("게시물 주소가 복사되었습니다.")
+        } catch (error) {
+            alert("복사 기능에 문제가 생겼습니다. 빠르게 복구하도록 할게요!")
+        }
+    }
 
     return (
         <Container maxWidth="sm">
-            <Stack className={classes.resultContainer} mt={mobile ? 6 : 10} mb={6}>
+            <Stack className={classes.resultContainer} mt={6} mb={6}>
                 <Typography className={`${classes.title} pointFont`}>언어발달 검사결과</Typography>
                 <Typography my={1} className={`${classes.score} pointFont`}>
                     {onShowName(result)}
@@ -98,10 +105,13 @@ export default function ResultPage({result}: ResultPageProps) {
                     <div className={classes.divider} />
                 </Stack>
                 <Stack direction="row" justifyContent="space-between" alignItems="center" width="90%" spacing={2}>
-                    <Button className={classes.shareButton} onClick={() => {}}>
+                    <Button
+                        className={classes.shareButton}
+                        onClick={() => onCopyClipBoard(`http://localhost:3000/survey/kids-bti/result?result=${result}`)}
+                    >
                         공유하기
                     </Button>
-                    <Button className={classes.shareButton} onClick={() => route.back()}>
+                    <Button className={classes.shareButton} onClick={() => route.push("/survey/kids-bti")}>
                         다시하기
                     </Button>
                 </Stack>
