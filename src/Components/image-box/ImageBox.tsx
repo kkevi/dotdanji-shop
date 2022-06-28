@@ -6,7 +6,7 @@ import useStyles from "./styles"
 type Props = {
     width?: number | string
     height: number | string
-    src: string
+    src?: string
     brightness?: number
     hoverEffects?: boolean
     children?: React.ReactNode

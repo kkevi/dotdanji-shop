@@ -101,7 +101,7 @@ export default function KidsBTI() {
             case 20:
             case 21:
             case 22:
-                push("Columbus")
+                push("Wright")
                 break
             case 23:
             case 24:
@@ -116,7 +116,7 @@ export default function KidsBTI() {
             case 29:
             case 30:
             case 31:
-                push("장영실")
+                push("Curie")
                 break
             case 32:
                 push("daVinci")

@@ -4,43 +4,72 @@ import useStyles from "../styles"
 
 import {Container, Button, Stack, Typography} from "@mui/material"
 
+import ImageBox from "components/image-box/ImageBox"
+
 type NameType =
     | "Gandhi"
     | "Nightingale"
     | "Fabre"
     | "Helen"
-    | "Columbus"
+    | "Wright"
     | "Shakespeare"
     | "Lincoln"
-    | "장영실"
+    | "Curie"
     | "daVinci"
 
-const categoryList: Record<NameType, string> = {
-    Gandhi: "마하트마 간디",
-    Nightingale: "플로렌스 나이팅게일",
-    Fabre: "앙리 파브르",
-    Helen: "헬런 애덤스 켈러",
-    Columbus: "크리스토퍼 콜럼버스",
-    Shakespeare: "윌리엄 셰익스피어",
-    Lincoln: "아브라함 링컨",
-    장영실: "장영실",
-    daVinci: "레오나르도 다빈치",
+const nameList: Record<NameType, Record<string, string>> = {
+    Gandhi: {
+        name: "마하트마 간디",
+        img: "/images/portrait/1_gandhi.png",
+    },
+    Nightingale: {
+        name: "플로렌스 나이팅게일",
+        img: "/images/portrait/2_nightingale.png",
+    },
+    Fabre: {
+        name: "앙리 파브르",
+        img: "/images/portrait/3_fabre.png",
+    },
+    Helen: {
+        name: "헬런 애덤스 켈러",
+        img: "/images/portrait/4_helen.png",
+    },
+    Wright: {
+        name: "라이트 형제",
+        img: "/images/portrait/5_wright.png",
+    },
+    Shakespeare: {
+        name: "윌리엄 셰익스피어",
+        img: "/images/portrait/6_shakespeare.png",
+    },
+    Lincoln: {
+        name: "아브라함 링컨",
+        img: "/images/portrait/7_lincoln.png",
+    },
+    Curie: {
+        name: "마리 퀴리",
+        img: "/images/portrait/8_curie.png",
+    },
+    daVinci: {
+        name: "레오나르도 다빈치",
+        img: "/images/portrait/9_davinci.png",
+    },
 }
 
 type ResultPageProps = {
     result: string
 }
 
-const onShowName = (result: string) => {
-    const nameData: string[] = Object.entries(categoryList).filter((it: string[]) => it[0] === result)[0]
-    //NameData = [key,value]
-
-    if (nameData && nameData.length !== 0) return nameData[1]
-}
-
 export default function ResultPage({result}: ResultPageProps) {
     const route = useRouter()
     const classes = useStyles()
+
+    const onShowName = (result: string) => {
+        // const nameData: string[] = Object.entries(nameList).filter((it: string[]) => it[0] === result)[0]
+        const nameData: [string, Record<string, string>] = Object.entries(nameList).filter(it => it[0] === result)[0]
+
+        if (nameData) return nameData[1]
+    }
 
     const onCopyClipBoard = async (text: string) => {
         try {
@@ -54,9 +83,12 @@ export default function ResultPage({result}: ResultPageProps) {
     return (
         <Container maxWidth="sm">
             <Stack className={classes.resultContainer} mt={6} mb={6}>
-                <Typography className={`${classes.title} pointFont`}>언어발달 검사결과</Typography>
+                <Typography className={`${classes.title} pointFont`} mb={1}>
+                    언어발달 검사결과
+                </Typography>
+                <ImageBox width={250} height={250} src={onShowName(result)?.img} />
                 <Typography my={1} className={`${classes.score} pointFont`}>
-                    {onShowName(result)}
+                    {onShowName(result)?.name}
                 </Typography>
                 <Typography className={`${classes.contents} pointFont`}>
                     자녀분의 언어발달 정도는 현재 매우 뛰어납니다!
@@ -107,7 +139,9 @@ export default function ResultPage({result}: ResultPageProps) {
                 <Stack direction="row" justifyContent="space-between" alignItems="center" width="90%" spacing={2}>
                     <Button
                         className={classes.shareButton}
-                        onClick={() => onCopyClipBoard(`http://localhost:3000/survey/kids-bti/result?result=${result}`)}
+                        onClick={() =>
+                            onCopyClipBoard(`https://shop.simbaat.com/survey/kids-bti/result?result=${result}`)
+                        }
                     >
                         공유하기
                     </Button>
