@@ -34,7 +34,7 @@ export default function EventWeb(props: EventWebProps) {
                             style={{cursor: "pointer"}}
                             onClick={() => onClickRouter(event.eventId)}
                         >
-                            <ImageBox height={220} src="" />
+                            <ImageBox height={220} src={event.thumbnail} />
                             <Stack justifyContent="space-between" alignItems="cetner" mt={1}>
                                 <Typography variant="h6" className="pointFont">
                                     {event.title}

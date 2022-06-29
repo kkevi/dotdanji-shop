@@ -52,7 +52,7 @@ export default function Index() {
     }
 
     const onClickSubmit = () => {
-        alert("죄송합니다. 현재 서비스를 이용하실 수 없습니다.")
+        alert("죄송합니다. 현재 서비스를 이용하실 수 없습니다. simkids@simbaat.com으로 메일 부탁드립니다.")
     }
 
     return (

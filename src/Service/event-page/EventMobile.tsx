@@ -34,7 +34,7 @@ export default function EventMobile(props: EventWebProps) {
                             style={{cursor: "pointer"}}
                             onClick={() => onClickRouter(event.eventId)}
                         >
-                            <ImageBox height={150} src="" />
+                            <ImageBox height={150} src={event.thumbnail} />
                             <Stack justifyContent="space-between" alignItems="cetner" mt={1}>
                                 <Typography variant="body1" className="pointFont">
                                     {event.title}

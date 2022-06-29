@@ -64,17 +64,18 @@ export default function SocialLoginButton() {
     const onLoggedInGoggle = () => {}
 
     const onClickSocialButton = (snsId: string) => {
-        switch (snsId) {
-            case "kakao":
-                onLoggedInKakao()
-                break
-            case "naver":
-                onLoggedInNaver()
-                break
-            case "google":
-                onLoggedInGoggle()
-                break
-        }
+        alert("현재 회원에 대한 서비스는 준비중입니다. 빠른 시일내에 찾아뵙겠습니다.")
+        // switch (snsId) {
+        //     case "kakao":
+        //         onLoggedInKakao()
+        //         break
+        //     case "naver":
+        //         onLoggedInNaver()
+        //         break
+        //     case "google":
+        //         onLoggedInGoggle()
+        //         break
+        // }
     }
 
     useEffect(() => {

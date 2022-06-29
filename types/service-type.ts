@@ -84,13 +84,12 @@ type CategoryList = {
     label: string
 }
 
-export type CategoryTypeKey = "info" | "pay" | "goods" | "book" | "order" | "etc"
+export type CategoryTypeKey = "info" | "pay" | "goods" | "order" | "etc"
 
 export const categoryList: Record<CategoryTypeKey, string> = {
     info: "회원정보",
     pay: "결제",
-    goods: "기기",
-    book: "교재",
+    goods: "상품",
     order: "배송",
     etc: "기타",
 }

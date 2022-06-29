@@ -41,7 +41,7 @@ export default function GoodsDetailPageWeb(props: Props) {
     } = props
 
     //데이터
-    const {name, sale, price, thumbnails, infoText, options = [], tags, categoryId} = goodsItemData
+    const {name, sale, price, thumbnails, infoText, options = [], tags, categoryId, infoHtml} = goodsItemData
     //할인 계산식
     var resultPrice = sale > 0 ? price - price * (sale / 100) : price
 
@@ -195,7 +195,7 @@ export default function GoodsDetailPageWeb(props: Props) {
                 </div>
             </Stack>
 
-            {categoryId === "ebook" && <ExtraInformationModule />}
+            {categoryId === "ebook" && <ExtraInformationModule infoHtml={infoHtml} />}
         </div>
     )
 }

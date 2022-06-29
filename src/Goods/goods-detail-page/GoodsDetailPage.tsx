@@ -80,59 +80,61 @@ export default function GoodsDetailPage(props: Props) {
 
     //장바구니 담기 클릭
     const onCickCart = async () => {
+        return alert("해당 서비스는 준비중입니다. 빠른 시일내에 업데이트 하겠습니다.")
         // if (!userStore.isLoggedIn) {
         //     return alert("로그인 후 이용이 가능합니다.")
         // }
-        if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
+        // if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
 
-        try {
-            //TODO: 서버 장바구니에 저장 기능 추가
-            if (confirm("장바구니를 확인하시겠습니까?")) {
-                const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, index) => {
-                    const goodsOptionData = options.filter(it => it.optionId === cur.optionId)[0]
-                    acc.push({
-                        goodsId: goodsId,
-                        count: cur.count,
-                        price: (goodsOptionData.addPlace + resultPrice) * cur.count,
-                        optionId: cur.optionId,
-                        optionName: goodsOptionData.name,
-                        optionAddPlace: goodsOptionData.addPlace,
-                    })
-                    return acc
-                }, [])
-                await goodsStore.setCartItem(data)
-                Router.push("/cart")
-            }
-        } catch (e) {
-            console.log("e:", e)
-        }
+        // try {
+        //     //TODO: 서버 장바구니에 저장 기능 추가
+        //     if (confirm("장바구니를 확인하시겠습니까?")) {
+        //         const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, index) => {
+        //             const goodsOptionData = options.filter(it => it.optionId === cur.optionId)[0]
+        //             acc.push({
+        //                 goodsId: goodsId,
+        //                 count: cur.count,
+        //                 price: (goodsOptionData.addPlace + resultPrice) * cur.count,
+        //                 optionId: cur.optionId,
+        //                 optionName: goodsOptionData.name,
+        //                 optionAddPlace: goodsOptionData.addPlace,
+        //             })
+        //             return acc
+        //         }, [])
+        //         await goodsStore.setCartItem(data)
+        //         Router.push("/cart")
+        //     }
+        // } catch (e) {
+        //     console.log("e:", e)
+        // }
     }
 
     //바로 구매하기 클릭
     const onClickBuy = async () => {
+        return alert("해당 서비스는 준비중입니다. 빠른 시일내에 업데이트 하겠습니다.")
         // if (!userStore.isLoggedIn) {
         //     return alert("로그인 후 이용이 가능합니다.")
         // }
-        if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
+        // if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
 
-        try {
-            const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, index) => {
-                const goodsOptionData = options.filter(it => it.optionId === cur.optionId)[0]
-                acc.push({
-                    goodsId: goodsId,
-                    count: cur.count,
-                    price: (goodsOptionData.addPlace + resultPrice) * cur.count,
-                    optionId: cur.optionId,
-                    optionName: goodsOptionData.name,
-                    optionAddPlace: goodsOptionData.addPlace,
-                })
-                return acc
-            }, [])
-            await goodsStore.setCartItem(data)
-            Router.push({pathname: "/cart", query: {sectionNum: "1"}})
-        } catch (e) {
-            console.log("e:", e)
-        }
+        // try {
+        //     const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, index) => {
+        //         const goodsOptionData = options.filter(it => it.optionId === cur.optionId)[0]
+        //         acc.push({
+        //             goodsId: goodsId,
+        //             count: cur.count,
+        //             price: (goodsOptionData.addPlace + resultPrice) * cur.count,
+        //             optionId: cur.optionId,
+        //             optionName: goodsOptionData.name,
+        //             optionAddPlace: goodsOptionData.addPlace,
+        //         })
+        //         return acc
+        //     }, [])
+        //     await goodsStore.setCartItem(data)
+        //     Router.push({pathname: "/cart", query: {sectionNum: "1"}})
+        // } catch (e) {
+        //     console.log("e:", e)
+        // }
     }
 
     return (

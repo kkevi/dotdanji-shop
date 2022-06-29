@@ -41,7 +41,7 @@ export default function Footer() {
                         <Link href="/proposal" underline="none">
                             제휴&문의
                         </Link>
-                        <p className={classes.footerTextArea}>contact@simbaat.com</p>
+                        <p className={classes.footerTextArea}>simkids@simbaat.com</p>
                         <p className={classes.footerTextArea}>Copyright ⓒ 2021 Simbaat All rights reserved.</p>
                     </Stack>
                 </Stack>

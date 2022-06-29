@@ -1,13 +1,17 @@
 import React from "react"
-import {Container, Stack} from "@mui/material"
+import {Container, Stack, Typography} from "@mui/material"
 import {Link, Element} from "react-scroll"
 
 import useStyles from "./style"
 
-import ExtraInformationTab1 from "./ExtraInformationTab1"
-import ExtraInformationTab2 from "./ExtraInformationTab2"
+import ExtraInformation from "./ExtraInformation"
 
-export default function ExtraInformationModule() {
+type Props = {
+    infoHtml: string
+}
+
+export default function ExtraInformationModule(props: Props) {
+    const {infoHtml} = props
     const classes = useStyles()
     const tabs: string[] = ["상품상세정보", "배송/교환 및 반품안내"]
 
@@ -34,10 +38,12 @@ export default function ExtraInformationModule() {
             </Stack>
 
             <Element name="move0" className="element">
-                <ExtraInformationTab1 />
+                <Stack minHeight="200vh">
+                    <div dangerouslySetInnerHTML={{__html: infoHtml}} className={classes.htmlContainer} />
+                </Stack>
             </Element>
             <Element name="move1" className="element">
-                <ExtraInformationTab2 />
+                <ExtraInformation />
             </Element>
         </Container>
     )

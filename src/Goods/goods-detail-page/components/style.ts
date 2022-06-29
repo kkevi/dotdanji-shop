@@ -29,6 +29,34 @@ const styles = makeStyles(() =>
             height: 15,
             backgroundColor: "#999",
         },
+
+        htmlContainer: {
+            fontWeight: 200,
+            textAlign: "center",
+            "& h1": {
+                fontSize: theme.breakpoints.down("sm") ? "1.2rem" : "2rem",
+                fontWeight: 800,
+                fontFamily: "'yg-jalnan'",
+                lineHeight: "2.5rem",
+            },
+            "& h2": {
+                fontSize: theme.breakpoints.down("sm") ? "1rem" : "1.1rem",
+                fontWeight: 800,
+                lineHeight: 2.3,
+            },
+            "& img": {
+                maxWidth: "100%",
+                margin: "40px 0 ",
+            },
+            "& span": {
+                fontWeight: 600,
+                lineHeight: 2.3,
+            },
+            "& strong,p": {
+                fontWeight: 400,
+                lineHeight: 2.3,
+            },
+        },
     }),
 )
 

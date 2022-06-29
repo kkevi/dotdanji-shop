@@ -15,13 +15,6 @@ export const FAKE_SLIDER_LIST: MainSlideType[] = [
         image: "/images/fake/home-slider2.jpg",
         url: "",
     },
-    {
-        slideId: "homeslider3",
-        title: "스토리셀프 구독 시 첫 달 무료",
-        subTitle: "1년 구독시 99,000원에 파격 세일",
-        image: "/images/fake/home-slider3.jpg",
-        url: "",
-    },
 ]
 
 export const FAKE_BEST_SELLER = [

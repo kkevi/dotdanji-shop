@@ -151,7 +151,14 @@ export default function Index() {
                 어려울 수 있습니다.
             </Typography>
 
-            <Button className={classes.button} sx={{alignSelf: "center"}} variant="outlined" onClick={() => {}}>
+            <Button
+                className={classes.button}
+                sx={{alignSelf: "center"}}
+                variant="outlined"
+                onClick={() => {
+                    alert("현재 서비스를 준비중입니다. simkids@simbaat.com 으로 메일 부탁드립니다.")
+                }}
+            >
                 제휴제안 보내기
             </Button>
         </Stack>

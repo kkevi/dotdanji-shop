@@ -61,7 +61,10 @@ export default function Login() {
                 className={classes.outlinedButton}
                 variant="outlined"
                 fullWidth
-                onClick={() => route.push("/signup")}
+                onClick={
+                    () => alert("현재 회원에 대한 서비스는 준비중입니다. 빠른 시일내에 찾아뵙겠습니다.")
+                    // route.push("/signup")
+                }
             >
                 아직 계정이 없으신가요?
             </Button>
@@ -69,7 +72,8 @@ export default function Login() {
                 <Typography
                     className={classes.findLink}
                     onClick={() => {
-                        Router.push({pathname: "/login/find", query: {find: "email"}})
+                        alert("현재 회원에 대한 서비스는 준비중입니다. 빠른 시일내에 찾아뵙겠습니다.")
+                        // Router.push({pathname: "/login/find", query: {find: "email"}})
                     }}
                 >
                     아이디 (이메일) 찾기
@@ -78,7 +82,8 @@ export default function Login() {
                 <Typography
                     className={classes.findLink}
                     onClick={() => {
-                        Router.push({pathname: "/login/find", query: {find: "pw"}})
+                        alert("현재 회원에 대한 서비스는 준비중입니다. 빠른 시일내에 찾아뵙겠습니다.")
+                        // Router.push({pathname: "/login/find", query: {find: "pw"}})
                     }}
                 >
                     비밀번호 찾기

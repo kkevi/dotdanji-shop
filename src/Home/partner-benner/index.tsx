@@ -14,10 +14,10 @@ export default function PartnerBenner() {
             <Container maxWidth="lg">
                 <Stack direction="row" justifyContent="space-around" alignItems="center">
                     <ImageBox src="/images/logo2.png" height={40} width={150} />
+                    {/* <ImageBox src="/images/logo2.png" height={40} width={150} />
                     <ImageBox src="/images/logo2.png" height={40} width={150} />
                     <ImageBox src="/images/logo2.png" height={40} width={150} />
-                    <ImageBox src="/images/logo2.png" height={40} width={150} />
-                    <ImageBox src="/images/logo2.png" height={40} width={150} />
+                    <ImageBox src="/images/logo2.png" height={40} width={150} /> */}
                 </Stack>
             </Container>
         </div>

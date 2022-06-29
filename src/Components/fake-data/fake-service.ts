@@ -22,7 +22,7 @@ export const FAKE_FAQ_DATA: FaqDataType[] = [
         category: "info",
         title: "회원가입이 안되요.",
         content:
-            "회원가입 시, 불편함이 있으셨나요? contact@simbaat.com 이메일로 문제되는 화면 캡쳐와 내용을 보내주세요.",
+            "회원가입 시, 불편함이 있으셨나요? simkids@simbaat.com 이메일로 문제되는 화면 캡쳐와 내용을 보내주세요.",
     },
     {
         category: "pay",
@@ -33,18 +33,19 @@ export const FAKE_FAQ_DATA: FaqDataType[] = [
     {
         category: "goods",
         title: "기기에 문제가 생겼습니다.",
-        content: "",
+        content:
+            "해당 기기의 설명서를 참고해주세요. 설명서에 기재되어있는 문의 연락처로 연락 부탁드립니다. 소프트웨어에 문제가 있다면 simkids@simbaat.com 이메일로 문제되는 화면 캡쳐와 내용을 보내주세요.",
     },
-    {
-        category: "book",
-        title: "교재 답안이 궁금합니다.",
-        content: "",
-    },
+    // {
+    //     category: "book",
+    //     title: "교재 답안이 궁금합니다.",
+    //     content: "",
+    // },
     {
         category: "order",
         title: "배송이 얼마나 걸리나요?",
         content:
-            "온라인 상품은 주말,공휴일 제외하고 주문일로부터 1~2일이 소요됩니다. 배송 상품은 주말, 공휴일 제외하고 3~7일이 소요됩니다. 소요기간 이후에도 물건을 수령하지 못하신 경우, 주문에 문제가 생겼거나 배송사에 문제가 생겼을 수 있으니 문의를 통해 접수 부탁드립니다.",
+            "온라인 상품은 주말,공휴일 제외하고 주문일로부터 3~7일이 소요됩니다. 배송 상품은 주말, 공휴일 제외하고 3~7일이 소요됩니다. 소요기간 이후에도 물건을 수령하지 못하신 경우, 주문에 문제가 생겼거나 배송사에 문제가 생겼을 수 있으니 문의를 통해 접수 부탁드립니다.",
     },
     {
         category: "etc",

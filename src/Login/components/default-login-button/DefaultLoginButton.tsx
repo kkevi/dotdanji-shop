@@ -57,10 +57,11 @@ export default function DefaultLoginButton(props: Props) {
     }
 
     const onClickLogin = () => {
-        setErrorEmail(!userEmailCheck(email))
-        setErrorPassword(!userPasswordCheck(password))
-        if (errorEmail || errorPassword) return
-        doLogin()
+        alert("현재 회원에 대한 서비스는 준비중입니다. 빠른 시일내에 찾아뵙겠습니다.")
+        // setErrorEmail(!userEmailCheck(email))
+        // setErrorPassword(!userPasswordCheck(password))
+        // if (errorEmail || errorPassword) return
+        // doLogin()
     }
 
     return (
