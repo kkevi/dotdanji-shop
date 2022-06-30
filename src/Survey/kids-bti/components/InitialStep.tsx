@@ -13,7 +13,7 @@ export default function InitialStep({setStep}: InitialStepProps) {
 
     return (
         <>
-            <ImageBox height={"80%"} style={{borderRadius: 20}} src="/images/illust/dottdanji-illust1.png" />
+            <ImageBox height={"80%"} style={{borderRadius: 20}} src="/images/illust/dottdanji-illust2.png" />
             <Typography mt={5} className={`${classes.title} pointFont`}>
                 우리 아이의 언어 발달은 어느정도?
             </Typography>

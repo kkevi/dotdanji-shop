@@ -12,7 +12,7 @@ export const FAKE_NOTICE_DATA: NoticeType[] = [
         noticeId: "fake_notice_1",
         title: "똑똑하고 흥미로운 언어교육, 돛단지 출시!",
         content:
-            "<p>안녕하세요 심키즈입니다.<br/> 똑똑하고 흥미로운 언어교육, 돛단지가 출시 출시되었습니다!<br/> 돛단지에 대한 자세한 사항은 상품 페이지를 확인해주세요. 감사합니다.</p>",
+            "<p>안녕하세요 심키즈입니다.<br/> 똑똑하고 흥미로운 언어교육, 돛단지가 출시되었습니다!<br/> 돛단지에 대한 자세한 사항은 상품 페이지를 확인해주세요. 감사합니다.</p>",
         date: "2022-06-01",
     },
 ]
@@ -20,7 +20,7 @@ export const FAKE_NOTICE_DATA: NoticeType[] = [
 export const FAKE_FAQ_DATA: FaqDataType[] = [
     {
         category: "info",
-        title: "회원가입이 안되요.",
+        title: "회원가입이 안 돼요.",
         content:
             "회원가입 시, 불편함이 있으셨나요? simkids@simbaat.com 이메일로 문제되는 화면 캡쳐와 내용을 보내주세요.",
     },
@@ -34,7 +34,7 @@ export const FAKE_FAQ_DATA: FaqDataType[] = [
         category: "goods",
         title: "기기에 문제가 생겼습니다.",
         content:
-            "해당 기기의 설명서를 참고해주세요. 설명서에 기재되어있는 문의 연락처로 연락 부탁드립니다. 소프트웨어에 문제가 있다면 simkids@simbaat.com 이메일로 문제되는 화면 캡쳐와 내용을 보내주세요.",
+            "해당 기기의 설명서를 참고해주세요. 설명서에 기재 되어있는 문의 연락처로 연락 부탁드립니다. 소프트웨어에 문제가 있다면 simkids@simbaat.com 이메일로 문제되는 화면 캡쳐와 내용을 보내주세요.",
     },
     // {
     //     category: "book",

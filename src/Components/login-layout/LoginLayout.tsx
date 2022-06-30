@@ -25,7 +25,7 @@ export default function LoginLayout({children}: LoginLayoutProps) {
                             padding={2}
                         >
                             <Stack sx={{flex: 1.2}} height={"85vh"}>
-                                <ImageBox height={"100%"} src="/images/illust/dottdanji-illust1.png" />
+                                <ImageBox height={"100%"} src="/images/illust/dottdanji-illust2.png" />
                             </Stack>
                             <Stack sx={{flex: 0.8}} height={"85vh"} alignItems="center">
                                 {children}
