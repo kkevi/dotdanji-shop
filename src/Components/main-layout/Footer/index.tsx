@@ -34,7 +34,9 @@ export default function Footer() {
                         <p className={classes.footerTextArea}>
                             주소 | 서울특별시 중구 세종대로 136, 서울파이낸스센터 3층
                         </p>
-                        <p className={classes.footerTextArea}>고객센터 | 02-6303-0001</p>
+                        <p className={classes.footerTextArea}>
+                            고객센터 | <a href="tel:16682584">1668-2584</a>
+                        </p>
                     </Stack>
                     {smDown && <Divider orientation="horizontal" />}
                     <Stack spacing={2} my={smDown ? 3 : 0}>
