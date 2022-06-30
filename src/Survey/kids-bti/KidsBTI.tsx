@@ -6,7 +6,6 @@ import {Container, Stack} from "@mui/material"
 
 import InitialStep from "./components/InitialStep"
 import Steps from "./components/Steps"
-import ResultStep from "./components/ResultStep"
 
 export default function KidsBTI() {
     const route = useRouter()

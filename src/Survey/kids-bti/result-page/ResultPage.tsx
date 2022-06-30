@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {useRouter} from "next/router"
 import useStyles from "../styles"
 
@@ -56,6 +56,10 @@ const nameList: Record<NameType, Record<string, string>> = {
     },
 }
 
+// interface Document {
+//     document: any
+// }
+
 type ResultPageProps = {
     result: string
 }
@@ -63,6 +67,20 @@ type ResultPageProps = {
 export default function ResultPage({result}: ResultPageProps) {
     const route = useRouter()
     const classes = useStyles()
+
+    const setMetaTags = ({title = "기본 타이틀", description = "기본 설명", imageUrl = "기본 사이트 이미지 경로"}) => {
+        //set title
+        document.querySelector('meta[property="og:title"]')?.setAttribute("content", title)
+
+        //set description
+        document.querySelector('meta[property="og:description"]')?.setAttribute("content", description)
+
+        //set images
+        document.querySelector('meta[property="og:image"]')?.setAttribute("content", imageUrl)
+
+        //set url
+        document.querySelector('meta[property="og:url"]')?.setAttribute("content", window.location.href)
+    }
 
     const onShowName = (result: string) => {
         // const nameData: string[] = Object.entries(nameList).filter((it: string[]) => it[0] === result)[0]
@@ -79,6 +97,14 @@ export default function ResultPage({result}: ResultPageProps) {
             alert("복사 기능에 문제가 생겼습니다. 빠르게 복구하도록 할게요!")
         }
     }
+
+    useEffect(() => {
+        setMetaTags({
+            title: "재미있는 키즈BTI!",
+            description: "우리 아이의 미래는 어떤 모습일까?",
+            imageUrl: `${onShowName(result)?.img}`,
+        })
+    }, [])
 
     return (
         <Container maxWidth="sm">
