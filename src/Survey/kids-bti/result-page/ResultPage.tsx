@@ -174,13 +174,11 @@ export default function ResultPage({result}: ResultPageProps) {
                     <Stack direction="row" justifyContent="space-between" alignItems="center" width="90%" spacing={2}>
                         <Button
                             className={classes.shareButton}
-                            onClick={() =>
-                                onCopyClipBoard(`https://shop.simbaat.com/survey/kids-bti/result?result=${result}`)
-                            }
+                            onClick={() => onCopyClipBoard(`https://shop.simbaat.com/kids-bti/result?result=${result}`)}
                         >
                             공유하기
                         </Button>
-                        <Button className={classes.shareButton} onClick={() => route.push("/survey/kids-bti")}>
+                        <Button className={classes.shareButton} onClick={() => route.push("/kids-bti")}>
                             다시하기
                         </Button>
                     </Stack>

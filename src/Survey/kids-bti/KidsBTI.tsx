@@ -126,7 +126,7 @@ export default function KidsBTI() {
     }
 
     const push = (name: string) => {
-        route.push({pathname: "/survey/kids-bti/result", query: {result: name}})
+        route.push({pathname: "/kids-bti/result", query: {result: name}})
     }
 
     useEffect(() => {
