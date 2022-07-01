@@ -2,6 +2,8 @@ import React from "react"
 import Document, {Html, Head, Main, NextScript, DocumentContext} from "next/document"
 import {ServerStyleSheets} from "@mui/styles"
 
+// import HeadMeta from 'components/head/HeadMeta'
+
 class MyDocument extends Document {
     render() {
         return (
@@ -9,23 +11,19 @@ class MyDocument extends Document {
                 <Head>
                     {/* google search tag */}
                     <meta name="keywords" content="교재,완구,헬스케어,어린이,유아" />
-
-                    {/* <meta property="og:title" content="Simbaat" /> */}
-                    <meta name="title" property="og:title" content="Simbaat" />
-                    {/* <meta name="description" content="세상을 이롭게 바꾸는, 심바트의 웹 쇼핑 사이트입니다." /> */}
+                    <meta name="title" property="og:title" content="Simkids" />
                     <meta
                         name="description"
                         property="og:description"
-                        content="세상을 이롭게 바꾸는, 심바트의 웹 쇼핑 사이트입니다."
+                        content="세상을 이롭게 바꾸는, 심키즈의 웹 쇼핑 사이트입니다."
                     />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
                     {/* Open Graph 중 필수 적으로 해줘야하는 것들 */}
                     <meta property="og:type" content="website" />
-                    {/* <meta property="og:url" content="https://shop.simbaat.com" /> */}
                     <meta name="url" property="og:url" content="https://shop.simbaat.com" />
                     {/* <meta property="og:image" content="" /> */}
-                    <meta name="image" property="og:image" content="%PUBLIC_URL%" />
+                    <meta name="image" property="og:image" content="" />
                     <meta property="og:site_name" content="Simbaat Shop" />
                     <meta property="og:locale" content="kr_KR" />
                     {/* 다음의 태그는 필수는 아니지만, 포함하는 것을 추천함 */}

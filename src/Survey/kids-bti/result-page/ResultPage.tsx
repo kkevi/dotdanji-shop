@@ -4,6 +4,7 @@ import useStyles from "../styles"
 
 import {Container, Button, Stack, Typography} from "@mui/material"
 
+import HeadMeta from "components/head/HeadMeta"
 import ImageBox from "components/image-box/ImageBox"
 
 type NameType =
@@ -98,41 +99,49 @@ export default function ResultPage({result}: ResultPageProps) {
         }
     }
 
-    useEffect(() => {
-        setMetaTags({
-            title: "재미있는 키즈BTI!",
-            description: "우리 아이의 미래는 어떤 모습일까?",
-            imageUrl: `${onShowName(result)?.img}`,
-        })
-    }, [])
+    // useEffect(() => {
+    //     setMetaTags({
+    //         title: "재미있는 키즈BTI!",
+    //         description: "우리 아이의 미래는 어떤 모습일까?",
+    //         imageUrl: `${onShowName(result)?.img}`,
+    //     })
+    // }, [])
 
     return (
-        <Container maxWidth="sm">
-            <Stack className={classes.resultContainer} mt={6} mb={6}>
-                <Typography className={`${classes.title} pointFont`} mb={1}>
-                    언어발달 검사결과
-                </Typography>
-                <ImageBox width={250} height={250} src={onShowName(result)?.img} />
-                <Typography my={1} className={`${classes.score} pointFont`}>
-                    {onShowName(result)?.name}
-                </Typography>
-                <Typography className={`${classes.contents} pointFont`}>
-                    자녀분의 언어발달 정도는 현재 매우 뛰어납니다!
-                </Typography>
+        <>
+            <HeadMeta
+                title="재미있는 키즈BTI!"
+                description="우리 아이의 미래는 어떤 모습일까?"
+                image={onShowName(result)?.img}
+            />
+            <Container maxWidth="sm">
+                <Stack className={classes.resultContainer} mt={6} mb={6}>
+                    <Typography className={`${classes.title} pointFont`} mb={1}>
+                        언어발달 검사결과
+                    </Typography>
+                    <ImageBox width={250} height={250} src={onShowName(result)?.img} />
+                    <Typography my={1} className={`${classes.score} pointFont`}>
+                        {onShowName(result)?.name}
+                    </Typography>
+                    <Typography className={`${classes.contents} pointFont`}>
+                        자녀분의 언어발달 정도는 현재 매우 뛰어납니다!
+                    </Typography>
 
-                <Typography mt={4} className={`${classes.contents2}`}>
-                    현재 아이의 언어발달 상태는 '매우 뛰어남'으로 또래 아이들보다 평균적으로 약 6개월 정도 앞섭니다.
-                </Typography>
-                <Typography className={`${classes.contents2}`}>
-                    주기적으로 이렇게이렇게 교육을 시키며 저러쿵이러쿵 하신다면
-                </Typography>
-                <Typography className={`${classes.contents2}`}>
-                    아이의 더 향상된 언어실력을 볼 수 있을 거예요!
-                </Typography>
-                <Typography className={`${classes.contents2}`}>지금 돛단지로 공부하는 방법을 알아보세요.</Typography>
-            </Stack>
+                    <Typography mt={4} className={`${classes.contents2}`}>
+                        현재 아이의 언어발달 상태는 '매우 뛰어남'으로 또래 아이들보다 평균적으로 약 6개월 정도 앞섭니다.
+                    </Typography>
+                    <Typography className={`${classes.contents2}`}>
+                        주기적으로 이렇게이렇게 교육을 시키며 저러쿵이러쿵 하신다면
+                    </Typography>
+                    <Typography className={`${classes.contents2}`}>
+                        아이의 더 향상된 언어실력을 볼 수 있을 거예요!
+                    </Typography>
+                    <Typography className={`${classes.contents2}`}>
+                        지금 돛단지로 공부하는 방법을 알아보세요.
+                    </Typography>
+                </Stack>
 
-            {/* <Stack className={classes.resultContainer}>
+                {/* <Stack className={classes.resultContainer}>
                 <Typography sx={{fontSize: "18px !important"}} className={`${classes.score} pointFont`}>
                     "2세 여자 아이들"은
                 </Typography>
@@ -154,28 +163,29 @@ export default function ResultPage({result}: ResultPageProps) {
                 </Button>
             </Stack> */}
 
-            <Stack mt={4} mb={10} width="100%" alignItems="center">
-                <Stack width="100%" justifyContent="center" alignItems="center" direction="row" mb={2}>
-                    <div className={classes.divider} />
-                    <Typography mx={1} className={classes.caption}>
-                        공유하기
-                    </Typography>
-                    <div className={classes.divider} />
+                <Stack mt={4} mb={10} width="100%" alignItems="center">
+                    <Stack width="100%" justifyContent="center" alignItems="center" direction="row" mb={2}>
+                        <div className={classes.divider} />
+                        <Typography mx={1} className={classes.caption}>
+                            공유하기
+                        </Typography>
+                        <div className={classes.divider} />
+                    </Stack>
+                    <Stack direction="row" justifyContent="space-between" alignItems="center" width="90%" spacing={2}>
+                        <Button
+                            className={classes.shareButton}
+                            onClick={() =>
+                                onCopyClipBoard(`https://shop.simbaat.com/survey/kids-bti/result?result=${result}`)
+                            }
+                        >
+                            공유하기
+                        </Button>
+                        <Button className={classes.shareButton} onClick={() => route.push("/survey/kids-bti")}>
+                            다시하기
+                        </Button>
+                    </Stack>
                 </Stack>
-                <Stack direction="row" justifyContent="space-between" alignItems="center" width="90%" spacing={2}>
-                    <Button
-                        className={classes.shareButton}
-                        onClick={() =>
-                            onCopyClipBoard(`https://shop.simbaat.com/survey/kids-bti/result?result=${result}`)
-                        }
-                    >
-                        공유하기
-                    </Button>
-                    <Button className={classes.shareButton} onClick={() => route.push("/survey/kids-bti")}>
-                        다시하기
-                    </Button>
-                </Stack>
-            </Stack>
-        </Container>
+            </Container>
+        </>
     )
 }
