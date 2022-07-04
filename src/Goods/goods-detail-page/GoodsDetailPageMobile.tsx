@@ -185,7 +185,7 @@ export default function GoodsDetailPageMobile(props: Props) {
                 </Stack>
             </Stack>
 
-            {categoryId === "ebook" && <ExtraInformationModule infoHtml={infoHtml} />}
+            {categoryId === "ebook" && <ExtraInformationModule infoHtml={infoHtml} mobile />}
         </div>
     )
 }

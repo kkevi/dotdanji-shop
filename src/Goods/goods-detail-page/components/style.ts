@@ -5,7 +5,6 @@ const styles = makeStyles(() =>
     createStyles({
         tabWrapper: {
             position: "sticky",
-            top: 76,
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",

@@ -1,5 +1,5 @@
-import React from "react"
-import {Container, Stack, Typography} from "@mui/material"
+import React, {Fragment, useEffect} from "react"
+import {Container, Stack, useTheme, useMediaQuery} from "@mui/material"
 import {Link, Element} from "react-scroll"
 
 import useStyles from "./style"
@@ -8,20 +8,26 @@ import ExtraInformation from "./ExtraInformation"
 
 type Props = {
     infoHtml: string
+    mobile?: boolean
 }
 
 export default function ExtraInformationModule(props: Props) {
-    const {infoHtml} = props
+    const {infoHtml, mobile} = props
     const classes = useStyles()
     const tabs: string[] = ["상품상세정보", "배송/교환 및 반품안내"]
 
     return (
-        <Container maxWidth="md" sx={{backgroundColor: "white"}}>
-            <Stack className={classes.tabWrapper} my={6}>
+        <Container maxWidth="md">
+            <Stack
+                className={classes.tabWrapper}
+                sx={{
+                    top: mobile ? 60 : 76,
+                    my: mobile ? 3 : 6,
+                }}
+            >
                 {tabs.map((tabName, index) => (
-                    <>
+                    <Fragment key={"link" + index}>
                         <Link
-                            key={"link" + index}
                             activeClass={classes.active}
                             className={classes.tab}
                             to={`move${index}`}
@@ -32,8 +38,8 @@ export default function ExtraInformationModule(props: Props) {
                         >
                             {tabName}
                         </Link>
-                        {!(tabs.length - 1 === index) && <div className={classes.bar} key={"bar" + index} />}
-                    </>
+                        {!(tabs.length - 1 === index) && <div className={classes.bar} />}
+                    </Fragment>
                 ))}
             </Stack>
 

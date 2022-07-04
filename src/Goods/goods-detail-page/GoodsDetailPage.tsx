@@ -7,6 +7,7 @@ import {GoodsItemType} from "types/goods-type"
 
 import Router, {useRouter} from "next/router"
 import {CartOptionsType, OptionCart} from "types/cart-type"
+import useStore from "store/useStore"
 
 import GoodsDetailPageWeb from "./GoodsDetailPageWeb"
 import GoodsDetailPageMobile from "./GoodsDetailPageMobile"
@@ -84,7 +85,7 @@ export default function GoodsDetailPage(props: Props) {
         // if (!userStore.isLoggedIn) {
         //     return alert("로그인 후 이용이 가능합니다.")
         // }
-        // if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
+        if (selectValueList.length < 1) return alert("옵션을 선택 해주세요.")
 
         try {
             //TODO: 서버 장바구니에 저장 기능 추가
@@ -131,10 +132,6 @@ export default function GoodsDetailPage(props: Props) {
             console.log("e:", e)
         }
     }
-
-    // useEffect(() => {
-    //     // console.log("work on? ::", cartData)
-    // }, [cartData])
 
     //바로 구매하기 클릭
     const onClickBuy = async () => {
