@@ -21,10 +21,10 @@ class MyDocument extends Document {
 
                     {/* Open Graph 중 필수 적으로 해줘야하는 것들 */}
                     <meta property="og:type" content="website" />
-                    <meta name="url" property="og:url" content="https://shop.simbaat.com" />
+                    <meta name="url" property="og:url" content="https://dotdanji.com" />
                     {/* <meta property="og:image" content="" /> */}
                     <meta name="image" property="og:image" content="" />
-                    <meta property="og:site_name" content="Simbaat Shop" />
+                    <meta property="og:site_name" content="DotDanji Shop" />
                     <meta property="og:locale" content="kr_KR" />
                     {/* 다음의 태그는 필수는 아니지만, 포함하는 것을 추천함 */}
                     {/* <meta property="og:image:width" content="1200" />
