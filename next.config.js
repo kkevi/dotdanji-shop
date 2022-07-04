@@ -13,6 +13,7 @@ const nextConfig = {
     //     return config
     // },
     // api_domain: "",
+    // exportTrailingSlash: true, // .html 로 빌드하게 해주는 기능...
 }
 
 module.exports = nextConfig

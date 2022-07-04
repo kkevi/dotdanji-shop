@@ -7,7 +7,6 @@ import {GoodsItemType} from "types/goods-type"
 
 import Router, {useRouter} from "next/router"
 import {CartOptionsType, OptionCart} from "types/cart-type"
-import useStore from "store/useStore"
 
 import GoodsDetailPageWeb from "./GoodsDetailPageWeb"
 import GoodsDetailPageMobile from "./GoodsDetailPageMobile"
@@ -89,26 +88,53 @@ export default function GoodsDetailPage(props: Props) {
 
         try {
             //TODO: 서버 장바구니에 저장 기능 추가
-            if (confirm("장바구니를 확인하시겠습니까?")) {
-                const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, index) => {
-                    const goodsOptionData = options.filter(it => it.optionId === cur.optionId)[0]
-                    acc.push({
-                        goodsId: goodsId,
-                        count: cur.count,
-                        price: (goodsOptionData.addPlace + resultPrice) * cur.count,
-                        optionId: cur.optionId,
-                        optionName: goodsOptionData.name,
-                        optionAddPlace: goodsOptionData.addPlace,
-                    })
-                    return acc
-                }, [])
+            const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, index) => {
+                const goodsOptionData = options.filter(it => it.optionId === cur.optionId)[0]
+                acc.push({
+                    goodsId: goodsId,
+                    count: cur.count,
+                    price: (goodsOptionData.addPlace + resultPrice) * cur.count,
+                    optionId: cur.optionId,
+                    optionName: goodsOptionData.name,
+                    optionAddPlace: goodsOptionData.addPlace,
+                })
+                return acc
+            }, [])
+
+            if (!cartData) {
+                // 기존 장바구니가 비어있을 경우
                 await setCartData(JSON.stringify(data))
-                await Router.push("/cart")
+                if (confirm("장바구니를 확인하시겠습니까?")) await Router.push("/cart")
+            } else {
+                // 장바구니에 하나라도 값이 있을 경우
+                const parseCartData = JSON.parse(cartData)
+                const data_OptionIds = data.map(itm => {
+                    return itm.optionId
+                })
+                const cartData_OptionIds = parseCartData.map((itm: {optionId: any}) => {
+                    return itm.optionId
+                })
+                const comparing = data_OptionIds.filter(it => cartData_OptionIds.includes(it))
+                if (comparing.length === 0) {
+                    // 없을 경우
+                    const newCartData = [...data, ...parseCartData]
+                    await setCartData(JSON.stringify(newCartData))
+                    if (confirm("장바구니를 확인하시겠습니까?")) await Router.push("/cart")
+                } else {
+                    // 동일한 옵션이 있을 경우
+                    if (confirm("장바구니에 동일한 상품이 존재합니다. 장바구니로 이동하시겠습니까?")) {
+                        return Router.push("/cart")
+                    }
+                }
             }
         } catch (e) {
             console.log("e:", e)
         }
     }
+
+    // useEffect(() => {
+    //     // console.log("work on? ::", cartData)
+    // }, [cartData])
 
     //바로 구매하기 클릭
     const onClickBuy = async () => {
