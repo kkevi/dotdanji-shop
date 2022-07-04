@@ -13,7 +13,7 @@ export default function InquiryTerms({formData, setFormData, mobile}: InquiryTer
     return (
         <Stack>
             <Typography fontSize={mobile ? 12 : 14} mb={0.1}>
-                심키즈는 개인정보 처리방침에 따라 고객문의를 위한 최소한의 개인정보를 수집 합니다.
+                돛단지는 개인정보 처리방침에 따라 고객문의를 위한 최소한의 개인정보를 수집 합니다.
             </Typography>
             <Typography fontSize={mobile ? 12 : 14} mb={1}>
                 수집된 개인정보는 고객문의 서비스를 위한 목적으로만 사용하며, 상담게시글 삭제요청이 있을 때까지

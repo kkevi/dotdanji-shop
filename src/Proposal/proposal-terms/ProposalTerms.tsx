@@ -12,7 +12,7 @@ export default function ProposalTerms({formData, setFormData}: ProposalTermsProp
     return (
         <Stack>
             <Typography variant="subtitle2" mb={0.1}>
-                심키즈는 제휴를 희망하는 기업 및 개인을 대상으로 아래와 같이 개인정보를 수집합니다.
+                돛단지는 제휴를 희망하는 기업 및 개인을 대상으로 아래와 같이 개인정보를 수집합니다.
             </Typography>
             <Typography variant="subtitle2" mb={1}>
                 수집된 개인정보는 제휴제안 사항 상담서비스를 위한 목적으로만 사용 후, 제휴제안 상담 완료 시점으로부터

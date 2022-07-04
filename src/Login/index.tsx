@@ -38,7 +38,7 @@ export default function Login() {
                 다시 만나서 반가워요!
             </Typography>
             <Typography sx={{mt: 0.5}} variant={mobile ? "body2" : "subtitle2"} color="#757575">
-                심키즈 계정으로 로그인하고 다양한 이야기를 읽어보세요.
+                돛단지 계정으로 로그인하고 다양한 이야기를 읽어보세요.
             </Typography>
             <CustomedTextField sx={{mt: mobile ? 3 : 6}} label="이메일" value={email} onChange={onChangeEmailInput} />
             <CustomedTextField

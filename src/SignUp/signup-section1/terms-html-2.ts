@@ -337,7 +337,7 @@ export const terms2 = `<div>
     </p>
     <p>가. 개인정보 보호 책임자</p>
     <p>- 성명: 오홍석</p>
-    <p>- 이메일: simkids@simbaat.com</p>
+    <p>- 이메일: dotdanji@simbaat.com</p>
     <br />
     <p>부칙</p>
     <p>제1조 본 방침은 2022. 5. 30.부터 시행됩니다.</p>

@@ -4,7 +4,7 @@ import {ServiceBannerType, ServiceTabKey} from "types/service-type"
 export const bannerList: ServiceBannerType[] = [
     {
         tabId: "notice",
-        phrase: "심키즈의 새로운 소식입니다.",
+        phrase: "돛단지의 새로운 소식입니다.",
         title: "공지사항",
         color: "#95D6EE",
         image: "",

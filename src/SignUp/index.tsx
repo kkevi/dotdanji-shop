@@ -32,7 +32,7 @@ export default function SignUp() {
 
     const section = [
         {
-            subTitle: "심키즈 서비스 이용약관에 동의해주세요.",
+            subTitle: "돛단지 서비스 이용약관에 동의해주세요.",
             render: <SignUpSection1 setStep={setStep} />,
         },
         {

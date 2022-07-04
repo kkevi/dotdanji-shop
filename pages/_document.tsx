@@ -11,11 +11,11 @@ class MyDocument extends Document {
                 <Head>
                     {/* google search tag */}
                     <meta name="keywords" content="교재,완구,헬스케어,어린이,유아" />
-                    <meta name="title" property="og:title" content="Simkids" />
+                    <meta name="title" property="og:title" content="돛단지" />
                     <meta
                         name="description"
                         property="og:description"
-                        content="세상을 이롭게 바꾸는, 심키즈의 웹 쇼핑 사이트입니다."
+                        content="세상을 이롭게 바꾸는, 돛단지의 웹 쇼핑 사이트입니다."
                     />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
 

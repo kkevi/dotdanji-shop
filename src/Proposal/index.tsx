@@ -80,10 +80,10 @@ export default function Index() {
                 mt={mobile ? 0 : 10}
                 mb={mobile ? 1 : 2}
             >
-                # 심키즈와 함께 성장해요!
+                # 돛단지와 함께 성장해요!
             </Typography>
             <Typography fontSize={mobile ? 14 : 18} color="#757575">
-                심키즈와 함께할 수 있는 다양한 제휴&제안을 해주세요.
+                돛단지와 함께할 수 있는 다양한 제휴&제안을 해주세요.
             </Typography>
             <Typography fontSize={mobile ? 14 : 18} color="#757575">
                 등록하신 내용은 담당자가 검토 후 연락을 드립니다.
@@ -156,7 +156,7 @@ export default function Index() {
                 sx={{alignSelf: "center"}}
                 variant="outlined"
                 onClick={() => {
-                    alert("현재 서비스를 준비중입니다. simkids@simbaat.com 으로 메일 부탁드립니다.")
+                    alert("현재 서비스를 준비중입니다. dotdanji@simbaat.com 으로 메일 부탁드립니다.")
                 }}
             >
                 제휴제안 보내기
