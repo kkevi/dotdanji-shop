@@ -6,10 +6,10 @@ import {CartOptionsType, OptionCart} from "types/cart-type"
 import {GoodsItemType, OptionsType} from "types/goods-type"
 import {CART_ITEMS_DATA} from "src/Components/fake-data/fake-cart"
 import {GOODS_ITEMS_DATA} from "src/Components/fake-data/fake-goods"
-import useStore from "store/useStore"
 import {useTheme} from "@mui/material"
 import CartListPageWeb from "./CartListPageWeb/CartListPageWeb"
 import CartListPageMobile from "./CartListPageMobile/CartListPageMobile"
+import {useLocalStorage} from "react-use"
 
 type Props = {
     onChangeNextStep: (index: number) => void
@@ -18,9 +18,9 @@ type Props = {
 export default function CartSection1(props: Props) {
     const theme = useTheme()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
-    const {goodsStore} = useStore()
     const {onChangeNextStep} = props
     //장바구니 데이터 표시
+    const [cartData, setCartData] = useLocalStorage("cartData")
     const [cartItemList, setCartItemList] = useState<CartOptionsType[]>([])
     /*
     실제 구매 데이터 생성
@@ -37,6 +37,7 @@ export default function CartSection1(props: Props) {
      */
     useEffect(() => {
         _handleDisplayPrice()
+        console.log("checkList", checkList)
     }, [cartItemList, checkList, checkAll])
 
     const _handleDisplayPrice = () => {
@@ -44,7 +45,7 @@ export default function CartSection1(props: Props) {
             Object.entries(checkList).reduce((acc, cur) => {
                 const data = cartItemList.filter(it => it.optionId === cur[0])[0]
                 if (cur[1]) {
-                    acc += data.price * data.count
+                    acc += data?.price * data?.count
                 } else if (!cur[1]) {
                     setCheckAll(false)
                 }
@@ -62,19 +63,16 @@ export default function CartSection1(props: Props) {
             cartItemList.reduce((cur: any, acc: any, idx) => {
                 const id: string = cur.optionId as string
                 acc[id] = true
-                console.log("acc", acc)
 
                 return acc
             }, {} as Record<string, boolean>),
         )
-
-        if (goodsStore.cartItem === undefined) return
-        setCartItemList(goodsStore.cartItem)
-    }, [cartItemList, goodsStore, checkList])
+    }, [cartItemList])
 
     useEffect(() => {
-        loadData()
-    }, [])
+        if (cartData === undefined) return
+        setCartItemList(JSON.parse(cartData as string))
+    }, [cartData])
 
     const loadData = async () => {
         try {
