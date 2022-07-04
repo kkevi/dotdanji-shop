@@ -69,6 +69,7 @@ export default function CartSection1Mobile(props: Props) {
             {cartItemList.map((itm, index) => {
                 return (
                     <CartTableItem
+                        key={"CartTableItem" + index}
                         index={index}
                         cartItem={itm}
                         cartItemList={cartItemList}
