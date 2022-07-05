@@ -1,23 +1,23 @@
-import {IconButton, Stack, Typography, useTheme} from "@mui/material"
+import {IconButton, Stack, Typography} from "@mui/material"
 import {useRouter} from "next/router"
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 
 import React from "react"
+import ImageBox from "src/Components/image-box/ImageBox"
 
 type Props = {
     userName?: string
     isLoggedIn?: boolean
+    mobile?: boolean
 }
 
 export default function UserLoginButton(props: Props) {
     const route = useRouter()
-    const theme = useTheme()
-    const {userName, isLoggedIn} = props
+    const {userName, isLoggedIn, mobile} = props
 
     return (
         <Stack>
             <IconButton onClick={() => route.push(isLoggedIn ? "/mypage" : "/login")}>
-                <AccountCircleIcon style={{color: theme.palette.secondary.dark, fontSize: "28px"}} />
+                <ImageBox width={mobile ? 30 : 36} height={mobile ? 30 : 36} src="/icons/icon-mypage2.png" />
             </IconButton>
             <Typography variant="caption" mt={isLoggedIn ? -1 : 0}>
                 {isLoggedIn && userName + "님"}

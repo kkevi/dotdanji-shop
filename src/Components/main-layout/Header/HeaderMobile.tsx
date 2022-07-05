@@ -2,17 +2,16 @@ import React, {useEffect, useState} from "react"
 import Router, {useRouter} from "next/router"
 //ui components
 import {ButtonGroup, Container, Stack, Drawer, IconButton, useTheme} from "@mui/material"
-
-//icon
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded"
-import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded"
+import useStyles from "./styles"
 //fake data
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 import UserLoginButton from "./components/user-login-button/UserLoginButton"
 import ShopCartButton from "./components/shop-cart-button/ShopCartButton"
 import useStore from "store/useStore"
+import ImageBox from "src/Components/image-box/ImageBox"
 
 export default function HeaderMobile() {
+    const classes = useStyles()
     const route = useRouter()
     const theme = useTheme()
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)
@@ -30,8 +29,6 @@ export default function HeaderMobile() {
         window.addEventListener("scroll", updateScroll)
     })
 
-    const textColor = {color: theme.palette.secondary.dark, fontWeight: 800, fontSize: 16}
-
     const onClickCategorys = (categoryId: string) => {
         Router.push({pathname: "/goods", query: {categoryId: categoryId}})
     }
@@ -43,9 +40,9 @@ export default function HeaderMobile() {
                 top: 0,
                 left: 0,
                 width: "100%",
-                background: "white",
+                background: scrollPosition < 120 ? "none" : "white",
                 zIndex: 10,
-                borderBottom: scrollPosition < 320 ? "none" : "1px solid #eaeaea",
+                borderBottom: scrollPosition < 120 ? "none" : "1px solid #eaeaea",
             }}
         >
             <Container
@@ -58,10 +55,10 @@ export default function HeaderMobile() {
             >
                 <Stack direction="row" justifyContent="space-between" alignItems="center">
                     <IconButton onClick={() => setDrawer(true)}>
-                        <MenuRoundedIcon style={{color: theme.palette.secondary.dark, fontSize: "30px"}} />
+                        <ImageBox width={30} height={30} src="/icons/icon-menu2.png" />
                     </IconButton>
 
-                    <img src="/images/logo_new.png" alt="" width="100px" onClick={() => route.push("/")} />
+                    <img src="/images/logo-dotdanji.png" alt="" width="100px" onClick={() => route.push("/")} />
                     <Drawer open={drawer} onClose={() => setDrawer(false)}>
                         <Stack
                             sx={{ml: 3, mr: 12, py: 6}}
@@ -71,18 +68,28 @@ export default function HeaderMobile() {
                             spacing={4}
                             fontWeight={700}
                         >
-                            <IconButton sx={{ml: -1}} onClick={() => setDrawer(false)}>
-                                <ArrowBackIosRoundedIcon
+                            <IconButton sx={{ml: -2}} onClick={() => setDrawer(false)}>
+                                <ImageBox width={32} height={32} src="/icons/icon-backarrow.png" />
+                                {/* <ArrowBackIosRoundedIcon
                                     style={{color: theme.palette.secondary.dark, fontSize: "20px"}}
-                                />
+                                /> */}
                             </IconButton>
                             {category.map(({categoryId, title}) => (
-                                <Stack onClick={() => onClickCategorys(categoryId)} key={categoryId} style={textColor}>
+                                <Stack
+                                    onClick={() => onClickCategorys(categoryId)}
+                                    key={categoryId}
+                                    style={{fontSize: 17}}
+                                    className={classes.titleButton}
+                                >
                                     {title}
                                 </Stack>
                             ))}
 
-                            <Stack onClick={() => Router.push("/service")} style={textColor}>
+                            <Stack
+                                onClick={() => Router.push("/service")}
+                                style={{fontSize: 16}}
+                                className={classes.titleButton}
+                            >
                                 고객센터
                             </Stack>
                         </Stack>
@@ -90,7 +97,7 @@ export default function HeaderMobile() {
 
                     <ButtonGroup size="small" disableElevation>
                         {userStore.isLoggedIn && <ShopCartButton badgeContent={badgeContent} />}
-                        <UserLoginButton userName={userStore.userName} isLoggedIn={userStore.isLoggedIn} />
+                        <UserLoginButton userName={userStore.userName} isLoggedIn={userStore.isLoggedIn} mobile />
                     </ButtonGroup>
                 </Stack>
             </Container>

@@ -38,6 +38,13 @@ export default function HomeSliderItem(props: Props) {
                         {subTitle}
                     </Typography>
 
+                    {/* <img
+                                        // className={classes.buttonLayout}
+                                        src={"/icons/buttonLayout.png"}
+                                        style={{height: 50, position: "absolute"}}
+                                        alt=""
+                                        onClick={() => route.push("/")}
+                                    /> */}
                     <Button
                         variant="outlined"
                         style={{

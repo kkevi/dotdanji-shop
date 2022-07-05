@@ -5,6 +5,13 @@ import {WEB_FONT} from "./font-styles"
 export const GlobalStyle = createGlobalStyle`
     ${reset}
 
+    @font-face {
+        font-family: 'ONE-Mobile-POP';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
     :focus {
         outline: none;
         border: none;

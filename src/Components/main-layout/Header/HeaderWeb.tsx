@@ -2,18 +2,22 @@ import React, {useEffect, useState} from "react"
 import Router, {useRouter} from "next/router"
 //ui components
 import {Button, ButtonGroup, Container, Stack, useTheme} from "@mui/material"
+import useStyles from "./styles"
 //icon
 //fake data
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 import UserLoginButton from "./components/user-login-button/UserLoginButton"
 import ShopCartButton from "./components/shop-cart-button/ShopCartButton"
 import useStore from "store/useStore"
+import ImageBox from "src/Components/image-box/ImageBox"
 
 export default function HeaderWeb() {
+    const classes = useStyles()
     const route = useRouter()
     const theme = useTheme()
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)
     const [badgeContent, setBadgeContent] = useState(1)
+    const [hovering, setHovering] = useState(false)
     const {userStore} = useStore()
 
     //스크롤시, 스타일변경
@@ -26,7 +30,7 @@ export default function HeaderWeb() {
         window.addEventListener("scroll", updateScroll)
     })
 
-    const textColor = {color: theme.palette.secondary.dark, fontWeight: 800, fontSize: 16}
+    const textColor = {}
 
     const onClickCategorys = (categoryId: string) => {
         Router.push({pathname: "/goods", query: {categoryId: categoryId}})
@@ -54,7 +58,7 @@ export default function HeaderWeb() {
                 >
                     <Stack direction="row" justifyContent="space-between" alignItems="center">
                         <div style={{cursor: "pointer"}}>
-                            <img src="/images/logo_new.png" alt="" width="130px" onClick={() => route.push("/")} />
+                            <img src="/images/logo-dotdanji.png" alt="" width="150px" onClick={() => route.push("/")} />
                         </div>
 
                         <Stack
@@ -65,12 +69,21 @@ export default function HeaderWeb() {
                             fontWeight={700}
                         >
                             {category.map(({categoryId, title}, index) => (
-                                <Button onClick={() => onClickCategorys(categoryId)} key={categoryId} style={textColor}>
+                                <Button
+                                    onClick={() => onClickCategorys(categoryId)}
+                                    key={categoryId}
+                                    style={{fontSize: 20}}
+                                    className={classes.titleButton}
+                                >
                                     {title}
                                 </Button>
                             ))}
 
-                            <Button onClick={() => Router.push("/service")} style={textColor}>
+                            <Button
+                                onClick={() => Router.push("/service")}
+                                style={{fontSize: 20}}
+                                className={classes.titleButton}
+                            >
                                 고객센터
                             </Button>
                         </Stack>

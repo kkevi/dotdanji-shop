@@ -30,5 +30,10 @@ export const WEB_FONT = `
     ,
 }
 
+    .popFont {
+    font-family: 'ONE-Mobile-POP';
+    ,
+}
+
 
 `
