@@ -45,7 +45,7 @@ export default function EventSliderMobile(props: Props) {
                                     alignItems="flex-start"
                                 >
                                     <Stack>
-                                        <Typography className="pointFont" mt={2} fontWeight={800} fontSize={20}>
+                                        <Typography className="pointFont" mt={2} fontWeight={800} fontSize={18}>
                                             {eventData.title}
                                         </Typography>
                                         <Typography mt={1} fontWeight={800} fontSize={12} color="#bbb">

@@ -1,9 +1,9 @@
 import React from "react"
 import {useRouter} from "next/router"
 
-import {Container, Typography, Stack, Button} from "@mui/material"
-
+import {Container, Typography, Stack} from "@mui/material"
 import ImageBox from "components/image-box/ImageBox"
+import useStyles from "./styles"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -19,48 +19,44 @@ type Props = {
 export default function HomeSliderItem(props: Props) {
     const {title, subTitle, image, url, mobile} = props
     const route = useRouter()
+    const classes = useStyles()
 
     return (
         <div style={{position: "relative"}}>
             <Container maxWidth={mobile ? "sm" : "lg"}>
                 <Stack
                     position="absolute"
-                    top={mobile ? "48%" : "40%"}
+                    top={mobile ? "48%" : "52%"}
                     zIndex={10}
                     px={mobile ? 2 : 0}
                     fontWeight={800}
                     color="white"
                 >
-                    <Typography variant={mobile ? "h5" : "h3"} className="pointFont">
+                    <Typography fontSize={mobile ? 20 : 38} className="pointFont">
                         {title}
                     </Typography>
-                    <Typography variant={mobile ? "body1" : "h5"} mt={2}>
+                    <Typography fontSize={mobile ? 16 : 20} mt={0.8}>
                         {subTitle}
                     </Typography>
 
-                    {/* <img
-                                        // className={classes.buttonLayout}
-                                        src={"/icons/buttonLayout.png"}
-                                        style={{height: 50, position: "absolute"}}
-                                        alt=""
-                                        onClick={() => route.push("/")}
-                                    /> */}
-                    <Button
-                        variant="outlined"
-                        style={{
-                            marginTop: mobile ? 30 : 60,
-                            width: mobile ? 150 : 200,
-                            height: mobile ? 40 : 50,
-                            fontSize: mobile ? 14 : 18,
-                            color: "white",
-                            border: `${mobile ? 1 : 2}px solid white`,
-                        }}
+                    <Stack
+                        sx={{marginTop: 4, width: mobile ? 150 : 200}}
+                        className={classes.button}
                         onClick={() => {
                             window.open(url, "")
                         }}
                     >
-                        자세히 보기
-                    </Button>
+                        <img
+                            src={"/icons/buttonLayout-white.png"}
+                            style={{
+                                width: mobile ? 150 : 200,
+                                height: mobile ? 50 : 60,
+                            }}
+                        />
+                        <Typography sx={{fontSize: mobile ? 14 : 18}} className={`${classes.buttonText} popFont`}>
+                            자세히 보기
+                        </Typography>
+                    </Stack>
                 </Stack>
             </Container>
             <ImageBox height={mobile ? 700 : 720} src={image} brightness={0.7} />

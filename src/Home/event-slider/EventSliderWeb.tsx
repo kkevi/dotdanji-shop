@@ -12,6 +12,7 @@ import Slider from "react-slick"
 import {sliderSetOption} from "../slider-set-option"
 import {theme} from "src/styles/theme"
 import HomeVideo from "../home-video/HomeVideo"
+import useStyles from "./styles"
 
 type Props = {
     eventList: EventType[]
@@ -21,6 +22,7 @@ type Props = {
 export default function EventSliderWeb(props: Props) {
     const {eventList} = props
     const route = useRouter()
+    const classes = useStyles()
 
     return (
         <Container maxWidth="lg">
@@ -30,6 +32,7 @@ export default function EventSliderWeb(props: Props) {
                     color={theme.palette.secondary.dark}
                     variant="h4"
                     mt={10}
+                    mb={2}
                     fontWeight={800}
                 >
                     # 우리 아이가 좋아하는 이야기
@@ -56,7 +59,7 @@ export default function EventSliderWeb(props: Props) {
                             <div key={`home-event-${event.eventId}`}>
                                 <Stack
                                     sx={{
-                                        height: 350,
+                                        height: 300,
                                         backgroundColor: "#fff",
                                         padding: 3,
                                     }}
@@ -64,21 +67,20 @@ export default function EventSliderWeb(props: Props) {
                                     alignItems="flex-start"
                                 >
                                     <Stack>
-                                        <Typography className="pointFont" mt={2} fontWeight={800} fontSize={20}>
+                                        <Typography className="pointFont" mt={2} fontWeight={800} fontSize={19}>
                                             {event.title}
                                         </Typography>
-                                        <Typography mt={2} fontWeight={800} fontSize={14} color="#bbb">
+                                        <Typography mt={1} fontWeight={800} fontSize={14} color="#bbb">
                                             {event.startDate} - {event.endDate}
                                         </Typography>
-                                        <Typography mt={4} fontWeight={300} fontSize={15} color="#777">
+                                        <Typography mt={3} fontWeight={300} fontSize={15} color="#777">
                                             {event.homeCaption}
                                         </Typography>
                                     </Stack>
 
-                                    <Button
-                                        color="inherit"
-                                        variant="outlined"
-                                        sx={{width: 120}}
+                                    <Stack
+                                        sx={{marginTop: 4, width: 120}}
+                                        className={classes.button}
                                         onClick={() =>
                                             route.push({
                                                 pathname: "/service/detail/event",
@@ -86,11 +88,24 @@ export default function EventSliderWeb(props: Props) {
                                             })
                                         }
                                     >
-                                        확인하기
-                                    </Button>
+                                        <img
+                                            src={"/icons/buttonLayout-grey.png"}
+                                            style={{
+                                                width: 120,
+                                                height: 40,
+                                            }}
+                                        />
+                                        <Typography
+                                            fontSize={14}
+                                            color="#777"
+                                            className={`${classes.buttonText} popFont`}
+                                        >
+                                            확인하기
+                                        </Typography>
+                                    </Stack>
                                 </Stack>
-                                <div style={{height: 300, backgroundColor: "pink"}}>
-                                    <ImageBox height={300} src={event.homeImageUrl} />
+                                <div style={{height: 350, backgroundColor: "pink"}}>
+                                    <ImageBox height={350} src={event.homeImageUrl} />
                                 </div>
                             </div>
                         ))}
