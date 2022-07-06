@@ -1,5 +1,4 @@
 import React, {useState} from "react"
-import {keyframes} from "styled-components"
 
 import {Container, Link, Stack, Typography, useTheme, Zoom} from "@mui/material"
 
@@ -25,12 +24,12 @@ export default function NewArrivalWeb(props: Props) {
                         top={-24}
                         left={40}
                         zIndex={2}
-                        bgcolor="#fff"
+                        bgcolor={"#fff"}
                         px={4}
                         py={1}
                         borderRadius={10}
                     >
-                        <Typography fontSize={20} color={theme.palette.primary.dark} className="pointFont">
+                        <Typography fontSize={22} color={theme.palette.secondary.dark} className="pointFont">
                             #최근 출시한 신작소개
                         </Typography>
                     </Stack>
@@ -72,12 +71,7 @@ export default function NewArrivalWeb(props: Props) {
                                 >
                                     {`0${index + 1} `}
                                 </Typography>
-                                <Typography
-                                    variant="h6"
-                                    fontWeight={800}
-                                    fontSize={18}
-                                    color={hovering ? "#222" : "#999"}
-                                >
+                                <Typography fontWeight={800} fontSize={18} color={hovering ? "#222" : "#999"}>
                                     {goods.name}
                                 </Typography>
                                 {hovering ? (

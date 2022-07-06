@@ -20,10 +20,10 @@ export default function BestSellerMobile(props: Props) {
     return (
         <Container maxWidth="sm" sx={{mt: 4}}>
             <Stack bgcolor="#fff" borderRadius="20px" p={2} py={4}>
-                <Typography className="pointFont" color={theme.palette.primary.dark} variant="h5" mt={2}>
+                <Typography className="pointFont" color={theme.palette.secondary.dark} fontSize={22} mt={2}>
                     #이 달의 인기 상품
                 </Typography>
-                <Typography color={theme.palette.primary.dark} variant="body1" fontWeight={300}>
+                <Typography color="#bbb" fontSize={14} fontWeight={300}>
                     가장 인기 있었던 최고의 상품을 만나보세요!
                 </Typography>
 

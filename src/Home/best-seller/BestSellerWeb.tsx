@@ -1,11 +1,13 @@
 import React, {useState} from "react"
-
-import {Button, Container, Grid, Stack, Typography, useTheme} from "@mui/material"
-
-import useStyles from "./styles"
-import ImageBox from "components/image-box/ImageBox"
-import {GoodsItemType} from "types/goods-type"
 import {useRouter} from "next/router"
+
+import {Container, Grid, Stack, Typography, useTheme} from "@mui/material"
+import useStyles from "./styles"
+
+import ImageBox from "components/image-box/ImageBox"
+import CustomedButton from "components/customed-button/CustomedButton"
+
+import {GoodsItemType} from "types/goods-type"
 
 type Props = {
     bestSellerList: GoodsItemType[]
@@ -20,19 +22,25 @@ export default function BestSellerWeb(props: Props) {
 
     return (
         <Container maxWidth="lg" sx={{my: 30}}>
-            <Stack height={570} direction="row" bgcolor="#fff" borderRadius="20px" overflow="hidden">
-                <Stack bgcolor="#fff" width="30%" p={2} justifyContent="center">
-                    <ImageBox src="/images/bombom2.png" height={57} width={80} />
+            <Stack height={570} direction="row" bgcolor="#fff" borderRadius="20px">
+                <Stack width="30%" px={4} justifyContent="center">
+                    <ImageBox
+                        src="/images/bombom1.png"
+                        height={125}
+                        width={175}
+                        style={{transform: "rotate(0deg)", right: 70}}
+                    />
                     <Typography
                         className="pointFont"
-                        color={theme.palette.primary.dark}
-                        fontSize={30}
+                        color={theme.palette.secondary.dark}
+                        fontSize={22}
                         fontWeight={800}
-                        my={2}
+                        mt={2}
+                        mb={1}
                     >
                         #이 달의 인기 상품
                     </Typography>
-                    <Typography color={theme.palette.primary.dark} variant="body1" fontWeight={300}>
+                    <Typography color="#bbb" fontSize={15} fontWeight={800}>
                         가장 인기 있었던 최고의 상품을 만나보세요!
                     </Typography>
                 </Stack>
@@ -54,9 +62,15 @@ export default function BestSellerWeb(props: Props) {
                                         <Typography mt={1} mb={2} className={classes.price}>
                                             {goods.price.toLocaleString("ko")}원
                                         </Typography>
-                                        <Button variant="outlined" className={classes.button}>
-                                            자세히 보기
-                                        </Button>
+                                        <CustomedButton
+                                            src="/icons/buttonLayout-white.png"
+                                            width={115}
+                                            buttonHeight={45}
+                                            text="자세히 보기"
+                                            textColor="white"
+                                            textSize={12}
+                                            onClick={() => {}}
+                                        />
                                     </div>
                                     <ImageBox height="100%" src={goods.thumbnails.images[0]} />
                                 </div>

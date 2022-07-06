@@ -40,7 +40,17 @@ export default function EventSliderWeb(props: Props) {
                 <div style={{width: 850, height: 450, borderRadius: 20, overflow: "hidden"}}>
                     <HomeVideo />
                 </div>
-
+                <ImageBox
+                    src="/images/ponggu1.png"
+                    style={{
+                        position: "absolute",
+                        zIndex: 10,
+                        top: 170,
+                        right: -90,
+                    }}
+                    width={190}
+                    height={112}
+                />
                 {/* 우측 세로 슬라이더 (이벤트) */}
                 <div
                     style={{
@@ -94,6 +104,7 @@ export default function EventSliderWeb(props: Props) {
                                         }
                                     />
                                 </Stack>
+
                                 <div style={{height: 350, backgroundColor: "pink"}}>
                                     <ImageBox height={350} src={event.homeImageUrl} />
                                 </div>

@@ -18,9 +18,9 @@ export default function NewArrivalMobile(props: Props) {
     return (
         <>
             <Typography
-                color={theme.palette.primary.dark}
+                color={theme.palette.secondary.dark}
                 className="pointFont"
-                variant="h5"
+                fontSize={22}
                 sx={{
                     mt: 4,
                     mb: 2,

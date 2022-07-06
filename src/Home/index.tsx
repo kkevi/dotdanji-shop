@@ -12,7 +12,7 @@ export default function Home() {
     const smDown = useMediaQuery(theme.breakpoints.down("sm"))
 
     return (
-        <div style={{background: smDown ? "#fff" : "#f4f6f9", width: "100%"}}>
+        <div style={{background: smDown ? "#fff" : "#fafafb", width: "100%"}}>
             {/* 메인 슬라이더 */}
             <HomeSlider isMobile={smDown} />
 
