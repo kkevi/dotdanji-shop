@@ -1,13 +1,14 @@
 import React from "react"
+import {useRouter} from "next/router"
 
-import {Button, Stack, Typography} from "@mui/material"
+import {Stack, Typography} from "@mui/material"
 
 import ImageBox from "components/image-box/ImageBox"
+import CustomedButton from "components/customed-button/CustomedButton"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import {EventType} from "types/event-type"
-import {useRouter} from "next/router"
 import Slider from "react-slick"
 import {sliderSetOption} from "../slider-set-option"
 
@@ -56,19 +57,21 @@ export default function EventSliderMobile(props: Props) {
                                         </Typography>
                                     </Stack>
 
-                                    <Button
-                                        color="inherit"
-                                        variant="outlined"
-                                        sx={{width: 120}}
+                                    <CustomedButton
+                                        src="/icons/buttonLayout-grey.png"
+                                        width={120}
+                                        buttonHeight={40}
+                                        buttonStyle={{marginTop: 4}}
+                                        text="확인하기"
+                                        textColor="#777"
+                                        textSize={14}
                                         onClick={() =>
                                             route.push({
                                                 pathname: "/service/detail/event",
                                                 query: {eventId: eventData.eventId},
                                             })
                                         }
-                                    >
-                                        확인하기
-                                    </Button>
+                                    />
                                 </Stack>
                                 <div style={{height: 200, backgroundColor: "pink"}}>
                                     <ImageBox height={200} src={eventData.homeImageUrl} />

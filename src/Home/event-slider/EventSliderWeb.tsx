@@ -1,18 +1,19 @@
 import React from "react"
+import {useRouter} from "next/router"
 
-import {Button, Container, Stack, Typography} from "@mui/material"
+import {Container, Stack, Typography} from "@mui/material"
+import {theme} from "src/styles/theme"
 
 import ImageBox from "components/image-box/ImageBox"
+import CustomedButton from "components/customed-button/CustomedButton"
+import HomeVideo from "../home-video/HomeVideo"
 
+import {EventType} from "types/event-type"
+
+import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import {EventType} from "types/event-type"
-import {useRouter} from "next/router"
-import Slider from "react-slick"
 import {sliderSetOption} from "../slider-set-option"
-import {theme} from "src/styles/theme"
-import HomeVideo from "../home-video/HomeVideo"
-import useStyles from "./styles"
 
 type Props = {
     eventList: EventType[]
@@ -22,7 +23,6 @@ type Props = {
 export default function EventSliderWeb(props: Props) {
     const {eventList} = props
     const route = useRouter()
-    const classes = useStyles()
 
     return (
         <Container maxWidth="lg">
@@ -78,31 +78,21 @@ export default function EventSliderWeb(props: Props) {
                                         </Typography>
                                     </Stack>
 
-                                    <Stack
-                                        sx={{marginTop: 4, width: 120}}
-                                        className={classes.button}
+                                    <CustomedButton
+                                        src="/icons/buttonLayout-grey.png"
+                                        width={120}
+                                        buttonHeight={40}
+                                        buttonStyle={{marginTop: 4}}
+                                        text="확인하기"
+                                        textColor="#777"
+                                        textSize={14}
                                         onClick={() =>
                                             route.push({
                                                 pathname: "/service/detail/event",
                                                 query: {eventId: event.eventId},
                                             })
                                         }
-                                    >
-                                        <img
-                                            src={"/icons/buttonLayout-grey.png"}
-                                            style={{
-                                                width: 120,
-                                                height: 40,
-                                            }}
-                                        />
-                                        <Typography
-                                            fontSize={14}
-                                            color="#777"
-                                            className={`${classes.buttonText} popFont`}
-                                        >
-                                            확인하기
-                                        </Typography>
-                                    </Stack>
+                                    />
                                 </Stack>
                                 <div style={{height: 350, backgroundColor: "pink"}}>
                                     <ImageBox height={350} src={event.homeImageUrl} />

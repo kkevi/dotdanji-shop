@@ -3,7 +3,7 @@ import {useRouter} from "next/router"
 
 import {Container, Typography, Stack} from "@mui/material"
 import ImageBox from "components/image-box/ImageBox"
-import useStyles from "./styles"
+import CustomedButton from "components/customed-button/CustomedButton"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -19,7 +19,6 @@ type Props = {
 export default function HomeSliderItem(props: Props) {
     const {title, subTitle, image, url, mobile} = props
     const route = useRouter()
-    const classes = useStyles()
 
     return (
         <div style={{position: "relative"}}>
@@ -39,24 +38,18 @@ export default function HomeSliderItem(props: Props) {
                         {subTitle}
                     </Typography>
 
-                    <Stack
-                        sx={{marginTop: 4, width: mobile ? 150 : 200}}
-                        className={classes.button}
+                    <CustomedButton
+                        src="/icons/buttonLayout-white.png"
+                        width={mobile ? 150 : 200}
+                        buttonHeight={mobile ? 50 : 60}
+                        buttonStyle={{marginTop: 4}}
+                        text="자세히 보기"
+                        textColor="white"
+                        textSize={mobile ? 14 : 18}
                         onClick={() => {
                             window.open(url, "")
                         }}
-                    >
-                        <img
-                            src={"/icons/buttonLayout-white.png"}
-                            style={{
-                                width: mobile ? 150 : 200,
-                                height: mobile ? 50 : 60,
-                            }}
-                        />
-                        <Typography sx={{fontSize: mobile ? 14 : 18}} className={`${classes.buttonText} popFont`}>
-                            자세히 보기
-                        </Typography>
-                    </Stack>
+                    />
                 </Stack>
             </Container>
             <ImageBox height={mobile ? 700 : 720} src={image} brightness={0.7} />
