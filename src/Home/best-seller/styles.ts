@@ -47,6 +47,19 @@ const styles = makeStyles(() =>
             fontSize: 12,
             color: "#777777",
         },
+        bombomImage: {
+            marginLeft: -70,
+            animationName: "$moveSwing",
+            animationIterationCount: "infinite",
+            animationDuration: "3s",
+            marginBottom: 10,
+        },
+
+        "@keyframes moveSwing": {
+            "0%": {transform: "translate(0,0)"},
+            "60%": {transform: "translate(15%,10%) rotate(-10deg)"},
+            "100%": {transform: "translateY(0,0)"},
+        },
     }),
 )
 

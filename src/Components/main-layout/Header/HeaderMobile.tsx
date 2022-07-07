@@ -35,13 +35,9 @@ export default function HeaderMobile() {
 
     return (
         <div
+            className={classes.headerDefaultStyle}
             style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100%",
                 background: scrollPosition < 120 ? "none" : "white",
-                zIndex: 10,
                 borderBottom: scrollPosition < 120 ? "none" : "1px solid #eaeaea",
             }}
         >

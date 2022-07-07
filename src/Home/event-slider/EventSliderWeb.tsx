@@ -15,12 +15,15 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import {sliderSetOption} from "../slider-set-option"
 
+import useStyles from "./style"
+
 type Props = {
     eventList: EventType[]
 }
 
 //현재 진행중인 이벤트만 표시 필요
 export default function EventSliderWeb(props: Props) {
+    const classes = useStyles()
     const {eventList} = props
     const route = useRouter()
 
@@ -37,20 +40,17 @@ export default function EventSliderWeb(props: Props) {
                 >
                     # 우리 아이가 좋아하는 이야기
                 </Typography>
+                {/* <div className={classes.gomiImage}>
+                    <ImageBox src="/images/ponggu1.png" width={190} height={112} />
+                </div> */}
+                {/* 퐁구 이미지 */}
                 <div style={{width: 850, height: 450, borderRadius: 20, overflow: "hidden"}}>
                     <HomeVideo />
                 </div>
-                <ImageBox
-                    src="/images/ponggu1.png"
-                    style={{
-                        position: "absolute",
-                        zIndex: 5,
-                        top: 170,
-                        right: -90,
-                    }}
-                    width={190}
-                    height={112}
-                />
+                {/* 퐁구 이미지 */}
+                <div className={classes.pongguImage}>
+                    <ImageBox src="/images/ponggu1.png" width={190} height={112} />
+                </div>
                 {/* 우측 세로 슬라이더 (이벤트) */}
                 <div
                     style={{

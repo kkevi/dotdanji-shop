@@ -24,12 +24,9 @@ export default function BestSellerWeb(props: Props) {
         <Container maxWidth="lg" sx={{my: 30}}>
             <Stack height={570} direction="row" bgcolor="#fff" borderRadius="20px" sx={{position: "relative"}}>
                 <Stack width="30%" px={4} justifyContent="center">
-                    <ImageBox
-                        src="/images/bombom1.png"
-                        height={125}
-                        width={185}
-                        style={{transform: "rotate(0deg)", right: 70}}
-                    />
+                    <div className={classes.bombomImage}>
+                        <ImageBox src="/images/bombom1.png" height={125} width={185} />
+                    </div>
                     <Typography
                         className="pointFont"
                         color={theme.palette.secondary.dark}

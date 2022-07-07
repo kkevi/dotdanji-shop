@@ -35,7 +35,10 @@ export default function Footer() {
                             주소 | 서울특별시 중구 세종대로 136, 서울파이낸스센터 3층
                         </p>
                         <p className={classes.footerTextArea}>
-                            고객센터 | <a href="tel:16682584">1668-2584</a>
+                            고객센터 |{" "}
+                            <a href="tel:16682584" style={{color: "#fff"}}>
+                                1668-2584
+                            </a>
                         </p>
                     </Stack>
                     {smDown && <Divider orientation="horizontal" />}

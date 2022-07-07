@@ -44,6 +44,7 @@ export default function EventSliderMobile(props: Props) {
                                     }}
                                     justifyContent="space-between"
                                     alignItems="flex-start"
+                                    key={"eventList" + index}
                                 >
                                     <Stack>
                                         <Typography className="pointFont" mt={2} fontWeight={800} fontSize={18}>

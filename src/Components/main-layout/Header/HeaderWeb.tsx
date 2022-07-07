@@ -9,7 +9,6 @@ import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 import UserLoginButton from "./components/user-login-button/UserLoginButton"
 import ShopCartButton from "./components/shop-cart-button/ShopCartButton"
 import useStore from "store/useStore"
-import ImageBox from "src/Components/image-box/ImageBox"
 
 export default function HeaderWeb() {
     const classes = useStyles()
@@ -38,13 +37,8 @@ export default function HeaderWeb() {
 
     return (
         <div
+            className={classes.headerDefaultStyle}
             style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100%",
-                background: "white",
-                zIndex: 10,
                 borderBottom: scrollPosition < 320 ? "none" : "1px solid #eaeaea",
             }}
         >
