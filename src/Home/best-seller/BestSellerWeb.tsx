@@ -22,7 +22,7 @@ export default function BestSellerWeb(props: Props) {
 
     return (
         <Container maxWidth="lg" sx={{my: 30}}>
-            <Stack height={570} direction="row" bgcolor="#fff" borderRadius="20px">
+            <Stack height={570} direction="row" bgcolor="#fff" borderRadius="20px" sx={{position: "relative"}}>
                 <Stack width="30%" px={4} justifyContent="center">
                     <ImageBox
                         src="/images/bombom1.png"
@@ -78,6 +78,12 @@ export default function BestSellerWeb(props: Props) {
                         )
                     })}
                 </Grid>
+                <ImageBox
+                    src="/images/starfish2.png"
+                    height={110}
+                    width={120}
+                    style={{transform: "rotate(0deg)", position: "absolute", bottom: -160, right: 150}}
+                />
             </Stack>
         </Container>
     )

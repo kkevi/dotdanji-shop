@@ -1,4 +1,3 @@
-import {useMediaQuery, useTheme} from "@mui/material"
 import {useState} from "react"
 import {GOODS_ITEMS_DATA} from "src/Components/fake-data/fake-goods"
 import {GoodsItemType} from "types/goods-type"
