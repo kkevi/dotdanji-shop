@@ -19,11 +19,21 @@ export default function Home() {
             {/* 이벤트 영역 (좌:영상, 우:슬라이드) */}
             <EventSlider isMobile={smDown} />
 
-            {/* 베스트 셀러 */}
-            <BestSeller isMobile={smDown} />
+            <div
+                style={{
+                    backgroundImage: "url('/images/background2.png')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "100%",
+                    maxWidth: 1920,
+                    margin: "0 auto",
+                }}
+            >
+                {/* 베스트 셀러 */}
+                <BestSeller isMobile={smDown} />
 
-            {/* 신상품 */}
-            <NewArrival isMobile={smDown} />
+                {/* 신상품 */}
+                <NewArrival isMobile={smDown} />
+            </div>
 
             {/* 파트너사 */}
             {smDown ? undefined : <PartnerBenner />}

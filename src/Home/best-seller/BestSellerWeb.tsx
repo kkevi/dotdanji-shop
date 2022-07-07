@@ -27,7 +27,7 @@ export default function BestSellerWeb(props: Props) {
                     <ImageBox
                         src="/images/bombom1.png"
                         height={125}
-                        width={175}
+                        width={185}
                         style={{transform: "rotate(0deg)", right: 70}}
                     />
                     <Typography

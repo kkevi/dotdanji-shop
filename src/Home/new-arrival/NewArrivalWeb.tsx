@@ -50,8 +50,8 @@ export default function NewArrivalWeb(props: Props) {
                     height={600}
                     justifyContent="center"
                     padding="0 50px"
-                    bgcolor="#fff"
-                    sx={{borderTopRightRadius: 20, borderBottomRightRadius: 20}}
+                    bgcolor="rgba(255,255,255,0.5)"
+                    sx={{borderTopRightRadius: 20, borderBottomRightRadius: 20, backdropFilter: "blur(5px)"}}
                 >
                     {newArrivalList.slice(0, 6).map((goods, index) => {
                         const hovering = hover === index

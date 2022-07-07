@@ -44,7 +44,7 @@ export default function EventSliderWeb(props: Props) {
                     src="/images/ponggu1.png"
                     style={{
                         position: "absolute",
-                        zIndex: 10,
+                        zIndex: 5,
                         top: 170,
                         right: -90,
                     }}
