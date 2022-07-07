@@ -40,9 +40,11 @@ export default function EventSliderWeb(props: Props) {
                 >
                     # 우리 아이가 좋아하는 이야기
                 </Typography>
-                {/* <div className={classes.gomiImage}>
-                    <ImageBox src="/images/ponggu1.png" width={190} height={112} />
-                </div> */}
+                {/* 고미 이미지 */}
+                <div className={classes.gomiImage}>
+                    <ImageBox src="/images/gomi2.png" width={62} height={37} />
+                    <ImageBox src="/images/gomi1.png" width={89} height={181} />
+                </div>
                 {/* 퐁구 이미지 */}
                 <div style={{width: 850, height: 450, borderRadius: 20, overflow: "hidden"}}>
                     <HomeVideo />

@@ -75,12 +75,9 @@ export default function BestSellerWeb(props: Props) {
                         )
                     })}
                 </Grid>
-                <ImageBox
-                    src="/images/starfish2.png"
-                    height={110}
-                    width={120}
-                    style={{transform: "rotate(0deg)", position: "absolute", bottom: -160, right: 150}}
-                />
+                <div className={classes.starfishImage}>
+                    <ImageBox src="/images/starfish2.png" height={110} width={120} />
+                </div>
             </Stack>
         </Container>
     )

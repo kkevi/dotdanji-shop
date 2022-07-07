@@ -7,12 +7,25 @@ const styles = makeStyles(() =>
         gomiImage: {
             position: "absolute",
             zIndex: 5,
-            top: 200,
-            left: 0,
-            animationName: "$moveUp",
-            animationIterationCount: "infinite",
-            animationDuration: "1.5s",
+            top: 300,
+            left: -89,
+            "& > div:nth-child(1)": {
+                position: "absolute",
+                top: 96,
+                left: 4,
+                transformOrigin: "right center",
+                animationName: "$moveShake",
+                animationIterationCount: "infinite",
+                animationDuration: "1.5s",
+            },
         },
+
+        "@keyframes moveShake": {
+            "0%": {transform: "rotate(0)"},
+            "50%": {transform: "rotate(-15deg)"},
+            "100%": {transform: "rotate(0)"},
+        },
+
         pongguImage: {
             position: "absolute",
             zIndex: 5,

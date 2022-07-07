@@ -60,6 +60,27 @@ const styles = makeStyles(() =>
             "60%": {transform: "translate(15%,10%) rotate(-10deg)"},
             "100%": {transform: "translateY(0,0)"},
         },
+
+        starfishImage: {
+            position: "absolute",
+            bottom: -160,
+            right: 150,
+            animationName: "$moveLeft",
+            animationIterationCount: "infinite",
+            animationDuration: "10s",
+        },
+
+        "@keyframes moveLeft": {
+            "0%": {right: 150, transform: "rotate(5deg)"},
+            "20%": {transform: "rotate(-5deg)"},
+            "30%": {transform: "rotate(5deg)"},
+            "40%": {transform: "rotate(-5deg)"},
+            "50%": {right: 250, transform: "rotate(5deg)"},
+            "60%": {transform: "rotate(-5deg)"},
+            "80%": {transform: "rotate(5deg)"},
+            "90%": {transform: "rotate(-5deg)"},
+            "100%": {right: 150, transform: "rotate(5deg)"},
+        },
     }),
 )
 
