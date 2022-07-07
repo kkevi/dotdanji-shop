@@ -9,8 +9,8 @@ const styles = makeStyles(() =>
             left: 0,
             width: "100%",
             backgroundColor: "white",
-            backgroundImage: "url('/images/img_header_bg.png')",
-            backgroundSize: "54px",
+            // backgroundImage: "url('/images/img_header_bg2.png')",
+            // backgroundSize: "54px",
             zIndex: 10,
         },
         titleButton: {
@@ -19,7 +19,6 @@ const styles = makeStyles(() =>
             textShadow: "1px 3px 1px #fff",
             "&:hover": {
                 backgroundColor: "white",
-                // color: theme.palette.secondary.light,
                 color: theme.palette.primary.dark,
             },
         },

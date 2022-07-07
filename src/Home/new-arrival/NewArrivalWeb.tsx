@@ -3,10 +3,10 @@ import React, {useState} from "react"
 import {Container, Link, Stack, Typography, useTheme, Zoom} from "@mui/material"
 
 import ImageBox from "components/image-box/ImageBox"
-import {GoodsItemType} from "types/goods-type"
+import {NewsType} from "types/news-type"
 
 type Props = {
-    newArrivalList: GoodsItemType[]
+    newArrivalList: NewsType[]
 }
 
 export default function NewArrivalWeb(props: Props) {
@@ -30,16 +30,17 @@ export default function NewArrivalWeb(props: Props) {
                         borderRadius={10}
                     >
                         <Typography fontSize={22} color={theme.palette.secondary.dark} className="pointFont">
-                            #최근 출시한 신작소개
+                            #돛단지의 따끈따끈 소식
                         </Typography>
                     </Stack>
                     <ImageBox
                         width="100%"
                         height="100%"
-                        src={newArrivalList[hover].thumbnails.images[0]}
+                        src={newArrivalList[hover].thumbnails}
                         style={{
                             borderTopLeftRadius: 20,
                             borderBottomLeftRadius: 20,
+                            backgroundColor: "white",
                         }}
                     />
                 </Stack>
@@ -56,7 +57,7 @@ export default function NewArrivalWeb(props: Props) {
                     {newArrivalList.slice(0, 6).map((goods, index) => {
                         const hovering = hover === index
                         return (
-                            <Stack width={350} pt={2} onMouseEnter={e => setHover(index)} key={goods.goodsId}>
+                            <Stack width={350} pt={2} onMouseEnter={e => setHover(index)} key={goods.title}>
                                 <Stack
                                     borderTop={hovering ? `3px solid ${theme.palette.primary.main}` : `1px solid #bbb`}
                                     mb={2}
@@ -72,14 +73,15 @@ export default function NewArrivalWeb(props: Props) {
                                     {`0${index + 1} `}
                                 </Typography>
                                 <Typography fontWeight={800} fontSize={18} color={hovering ? "#222" : "#999"}>
-                                    {goods.name}
+                                    {goods.title}
                                 </Typography>
                                 {hovering ? (
                                     <Zoom in={hovering}>
                                         <Link
                                             mt={1}
                                             variant="caption"
-                                            href="#"
+                                            href={goods.url}
+                                            target="_blank"
                                             underline="none"
                                             fontWeight={800}
                                             color={theme.palette.primary.main}

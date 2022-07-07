@@ -5,10 +5,10 @@ import {Stack, Typography, useTheme} from "@mui/material"
 import ImageBox from "components/image-box/ImageBox"
 import {sliderSetOption} from "../slider-set-option"
 import Slider from "react-slick"
-import {GoodsItemType} from "types/goods-type"
+import {NewsType} from "types/news-type"
 
 type Props = {
-    newArrivalList: GoodsItemType[]
+    newArrivalList: NewsType[]
 }
 
 export default function NewArrivalMobile(props: Props) {
@@ -28,12 +28,12 @@ export default function NewArrivalMobile(props: Props) {
                     alignSelf: "flex-start",
                 }}
             >
-                #최근 출시한 신작소개
+                #돛단지의 따끈따끈 소식
             </Typography>
             <Slider {...sliderSetOption}>
                 {newArrivalList.map((goods, index) => (
-                    <Stack alignItems="flex-start" mb={4} key={goods.goodsId}>
-                        <ImageBox width="100%" height={450} src={goods.thumbnails.images[0]} />
+                    <Stack alignItems="flex-start" mb={4} key={goods.title}>
+                        <ImageBox width="100%" height={450} src={goods.thumbnails} />
 
                         <Typography
                             mt={2}
@@ -45,7 +45,7 @@ export default function NewArrivalMobile(props: Props) {
                             {`0${index + 1} `}
                         </Typography>
                         <Typography ml={3} fontWeight={800} fontSize={18} color="#222">
-                            {goods.name}
+                            {goods.title}
                         </Typography>
                     </Stack>
                 ))}

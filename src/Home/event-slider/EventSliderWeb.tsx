@@ -51,7 +51,7 @@ export default function EventSliderWeb(props: Props) {
                 </div>
                 {/* 퐁구 이미지 */}
                 <div className={classes.pongguImage}>
-                    <ImageBox src="/images/ponggu1.png" width={190} height={112} />
+                    <ImageBox src="/images/ponggu.png" width={190} height={112} />
                 </div>
                 {/* 우측 세로 슬라이더 (이벤트) */}
                 <div

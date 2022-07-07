@@ -1,6 +1,7 @@
 import {useState} from "react"
-import {GOODS_ITEMS_DATA} from "src/Components/fake-data/fake-goods"
-import {GoodsItemType} from "types/goods-type"
+// import {GOODS_ITEMS_DATA} from "src/Components/fake-data/fake-goods"
+// import {GoodsItemType} from "types/goods-type"
+import {NewsType} from "types/news-type"
 import NewArrivalMobile from "./NewArrivalMobile"
 import NewArrivalWeb from "./NewArrivalWeb"
 
@@ -10,7 +11,28 @@ type Props = {
 
 export default function NewArrival(props: Props) {
     const {isMobile} = props
-    const [newArrivalList, setNewArrivalList] = useState<GoodsItemType[]>(GOODS_ITEMS_DATA)
+    const [newArrivalList, setNewArrivalList] = useState<NewsType[]>([
+        {
+            thumbnails: "",
+            title: "돛단지의 캡틴, 고미! 드디어 인형으로 출시",
+            url: "/",
+        },
+        {
+            thumbnails: "",
+            title: "돛단지를 구독하고 싶으시다구요?",
+            url: "/",
+        },
+        {
+            thumbnails: "",
+            title: "귀여운 돛단지 해적단을 만화로 감상해요.",
+            url: "https://instagram.com/__simkids?igshid=YmMyMTA2M2Y=",
+        },
+        {
+            thumbnails: "",
+            title: "아이들과 함께 하고 싶은 심바트",
+            url: "https://simbaat.com/",
+        },
+    ])
 
     return (
         <>

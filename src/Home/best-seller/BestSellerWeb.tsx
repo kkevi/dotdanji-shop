@@ -76,7 +76,7 @@ export default function BestSellerWeb(props: Props) {
                     })}
                 </Grid>
                 <div className={classes.starfishImage}>
-                    <ImageBox src="/images/starfish2.png" height={110} width={120} />
+                    <ImageBox src="/images/starfish2.png" height={115} width={120} />
                 </div>
             </Stack>
         </Container>
