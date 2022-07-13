@@ -3,6 +3,7 @@ export type MainSlideType = {
     title: string
     subTitle: string
     image: string
+    imageBackgroundColor: string[]
     url: string
 }
 

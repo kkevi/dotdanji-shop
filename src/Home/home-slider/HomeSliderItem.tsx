@@ -12,17 +12,18 @@ type Props = {
     title: string
     subTitle: string
     image: string
+    backgroundColor: string[]
     url: string
     mobile: boolean
 }
 
 export default function HomeSliderItem(props: Props) {
-    const {title, subTitle, image, url, mobile} = props
+    const {title, subTitle, image, backgroundColor, url, mobile} = props
     const route = useRouter()
 
     return (
-        <div style={{position: "relative"}}>
-            <Container maxWidth={mobile ? "sm" : "lg"}>
+        <Stack style={{position: "relative", backgroundColor: backgroundColor[0]}} alignItems="center">
+            {/* <Container maxWidth={mobile ? "sm" : "lg"}>
                 <Stack
                     position="absolute"
                     top={mobile ? "48%" : "52%"}
@@ -51,8 +52,8 @@ export default function HomeSliderItem(props: Props) {
                         }}
                     />
                 </Stack>
-            </Container>
-            <ImageBox height={mobile ? 700 : 720} src={image} brightness={0.7} />
-        </div>
+            </Container> */}
+            <ImageBox height={mobile ? 700 : 720} width={1920} src={image} />
+        </Stack>
     )
 }

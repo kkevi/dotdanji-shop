@@ -5,7 +5,8 @@ export const FAKE_SLIDER_LIST: MainSlideType[] = [
         slideId: "homeslider1",
         title: "우리 아이 얼굴이 나오는 동화책",
         subTitle: "최첨단 얼굴인식 AI로 흥미롭고 재미있게!",
-        image: "/images/fake/home-slider1.jpg",
+        image: "/images/banner3.png",
+        imageBackgroundColor: ["#FFD059"],
         url: "",
     },
     {
@@ -13,6 +14,7 @@ export const FAKE_SLIDER_LIST: MainSlideType[] = [
         title: "언어 발달을 도와주는 혁신적인 아이콘!",
         subTitle: "전문가와 함께 하는 검증된 교육",
         image: "/images/fake/home-slider2.jpg",
+        imageBackgroundColor: ["#fff"],
         url: "",
     },
 ]

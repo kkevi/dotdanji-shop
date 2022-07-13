@@ -25,7 +25,7 @@ export default function BestSellerWeb(props: Props) {
             <Stack height={570} direction="row" bgcolor="#fff" borderRadius="20px" sx={{position: "relative"}}>
                 <Stack width="30%" px={4} justifyContent="center">
                     <div className={classes.bombomImage}>
-                        <ImageBox src="/images/bombom1.png" height={125} width={185} />
+                        <ImageBox src="/images/sticker/bombom.png" height={125} width={185} />
                     </div>
                     <Typography
                         className="pointFont"
@@ -76,7 +76,7 @@ export default function BestSellerWeb(props: Props) {
                     })}
                 </Grid>
                 <div className={classes.starfishImage}>
-                    <ImageBox src="/images/starfish2.png" height={115} width={120} />
+                    <ImageBox src="/images/sticker/starfish.png" height={115} width={120} />
                 </div>
             </Stack>
         </Container>

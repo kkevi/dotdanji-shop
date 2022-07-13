@@ -42,8 +42,8 @@ export default function EventSliderWeb(props: Props) {
                 </Typography>
                 {/* 고미 이미지 */}
                 <div className={classes.gomiImage}>
-                    <ImageBox src="/images/gomi2.png" width={62} height={37} />
-                    <ImageBox src="/images/gomi1.png" width={89} height={181} />
+                    <ImageBox src="/images/sticker/gomi2.png" width={62} height={37} />
+                    <ImageBox src="/images/sticker/gomi1.png" width={89} height={181} />
                 </div>
                 {/* 퐁구 이미지 */}
                 <div style={{width: 850, height: 450, borderRadius: 20, overflow: "hidden"}}>
@@ -51,7 +51,7 @@ export default function EventSliderWeb(props: Props) {
                 </div>
                 {/* 퐁구 이미지 */}
                 <div className={classes.pongguImage}>
-                    <ImageBox src="/images/ponggu.png" width={190} height={112} />
+                    <ImageBox src="/images/sticker/ponggu.png" width={190} height={112} />
                 </div>
                 {/* 우측 세로 슬라이더 (이벤트) */}
                 <div
