@@ -16,6 +16,7 @@ import {GoodsCategoryType, GoodsItemType} from "types/goods-type"
 import {GOODS_ITEMS_DATA, GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 
 import GoodsItem from "./goods-item/GoodsItem"
+import axios from "axios"
 
 type Props = {
     categoryId?: string | string[] | undefined
@@ -37,6 +38,49 @@ export default function GoodsLayout(props: Props) {
         {name: "낮은가격순", value: "low"},
     ]
 
+    useEffect(() => {
+        postData()
+    }, [])
+
+    // [axios 전역 설정]
+    // axios.defaults.withCredentials = true;
+
+    // [axios 옵션 객체로 넣기]
+    // axios.post(`${ServerURL}/${API}`, {},
+    // {
+    // 	withCredentials: true // 쿠키 cors 통신 설정
+    // }).then(response => {
+    // 	console.log(response);
+    // });
+    async function postData() {
+        axios.defaults.withCredentials = true
+
+        const stage = "dotdanji-stages"
+        const id = "dotdanji-goods-list"
+        try {
+            //응답 성공
+            await axios({
+                // url: `${process.env.NEXT_PUBLIC_AWS_API_URL}/${stage}/${id}`,
+                url: `/api/${stage}/${id}`,
+                method: "get",
+                withCredentials: true, // 쿠키 cors 통신 설정 허용
+                headers: {
+                    "Access-Control-Allow-Origin": "https://dotdanji.com",
+                    // "Access-Control-Allow-Origin": "http://localhost:3000/",
+                    "Content-Type": "application/json",
+                },
+            })
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log("axios error:", error)
+                })
+        } catch (error) {
+            //응답 실패
+            console.error("try error:", error)
+        }
+    }
     useEffect(() => {
         //최상단 title 표시
         const category = categoryList.filter(it => it.categoryId === categoryId)[0] as GoodsCategoryType

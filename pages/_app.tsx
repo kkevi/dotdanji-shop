@@ -11,6 +11,7 @@ import {GlobalStyle} from "styles/global-styles"
 
 import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import axios from "axios"
 
 declare global {
     interface Window {
@@ -20,7 +21,9 @@ declare global {
 }
 
 function MyApp({Component, pageProps}: AppProps) {
-    return (
+    axios.defaults.withCredentials = true
+
+    https: return (
         <React.Fragment>
             <Head>
                 <title>돛단지</title>

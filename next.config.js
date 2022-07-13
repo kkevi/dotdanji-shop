@@ -9,16 +9,18 @@
 //     },
 // })
 
+//
+
 const nextConfig = {
     reactStrictMode: true,
-    // webpack(config) {
-    //     config.module.rules.push({
-    //         test: /\.svg$/,
-    //         use: ["@svgr/webpack"],
-    //     })
-
-    //     return config
-    // },
+    async rewrites() {
+        return [
+            {
+                destination: `${process.env.NEXT_PUBLIC_AWS_API_URL}/:path*`,
+                source: `/api/:path*`,
+            },
+        ]
+    },
 }
 
 module.exports = nextConfig
