@@ -1,9 +1,9 @@
 import {GoodsItemType, GoodsCategoryType} from "types/goods-type"
 
 export const GOODS_CATEGORY_DATA: GoodsCategoryType[] = [
-    {categoryId: "ebook", title: "돛단지"},
+    {categoryId: "dotdanji", title: "돛단지"},
     {categoryId: "textbook", title: "교재"},
-    {categoryId: "fancyGoods", title: "굿즈"},
+    {categoryId: "goods", title: "굿즈"},
 ]
 
 export const GOODS_ITEMS_DATA: GoodsItemType[] = [

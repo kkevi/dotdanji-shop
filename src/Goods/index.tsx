@@ -29,6 +29,7 @@ export default function GoodsLayout(props: Props) {
     const [goodsFilter, setGoodsFilter] = useState<string>("newest")
     const [categoryList, setCategoryList] = useState<GoodsCategoryType[]>(GOODS_CATEGORY_DATA)
     const [categoryTitle, setCategoryTitle] = useState<string>("")
+    const [fakeGoodsList, setFakeGoodsList] = useState<GoodsItemType[]>([])
     const [goodsList, setGoodsList] = useState<GoodsItemType[]>([])
 
     const goodsArr = [
@@ -39,39 +40,30 @@ export default function GoodsLayout(props: Props) {
     ]
 
     useEffect(() => {
-        postData()
-    }, [])
+        getData()
+        console.log("goodsList ----->", goodsList)
+    }, [categoryId])
 
-    // [axios 전역 설정]
-    // axios.defaults.withCredentials = true;
-
-    // [axios 옵션 객체로 넣기]
-    // axios.post(`${ServerURL}/${API}`, {},
-    // {
-    // 	withCredentials: true // 쿠키 cors 통신 설정
-    // }).then(response => {
-    // 	console.log(response);
-    // });
-    async function postData() {
+    async function getData() {
         axios.defaults.withCredentials = true
 
         const stage = "dotdanji-stages"
-        const id = "dotdanji-goods-list"
+        const id = "dotdanji-goods-list" // goods table 가져옴
         try {
             //응답 성공
             await axios({
-                // url: `${process.env.NEXT_PUBLIC_AWS_API_URL}/${stage}/${id}`,
                 url: `/api/${stage}/${id}`,
                 method: "get",
                 withCredentials: true, // 쿠키 cors 통신 설정 허용
                 headers: {
                     "Access-Control-Allow-Origin": "https://dotdanji.com",
-                    // "Access-Control-Allow-Origin": "http://localhost:3000/",
                     "Content-Type": "application/json",
                 },
             })
                 .then(response => {
-                    console.log(response)
+                    const parseResponse = JSON.parse(response.data.body)
+                    console.log("--->", parseResponse)
+                    setGoodsList(parseResponse?.message)
                 })
                 .catch(function (error) {
                     console.log("axios error:", error)
@@ -87,8 +79,8 @@ export default function GoodsLayout(props: Props) {
         setCategoryTitle(category?.title)
 
         //item list 불러오기
-        const goods = GOODS_ITEMS_DATA.filter(it => it.categoryId === categoryId) as GoodsItemType[]
-        setGoodsList(goods)
+        // const goods = GOODS_ITEMS_DATA.filter(it => it.categoryId === categoryId) as GoodsItemType[]
+        // setFakeGoodsList(goods)
     }, [categoryId])
 
     const onChangeSelect = (event: SelectChangeEvent) => {

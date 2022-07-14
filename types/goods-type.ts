@@ -14,10 +14,10 @@ export interface GoodsCategoryType {
 export interface GoodsItemType {
     goodsId: string //필수
     categoryId: string //필수
-    thumbnails: Thumbnail //필수
-    options: OptionsType[]
+    thumbnails: string //필수
+    options: string
     name: string //필수
-    tags: string[]
+    tags: string
     infoText: string //필수
     infoHtml: string
     price: number

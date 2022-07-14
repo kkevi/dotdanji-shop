@@ -71,12 +71,14 @@ export default function GoodsItem(props: props) {
         },
         [goodsId],
     )
+    const thumbnail = JSON.parse(thumbnails)
+    console.log("-=> thumbnails", thumbnail)
 
     return (
         <div className={classes.root}>
             <div className={classes.thumbnail}>
                 <ButtonBase onClick={onClickRouter} disabled={disabled}>
-                    <ImageBox src={thumbnails.images[0]} height={mobile ? "180px" : "400px"} />
+                    {/* <ImageBox src={thumbnails.images[0]} height={mobile ? "180px" : "400px"} /> */}
                 </ButtonBase>
 
                 <div className={mobile ? classes.iconButtonListMobile : classes.iconButtonList}>
