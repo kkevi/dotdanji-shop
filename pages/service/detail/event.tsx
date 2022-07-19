@@ -3,13 +3,14 @@ import MainLayout from "components/main-layout/MainLayout"
 import {useRouter} from "next/router"
 import EventDetailPage from "src/Service/event-detail-page"
 
-export default function Index() {
+export default function IndexServiceEvent() {
     const route = useRouter()
     const [queryEventId, setQueryEventId] = useState<string | string[] | undefined>("")
 
     useEffect(() => {
-        setQueryEventId(route.query.eventId)
-    }, [route])
+        if (route.query.eventId) setQueryEventId(route.query.eventId)
+        else route.push("/")
+    }, [route.query])
 
     return (
         <MainLayout>

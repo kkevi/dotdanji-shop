@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react"
 import {SelectChangeEvent, useMediaQuery, useTheme} from "@mui/material"
 //components
 import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
-import {GoodsItemType} from "types/goods-type"
+import {GoodsItemType, OptionsType} from "types/goods-type"
 
 import Router, {useRouter} from "next/router"
 import {CartOptionsType, OptionCart} from "types/cart-type"
@@ -26,7 +26,8 @@ export default function GoodsDetailPage(props: Props) {
 
     //데이터
     const [goodsItemData, setGoodsItemData] = useState<GoodsItemType>(GOODS_ITEMS_DATA[0])
-    const {sale, price, options = []} = goodsItemData
+    const {sale, price} = goodsItemData
+    const options = JSON.parse(goodsItemData.options) as OptionsType[]
     //할인 계산식
     var resultPrice = sale > 0 ? price - price * (sale / 100) : price
 

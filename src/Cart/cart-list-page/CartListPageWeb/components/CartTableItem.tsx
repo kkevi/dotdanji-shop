@@ -27,7 +27,7 @@ export default function CartTableItem(props: CartListProps) {
         try {
             //제품정보 가져오기
             const goods = await GOODS_ITEMS_DATA.filter(it => it.goodsId === cartItem.goodsId)
-            setGoodsThumbnail(goods[0].thumbnails.images[0])
+            setGoodsThumbnail(goods[0].thumbnails)
             setGoodsName(goods[0].name)
         } catch (e) {
             console.log(e)

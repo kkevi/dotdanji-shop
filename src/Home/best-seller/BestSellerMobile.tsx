@@ -51,7 +51,7 @@ export default function BestSellerMobile(props: Props) {
                                 >
                                     <ImageBox
                                         height="100%"
-                                        src={goods.thumbnails.images[0]}
+                                        src={JSON.parse(goods.thumbnails).images[0]}
                                         style={{
                                             borderTopLeftRadius: index === 0 ? 20 : 0,
                                             borderTopRightRadius: index === 1 ? 20 : 0,

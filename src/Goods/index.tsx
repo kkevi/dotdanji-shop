@@ -41,29 +41,68 @@ export default function GoodsLayout(props: Props) {
 
     useEffect(() => {
         getData()
-        console.log("goodsList ----->", goodsList)
     }, [categoryId])
 
-    async function getData() {
+    // async function addData() {
+    //     axios.defaults.withCredentials = true
+
+    //     const stage = "dotdanji-stages"
+    //     const id = "dotdanji-goods-list" // goods table 가져옴
+    //     try {
+    //         await axios({
+    //             url: `/api/${stage}/${id}`,
+    //             method: "POST",
+    //             withCredentials: true, // 쿠키 cors 통신 설정 허용
+    //             headers: {
+    //                 "Access-Control-Allow-Origin": "https://dotdanji.com",
+    //                 "Content-Type": "application/json",
+    //             },
+    //             data: {
+    //                 goodsId: "dotdanji-dotdanji-test2",
+    //                 categoryId: "dotdanji",
+    //                 thumbnails:
+    //                     '{"images": ["/images/fake/storyself.png", "/images/fake/little-prince.png", "/images/fake/pinokio.png"], "bgColor": "#91C3CE"}',
+    //                 options: '[{"optionId":"fake-goodsId-0_opt0", "name":"돛단지 구독권","addPlace":0}',
+    //                 name: "test1",
+    //                 tags: '["1", "2", "3", "4"]',
+    //                 infoText: "123",
+    //                 infoHtml: "",
+    //                 price: 200,
+    //                 sale: 20,
+    //             },
+    //         })
+    //             .then(response => {
+    //                 console.log("--->", response)
+    //             })
+    //             .catch(function (error) {
+    //                 console.log("axios error:", error)
+    //             })
+    //     } catch (error) {
+    //         //응답 실패
+    //         console.error("try error:", error)
+    //     }
+    // }
+
+    const getData = async () => {
         axios.defaults.withCredentials = true
 
         const stage = "dotdanji-stages"
         const id = "dotdanji-goods-list" // goods table 가져옴
         try {
-            //응답 성공
             await axios({
                 url: `/api/${stage}/${id}`,
-                method: "get",
+                method: "GET",
                 withCredentials: true, // 쿠키 cors 통신 설정 허용
                 headers: {
                     "Access-Control-Allow-Origin": "https://dotdanji.com",
                     "Content-Type": "application/json",
                 },
+                data: {
+                    categoryId: categoryTitle,
+                },
             })
                 .then(response => {
-                    const parseResponse = JSON.parse(response.data.body)
-                    console.log("--->", parseResponse)
-                    setGoodsList(parseResponse?.message)
+                    setGoodsList(response.data.message)
                 })
                 .catch(function (error) {
                     console.log("axios error:", error)
@@ -73,6 +112,7 @@ export default function GoodsLayout(props: Props) {
             console.error("try error:", error)
         }
     }
+
     useEffect(() => {
         //최상단 title 표시
         const category = categoryList.filter(it => it.categoryId === categoryId)[0] as GoodsCategoryType

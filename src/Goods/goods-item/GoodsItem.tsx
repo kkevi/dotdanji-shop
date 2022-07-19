@@ -72,7 +72,6 @@ export default function GoodsItem(props: props) {
         [goodsId],
     )
     const thumbnail = JSON.parse(thumbnails)
-    console.log("-=> thumbnails", thumbnail)
 
     return (
         <div className={classes.root}>

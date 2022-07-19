@@ -10,16 +10,16 @@ export const GOODS_ITEMS_DATA: GoodsItemType[] = [
     {
         goodsId: "fake-goodsId-0",
         categoryId: "ebook",
-        thumbnails: {
+        thumbnails: JSON.stringify({
             images: ["/images/fake/storyself.png", "https://storyself.com/resources/images/main_platformpic.jpg"],
             bgColor: "#91C3CE",
-        },
-        options: [
+        }),
+        options: JSON.stringify([
             {optionId: "fake-goodsId-0_opt0", name: "돛단지 구독권", addPlace: 0},
             {optionId: "fake-goodsId-0_opt1", name: "돛단지 구독권 2장", addPlace: 85000},
-        ],
+        ]),
         name: "돛단지 구독권",
-        tags: ["5~9세용", "스마트폰", "타블렛PC 지원"],
+        tags: "['15~9세용', '스마트폰', '타블렛PC 지원']",
         infoText:
             "온가족이 동화 속 주인공이 되어 이야기를 주도적으로 이끌어가며 다양한 읽기교육을 제공하는 인터랙티브 실감 동화교육 서비스입니다.",
         infoHtml: `<div>

@@ -3,13 +3,14 @@ import {useRouter} from "next/router"
 import MainLayout from "components/main-layout/MainLayout"
 import GoodsDetailPage from "src/Goods/goods-detail-page/GoodsDetailPage"
 
-export default function Index() {
+export default function IndexGoodsDetail() {
     const route = useRouter()
     const [goodsId, setGoodsId] = useState<string | string[] | undefined>("")
 
     useEffect(() => {
-        setGoodsId(route.query.goodsId)
-    }, [route])
+        if (route.query.goodsId) setGoodsId(route.query.goodsId)
+        else route.push("/")
+    }, [route.query])
 
     return (
         <MainLayout>

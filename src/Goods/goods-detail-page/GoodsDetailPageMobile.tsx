@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
-import {GoodsItemType, OptionsType} from "types/goods-type"
+import {GoodsItemType, OptionsType, Thumbnail} from "types/goods-type"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
@@ -43,7 +43,10 @@ export default function GoodsDetailPageMobile(props: Props) {
     } = props
 
     //데이터
-    const {name, sale, price, thumbnails, infoText, options = [], tags, categoryId, infoHtml} = goodsItemData
+    const {name, sale, price, infoText, categoryId, infoHtml} = goodsItemData
+    const thumbnails = JSON.parse(goodsItemData.thumbnails) as Thumbnail
+    const tags = JSON.parse(goodsItemData.tags) as string[]
+    const options = JSON.parse(goodsItemData.options) as OptionsType[]
     //할인 계산식
     var resultPrice = sale > 0 ? price - price * (sale / 100) : price
 

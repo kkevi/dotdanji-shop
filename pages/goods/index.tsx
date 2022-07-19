@@ -4,7 +4,7 @@ import GoodsLayout from "src/Goods"
 import {useRouter} from "next/router"
 import {useEffect, useState} from "react"
 
-export default function Index() {
+export default function IndexGoods() {
     const route = useRouter()
     const [categoryId, setCategoryId] = useState<string | string[] | undefined>("")
 
