@@ -28,7 +28,8 @@ export default function NewArrival(props: Props) {
             url: "https://instagram.com/__simkids?igshid=YmMyMTA2M2Y=",
         },
         {
-            thumbnails: "/images/photo/simbaat-photo.png",
+            // thumbnails: "/images/photo/simbaat-photo.png",
+            thumbnails: "",
             title: "아이들과 함께 하고 싶은 심바트",
             url: "https://simbaat.com/",
         },

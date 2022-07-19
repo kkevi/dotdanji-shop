@@ -3,6 +3,7 @@ import {useTheme, useMediaQuery} from "@mui/material"
 
 import HomeSlider from "./home-slider"
 import EventSlider from "./event-slider"
+import AppBanner from "./app-banner"
 import NewArrival from "./new-arrival"
 import BestSeller from "./best-seller"
 import PartnerBenner from "./partner-benner"
@@ -18,6 +19,8 @@ export default function Home() {
 
             {/* 이벤트 영역 (좌:영상, 우:슬라이드) */}
             <EventSlider isMobile={smDown} />
+
+            {/* <AppBanner isMobile={smDown} /> */}
 
             <div
                 style={{
