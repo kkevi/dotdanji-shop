@@ -13,7 +13,7 @@ import {
 } from "@mui/material"
 import {GoodsCategoryType, GoodsItemType} from "types/goods-type"
 //fake data
-import {GOODS_ITEMS_DATA, GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
+import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 
 import GoodsItem from "./goods-item/GoodsItem"
 import axios from "axios"
@@ -84,6 +84,7 @@ export default function GoodsLayout(props: Props) {
     // }
 
     const getData = async () => {
+        if (categoryId === "") return
         axios.defaults.withCredentials = true
 
         const stage = "dotdanji-stages"
@@ -97,8 +98,8 @@ export default function GoodsLayout(props: Props) {
                     "Access-Control-Allow-Origin": "https://dotdanji.com",
                     "Content-Type": "application/json",
                 },
-                data: {
-                    categoryId: categoryTitle,
+                params: {
+                    categoryId: categoryId,
                 },
             })
                 .then(response => {
@@ -117,10 +118,6 @@ export default function GoodsLayout(props: Props) {
         //최상단 title 표시
         const category = categoryList.filter(it => it.categoryId === categoryId)[0] as GoodsCategoryType
         setCategoryTitle(category?.title)
-
-        //item list 불러오기
-        // const goods = GOODS_ITEMS_DATA.filter(it => it.categoryId === categoryId) as GoodsItemType[]
-        // setFakeGoodsList(goods)
     }, [categoryId])
 
     const onChangeSelect = (event: SelectChangeEvent) => {
@@ -166,7 +163,7 @@ export default function GoodsLayout(props: Props) {
             {goodsList.length > 0 && (
                 <Grid container spacing={3}>
                     {goodsList.map((data: GoodsItemType, index) => (
-                        <Grid item key={data.goodsId + index} lg={4} md={4} sm={6} xs={6}>
+                        <Grid item key={data.productId + index} lg={4} md={4} sm={6} xs={6}>
                             <GoodsItem data={data} mobile={mobile} />
                         </Grid>
                     ))}

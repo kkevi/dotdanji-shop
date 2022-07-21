@@ -2,16 +2,15 @@ import React, {useEffect, useState} from "react"
 
 import {SelectChangeEvent, useMediaQuery, useTheme} from "@mui/material"
 //components
-import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
-import {GoodsItemType, OptionsType} from "types/goods-type"
+import {GoodsItemDefaultData, GoodsItemType} from "types/goods-type"
 
 import Router, {useRouter} from "next/router"
 import {CartOptionsType, OptionCart} from "types/cart-type"
-import useStore from "store/useStore"
 
 import GoodsDetailPageWeb from "./GoodsDetailPageWeb"
 import GoodsDetailPageMobile from "./GoodsDetailPageMobile"
 import {useLocalStorage} from "react-use"
+import axios from "axios"
 
 type Props = {
     goodsId: string
@@ -22,12 +21,12 @@ export default function GoodsDetailPage(props: Props) {
     const route = useRouter()
     const theme = useTheme()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
-    const [cartData, setCartData] = useLocalStorage("cartData", "")
+    const [cartData, setCartData] = useLocalStorage("cartData", "{}")
 
     //데이터
-    const [goodsItemData, setGoodsItemData] = useState<GoodsItemType>(GOODS_ITEMS_DATA[0])
+    const [goodsItemData, setGoodsItemData] = useState<GoodsItemType>(GoodsItemDefaultData)
     const {sale, price} = goodsItemData
-    const options = JSON.parse(goodsItemData.options) as OptionsType[]
+    const options = [{optionId: "", name: "test", addPlace: 1000}]
     //할인 계산식
     var resultPrice = sale > 0 ? price - price * (sale / 100) : price
 
@@ -36,6 +35,56 @@ export default function GoodsDetailPage(props: Props) {
     const [selectValue, setSelectValue] = useState(defaultOption)
     const [selectValueList, setSelectValueList] = useState<OptionCart[]>([])
     const [totalPrice, setTotalPrice] = useState(0)
+
+    useEffect(() => {
+        onLoadData()
+        console.log("options:", options)
+    }, [goodsId])
+
+    const onLoadData = async () => {
+        if (goodsId === "") return
+        axios.defaults.withCredentials = true
+
+        const stage = "dotdanji-stages"
+        const id = "dotdanji-goods-list" // goods table 가져옴
+        try {
+            await axios({
+                url: `/api/${stage}/${id}`,
+                method: "GET",
+                withCredentials: true, // 쿠키 cors 통신 설정 허용
+                headers: {
+                    "Access-Control-Allow-Origin": "https://dotdanji.com",
+                    "Content-Type": "application/json",
+                },
+                params: {
+                    goodsId: goodsId,
+                },
+            })
+                .then(response => {
+                    const data = response.data.message[0]
+                    setGoodsItemData({
+                        productId: data.goodsId,
+                        categoryId: data.categoryId,
+                        listThumbnail: data.listThumbnail,
+                        detailThumbnails: JSON.parse(data.detailThumbnails) || [],
+                        mainColor: data.mainColor,
+                        options: JSON.parse(data.options) || [],
+                        name: data.name,
+                        tags: [],
+                        infoText: data.infoText,
+                        infoImage: data.infoHtml,
+                        price: data.price,
+                        sale: data.sale,
+                    })
+                })
+                .catch(function (error) {
+                    console.log("axios error:", error)
+                })
+        } catch (error) {
+            //응답 실패
+            console.error("try error:", error)
+        }
+    }
 
     useEffect(() => {
         //전체 금액 표시
@@ -110,6 +159,7 @@ export default function GoodsDetailPage(props: Props) {
             } else {
                 // 장바구니에 하나라도 값이 있을 경우
                 const parseCartData = JSON.parse(cartData)
+
                 const data_OptionIds = data.map(itm => {
                     return itm.optionId
                 })
@@ -166,7 +216,6 @@ export default function GoodsDetailPage(props: Props) {
         <>
             {mobile ? (
                 <GoodsDetailPageMobile
-                    goodsId={goodsId}
                     goodsItemData={goodsItemData}
                     selectValueList={selectValueList}
                     setSelectValueList={setSelectValueList}
@@ -178,7 +227,6 @@ export default function GoodsDetailPage(props: Props) {
                 />
             ) : (
                 <GoodsDetailPageWeb
-                    goodsId={goodsId}
                     goodsItemData={goodsItemData}
                     selectValueList={selectValueList}
                     setSelectValueList={setSelectValueList}

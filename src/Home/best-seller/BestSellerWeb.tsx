@@ -45,7 +45,7 @@ export default function BestSellerWeb(props: Props) {
                 <Grid container alignItems="center" width="70%">
                     {bestSellerList.map((goods, index) => {
                         const hovering = hover === index
-                        const thumbnails = JSON.parse(goods.thumbnails) as Thumbnail
+                        const thumbnails = JSON.parse(goods.detailThumbnails) as Thumbnail
 
                         return (
                             <Grid item xs={4} key={index} height="50%">
@@ -53,7 +53,7 @@ export default function BestSellerWeb(props: Props) {
                                     style={{height: "100%", position: "relative"}}
                                     onMouseEnter={() => setHover(index)}
                                     onMouseLeave={() => setHover(-1)}
-                                    onClick={() => route.push({pathname: `/goods/detail`, query: goods.goodsId})}
+                                    onClick={() => route.push({pathname: `/goods/detail`, query: goods.productId})}
                                 >
                                     <div className={classes.stack} style={{display: hovering ? "flex" : "none"}}>
                                         <Typography className={classes.title}>{goods.name}</Typography>

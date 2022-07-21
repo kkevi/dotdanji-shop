@@ -1,4 +1,4 @@
-import {useCallback, useState} from "react"
+import {useCallback, useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import useStyles from "./styles"
 import {GoodsItemType} from "types/goods-type"
@@ -18,7 +18,7 @@ type props = {
 }
 
 export default function GoodsItem(props: props) {
-    const {goodsId, categoryId, thumbnails, name, price, sale} = props.data
+    const {productId: goodsId, categoryId, listThumbnail, name, price, sale} = props.data
     const {mobile} = props
     const classes = useStyles()
     const route = useRouter()
@@ -71,13 +71,12 @@ export default function GoodsItem(props: props) {
         },
         [goodsId],
     )
-    const thumbnail = JSON.parse(thumbnails)
 
     return (
         <div className={classes.root}>
             <div className={classes.thumbnail}>
                 <ButtonBase onClick={onClickRouter} disabled={disabled}>
-                    {/* <ImageBox src={thumbnails.images[0]} height={mobile ? "180px" : "400px"} /> */}
+                    {listThumbnail && <ImageBox src={listThumbnail} height={mobile ? "180px" : "400px"} />}
                 </ButtonBase>
 
                 <div className={mobile ? classes.iconButtonListMobile : classes.iconButtonList}>

@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import {useRouter} from "next/router"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
-import {GoodsItemType, OptionsType, Thumbnail} from "types/goods-type"
+import {GoodsItemType, OptionsType} from "types/goods-type"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
@@ -16,7 +16,6 @@ import ImageBox from "components/image-box/ImageBox"
 import ExtraInformationModule from "./components/ExtraInformationModule"
 
 type Props = {
-    goodsId: string
     goodsItemData: GoodsItemType
     selectValueList: OptionCart[]
     setSelectValueList: React.Dispatch<React.SetStateAction<OptionCart[]>>
@@ -31,7 +30,6 @@ export default function GoodsDetailPageMobile(props: Props) {
     const classes = useStyles()
     const route = useRouter()
     const {
-        goodsId,
         goodsItemData,
         selectValueList,
         setSelectValueList,
@@ -43,10 +41,9 @@ export default function GoodsDetailPageMobile(props: Props) {
     } = props
 
     //데이터
-    const {name, sale, price, infoText, categoryId, infoHtml} = goodsItemData
-    const thumbnails = JSON.parse(goodsItemData.thumbnails) as Thumbnail
-    const tags = JSON.parse(goodsItemData.tags) as string[]
-    const options = JSON.parse(goodsItemData.options) as OptionsType[]
+    const {detailThumbnails, mainColor, tags, options, name, sale, price, infoText, categoryId, infoImage} =
+        goodsItemData
+
     //할인 계산식
     var resultPrice = sale > 0 ? price - price * (sale / 100) : price
 
@@ -56,25 +53,26 @@ export default function GoodsDetailPageMobile(props: Props) {
 
     return (
         <div>
-            <Stack className={classes.rootMobile} bgcolor={thumbnails.bgColor}>
+            <Stack className={classes.rootMobile} bgcolor={mainColor}>
                 <Slider {...sliderSettings}>
-                    {thumbnails.images.map((image, index) => (
-                        <Stack
-                            key={"thumbnail" + index}
-                            position="relative"
-                            display="flex !important"
-                            justifyContent="center"
-                            alignItems="center"
-                            height={450}
-                        >
-                            <ImageBox
-                                src={image}
-                                height={300}
-                                width={"100%"}
-                                style={{boxShadow: "0px 58px 49px -40px #00000030"}}
-                            />
-                        </Stack>
-                    ))}
+                    {detailThumbnails &&
+                        detailThumbnails.map((image, index) => (
+                            <Stack
+                                key={"detailThumbnails" + index}
+                                position="relative"
+                                display="flex !important"
+                                justifyContent="center"
+                                alignItems="center"
+                                height={450}
+                            >
+                                <ImageBox
+                                    src={image}
+                                    height={300}
+                                    width={"100%"}
+                                    style={{boxShadow: "0px 58px 49px -40px #00000030"}}
+                                />
+                            </Stack>
+                        ))}
                 </Slider>
 
                 <Typography mt={2} fontSize={12}>
@@ -188,7 +186,7 @@ export default function GoodsDetailPageMobile(props: Props) {
                 </Stack>
             </Stack>
 
-            {categoryId === "ebook" && <ExtraInformationModule infoHtml={infoHtml} mobile />}
+            {categoryId === "ebook" && <ExtraInformationModule infoHtml={infoImage} mobile />}
         </div>
     )
 }

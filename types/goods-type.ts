@@ -12,25 +12,37 @@ export interface GoodsCategoryType {
  *
  */
 export interface GoodsItemType {
-    goodsId: string //필수
+    productId: string //필수
     categoryId: string //필수
-    thumbnails: string //필수
-    options: string
+    listThumbnail: string //필수
+    detailThumbnails: string[]
+    mainColor: string
+    options: OptionsType[]
     name: string //필수
-    tags: string
+    tags: string[]
     infoText: string //필수
-    infoHtml: string
+    infoImage: string
     price: number
     sale: number
-}
-
-export type Thumbnail = {
-    images: string[]
-    bgColor: string
 }
 
 export type OptionsType = {
     optionId: string
     name: string
     addPlace: number
+}
+
+export const GoodsItemDefaultData: GoodsItemType = {
+    productId: "",
+    categoryId: "",
+    listThumbnail: "",
+    detailThumbnails: [],
+    mainColor: "#fff",
+    options: [{optionId: "", name: "test", addPlace: 1000}],
+    name: "",
+    tags: [""],
+    infoText: "",
+    infoImage: "",
+    price: 1000000000000,
+    sale: 0,
 }

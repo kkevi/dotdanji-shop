@@ -1,9 +1,9 @@
 import {Checkbox, FormControlLabel, Stack, TableCell, Typography} from "@mui/material"
 import {CartOptionsType} from "types/cart-type"
 import CountController from "components/count-controller/CountController"
-import {GOODS_ITEMS_DATA} from "components/fake-data/fake-goods"
 import ImageBox from "components/image-box/ImageBox"
 import React, {useEffect, useState} from "react"
+import {GoodsItemDefaultData} from "types/goods-type"
 
 type CartListProps = {
     index: number
@@ -16,7 +16,7 @@ type CartListProps = {
 
 export default function CartTableItem(props: CartListProps) {
     const {index, cartItem, cartItemList, checkList, setCartItemList, onChangeCheckbox} = props
-    const [goodsThumbnail, setGoodsThumbnail] = useState("")
+    const [goodsThumbnail, setGoodsThumbnail] = useState<string>(GoodsItemDefaultData.listThumbnail)
     const [goodsName, setGoodsName] = useState("")
 
     useEffect(() => {
@@ -25,10 +25,7 @@ export default function CartTableItem(props: CartListProps) {
 
     const loadGoodsData = async () => {
         try {
-            //제품정보 가져오기
-            const goods = await GOODS_ITEMS_DATA.filter(it => it.goodsId === cartItem.goodsId)
-            setGoodsThumbnail(goods[0].thumbnails)
-            setGoodsName(goods[0].name)
+            //TODO: 제품정보 가져오기
         } catch (e) {
             console.log(e)
         }

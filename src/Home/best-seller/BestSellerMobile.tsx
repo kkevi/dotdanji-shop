@@ -33,14 +33,14 @@ export default function BestSellerMobile(props: Props) {
                             <Grid
                                 item
                                 xs={6}
-                                key={`best-seller-grid${goods.goodsId}`}
+                                key={`best-seller-grid${goods.productId}`}
                                 sx={{
                                     mb: 1,
                                     alignItems: "center",
                                     textAlign: "center",
                                     border: "1px solid white",
                                 }}
-                                onClick={() => route.push({pathname: `/goods/detail`, query: goods.goodsId})}
+                                onClick={() => route.push({pathname: `/goods/detail`, query: goods.productId})}
                             >
                                 <div
                                     style={{
@@ -51,7 +51,7 @@ export default function BestSellerMobile(props: Props) {
                                 >
                                     <ImageBox
                                         height="100%"
-                                        src={JSON.parse(goods.thumbnails).images[0]}
+                                        src={JSON.parse(goods.detailThumbnails).images[0]}
                                         style={{
                                             borderTopLeftRadius: index === 0 ? 20 : 0,
                                             borderTopRightRadius: index === 1 ? 20 : 0,

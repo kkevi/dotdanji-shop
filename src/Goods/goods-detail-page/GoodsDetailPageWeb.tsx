@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
-import {GoodsItemType, OptionsType, Thumbnail} from "types/goods-type"
+import {GoodsItemType, OptionsType} from "types/goods-type"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
@@ -15,7 +15,6 @@ import ImageBox from "components/image-box/ImageBox"
 import ExtraInformationModule from "./components/ExtraInformationModule"
 
 type Props = {
-    goodsId: string
     goodsItemData: GoodsItemType
     selectValueList: OptionCart[]
     setSelectValueList: React.Dispatch<React.SetStateAction<OptionCart[]>>
@@ -29,7 +28,6 @@ type Props = {
 export default function GoodsDetailPageWeb(props: Props) {
     const classes = useStyles()
     const {
-        goodsId,
         goodsItemData,
         selectValueList,
         setSelectValueList,
@@ -41,12 +39,11 @@ export default function GoodsDetailPageWeb(props: Props) {
     } = props
 
     //데이터
-    const {name, sale, price, infoText, categoryId, infoHtml} = goodsItemData
+    const {detailThumbnails, mainColor, tags, options, name, sale, price, infoText, categoryId, infoImage} =
+        goodsItemData
+
     //할인 계산식
     var resultPrice = sale > 0 ? price - price * (sale / 100) : price
-    const thumbnails = JSON.parse(goodsItemData.thumbnails) as Thumbnail
-    const tags = JSON.parse(goodsItemData.tags) as string[]
-    const options = JSON.parse(goodsItemData.options) as OptionsType[]
 
     //옵션 선택 박스
     const defaultOption = "옵션 선택"
@@ -54,29 +51,30 @@ export default function GoodsDetailPageWeb(props: Props) {
 
     return (
         <div className={classes.root}>
-            <Stack direction="row" width="100%" bgcolor={thumbnails.bgColor}>
+            <Stack direction="row" width="100%" bgcolor={mainColor}>
                 {/* left box */}
                 <div style={{width: "60%", paddingTop: "2rem"}}>
                     <Slider {...sliderSettings}>
-                        {thumbnails.images.map((image, index) => (
-                            <Stack
-                                mt={10}
-                                key={"thumbnail" + index}
-                                width="100%"
-                                className={classes.slideBox}
-                                height={1000}
-                                justifyContent="center"
-                                alignItems="center"
-                                display="flex !important"
-                            >
-                                <ImageBox
-                                    src={image}
-                                    height={700}
-                                    width={500}
-                                    style={{boxShadow: "0px 58px 49px -40px #00000030"}}
-                                />
-                            </Stack>
-                        ))}
+                        {detailThumbnails &&
+                            detailThumbnails.map((image, index) => (
+                                <Stack
+                                    mt={10}
+                                    key={"detailThumbnails" + index}
+                                    width="100%"
+                                    className={classes.slideBox}
+                                    height={1000}
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    display="flex !important"
+                                >
+                                    <ImageBox
+                                        src={image}
+                                        height={700}
+                                        width={500}
+                                        style={{boxShadow: "0px 58px 49px -40px #00000030"}}
+                                    />
+                                </Stack>
+                            ))}
                     </Slider>
                 </div>
 
@@ -198,7 +196,7 @@ export default function GoodsDetailPageWeb(props: Props) {
                 </div>
             </Stack>
 
-            {categoryId === "ebook" && <ExtraInformationModule infoHtml={infoHtml} />}
+            {categoryId === "ebook" && <ExtraInformationModule infoHtml={infoImage} />}
         </div>
     )
 }

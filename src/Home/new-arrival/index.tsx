@@ -1,6 +1,4 @@
 import {useState} from "react"
-// import {GOODS_ITEMS_DATA} from "src/Components/fake-data/fake-goods"
-// import {GoodsItemType} from "types/goods-type"
 import {NewsType} from "types/news-type"
 import NewArrivalMobile from "./NewArrivalMobile"
 import NewArrivalWeb from "./NewArrivalWeb"
