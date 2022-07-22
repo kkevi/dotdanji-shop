@@ -26,54 +26,14 @@ export default function Index() {
         }
     }, [])
 
-    const fakeEbookList = [
-        {
-            title: "피노키오",
-            url: "/",
-            image: "images/fake/pinokio.png",
-        },
-        {
-            title: "피노키오",
-            url: "/",
-            image: "images/fake/pinokio.png",
-        },
-        {
-            title: "피노키오",
-            url: "/",
-            image: "images/fake/pinokio.png",
-        },
-        {
-            title: "피노키오",
-            url: "/",
-            image: "images/fake/pinokio.png",
-        },
-        {
-            title: "피노키오",
-            url: "/",
-            image: "images/fake/pinokio.png",
-        },
-        {
-            title: "피노키오",
-            url: "/",
-            image: "images/fake/pinokio.png",
-        },
-    ]
-
     return (
-        <>
-            <Stack py={mobile ? 9.5 : 13.5} sx={{backgroundColor: "#f9fafb"}}>
-                <MyPageHeader title="마이페이지" mobile={mobile} />
-                {mobile ? (
-                    <MyPageMobile
-                        fakeEbookList={fakeEbookList}
-                        userName={userName}
-                        onClickLoggedOut={onClickLoggedOut}
-                        mobile
-                    />
-                ) : (
-                    <MyPageWeb fakeEbookList={fakeEbookList} userName={userName} onClickLoggedOut={onClickLoggedOut} />
-                )}
-            </Stack>
-        </>
+        <Stack py={mobile ? 9.5 : 13.5} sx={{backgroundColor: "#f9fafb"}}>
+            <MyPageHeader title="마이페이지" mobile={mobile} />
+            {mobile ? (
+                <MyPageMobile userName={userName} onClickLoggedOut={onClickLoggedOut} />
+            ) : (
+                <MyPageWeb userName={userName} onClickLoggedOut={onClickLoggedOut} />
+            )}
+        </Stack>
     )
 }

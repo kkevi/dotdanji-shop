@@ -16,7 +16,8 @@ const styles = makeStyles(() =>
         box2: {
             justifyContent: "center",
             alignItems: "center",
-            width: 280,
+            // width: 280,
+            flex: 1,
             height: 92,
             borderRadius: 20,
             border: "1px solid #DBE0E5",

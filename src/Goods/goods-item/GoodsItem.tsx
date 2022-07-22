@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from "react"
+import {useCallback, useState} from "react"
 import {useRouter} from "next/router"
 import useStyles from "./styles"
 import {GoodsItemType} from "types/goods-type"
@@ -6,9 +6,6 @@ import {GoodsItemType} from "types/goods-type"
 import {IconButton, Typography, ButtonBase} from "@mui/material"
 import ImageBox from "components/image-box/ImageBox"
 //icon
-import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
-import ShareIcon from "@mui/icons-material/Share"
 import useStore from "store/useStore"
 import {toast} from "react-toastify"
 
@@ -82,13 +79,13 @@ export default function GoodsItem(props: props) {
                 <div className={mobile ? classes.iconButtonListMobile : classes.iconButtonList}>
                     <IconButton onClick={onClickFavorBtn}>
                         {favorState ? (
-                            <FavoriteRoundedIcon sx={{fontSize: mobile ? 16 : 24}} />
+                            <ImageBox width={mobile ? 23 : 30} height={mobile ? 23 : 30} src="/icons/icon-heart.png" />
                         ) : (
-                            <FavoriteBorderRoundedIcon sx={{fontSize: mobile ? 16 : 24}} />
+                            <ImageBox width={mobile ? 23 : 30} height={mobile ? 23 : 30} src="/icons/icon-heart2.png" />
                         )}
                     </IconButton>
                     <IconButton onClick={onClickShare}>
-                        <ShareIcon sx={{fontSize: mobile ? 16 : 24}} />
+                        <ImageBox width={mobile ? 28 : 32} height={mobile ? 28 : 32} src="/icons/icon-share.png" />
                     </IconButton>
                 </div>
             </div>

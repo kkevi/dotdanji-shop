@@ -1,28 +1,23 @@
 import React from "react"
-import {Container, Grid, Stack, Typography, useTheme} from "@mui/material"
+import {Container, Stack, Typography, useTheme} from "@mui/material"
 import {useRouter} from "next/router"
 
 import useStyles from "./styles-mobile"
-import EBookItem from "./ebook-item/EbookItem"
+
 //icons
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket"
 import PersonIcon from "@mui/icons-material/Person"
 import LockIcon from "@mui/icons-material/Lock"
+import OrderListPage from "./order-list-page/OrderListPage"
 
 type MyPageProps = {
     userName: string
     onClickLoggedOut: () => void
-    fakeEbookList: {
-        title: string
-        url: string
-        image: string
-    }[]
-    mobile: boolean
 }
 
 export default function MyPageMobile(prop: MyPageProps) {
-    const {userName, onClickLoggedOut, fakeEbookList, mobile} = prop
+    const {userName, onClickLoggedOut} = prop
     const route = useRouter()
     const theme = useTheme()
     const classes = useStyles()
@@ -81,57 +76,7 @@ export default function MyPageMobile(prop: MyPageProps) {
                 </Stack>
             </Stack>
 
-            {/* 이북리스트 */}
-            <Stack direction="row" alignItems="center" mt={6} mb={3}>
-                <Typography className="pointFont" fontSize={18} mr={1}>
-                    나의 E-BOOK
-                </Typography>
-                <Typography color="#777777" fontSize={12}>
-                    {fakeEbookList.length}권
-                </Typography>
-            </Stack>
-            <Grid container alignItems="center" spacing={4}>
-                {fakeEbookList.map((itm, index) => {
-                    return (
-                        <Grid key={"ebookitem" + index} item xs={6}>
-                            <EBookItem title={itm.title} url={itm.url} images={itm.image} mobile />
-                        </Grid>
-                    )
-                })}
-            </Grid>
+            <OrderListPage front />
         </Container>
     )
 }
-
-const fakeEbookList = [
-    {
-        title: "피노키오",
-        url: "/",
-        image: "images/fake/pinokio.png",
-    },
-    {
-        title: "피노키오",
-        url: "/",
-        image: "images/fake/pinokio.png",
-    },
-    {
-        title: "피노키오",
-        url: "/",
-        image: "images/fake/pinokio.png",
-    },
-    {
-        title: "피노키오",
-        url: "/",
-        image: "images/fake/pinokio.png",
-    },
-    {
-        title: "피노키오",
-        url: "/",
-        image: "images/fake/pinokio.png",
-    },
-    {
-        title: "피노키오",
-        url: "/",
-        image: "images/fake/pinokio.png",
-    },
-]

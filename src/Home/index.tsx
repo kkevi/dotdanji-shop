@@ -33,7 +33,7 @@ export default function Home() {
             ) : (
                 <div
                     style={{
-                        backgroundImage: "url('/images/background.png')",
+                        backgroundImage: "url('/images/background2.png')",
                         backgroundRepeat: "no-repeat",
                         backgroundSize: "100%",
                         maxWidth: 1920,
