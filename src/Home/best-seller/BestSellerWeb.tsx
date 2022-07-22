@@ -7,7 +7,7 @@ import useStyles from "./styles"
 import ImageBox from "components/image-box/ImageBox"
 import CustomedButton from "components/customed-button/CustomedButton"
 
-import {GoodsItemType, Thumbnail} from "types/goods-type"
+import {GoodsItemType} from "types/goods-type"
 
 type Props = {
     bestSellerList: GoodsItemType[]
@@ -45,7 +45,7 @@ export default function BestSellerWeb(props: Props) {
                 <Grid container alignItems="center" width="70%">
                     {bestSellerList.map((goods, index) => {
                         const hovering = hover === index
-                        const thumbnails = JSON.parse(goods.detailThumbnails) as Thumbnail
+                        const thumbnails = goods.listThumbnail
 
                         return (
                             <Grid item xs={4} key={index} height="50%">
@@ -70,7 +70,7 @@ export default function BestSellerWeb(props: Props) {
                                             onClick={() => {}}
                                         />
                                     </div>
-                                    <ImageBox height="100%" src={thumbnails.images[0]} />
+                                    <ImageBox height="100%" src={goods.listThumbnail} />
                                 </div>
                             </Grid>
                         )
