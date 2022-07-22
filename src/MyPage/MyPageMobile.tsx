@@ -1,19 +1,22 @@
 import React from "react"
-import {Container, Stack, Typography, useTheme} from "@mui/material"
 import {useRouter} from "next/router"
 
+import {Container, Stack, Typography, useTheme} from "@mui/material"
 import useStyles from "./styles-mobile"
 
 //icons
-import FavoriteIcon from "@mui/icons-material/Favorite"
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket"
-import PersonIcon from "@mui/icons-material/Person"
-import LockIcon from "@mui/icons-material/Lock"
 import OrderListPage from "./order-list-page/OrderListPage"
+import ImageBox from "src/Components/image-box/ImageBox"
 
 type MyPageProps = {
     userName: string
     onClickLoggedOut: () => void
+}
+
+type Box2Props = {
+    onClick: () => void
+    src: string
+    title: string
 }
 
 export default function MyPageMobile(prop: MyPageProps) {
@@ -21,6 +24,17 @@ export default function MyPageMobile(prop: MyPageProps) {
     const route = useRouter()
     const theme = useTheme()
     const classes = useStyles()
+
+    const Box: React.FC<Box2Props> = ({onClick, src, title}) => {
+        return (
+            <Stack className={classes.box2} direction="row" onClick={onClick}>
+                <ImageBox width={25} height={25} src={src} />
+                <Typography ml={1} fontSize={14} fontWeight={700}>
+                    {title}
+                </Typography>
+            </Stack>
+        )
+    }
 
     return (
         <Container maxWidth="sm" sx={{backgroundColor: "#fff"}}>
@@ -43,37 +57,24 @@ export default function MyPageMobile(prop: MyPageProps) {
             </Stack>
 
             {/* 회원정보 리스트 */}
-            <Stack direction="row" alignItems="center" alignSelf="center" mt={4} spacing={4}>
-                <Stack className={classes.box} direction="column" onClick={() => route.push("/mypage/wishlist")}>
-                    <FavoriteIcon className={classes.iconBig} />
-                    <Typography className="pointFont">찜상품</Typography>
-                    <Typography fontSize={11} color="#777777">
-                        0개
-                    </Typography>
-                </Stack>
-                <Stack className={classes.box} direction="column" onClick={() => route.push("/mypage/orderlist")}>
-                    <ShoppingBasketIcon className={classes.iconBig} />
-                    <Typography className="pointFont">구매내역</Typography>
-                    <Typography fontSize={11} color="#777777">
-                        0개
-                    </Typography>
-                </Stack>
+            <Stack direction="row" alignItems="center" alignSelf="center" mt={4} spacing={2}>
+                <Box onClick={() => route.push("/mypage/wishlist")} src="/icons/icon-heart.png" title="찜 상품" />
+
+                <Box
+                    onClick={() => confirm("현재 준비 중인 서비스입니다.")}
+                    src="/icons/icon-jewel.png"
+                    title="마일리지"
+                />
             </Stack>
             {/* 회원정보 리스트2 */}
-            <Stack direction="row" alignItems="center" alignSelf="center" mt={2} spacing={4}>
-                <Stack className={classes.box2} direction="row" onClick={() => route.push("/mypage/modify")}>
-                    <PersonIcon className={classes.iconSmall} />
-                    <Typography fontSize={14} fontWeight={700}>
-                        내 정보 수정
-                    </Typography>
-                </Stack>
+            <Stack direction="row" alignItems="center" alignSelf="center" mt={2} spacing={2}>
+                <Box onClick={() => route.push("/mypage/modify")} src="/icons/icon-mypage.png" title="내 정보 수정" />
 
-                <Stack className={classes.box2} direction="row" onClick={() => route.push("/mypage/password-edit")}>
-                    <LockIcon className={classes.iconSmall} />
-                    <Typography fontSize={14} fontWeight={700}>
-                        비밀번호 변경
-                    </Typography>
-                </Stack>
+                <Box
+                    onClick={() => route.push("/mypage/password-edit")}
+                    src="/icons/icon-lock2.png"
+                    title="비밀번호 변경"
+                />
             </Stack>
 
             <OrderListPage front />

@@ -1,12 +1,10 @@
-import React, {Props} from "react"
-import {Container, Stack, Typography, useTheme} from "@mui/material"
+import React from "react"
 import {useRouter} from "next/router"
 
+import {Container, Stack, Typography, useTheme} from "@mui/material"
 import useStyles from "./styles"
 
 //icons
-import PersonIcon from "@mui/icons-material/Person"
-import LockIcon from "@mui/icons-material/Lock"
 import OrderListPage from "./order-list-page/OrderListPage"
 import ImageBox from "src/Components/image-box/ImageBox"
 
@@ -62,7 +60,11 @@ export default function MyPageWeb(prop: MyPageProps) {
             <Stack direction="row" alignItems="center" mt={8} spacing={4}>
                 <Box onClick={() => route.push("/mypage/wishlist")} src="/icons/icon-heart.png" title="찜 상품" />
 
-                <Box onClick={() => route.push("/mypage/modify")} src="/icons/icon-jewel.png" title="마일리지" />
+                <Box
+                    onClick={() => confirm("현재 준비 중인 서비스입니다.")}
+                    src="/icons/icon-jewel.png"
+                    title="마일리지"
+                />
 
                 <Box onClick={() => route.push("/mypage/modify")} src="/icons/icon-mypage.png" title="내 정보 수정" />
 
