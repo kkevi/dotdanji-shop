@@ -13,11 +13,11 @@ import {useLocalStorage} from "react-use"
 import axios from "axios"
 
 type Props = {
-    goodsId: string
+    productId: string
 }
 
 export default function GoodsDetailPage(props: Props) {
-    const {goodsId} = props
+    const {productId} = props
     const route = useRouter()
     const theme = useTheme()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
@@ -39,10 +39,10 @@ export default function GoodsDetailPage(props: Props) {
     useEffect(() => {
         onLoadData()
         console.log("options:", options)
-    }, [goodsId])
+    }, [productId])
 
     const onLoadData = async () => {
-        if (goodsId === "") return
+        if (productId === "") return
         axios.defaults.withCredentials = true
 
         const stage = "dotdanji-stages"
@@ -57,13 +57,13 @@ export default function GoodsDetailPage(props: Props) {
                     "Content-Type": "application/json",
                 },
                 params: {
-                    goodsId: goodsId,
+                    productId: productId,
                 },
             })
                 .then(response => {
                     const data = response.data.message[0]
                     setGoodsItemData({
-                        productId: data.goodsId,
+                        productId: data.productId,
                         categoryId: data.categoryId,
                         listThumbnail: data.listThumbnail,
                         detailThumbnails: JSON.parse(data.detailThumbnails) || [],
@@ -142,7 +142,7 @@ export default function GoodsDetailPage(props: Props) {
             const data = selectValueList.reduce((acc: CartOptionsType[], cur: OptionCart, index) => {
                 const goodsOptionData = options.filter(it => it.optionId === cur.optionId)[0]
                 acc.push({
-                    goodsId: goodsId,
+                    goodsId: productId,
                     count: cur.count,
                     price: (goodsOptionData.addPlace + resultPrice) * cur.count,
                     optionId: cur.optionId,

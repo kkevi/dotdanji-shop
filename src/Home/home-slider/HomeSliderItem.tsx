@@ -53,7 +53,12 @@ export default function HomeSliderItem(props: Props) {
                     />
                 </Stack>
             </Container> */}
-            <ImageBox height={mobile ? 700 : 720} style={{maxWidth: 1920}} src={image} />
+            <ImageBox
+                width={mobile ? 390 : "100%"}
+                height={mobile ? 700 : 720}
+                style={{maxWidth: mobile ? 640 : 1920}}
+                src={image}
+            />
         </Stack>
     )
 }

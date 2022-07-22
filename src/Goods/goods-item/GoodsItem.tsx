@@ -34,7 +34,7 @@ export default function GoodsItem(props: props) {
 
     //상세페이지 이동
     const onClickRouter = () => {
-        route.push({pathname: "/goods/detail", query: {goodsId: goodsId}})
+        route.push({pathname: "/goods/detail", query: {productId: goodsId}})
     }
 
     //공유하기 버튼 클릭

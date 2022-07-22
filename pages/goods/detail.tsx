@@ -5,16 +5,16 @@ import GoodsDetailPage from "src/Goods/goods-detail-page/GoodsDetailPage"
 
 export default function IndexGoodsDetail() {
     const route = useRouter()
-    const [goodsId, setGoodsId] = useState<string | string[] | undefined>("")
+    const [productId, setProductId] = useState<string | string[] | undefined>("")
 
     useEffect(() => {
-        if (route.query.goodsId) setGoodsId(route.query.goodsId)
+        if (route.query.productId) setProductId(route.query.productId)
         else route.push("/")
     }, [route.query])
 
     return (
         <MainLayout>
-            <GoodsDetailPage goodsId={goodsId as string} />
+            <GoodsDetailPage productId={productId as string} />
         </MainLayout>
     )
 }

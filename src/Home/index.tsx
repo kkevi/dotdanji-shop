@@ -22,21 +22,31 @@ export default function Home() {
 
             {/* <AppBanner isMobile={smDown} /> */}
 
-            <div
-                style={{
-                    backgroundImage: "url('/images/background.png')",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "100%",
-                    maxWidth: 1920,
-                    margin: "0 auto",
-                }}
-            >
-                {/* 베스트 셀러 */}
-                <BestSeller isMobile={smDown} />
+            {smDown ? (
+                <>
+                    {/* 베스트 셀러 */}
+                    <BestSeller isMobile={smDown} />
 
-                {/* 신상품 */}
-                <NewArrival isMobile={smDown} />
-            </div>
+                    {/* 신상품 */}
+                    <NewArrival isMobile={smDown} />
+                </>
+            ) : (
+                <div
+                    style={{
+                        backgroundImage: "url('/images/background.png')",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "100%",
+                        maxWidth: 1920,
+                        margin: "0 auto",
+                    }}
+                >
+                    {/* 베스트 셀러 */}
+                    <BestSeller isMobile={smDown} />
+
+                    {/* 신상품 */}
+                    <NewArrival isMobile={smDown} />
+                </div>
+            )}
 
             {/* 파트너사 */}
             {smDown ? undefined : <PartnerBenner />}
