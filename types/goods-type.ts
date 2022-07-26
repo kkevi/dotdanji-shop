@@ -1,3 +1,5 @@
+import {bool} from "aws-sdk/clients/signer"
+
 /*
  * 상품 카테고리
  *
@@ -12,11 +14,12 @@ export interface GoodsCategoryType {
  *
  */
 export interface GoodsItemType {
+    status?: boolean //필수
     productId: string //필수
     categoryId: string //필수
     listThumbnail: string //필수
     detailThumbnails: string[]
-    mainColor: string
+    mainColor: string //필수
     options: OptionsType[]
     name: string //필수
     tags: string[]
@@ -33,6 +36,7 @@ export type OptionsType = {
 }
 
 export const GoodsItemDefaultData: GoodsItemType = {
+    status: false,
     productId: "",
     categoryId: "",
     listThumbnail: "",

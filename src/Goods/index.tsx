@@ -43,46 +43,6 @@ export default function GoodsLayout(props: Props) {
         getData()
     }, [categoryId])
 
-    // async function addData() {
-    //     axios.defaults.withCredentials = true
-
-    //     const stage = "dotdanji-stages"
-    //     const id = "dotdanji-goods-list" // goods table 가져옴
-    //     try {
-    //         await axios({
-    //             url: `/api/${stage}/${id}`,
-    //             method: "POST",
-    //             withCredentials: true, // 쿠키 cors 통신 설정 허용
-    //             headers: {
-    //                 "Access-Control-Allow-Origin": "https://dotdanji.com",
-    //                 "Content-Type": "application/json",
-    //             },
-    //             data: {
-    //                 goodsId: "dotdanji-dotdanji-test2",
-    //                 categoryId: "dotdanji",
-    //                 thumbnails:
-    //                     '{"images": ["/images/fake/storyself.png", "/images/fake/little-prince.png", "/images/fake/pinokio.png"], "bgColor": "#91C3CE"}',
-    //                 options: '[{"optionId":"fake-goodsId-0_opt0", "name":"돛단지 구독권","addPlace":0}',
-    //                 name: "test1",
-    //                 tags: '["1", "2", "3", "4"]',
-    //                 infoText: "123",
-    //                 infoHtml: "",
-    //                 price: 200,
-    //                 sale: 20,
-    //             },
-    //         })
-    //             .then(response => {
-    //                 console.log("--->", response)
-    //             })
-    //             .catch(function (error) {
-    //                 console.log("axios error:", error)
-    //             })
-    //     } catch (error) {
-    //         //응답 실패
-    //         console.error("try error:", error)
-    //     }
-    // }
-
     const getData = async () => {
         if (categoryId === "") return
         axios.defaults.withCredentials = true

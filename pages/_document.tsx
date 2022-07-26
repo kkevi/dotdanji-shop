@@ -18,7 +18,8 @@ class MyDocument extends Document {
                         content="세상을 이롭게 바꾸는, 돛단지의 웹 쇼핑 사이트입니다."
                     />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+                    {/* 네이버 검색 */}
+                    <meta name="naver-site-verification" content="aff19eeacf24e702ac956572686f1ce6e8264142" />
                     {/* Open Graph 중 필수 적으로 해줘야하는 것들 */}
                     <meta property="og:type" content="website" />
                     <meta name="url" property="og:url" content="https://dotdanji.com" />
