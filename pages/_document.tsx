@@ -44,6 +44,8 @@ class MyDocument extends Document {
                         rel="stylesheet"
                         href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css"
                     />
+                    {/* <!-- api _ Blocked mixed content error--> */}
+                    <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
                 </Head>
                 <body>
                     {/* 네이버 로그인 */}
