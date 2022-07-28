@@ -21,7 +21,7 @@ export default function Cart() {
 
     return (
         <Container maxWidth={mobile ? "sm" : "lg"}>
-            <Stack sx={{mt: mobile ? 16 : 28, mb: 4}} alignItems="center">
+            <Stack sx={{mt: mobile ? 16 : 28, mb: 16}} alignItems="center">
                 {mobile ? (
                     <></>
                 ) : (

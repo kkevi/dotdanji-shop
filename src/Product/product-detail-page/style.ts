@@ -29,17 +29,7 @@ const styles = makeStyles(() =>
             justifyContent: "space-between",
             alignItems: "center",
         },
-        mobileButton: {
-            height: 45,
-            background: "#fff",
-            color: "#222",
-            fontSize: 14,
-            "&:last-child": {
-                marginLeft: "1rem",
-                background: "#222",
-                color: "#fff",
-            },
-        },
+
         slideBox: {},
         infoBox: {
             width: "40%",

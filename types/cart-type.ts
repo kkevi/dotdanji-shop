@@ -3,8 +3,8 @@
  *
  */
 export interface CartItemProps {
-    goodsId: string
-    options: OptionCart[]
+    productId: string
+    options: OptionCart
 }
 
 export type OptionCart = {
@@ -17,12 +17,12 @@ export type OptionCart = {
  *
  */
 export type CartOptionsType = {
-    goodsId: string
+    productId: string
     optionId: string
     count: number
     price: number
     optionName: string
-    optionAddPlace: number
+    surcharge: number
 }
 
 /*

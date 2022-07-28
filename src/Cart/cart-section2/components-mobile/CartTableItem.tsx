@@ -2,7 +2,7 @@ import {Stack, Typography} from "@mui/material"
 import {CartOptionsType} from "types/cart-type"
 import ImageBox from "components/image-box/ImageBox"
 import React, {useEffect, useState} from "react"
-import {GoodsItemDefaultData} from "types/goods-type"
+import {ProductItemDefaultData} from "types/product-type"
 
 type CartListProps = {
     index: number
@@ -11,7 +11,7 @@ type CartListProps = {
 
 export default function CartTableItem(props: CartListProps) {
     const {index, cartItem} = props
-    const [listThumbnail, setListThumbnail] = useState(GoodsItemDefaultData.listThumbnail)
+    const [listThumbnail, setListThumbnail] = useState(ProductItemDefaultData.listThumbnail)
     const [goodsName, setGoodsName] = useState("")
 
     useEffect(() => {
@@ -46,8 +46,8 @@ export default function CartTableItem(props: CartListProps) {
                         <Typography fontSize={12} mr={1}>
                             {cartItem.optionName}
                         </Typography>
-                        {cartItem.optionAddPlace > 0 && (
-                            <Typography fontSize={12}>+{cartItem.optionAddPlace.toLocaleString("ko")}원</Typography>
+                        {cartItem.surcharge > 0 && (
+                            <Typography fontSize={12}>+{cartItem.surcharge.toLocaleString("ko")}원</Typography>
                         )}
                     </Stack>
 

@@ -48,17 +48,21 @@ export default function CartSection1Web(props: Props) {
             <Divider className={classes.divider} flexItem />
 
             {/* 장바구니 목록 */}
-            <CartTable
-                cartItemList={cartItemList}
-                setCartItemList={setCartItemList}
-                totalPrice={totalPrice}
-                deliveryPrice={deliveryPrice}
-                //check
-                checkList={checkList}
-                setCheckList={setCheckList}
-                checkAll={checkAll}
-                onCheckAll={onCheckAll}
-            />
+            {cartItemList.length === 0 ? (
+                <Typography>장바구니가 비어있습니다.</Typography>
+            ) : (
+                <CartTable
+                    cartItemList={cartItemList}
+                    setCartItemList={setCartItemList}
+                    totalPrice={totalPrice}
+                    deliveryPrice={deliveryPrice}
+                    //check
+                    checkList={checkList}
+                    setCheckList={setCheckList}
+                    checkAll={checkAll}
+                    onCheckAll={onCheckAll}
+                />
+            )}
 
             <Divider className={classes.divider} flexItem />
 

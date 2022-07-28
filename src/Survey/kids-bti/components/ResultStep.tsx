@@ -52,7 +52,7 @@ export default function ResultStep(props: ResultStepProps) {
                 </Button>
                 <Button
                     className={classes.resultButton}
-                    onClick={() => route.push("/goods/detail?goodsId=fake-goodsId-0")}
+                    onClick={() => route.push("/product/detail?goodsId=fake-goodsId-0")}
                 >
                     스토리셀프 살펴보기
                 </Button>

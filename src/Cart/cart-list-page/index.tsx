@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {useMediaQuery} from "@mui/material"
 import {toast} from "react-toastify"
 
-import {CartOptionsType, OptionCart} from "types/cart-type"
+import {CartItemProps, CartOptionsType} from "types/cart-type"
 import {useTheme} from "@mui/material"
 import CartListPageWeb from "./CartListPageWeb/CartListPageWeb"
 import CartListPageMobile from "./CartListPageMobile/CartListPageMobile"
@@ -17,8 +17,9 @@ export default function CartSection1(props: Props) {
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const {onChangeNextStep} = props
     //장바구니 데이터 표시
-    const [cartLocalData, setCartLocalData] = useLocalStorage("cartData")
+    const [cartLocalData, setCartLocalData] = useLocalStorage<CartItemProps[]>("cartData")
     const [cartItemList, setCartItemList] = useState<CartOptionsType[]>([])
+    const [productDataList, setProductDataList] = useState([])
     /*
     실제 구매 데이터 생성
     {optionId:선택여부}
@@ -34,7 +35,9 @@ export default function CartSection1(props: Props) {
      */
     useEffect(() => {
         if (cartLocalData === undefined) return
-        setCartItemList(JSON.parse(cartLocalData as string))
+
+        // setCartItemList()
+        console.log("cartLocalData===>", cartLocalData)
     }, [cartLocalData])
 
     /*
@@ -66,8 +69,6 @@ export default function CartSection1(props: Props) {
         const list = cartItemList.reduce((acc: Record<string, boolean>, cur: CartOptionsType, idx) => {
             const id: string = cur.optionId as string
             acc[id] = true
-            console.log(idx, cur)
-            console.log(idx, "id", cur.optionId)
 
             return acc
         }, {} as Record<string, boolean>)
@@ -94,8 +95,12 @@ export default function CartSection1(props: Props) {
         onChangeNextStep(1)
     }
 
+    //목록 삭제 기능
     const onDeleteCartItem = () => {
-        confirm("선택 상품을 모두 삭제하시겠습니까?")
+        if (cartItemList.length === 0) return toast.warn("삭제 할 상품이 없습니다.")
+        if (confirm("선택 상품을 모두 삭제하시겠습니까?")) {
+            setCartLocalData([])
+        }
     }
 
     return (

@@ -7,7 +7,6 @@ import useStyles from "./styles"
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 import UserLoginButton from "./components/user-login-button/UserLoginButton"
 import ShopCartButton from "./components/shop-cart-button/ShopCartButton"
-import useStore from "store/useStore"
 import ImageBox from "src/Components/image-box/ImageBox"
 
 export default function HeaderMobile() {
@@ -17,7 +16,8 @@ export default function HeaderMobile() {
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)
     const [drawer, setDrawer] = useState<boolean>(false)
     const [badgeContent, setBadgeContent] = useState(1)
-    const {userStore} = useStore()
+
+    const isLoggedIn = false
 
     //스크롤시, 스타일변경
     const [scrollPosition, setScrollPosition] = useState(0)
@@ -30,7 +30,7 @@ export default function HeaderMobile() {
     })
 
     const onClickCategorys = (categoryId: string) => {
-        Router.push({pathname: "/goods", query: {categoryId: categoryId}})
+        Router.push({pathname: "/product", query: {categoryId: categoryId}})
     }
 
     return (
@@ -92,8 +92,8 @@ export default function HeaderMobile() {
                     </Drawer>
 
                     <ButtonGroup size="small" disableElevation>
-                        {userStore.isLoggedIn && <ShopCartButton badgeContent={badgeContent} />}
-                        <UserLoginButton userName={userStore.userName} isLoggedIn={userStore.isLoggedIn} mobile />
+                        {isLoggedIn && <ShopCartButton badgeContent={badgeContent} />}
+                        <UserLoginButton userName={"홍길동"} isLoggedIn={isLoggedIn} mobile />
                     </ButtonGroup>
                 </Stack>
             </Container>

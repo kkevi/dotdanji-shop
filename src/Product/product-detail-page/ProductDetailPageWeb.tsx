@@ -1,53 +1,61 @@
-import React, {useState} from "react"
-import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
+import {Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
+import React from "react"
 //components
-import {GoodsItemType, OptionsType} from "types/goods-type"
+import {OptionsType, ProductItemType} from "types/product-type"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
-import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import "slick-carousel/slick/slick.css"
 
-import {OptionCart} from "types/cart-type"
-import GoodsOptions from "./GoodsOptions"
 import ImageBox from "components/image-box/ImageBox"
+import {OptionCart} from "types/cart-type"
+import SelectOptionBox from "./components/SelectOptionBox"
 
+import AddCartButton from "./components/AddCartButton"
 import ExtraInformationModule from "./components/ExtraInformationModule"
+import PaymentButton from "./components/PaymentButton"
 
 type Props = {
-    goodsItemData: GoodsItemType
+    productItem: ProductItemType
+    selectValue: string
     selectValueList: OptionCart[]
     setSelectValueList: React.Dispatch<React.SetStateAction<OptionCart[]>>
+    resultPrice: number
+    totalPrice: number
+    defaultOption: string
     onSelectOption: (event: SelectChangeEvent) => void
     onDeleteOption: (val: string) => void
-    onCickCart: () => void
-    onClickBuy: () => void
-    totalPrice: number
 }
 
-export default function GoodsDetailPageWeb(props: Props) {
+export default function ProductDetailPageWeb(props: Props) {
     const classes = useStyles()
     const {
-        goodsItemData,
+        productItem,
+        selectValue,
         selectValueList,
         setSelectValueList,
+        resultPrice,
+        totalPrice,
+        defaultOption,
         onSelectOption,
         onDeleteOption,
-        onCickCart,
-        onClickBuy,
-        totalPrice,
     } = props
 
-    //데이터
-    const {detailThumbnails, mainColor, tags, options, name, sale, price, infoText, categoryId, infoImage} =
-        goodsItemData
-
-    //할인 계산식
-    var resultPrice = sale > 0 ? price - price * (sale / 100) : price
-
-    //옵션 선택 박스
-    const defaultOption = "옵션 선택"
-    const [selectValue, setSelectValue] = useState(defaultOption)
+    //제품 정보 데이터 _ ProductItemType
+    const {
+        productId,
+        detailThumbnails,
+        mainColor,
+        tags,
+        options,
+        name,
+        discount,
+        price,
+        infoText,
+        categoryId,
+        infoImage,
+    } = productItem
 
     return (
         <div className={classes.root}>
@@ -86,9 +94,9 @@ export default function GoodsDetailPageWeb(props: Props) {
                         {name}
                     </Typography>
                     <Typography variant="body2" mt={2} sx={{opacity: 0.5}}>
-                        {sale > 0 && (
+                        {discount > 0 && (
                             <>
-                                <span>{sale}% </span>
+                                <span>{discount}% </span>
                                 <span style={{textDecoration: "line-through"}}> {price.toLocaleString()}원</span>
                             </>
                         )}
@@ -119,9 +127,9 @@ export default function GoodsDetailPageWeb(props: Props) {
                                     value={option.optionId}
                                     style={{display: "flex", justifyContent: "space-between"}}
                                 >
-                                    <Typography fontSize={20}>{option.name}</Typography>
+                                    <Typography fontSize={20}>{option.optionName}</Typography>
                                     <Typography fontSize={16} color="#888">
-                                        {option.addPlace > 0 && `+${option.addPlace.toLocaleString()}원`}
+                                        {option.surcharge > 0 && `+${option.surcharge.toLocaleString()}원`}
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -137,13 +145,13 @@ export default function GoodsDetailPageWeb(props: Props) {
                                         it => it.optionId === selected.optionId,
                                     )[0] as OptionsType
                                     return (
-                                        <GoodsOptions
+                                        <SelectOptionBox
                                             key={"option" + index}
                                             index={index}
-                                            optionName={optionData?.name}
+                                            optionName={optionData?.optionName}
                                             optionId={selected.optionId}
                                             count={selected.count}
-                                            optionPrice={optionData.addPlace + resultPrice || 0}
+                                            optionPrice={optionData.surcharge + resultPrice || 0}
                                             selectValueList={selectValueList}
                                             onDeleteOption={onDeleteOption}
                                             setSelectValueList={setSelectValueList}
@@ -186,12 +194,18 @@ export default function GoodsDetailPageWeb(props: Props) {
 
                     {/* 구매버튼 */}
                     <Stack className={classes.rootStack}>
-                        <Button variant="contained" sx={{height: 55}} fullWidth onClick={onCickCart} disableElevation>
-                            <Typography variant="h6">장바구니 담기</Typography>
-                        </Button>
-                        <Button variant="contained" sx={{height: 55}} fullWidth onClick={onClickBuy} disableElevation>
-                            <Typography variant="h6">바로 구매하기</Typography>
-                        </Button>
+                        <AddCartButton
+                            selectValueList={selectValueList}
+                            options={options}
+                            productId={productId}
+                            price={price}
+                        />
+                        <PaymentButton
+                            selectValueList={selectValueList}
+                            options={options}
+                            productId={productId}
+                            price={price}
+                        />
                     </Stack>
                 </div>
             </Stack>

@@ -66,19 +66,25 @@ export default function CartSection1Mobile(props: Props) {
             </Stack>
 
             {/* 장바구니 목록 */}
-            {cartItemList.map((itm, index) => {
-                return (
-                    <CartTableItem
-                        key={"CartTableItem" + index}
-                        index={index}
-                        cartItem={itm}
-                        cartItemList={cartItemList}
-                        checkList={checkList}
-                        setCartItemList={setCartItemList}
-                        onChangeCheckbox={onChangeCheckbox}
-                    />
-                )
-            })}
+            {cartItemList.length === 0 ? (
+                <Stack bgcolor="#f9f9f9" width="100%" textAlign="center" py={6} color="#999">
+                    <Typography>장바구니가 비어있습니다.</Typography>
+                </Stack>
+            ) : (
+                cartItemList.map((itm, index) => {
+                    return (
+                        <CartTableItem
+                            key={"CartTableItem" + index}
+                            index={index}
+                            cartItem={itm}
+                            cartItemList={cartItemList}
+                            checkList={checkList}
+                            setCartItemList={setCartItemList}
+                            onChangeCheckbox={onChangeCheckbox}
+                        />
+                    )
+                })
+            )}
 
             <Divider className={classes.divider} flexItem />
 
