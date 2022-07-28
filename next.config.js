@@ -17,8 +17,7 @@ const nextConfig = {
         return [
             {
                 destination: `${process.env.NEXT_PUBLIC_AWS_API_URL}/:path*`,
-                source: `/api/:path*`,
-                historyApiFallback: true,
+                source: "/api/:path*",
             },
         ]
     },
