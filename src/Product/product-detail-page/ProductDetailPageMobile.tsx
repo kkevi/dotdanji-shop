@@ -1,8 +1,7 @@
 import React, {useState} from "react"
-import {useRouter} from "next/router"
-import {Button, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
+import {Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
 //components
-import {GoodsItemType, OptionsType} from "types/goods-type"
+import {ProductItemType, OptionsType} from "types/product-type"
 import useStyles from "./style"
 //slick
 import Slider from "react-slick"
@@ -10,42 +9,43 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 import {OptionCart} from "types/cart-type"
-import GoodsOptions from "./GoodsOptions"
+import SelectOptionBox from "./components/SelectOptionBox"
 import ImageBox from "components/image-box/ImageBox"
 
 import ExtraInformationModule from "./components/ExtraInformationModule"
+import AddCartButton from "./components/AddCartButton"
+import PaymentButton from "./components/PaymentButton"
 
 type Props = {
-    goodsItemData: GoodsItemType
+    productItem: ProductItemType
     selectValueList: OptionCart[]
     setSelectValueList: React.Dispatch<React.SetStateAction<OptionCart[]>>
     onSelectOption: (event: SelectChangeEvent) => void
     onDeleteOption: (val: string) => void
-    onCickCart: () => void
-    onClickBuy: () => void
     totalPrice: number
 }
 
 export default function GoodsDetailPageMobile(props: Props) {
     const classes = useStyles()
-    const route = useRouter()
-    const {
-        goodsItemData,
-        selectValueList,
-        setSelectValueList,
-        onSelectOption,
-        onDeleteOption,
-        onCickCart,
-        onClickBuy,
-        totalPrice,
-    } = props
+    const {productItem, selectValueList, setSelectValueList, onSelectOption, onDeleteOption, totalPrice} = props
 
-    //데이터
-    const {detailThumbnails, mainColor, tags, options, name, sale, price, infoText, categoryId, infoImage} =
-        goodsItemData
+    //제품 정보 데이터 _ ProductItemType
+    const {
+        productId,
+        detailThumbnails,
+        mainColor,
+        tags,
+        options,
+        name,
+        discount,
+        price,
+        infoText,
+        categoryId,
+        infoImage,
+    } = productItem
 
     //할인 계산식
-    var resultPrice = sale > 0 ? price - price * (sale / 100) : price
+    var resultPrice = discount > 0 ? price - price * (discount / 100) : price
 
     //옵션 선택 박스
     const defaultOption = "옵션 선택"
@@ -82,9 +82,9 @@ export default function GoodsDetailPageMobile(props: Props) {
                     {name}
                 </Typography>
                 <Typography variant="body2" mt={1} sx={{opacity: 0.5}}>
-                    {sale > 0 && (
+                    {discount > 0 && (
                         <>
-                            <span>{sale}% </span>
+                            <span>{discount}% </span>
                             <span style={{textDecoration: "line-through"}}> {price.toLocaleString()}원</span>
                         </>
                     )}
@@ -112,9 +112,9 @@ export default function GoodsDetailPageMobile(props: Props) {
                                 value={option.optionId}
                                 style={{display: "flex", justifyContent: "space-between"}}
                             >
-                                <Typography fontSize={16}>{option.name}</Typography>
+                                <Typography fontSize={16}>{option.optionName}</Typography>
                                 <Typography fontSize={14} color="#888">
-                                    {option.addPlace > 0 && `+${option.addPlace.toLocaleString()}원`}
+                                    {option.surcharge > 0 && `+${option.surcharge.toLocaleString()}원`}
                                 </Typography>
                             </MenuItem>
                         ))}
@@ -129,13 +129,13 @@ export default function GoodsDetailPageMobile(props: Props) {
                                 it => it.optionId === selected.optionId,
                             )[0] as OptionsType
                             return (
-                                <GoodsOptions
+                                <SelectOptionBox
                                     key={"option" + index}
                                     index={index}
-                                    optionName={optionData?.name}
+                                    optionName={optionData?.optionName}
                                     optionId={selected.optionId}
                                     count={selected.count}
-                                    optionPrice={optionData.addPlace + resultPrice || 0}
+                                    optionPrice={optionData.surcharge + resultPrice || 0}
                                     selectValueList={selectValueList}
                                     onDeleteOption={onDeleteOption}
                                     setSelectValueList={setSelectValueList}
@@ -177,12 +177,20 @@ export default function GoodsDetailPageMobile(props: Props) {
 
                 {/* 구매버튼 */}
                 <Stack mt={3} mb={6} className={classes.rootStack}>
-                    <Button className={classes.mobileButton} fullWidth onClick={onCickCart} disableElevation>
-                        <Typography>장바구니 담기</Typography>
-                    </Button>
-                    <Button className={classes.mobileButton} fullWidth onClick={onClickBuy} disableElevation>
-                        <Typography>바로 구매하기</Typography>
-                    </Button>
+                    <AddCartButton
+                        selectValueList={selectValueList}
+                        options={options}
+                        productId={productId}
+                        price={price}
+                        mobile
+                    />
+                    <PaymentButton
+                        selectValueList={selectValueList}
+                        options={options}
+                        productId={productId}
+                        price={price}
+                        mobile
+                    />
                 </Stack>
             </Stack>
 

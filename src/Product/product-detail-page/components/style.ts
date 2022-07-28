@@ -56,6 +56,18 @@ const styles = makeStyles(() =>
                 lineHeight: 2.3,
             },
         },
+
+        mobileButton: {
+            height: 45,
+            background: "#fff",
+            color: "#222",
+            fontSize: 14,
+            "&:last-child": {
+                marginLeft: "1rem",
+                background: "#222",
+                color: "#fff",
+            },
+        },
     }),
 )
 

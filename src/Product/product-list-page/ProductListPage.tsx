@@ -11,11 +11,11 @@ import {
     useMediaQuery,
     useTheme,
 } from "@mui/material"
-import {GoodsCategoryType, GoodsItemType} from "types/goods-type"
+import {ProductCategoryType, ProductItemType} from "types/product-type"
 //fake data
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 
-import GoodsItem from "./goods-item/GoodsItem"
+import GoodsItem from "./product-item/ProductItem"
 import axios from "axios"
 
 type Props = {
@@ -27,10 +27,9 @@ export default function GoodsLayout(props: Props) {
     const theme = useTheme()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
     const [goodsFilter, setGoodsFilter] = useState<string>("newest")
-    const [categoryList, setCategoryList] = useState<GoodsCategoryType[]>(GOODS_CATEGORY_DATA)
+    const [categoryList, setCategoryList] = useState<ProductCategoryType[]>(GOODS_CATEGORY_DATA)
     const [categoryTitle, setCategoryTitle] = useState<string>("")
-    const [fakeGoodsList, setFakeGoodsList] = useState<GoodsItemType[]>([])
-    const [goodsList, setGoodsList] = useState<GoodsItemType[]>([])
+    const [goodsList, setProductList] = useState<ProductItemType[]>([])
 
     const goodsArr = [
         {name: "신상품순", value: "newest"},
@@ -47,8 +46,8 @@ export default function GoodsLayout(props: Props) {
         if (categoryId === "") return
         axios.defaults.withCredentials = true
 
-        const stage = "dotdanji-stages"
-        const id = "dotdanji-goods-list" // goods table 가져옴
+        const stage = process.env.NEXT_PUBLIC_AWS_API_DOTDANJI_STAGE
+        const id = process.env.NEXT_PUBLIC_DB_DOTDANJI_GOODS_ID // goods table 가져옴
         try {
             await axios({
                 url: `/api/${stage}/${id}`,
@@ -63,7 +62,27 @@ export default function GoodsLayout(props: Props) {
                 },
             })
                 .then(response => {
-                    setGoodsList(response.data.message)
+                    const data = response.data.message
+                    setProductList(
+                        data.reduce((acc: ProductItemType[], cur: ProductItemType) => {
+                            acc.push({
+                                status: cur.status,
+                                productId: cur.productId,
+                                categoryId: cur.categoryId,
+                                listThumbnail: cur.listThumbnail,
+                                detailThumbnails: cur.detailThumbnails,
+                                mainColor: cur.mainColor,
+                                options: cur.options,
+                                name: cur.name,
+                                tags: cur.tags,
+                                infoText: cur.infoText,
+                                infoImage: cur.infoImage,
+                                price: cur.price,
+                                discount: cur.discount,
+                            })
+                            return acc
+                        }, []),
+                    )
                 })
                 .catch(function (error) {
                     console.log("axios error:", error)
@@ -76,7 +95,7 @@ export default function GoodsLayout(props: Props) {
 
     useEffect(() => {
         //최상단 title 표시
-        const category = categoryList.filter(it => it.categoryId === categoryId)[0] as GoodsCategoryType
+        const category = categoryList.filter(it => it.categoryId === categoryId)[0] as ProductCategoryType
         setCategoryTitle(category?.title)
     }, [categoryId])
 
@@ -122,7 +141,7 @@ export default function GoodsLayout(props: Props) {
 
             {goodsList.length > 0 && (
                 <Grid container spacing={3}>
-                    {goodsList.map((data: GoodsItemType, index) => (
+                    {goodsList.map((data: ProductItemType, index) => (
                         <Grid item key={data.productId + index} lg={4} md={4} sm={6} xs={6}>
                             <GoodsItem data={data} mobile={mobile} />
                         </Grid>

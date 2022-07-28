@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import MainLayout from "components/main-layout/MainLayout"
-import GoodsDetailPage from "src/Goods/goods-detail-page/GoodsDetailPage"
+import ProductDetailPage from "src/Product/product-detail-page/ProductDetailPage"
 
 export default function IndexGoodsDetail() {
     const route = useRouter()
@@ -14,7 +14,7 @@ export default function IndexGoodsDetail() {
 
     return (
         <MainLayout>
-            <GoodsDetailPage productId={productId as string} />
+            <ProductDetailPage productId={productId as string} />
         </MainLayout>
     )
 }

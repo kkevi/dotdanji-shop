@@ -7,10 +7,10 @@ import useStyles from "./styles"
 import ImageBox from "components/image-box/ImageBox"
 import CustomedButton from "components/customed-button/CustomedButton"
 
-import {GoodsItemType} from "types/goods-type"
+import {ProductItemType} from "types/product-type"
 
 type Props = {
-    bestSellerList: GoodsItemType[]
+    bestSellerList: ProductItemType[]
 }
 
 export default function BestSellerWeb(props: Props) {
@@ -53,7 +53,7 @@ export default function BestSellerWeb(props: Props) {
                                     style={{height: "100%", position: "relative"}}
                                     onMouseEnter={() => setHover(index)}
                                     onMouseLeave={() => setHover(-1)}
-                                    onClick={() => route.push({pathname: `/goods/detail`, query: goods.productId})}
+                                    onClick={() => route.push({pathname: `/product/detail`, query: goods.productId})}
                                 >
                                     <div className={classes.stack} style={{display: hovering ? "flex" : "none"}}>
                                         <Typography className={classes.title}>{goods.name}</Typography>

@@ -90,9 +90,6 @@
             "components/*": [
                 "./src/Components/*"
             ],
-            "store/*": [
-                "./store/*"
-            ],
             "styles/*": [
                 "./src/styles/*"
             ],

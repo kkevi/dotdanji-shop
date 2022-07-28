@@ -8,7 +8,6 @@ import useStyles from "./styles"
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 import UserLoginButton from "./components/user-login-button/UserLoginButton"
 import ShopCartButton from "./components/shop-cart-button/ShopCartButton"
-import useStore from "store/useStore"
 
 export default function HeaderWeb() {
     const classes = useStyles()
@@ -17,7 +16,8 @@ export default function HeaderWeb() {
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)
     const [badgeContent, setBadgeContent] = useState(1)
     const [hovering, setHovering] = useState(false)
-    const {userStore} = useStore()
+
+    const isLoggedIn = false
 
     //스크롤시, 스타일변경
     const [scrollPosition, setScrollPosition] = useState(0)
@@ -32,7 +32,7 @@ export default function HeaderWeb() {
     const textColor = {}
 
     const onClickCategorys = (categoryId: string) => {
-        Router.push({pathname: "/goods", query: {categoryId: categoryId}})
+        Router.push({pathname: "/product", query: {categoryId: categoryId}})
     }
 
     return (
@@ -84,8 +84,8 @@ export default function HeaderWeb() {
 
                         <Stack>
                             <ButtonGroup size="small" disableElevation>
-                                {userStore.isLoggedIn && <ShopCartButton badgeContent={badgeContent} />}
-                                <UserLoginButton userName={userStore.userName} isLoggedIn={userStore.isLoggedIn} />
+                                {isLoggedIn && <ShopCartButton badgeContent={badgeContent} />}
+                                <UserLoginButton userName={"홍길동"} isLoggedIn={isLoggedIn} />
                             </ButtonGroup>
                         </Stack>
                     </Stack>

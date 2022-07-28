@@ -5,7 +5,7 @@ import {OptionCart} from "types/cart-type"
 import CountController from "components/count-controller/CountController"
 import React, {useEffect, useState} from "react"
 //components
-import useStyles from "./style"
+import useStyles from "../style"
 
 type Props = {
     index: number
@@ -19,7 +19,7 @@ type Props = {
     mobile?: boolean
 }
 
-export default function GoodsOptions(props: Props) {
+export default function SelectOptionBox(props: Props) {
     const classes = useStyles()
     const {
         index,

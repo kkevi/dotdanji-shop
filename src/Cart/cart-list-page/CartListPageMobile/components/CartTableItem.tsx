@@ -3,7 +3,6 @@ import {CartOptionsType} from "types/cart-type"
 import CountController from "components/count-controller/CountController"
 import ImageBox from "components/image-box/ImageBox"
 import React, {useEffect, useState} from "react"
-import {GoodsItemDefaultData, GoodsItemType} from "types/goods-type"
 
 type CartListProps = {
     index: number
@@ -16,7 +15,7 @@ type CartListProps = {
 
 export default function CartTableItem(props: CartListProps) {
     const {index, cartItem, cartItemList, checkList, setCartItemList, onChangeCheckbox} = props
-    const [listThumbnail, setListThumbnail] = useState<string>(GoodsItemDefaultData.listThumbnail)
+    const [listThumbnail, setListThumbnail] = useState<string>("")
     const [goodsName, setGoodsName] = useState("")
 
     useEffect(() => {
@@ -24,11 +23,35 @@ export default function CartTableItem(props: CartListProps) {
     }, [])
 
     const loadGoodsData = async () => {
-        try {
-            //TODO: 제품정보 가져오기
-        } catch (e) {
-            console.log(e)
-        }
+        // if (productId === "") return
+        // axios.defaults.withCredentials = true
+        // const stage = process.env.NEXT_PUBLIC_AWS_API_DOTDANJI_STAGE
+        // const id = process.env.NEXT_PUBLIC_DB_DOTDANJI_GOODS_ID // goods table 가져옴
+        // try {
+        //     await axios({
+        //         url: `/api/${stage}/${id}`,
+        //         method: "GET",
+        //         withCredentials: true, // 쿠키 cors 통신 설정 허용
+        //         headers: {
+        //             "Access-Control-Allow-Origin": "https://dotdanji.com",
+        //             "Content-Type": "application/json",
+        //         },
+        //         params: {
+        //             productId: productId,
+        //         },
+        //     })
+        //         .then(response => {
+        //             const data = response.data.message[0]
+        //             setListThumbnail()
+        //             setGoodsName()
+        //         })
+        //         .catch(function (error) {
+        //             console.log("axios error:", error)
+        //         })
+        // } catch (error) {
+        //     //응답 실패
+        //     console.error("try error:", error)
+        // }
     }
 
     return (
@@ -63,8 +86,8 @@ export default function CartTableItem(props: CartListProps) {
                         <Typography fontSize={12} mr={1}>
                             {cartItem.optionName}
                         </Typography>
-                        {cartItem.optionAddPlace > 0 && (
-                            <Typography fontSize={12}>+{cartItem.optionAddPlace.toLocaleString("ko")}원</Typography>
+                        {cartItem.surcharge > 0 && (
+                            <Typography fontSize={12}>+{cartItem.surcharge.toLocaleString("ko")}원</Typography>
                         )}
                     </Stack>
 

@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {useMediaQuery} from "@mui/material"
 
-import useStore from "store/useStore"
-
 //types
 import {CartOptionsType} from "types/cart-type"
 import {CartFormDefaultData, CartFormProps} from "types/cart-type"
@@ -25,7 +23,6 @@ export default function CartSection2(props: Props) {
     const {onChangeNextStep} = props
     const theme = useTheme()
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
-    const {userStore, goodsStore} = useStore()
     const [formData, setFormData] = useState<CartFormProps>(CartFormDefaultData)
 
     //장바구니 데이터 표시
@@ -61,11 +58,7 @@ export default function CartSection2(props: Props) {
     /*
      * 장바구니 데이터 가져오기
      */
-    useEffect(() => {
-        if (goodsStore.cartItem !== undefined) {
-            setCartItemList(goodsStore.cartItem)
-        }
-    }, [])
+    useEffect(() => {}, [])
 
     const IMP = window.IMP // 생략 가능
     IMP.init("{Merchant ID}") // Example: imp00000000

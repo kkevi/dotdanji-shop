@@ -2,7 +2,6 @@ import React, {Fragment} from "react"
 import type {AppProps} from "next/app"
 import Head from "next/head"
 
-import StoreProvider from "../store/StoreProvider"
 import LoginObserver from "components/login-observer/LoginObserver"
 import {CssBaseline, ThemeProvider} from "@mui/material"
 
@@ -39,17 +38,15 @@ function MyApp({Component, pageProps}: AppProps) {
                 <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
                 <meta name="theme-color" content="#fff9bf" />
             </Head>
-            <StoreProvider rootStoreInitialState={undefined}>
-                <ThemeProvider theme={theme}>
-                    <LoginObserver>
-                        <>
-                            <CssBaseline />
-                            <GlobalStyle />
-                            <Component {...pageProps} />
-                        </>
-                    </LoginObserver>
-                </ThemeProvider>
-            </StoreProvider>
+            <ThemeProvider theme={theme}>
+                <LoginObserver>
+                    <>
+                        <CssBaseline />
+                        <GlobalStyle />
+                        <Component {...pageProps} />
+                    </>
+                </LoginObserver>
+            </ThemeProvider>
             <ToastContainer autoClose={2000} pauseOnHover={false} hideProgressBar />
         </Fragment>
     )
