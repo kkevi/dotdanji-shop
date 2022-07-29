@@ -1,10 +1,11 @@
-import {useRouter} from "next/router"
 import React, {useEffect, useState} from "react"
-import MainLayout from "src/Components/main-layout/MainLayout"
-import Service from "src/Service/intex"
-import {ServiceTabKey} from "types/service-type"
 
-export default function IndexService() {
+import MainLayout from "src/Components/main-layout/MainLayout"
+import ServicePage from "src/Service"
+import {ServiceTabKey} from "types/service-type"
+import {useRouter} from "next/router"
+
+export default function Service() {
     const route = useRouter()
     const [tabIndex, setTabIndex] = useState<ServiceTabKey>("notice")
 
@@ -16,7 +17,7 @@ export default function IndexService() {
 
     return (
         <MainLayout>
-            <Service tabIndex={tabIndex} />
+            <ServicePage tabIndex={tabIndex} />
         </MainLayout>
     )
 }

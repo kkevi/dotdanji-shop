@@ -1,6 +1,6 @@
 import Router from "next/router"
-import urlParse from "url-parse"
 import getConfig from "next/config"
+import urlParse from "url-parse"
 
 const {publicRuntimeConfig} = getConfig()
 

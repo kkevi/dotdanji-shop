@@ -95,9 +95,9 @@ export default function GoodsLayout(props: Props) {
 
     useEffect(() => {
         //최상단 title 표시
-        const category = categoryList.filter(it => it.categoryId === categoryId)[0] as ProductCategoryType
+        const category = categoryList.filter(it => it.categoryId === categoryId)[0]
         setCategoryTitle(category?.title)
-    }, [categoryId])
+    }, [categoryId, categoryList])
 
     const onChangeSelect = (event: SelectChangeEvent) => {
         setGoodsFilter(event.target.value)
