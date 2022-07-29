@@ -1,4 +1,3 @@
-import {useEffect, useState} from "react"
 import {
     Container,
     Grid,
@@ -12,9 +11,10 @@ import {
     useTheme,
 } from "@mui/material"
 import {ProductCategoryType, ProductItemType} from "types/product-type"
+import React, {useEffect, useState} from "react"
+
 //fake data
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
-
 import GoodsItem from "./product-item/ProductItem"
 import axios from "axios"
 
@@ -51,18 +51,12 @@ export default function GoodsLayout(props: Props) {
         try {
             await axios({
                 url: `/api/${stage}/${id}`,
-<<<<<<< Updated upstream:src/Product/product-list-page/ProductListPage.tsx
                 method: "GET",
-=======
-                // method: "GET",
-                method: "POST",
->>>>>>> Stashed changes:src/Goods/index.tsx
                 withCredentials: true, // 쿠키 cors 통신 설정 허용
                 headers: {
                     "Access-Control-Allow-Origin": "https://dotdanji.com",
                     "Content-Type": "application/json",
                 },
-<<<<<<< Updated upstream:src/Product/product-list-page/ProductListPage.tsx
                 params: {
                     categoryId: categoryId,
                 },
@@ -89,24 +83,6 @@ export default function GoodsLayout(props: Props) {
                             return acc
                         }, []),
                     )
-=======
-                data: {
-                    goodsId: "dotdanji-dotdanji-test1",
-                    categoryId: "dotdanji",
-                    thumbnails:
-                        '{"images": ["/images/fake/storyself.png", "/images/fake/little-prince.png", "/images/fake/pinokio.png"], "bgColor": "#91C3CE"}',
-                    options: '[{"optionId":"fake-goodsId-0_opt0", "name":"돛단지 구독권","addPlace":0}',
-                    name: "test1",
-                    tags: '["1", "2", "3", "4"]',
-                    infoText: "123",
-                    infoHtml: "",
-                    price: 200,
-                    sale: 20,
-                },
-            })
-                .then(response => {
-                    console.log(response.data)
->>>>>>> Stashed changes:src/Goods/index.tsx
                 })
                 .catch(function (error) {
                     console.log("axios error:", error)
