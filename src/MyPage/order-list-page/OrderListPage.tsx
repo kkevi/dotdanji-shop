@@ -5,6 +5,7 @@ import {Container, Divider, Stack, Typography, useMediaQuery, useTheme} from "@m
 import useStyles from "./style"
 import OredrListTable from "./components/OrderListTable"
 import OrderListItem from "./components-mobile/OrderListItem"
+import MyPageHeader from "../mypage-header/MyPageHeader"
 
 type Props = {
     front?: boolean
@@ -17,9 +18,10 @@ export default function OrderListPage({front}: Props) {
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
 
     return (
-        <Container maxWidth="lg">
-            <Stack mt={mobile ? 4 : 16}>
-                <Stack className={classes.rootStack}>
+        <Stack py={mobile ? 9.5 : 13.5}>
+            {front ? undefined : <MyPageHeader title="마이페이지" subtitle={"구매내역"} mobile={mobile} />}
+            <Container maxWidth="lg">
+                <Stack mt={front ? 0 : 16} className={classes.rootStack}>
                     <Typography
                         variant={mobile ? "h6" : "h5"}
                         mb={1}
@@ -39,15 +41,13 @@ export default function OrderListPage({front}: Props) {
                         >
                             더보기
                         </Typography>
-                    ) : (
-                        <></>
-                    )}
+                    ) : undefined}
                 </Stack>
                 <Divider className={classes.divider} flexItem />
                 {mobile ? <OrderListItem /> : <OredrListTable />}
 
                 <Divider className={classes.divider} flexItem />
-            </Stack>
-        </Container>
+            </Container>
+        </Stack>
     )
 }

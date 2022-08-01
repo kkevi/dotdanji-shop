@@ -47,7 +47,7 @@ export default function MyPageModifyPage() {
                     setVisibleModal={setVisibleModal}
                 />
             )}
-            <MyPageHeader title="마이페이지" mobile={mobile} />
+            <MyPageHeader title="마이페이지" mobile={mobile} subtitle={"내 정보 수정"} />
             <Container maxWidth={mobile ? "sm" : "md"}>
                 <Stack mt={mobile ? 6 : 12} direction="column" justifyContent="center" alignItems="center">
                     <Stack width={mobile ? "100%" : "100%"}>

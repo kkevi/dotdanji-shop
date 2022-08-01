@@ -6,9 +6,7 @@ import OrderListPage from "src/MyPage/order-list-page/OrderListPage"
 export default function Index() {
     return (
         <MainLayout>
-            <Stack py={13.5}>
-                <OrderListPage />
-            </Stack>
+            <OrderListPage />
         </MainLayout>
     )
 }

@@ -1,15 +1,5 @@
 import React, {useState} from "react"
-import {
-    Button,
-    Container,
-    IconButton,
-    InputAdornment,
-    Stack,
-    TextField,
-    Typography,
-    useMediaQuery,
-    useTheme,
-} from "@mui/material"
+import {Button, Container, Stack, TextField, Typography, useMediaQuery, useTheme} from "@mui/material"
 
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded"
 
@@ -17,8 +7,6 @@ import useStyles from "../styles"
 import {useVerfiyPw} from "lib/useVerifyData"
 import MyPageHeader from "src/MyPage/mypage-header/MyPageHeader"
 
-import Visibility from "@mui/icons-material/Visibility"
-import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import VisibilityButton from "src/Components/visibility-button/VisibilityButton"
 
 type MyPagePwEditFormProps = {
@@ -63,7 +51,7 @@ export default function MyPagePwEditPage() {
 
     return (
         <Stack py={mobile ? 9.9 : 13.5}>
-            <MyPageHeader title="마이페이지" mobile={mobile} />
+            <MyPageHeader title="마이페이지" mobile={mobile} subtitle={"비밀번호 변경"} />
             <Container maxWidth="sm">
                 <Stack mt={mobile ? 6 : 12} direction="column" justifyContent="center" alignItems="flex-start">
                     <Typography

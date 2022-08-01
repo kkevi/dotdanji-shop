@@ -6,9 +6,7 @@ import WishListPage from "src/MyPage/wish-list-page/WishListPage"
 export default function Index() {
     return (
         <MainLayout>
-            <Stack py={13.5}>
-                <WishListPage />
-            </Stack>
+            <WishListPage />
         </MainLayout>
     )
 }

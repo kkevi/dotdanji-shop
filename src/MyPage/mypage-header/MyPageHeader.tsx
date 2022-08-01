@@ -4,17 +4,18 @@ import ImageBox from "src/Components/image-box/ImageBox"
 
 type MyPageHeaderProps = {
     title: string
+    subtitle?: string
     mobile?: boolean
 }
 
-export default function MyPageHeader({title, mobile}: MyPageHeaderProps) {
+export default function MyPageHeader({title, subtitle, mobile}: MyPageHeaderProps) {
     const theme = useTheme()
     return (
         <Stack
             justifyContent="center"
             alignItems="center"
             height={mobile ? 200 : 300}
-            sx={{backgroundColor: theme.palette.primary.dark}}
+            sx={{backgroundColor: theme.palette.secondary.light}}
         >
             <ImageBox
                 style={{
@@ -28,6 +29,11 @@ export default function MyPageHeader({title, mobile}: MyPageHeaderProps) {
             <Typography className="pointFont" fontSize={mobile ? 24 : 32} color="white">
                 {title}
             </Typography>
+            {subtitle ? (
+                <Typography className="pointFont" fontSize={mobile ? 14 : 18} color={theme.palette.primary.dark}>
+                    {subtitle}
+                </Typography>
+            ) : undefined}
         </Stack>
     )
 }

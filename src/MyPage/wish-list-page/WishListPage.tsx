@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react"
 
-import {useMediaQuery, useTheme} from "@mui/material"
+import {Stack, useMediaQuery, useTheme} from "@mui/material"
 
 import WishListPageWeb from "./WishListPageWeb"
 import WishListPageMobile from "./WishListPageMobile"
+import MyPageHeader from "../mypage-header/MyPageHeader"
 
 export default function WishListPage() {
     const theme = useTheme()
@@ -30,7 +31,8 @@ export default function WishListPage() {
     }, [checkList])
 
     return (
-        <>
+        <Stack py={mobile ? 9.5 : 13.5}>
+            <MyPageHeader title="마이페이지" subtitle={"찜 상품"} mobile={mobile} />
             {mobile ? (
                 <WishListPageMobile
                     wishItemList={wishItemList}
@@ -54,6 +56,6 @@ export default function WishListPage() {
                     onDeleteWishItem={onDeleteWishItem}
                 />
             )}
-        </>
+        </Stack>
     )
 }
