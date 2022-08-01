@@ -60,7 +60,7 @@ export default function BestSellerMobile(props: Props) {
                                         }}
                                     />
                                 </div>
-                                <Stack mt={1} px={1} direction="row" justifyContent="space-between" alignItems="center">
+                                <Stack mt={1} px={1} justifyContent="space-between" alignItems="flex-start">
                                     <Typography className={classes.titleMobile}>{goods.name}</Typography>
                                     <Typography className={classes.priceMobile}>
                                         {goods.price.toLocaleString("ko")}원

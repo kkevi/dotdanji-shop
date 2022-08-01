@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import Router, {useRouter} from "next/router"
+import {useRouter} from "next/router"
 import useStyles from "./styles"
 import {Button, Stack, Typography, Divider, useMediaQuery, useTheme} from "@mui/material"
 
@@ -62,8 +62,8 @@ export default function Login() {
                 variant="outlined"
                 fullWidth
                 onClick={
-                    () => alert("현재 회원에 대한 서비스는 준비중입니다. 빠른 시일내에 찾아뵙겠습니다.")
-                    // route.push("/signup")
+                    // () => alert("현재 회원에 대한 서비스는 준비중입니다. 빠른 시일내에 찾아뵙겠습니다.")
+                    () => route.push("/signup")
                 }
             >
                 아직 계정이 없으신가요?

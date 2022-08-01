@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {useRouter} from "next/router"
 
-import {Container, Grid, Stack, Typography, useTheme} from "@mui/material"
+import {Button, Container, Grid, Stack, Typography, useTheme} from "@mui/material"
 import useStyles from "./styles"
 
 import ImageBox from "components/image-box/ImageBox"
@@ -21,7 +21,7 @@ export default function BestSellerWeb(props: Props) {
     const [hover, setHover] = useState(-1)
 
     return (
-        <Container maxWidth="lg" sx={{my: 30}}>
+        <Container maxWidth="lg" sx={{mt: 24, mb: 30}}>
             <Stack height={570} direction="row" bgcolor="#fff" borderRadius="20px" sx={{position: "relative"}}>
                 <Stack width="30%" px={4} justifyContent="center">
                     <div className={classes.bombomImage}>
@@ -45,12 +45,21 @@ export default function BestSellerWeb(props: Props) {
                 <Grid container alignItems="center" width="70%">
                     {bestSellerList.map((goods, index) => {
                         const hovering = hover === index
-                        const thumbnails = goods.listThumbnail
 
                         return (
-                            <Grid item xs={4} key={index} height="50%">
+                            <Grid
+                                item
+                                xs={4}
+                                key={index}
+                                height="50%"
+                                sx={{
+                                    borderTopRightRadius: index === 2 ? 20 : 0,
+                                    borderBottomRightRadius: index === 5 ? 20 : 0,
+                                    overflow: "hidden",
+                                }}
+                            >
                                 <div
-                                    style={{height: "100%", position: "relative"}}
+                                    className={classes.oneGoods}
                                     onMouseEnter={() => setHover(index)}
                                     onMouseLeave={() => setHover(-1)}
                                     onClick={() => route.push({pathname: `/product/detail`, query: goods.productId})}
@@ -60,15 +69,10 @@ export default function BestSellerWeb(props: Props) {
                                         <Typography mt={1} mb={2} className={classes.price}>
                                             {goods.price.toLocaleString("ko")}원
                                         </Typography>
-                                        <CustomedButton
-                                            src="/icons/buttonLayout-white.png"
-                                            width={115}
-                                            buttonHeight={45}
-                                            text="자세히 보기"
-                                            textColor="white"
-                                            textSize={12}
-                                            onClick={() => {}}
-                                        />
+
+                                        <Button variant="outlined" className={classes.button}>
+                                            자세히 보기
+                                        </Button>
                                     </div>
                                     <ImageBox height="100%" src={goods.listThumbnail} />
                                 </div>
@@ -76,6 +80,7 @@ export default function BestSellerWeb(props: Props) {
                         )
                     })}
                 </Grid>
+
                 <div className={classes.starfishImage}>
                     <ImageBox src="/images/sticker/starfish.png" height={115} width={120} />
                 </div>

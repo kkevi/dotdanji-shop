@@ -1,9 +1,11 @@
 import {makeStyles, createStyles} from "@mui/styles"
 
-import {theme} from "src/styles/theme"
-
 const styles = makeStyles(() =>
     createStyles({
+        oneGoods: {
+            height: "100%",
+            position: "relative",
+        },
         button: {
             fontSize: 12,
             fontWeight: 700,
@@ -37,6 +39,7 @@ const styles = makeStyles(() =>
         titleMobile: {
             fontSize: 14,
             color: "#777777",
+            textOverflow: "ellipsis",
         },
         price: {
             fontSize: 15,
@@ -44,7 +47,7 @@ const styles = makeStyles(() =>
             color: "white",
         },
         priceMobile: {
-            fontSize: 12,
+            fontSize: 8,
             color: "#777777",
         },
         bombomImage: {
@@ -53,6 +56,7 @@ const styles = makeStyles(() =>
             animationIterationCount: "infinite",
             animationDuration: "3s",
             marginBottom: 10,
+            zIndex: 100,
         },
 
         "@keyframes moveSwing": {

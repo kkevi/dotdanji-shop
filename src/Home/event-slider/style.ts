@@ -1,7 +1,5 @@
 import {makeStyles, createStyles} from "@mui/styles"
 
-import {theme} from "src/styles/theme"
-
 const styles = makeStyles(() =>
     createStyles({
         gomiImage: {
@@ -40,6 +38,19 @@ const styles = makeStyles(() =>
             "0%": {transform: "translateY(0)"},
             "60%": {transform: "translateY(15%)"},
             "100%": {transform: "translateY(0)"},
+        },
+
+        outlinedButton: {
+            height: 40,
+            fontSize: 12,
+            fontWeight: 700,
+            color: "#777",
+            border: "1px solid #777",
+            "&:hover": {
+                color: "black",
+                fontWeight: 700,
+                border: "1px solid black",
+            },
         },
     }),
 )

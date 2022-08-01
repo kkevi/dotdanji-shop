@@ -6,9 +6,9 @@ import SignUp from "src/SignUp"
 export default function Index() {
     return (
         <MainLayout>
-            {/* <LoginLayout>
+            <LoginLayout>
                 <SignUp />
-            </LoginLayout> */}
+            </LoginLayout>
         </MainLayout>
     )
 }

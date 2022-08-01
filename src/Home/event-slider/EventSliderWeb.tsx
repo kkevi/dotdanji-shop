@@ -1,11 +1,10 @@
 import React from "react"
 import {useRouter} from "next/router"
 
-import {Container, Stack, Typography} from "@mui/material"
+import {Container, Stack, Typography, Button} from "@mui/material"
 import {theme} from "src/styles/theme"
 
 import ImageBox from "components/image-box/ImageBox"
-import CustomedButton from "components/customed-button/CustomedButton"
 import HomeVideo from "../home-video/HomeVideo"
 
 import {EventType} from "types/event-type"
@@ -90,21 +89,19 @@ export default function EventSliderWeb(props: Props) {
                                         </Typography>
                                     </Stack>
 
-                                    <CustomedButton
-                                        src="/icons/buttonLayout-grey.png"
-                                        width={120}
-                                        buttonHeight={40}
-                                        buttonStyle={{marginTop: 4}}
-                                        text="확인하기"
-                                        textColor="#777"
-                                        textSize={14}
+                                    <Button
+                                        sx={{marginTop: 4, width: 120}}
+                                        variant="outlined"
+                                        className={classes.outlinedButton}
                                         onClick={() =>
                                             route.push({
                                                 pathname: "/service/detail/event",
                                                 query: {eventId: event.eventId},
                                             })
                                         }
-                                    />
+                                    >
+                                        확인하기
+                                    </Button>
                                 </Stack>
 
                                 <div style={{height: 350, backgroundColor: "pink"}}>
