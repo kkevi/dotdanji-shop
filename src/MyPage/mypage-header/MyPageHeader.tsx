@@ -11,7 +11,6 @@ export default function MyPageHeader({title, mobile}: MyPageHeaderProps) {
     const theme = useTheme()
     return (
         <Stack
-            py={mobile ? 9.9 : 13.5}
             justifyContent="center"
             alignItems="center"
             height={mobile ? 200 : 300}
@@ -23,7 +22,7 @@ export default function MyPageHeader({title, mobile}: MyPageHeaderProps) {
                     position: "absolute",
                 }}
                 width={"100%"}
-                height={300}
+                height={mobile ? 200 : 300}
                 src={"/images/banner-mypage.png"}
             />
             <Typography className="pointFont" fontSize={mobile ? 24 : 32} color="white">

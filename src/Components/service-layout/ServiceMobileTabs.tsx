@@ -5,6 +5,7 @@ import {routerPush} from "lib/routerPush"
 import {useTheme} from "@mui/material"
 import {ServiceBannerType, ServiceTabKey} from "types/service-type"
 import {serviceTabList} from "./banner-list"
+import ImageBox from "../image-box/ImageBox"
 
 function tabProps(index: number) {
     return {
@@ -37,6 +38,15 @@ export default function ServiceMobileTabs(props: Props) {
                 sx={{backgroundColor: topBanner?.color}}
                 mt={9.9}
             >
+                <ImageBox
+                    style={{
+                        maxWidth: 1920,
+                        position: "absolute",
+                    }}
+                    width={"100%"}
+                    height={200}
+                    src={"/images/banner-service.png"}
+                />
                 <Typography className="pointFont" fontSize={24} color="white">
                     {topBanner?.phrase}
                 </Typography>
