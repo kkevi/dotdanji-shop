@@ -5,7 +5,6 @@ import {Button, Container, Grid, Stack, Typography, useTheme} from "@mui/materia
 import useStyles from "./styles"
 
 import ImageBox from "components/image-box/ImageBox"
-import CustomedButton from "components/customed-button/CustomedButton"
 
 import {ProductItemType} from "types/product-type"
 
@@ -62,7 +61,9 @@ export default function BestSellerWeb(props: Props) {
                                     className={classes.oneGoods}
                                     onMouseEnter={() => setHover(index)}
                                     onMouseLeave={() => setHover(-1)}
-                                    onClick={() => route.push({pathname: `/product/detail`, query: goods.productId})}
+                                    onClick={() =>
+                                        route.push({pathname: `/product/detail`, query: {productId: goods.productId}})
+                                    }
                                 >
                                     <div className={classes.stack} style={{display: hovering ? "flex" : "none"}}>
                                         <Typography className={classes.title}>{goods.name}</Typography>

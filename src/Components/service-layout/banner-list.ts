@@ -20,14 +20,14 @@ export const bannerList: ServiceBannerType[] = [
         tabId: "event",
         phrase: "함께 즐길 수 있는 새 이벤트!",
         title: "이벤트",
-        color: theme.palette.secondary.main,
+        color: theme.palette.primary.dark,
         image: "",
     },
     {
         tabId: "inquiry",
         phrase: "소중한 문의에 답변드립니다.",
         title: "1:1 문의",
-        color: theme.palette.primary.dark,
+        color: theme.palette.secondary.dark,
         image: "",
     },
 ]

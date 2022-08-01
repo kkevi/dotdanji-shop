@@ -34,7 +34,7 @@ export default function Login() {
             maxWidth={mobile ? "90%" : 400}
             height={"100%"}
         >
-            <Typography mt={4} variant={mobile ? "h6" : "h4"} fontWeight={700}>
+            <Typography mt={mobile ? 2 : 4} variant={mobile ? "h6" : "h4"} fontWeight={700}>
                 다시 만나서 반가워요!
             </Typography>
             <Typography sx={{mt: 0.5}} variant={mobile ? "body2" : "subtitle2"} color="#757575">

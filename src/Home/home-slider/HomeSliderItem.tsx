@@ -1,9 +1,8 @@
 import React from "react"
 import {useRouter} from "next/router"
 
-import {Container, Typography, Stack} from "@mui/material"
+import {Stack} from "@mui/material"
 import ImageBox from "components/image-box/ImageBox"
-import CustomedButton from "components/customed-button/CustomedButton"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"

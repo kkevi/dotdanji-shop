@@ -29,6 +29,11 @@ export default function BestSellerMobile(props: Props) {
 
                 <Grid container alignItems="center" mt={2}>
                     {bestSellerList.map((goods, index) => {
+                        let str = goods.name
+                        if (goods.name.length > 12) {
+                            str = str.substring(0, 12 - 2) + "..."
+                        }
+
                         return (
                             <Grid
                                 item
@@ -40,7 +45,9 @@ export default function BestSellerMobile(props: Props) {
                                     textAlign: "center",
                                     border: "1px solid white",
                                 }}
-                                onClick={() => route.push({pathname: `/product/detail`, query: goods.productId})}
+                                onClick={() =>
+                                    route.push({pathname: `/product/detail`, query: {productId: goods.productId}})
+                                }
                             >
                                 <div
                                     style={{
@@ -61,7 +68,7 @@ export default function BestSellerMobile(props: Props) {
                                     />
                                 </div>
                                 <Stack mt={1} px={1} justifyContent="space-between" alignItems="flex-start">
-                                    <Typography className={classes.titleMobile}>{goods.name}</Typography>
+                                    <Typography className={classes.titleMobile}>{str}</Typography>
                                     <Typography className={classes.priceMobile}>
                                         {goods.price.toLocaleString("ko")}원
                                     </Typography>

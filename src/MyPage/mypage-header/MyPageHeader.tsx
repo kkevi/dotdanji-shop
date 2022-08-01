@@ -1,5 +1,6 @@
 import React from "react"
 import {Stack, Typography, useTheme} from "@mui/material"
+import ImageBox from "src/Components/image-box/ImageBox"
 
 type MyPageHeaderProps = {
     title: string
@@ -14,13 +15,20 @@ export default function MyPageHeader({title, mobile}: MyPageHeaderProps) {
             justifyContent="center"
             alignItems="center"
             height={mobile ? 200 : 300}
-            sx={{backgroundColor: theme.palette.primary.main}}
+            sx={{backgroundColor: theme.palette.primary.dark}}
         >
+            <ImageBox
+                style={{
+                    maxWidth: 1920,
+                    position: "absolute",
+                }}
+                width={"100%"}
+                height={300}
+                src={"/images/banner-mypage.png"}
+            />
             <Typography className="pointFont" fontSize={mobile ? 24 : 32} color="white">
                 {title}
             </Typography>
-            {/* <Typography className="pointFont" mt={1} fontSize={18} color={theme.palette.secondary.light}></Typography> */}
-            {/* <div><ImageBox /></div> */}
         </Stack>
     )
 }
