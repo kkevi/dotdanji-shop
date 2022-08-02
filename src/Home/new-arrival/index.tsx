@@ -21,13 +21,13 @@ export default function NewArrival(props: Props) {
             url: "/",
         },
         {
-            thumbnails: "",
+            thumbnails: "/images/banner-webtoon.png",
             title: "귀여운 돛단지 해적단을 만화로 감상해요.",
             url: "https://instagram.com/__simkids?igshid=YmMyMTA2M2Y=",
         },
         {
-            // thumbnails: "/images/photo/simbaat-photo.png",
-            thumbnails: "",
+            thumbnails: "/images/photo/simbaat-photo.png",
+            // thumbnails: "",
             title: "아이들과 함께 하고 싶은 심바트",
             url: "https://simbaat.com/",
         },

@@ -1,6 +1,7 @@
 import React from "react"
 import {Button, Stack, Typography} from "@mui/material"
 import {useRouter} from "next/router"
+import ImageBox from "src/Components/image-box/ImageBox"
 
 export default function Index() {
     const route = useRouter()
@@ -8,9 +9,7 @@ export default function Index() {
     return (
         <div>
             <Stack width="100vw" height="100vh" justifyContent="center" alignItems="center">
-                <Typography variant="h1" mt={-10}>
-                    😓
-                </Typography>
+                <ImageBox width={150} height={215} src="/images/sticker/confuse-gomi.png" />
                 <Typography variant="h3" fontWeight={800} mt={2}>
                     404
                 </Typography>

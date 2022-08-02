@@ -52,7 +52,7 @@ export default function GoodsDetailPageMobile(props: Props) {
     const [selectValue, setSelectValue] = useState(defaultOption)
 
     return (
-        <div>
+        <>
             <Stack className={classes.rootMobile} bgcolor={mainColor}>
                 <Slider {...sliderSettings}>
                     {detailThumbnails &&
@@ -195,7 +195,7 @@ export default function GoodsDetailPageMobile(props: Props) {
             </Stack>
 
             {categoryId === "ebook" && <ExtraInformationModule infoHtml={infoImage} mobile />}
-        </div>
+        </>
     )
 }
 

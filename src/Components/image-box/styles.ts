@@ -12,7 +12,7 @@ const styles = makeStyles(() =>
         image: {
             width: "100%",
             height: "100%",
-            objectFit: "cover",
+            // objectFit: "cover",
             transition: "0.5s",
             position: "absolute",
             top: "50%",

@@ -1,3 +1,4 @@
+import React, {useEffect, useState, CSSProperties} from "react"
 import {
     Container,
     Grid,
@@ -11,8 +12,8 @@ import {
     useTheme,
 } from "@mui/material"
 import {ProductCategoryType, ProductItemType} from "types/product-type"
-import React, {useEffect, useState} from "react"
 
+import SyncLoader from "react-spinners/ClipLoader"
 //fake data
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 import GoodsItem from "./product-item/ProductItem"
@@ -30,6 +31,13 @@ export default function GoodsLayout(props: Props) {
     const [categoryList, setCategoryList] = useState<ProductCategoryType[]>(GOODS_CATEGORY_DATA)
     const [categoryTitle, setCategoryTitle] = useState<string>("")
     const [goodsList, setProductList] = useState<ProductItemType[]>([])
+    const [loading, setLoading] = useState(true)
+
+    const override: CSSProperties = {
+        display: "block",
+        margin: "0 auto",
+        borderColor: theme.palette.primary.main,
+    }
 
     const goodsArr = [
         {name: "신상품순", value: "newest"},
@@ -83,6 +91,7 @@ export default function GoodsLayout(props: Props) {
                             return acc
                         }, []),
                     )
+                    setLoading(false)
                 })
                 .catch(function (error) {
                     console.log("axios error:", error)
@@ -138,6 +147,11 @@ export default function GoodsLayout(props: Props) {
                     <TextField variant="standard" />
                 </Stack>
             </Stack>
+            {loading ? (
+                <Stack justifyContent="center" alignItems="center">
+                    <SyncLoader loading={loading} cssOverride={override} size={150} />
+                </Stack>
+            ) : undefined}
 
             {goodsList.length > 0 && (
                 <Grid container spacing={3}>
@@ -149,7 +163,7 @@ export default function GoodsLayout(props: Props) {
                 </Grid>
             )}
 
-            {goodsList.length === 0 && (
+            {!loading && goodsList.length === 0 && (
                 <Stack height={mobile ? "50vh" : "70vh"} justifyContent="center" alignItems="center" bgcolor="#f9f9f9">
                     <Typography sx={{opacity: 0.5}}>현재 상품이 준비중입니다.</Typography>
                 </Stack>

@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react"
+import React, {CSSProperties, useEffect, useState} from "react"
+import SyncLoader from "react-spinners/ClipLoader"
 
-import {SelectChangeEvent, useMediaQuery, useTheme} from "@mui/material"
+import {SelectChangeEvent, Stack, useMediaQuery, useTheme} from "@mui/material"
 //components
 import {ProductItemDefaultData, ProductItemType} from "types/product-type"
 
@@ -34,10 +35,16 @@ export default function ProductDetailPage(props: Props) {
     const [selectValue, setSelectValue] = useState(defaultOption)
     const [selectValueList, setSelectValueList] = useState<OptionCart[]>([])
     const [totalPrice, setTotalPrice] = useState(0)
+    const [loading, setLoading] = useState(true)
+
+    const override: CSSProperties = {
+        display: "block",
+        margin: "0 auto",
+        borderColor: theme.palette.primary.main,
+    }
 
     useEffect(() => {
         onLoadData()
-        console.log(discount)
     }, [productId])
 
     const onLoadData = async () => {
@@ -75,6 +82,7 @@ export default function ProductDetailPage(props: Props) {
                         price: data.price,
                         discount: data.discount,
                     })
+                    setLoading(false)
                 })
                 .catch(function (error) {
                     console.log("axios error:", error)
@@ -126,7 +134,11 @@ export default function ProductDetailPage(props: Props) {
 
     return (
         <>
-            {mobile ? (
+            {loading ? (
+                <Stack height={mobile ? "50vh" : "70vh"} justifyContent="center" alignItems="center">
+                    <SyncLoader loading={loading} cssOverride={override} size={100} />
+                </Stack>
+            ) : mobile ? (
                 <ProductDetailPageMobile
                     productItem={productItemData}
                     selectValueList={selectValueList}

@@ -14,10 +14,8 @@ export default function PartnerBenner() {
             <Container maxWidth="lg">
                 <Stack direction="row" justifyContent="space-around" alignItems="center">
                     <ImageBox src="/images/logo2.png" height={40} width={150} />
-                    {/* <ImageBox src="/images/logo2.png" height={40} width={150} />
-                    <ImageBox src="/images/logo2.png" height={40} width={150} />
-                    <ImageBox src="/images/logo2.png" height={40} width={150} />
-                    <ImageBox src="/images/logo2.png" height={40} width={150} /> */}
+                    <ImageBox src="/images/logo-illuni.png" height={70} width={150} contain />
+                    <ImageBox src="/images/logo-imuz.png" height={25} width={150} contain />
                 </Stack>
             </Container>
         </div>

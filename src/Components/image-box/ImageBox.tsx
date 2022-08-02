@@ -12,10 +12,11 @@ type Props = {
     children?: React.ReactNode
     style?: CSSProperties
     onClick?: () => void
+    contain?: boolean
 }
 
 export default function ImageBox(props: Props) {
-    const {width = "100%", height, src, brightness, hoverEffects = false, children, style, onClick} = props
+    const {width = "100%", height, src, brightness, hoverEffects = false, children, style, onClick, contain} = props
     const classes = useStyles()
 
     return (
@@ -23,7 +24,7 @@ export default function ImageBox(props: Props) {
             <img
                 src={src}
                 alt=""
-                style={{filter: `brightness(${brightness})`}}
+                style={{filter: `brightness(${brightness})`, objectFit: contain ? "contain" : "cover"}}
                 className={clsx({[classes.image]: true, [classes.hover]: hoverEffects})}
             />
             {children}

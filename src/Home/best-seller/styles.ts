@@ -56,7 +56,7 @@ const styles = makeStyles(() =>
             animationIterationCount: "infinite",
             animationDuration: "3s",
             marginBottom: 10,
-            zIndex: 100,
+            zIndex: 9,
         },
 
         "@keyframes moveSwing": {
