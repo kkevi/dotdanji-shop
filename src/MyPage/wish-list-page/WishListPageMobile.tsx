@@ -32,7 +32,7 @@ export default function WishListPageMobile(prop: WishListPageProps) {
 
     return (
         <Container maxWidth="sm">
-            <Stack className={classes.rootStack}>
+            <Stack mt={6} className={classes.rootStack}>
                 <Typography variant="h6" mb={1} className="pointFont" color={theme.palette.secondary.dark}>
                     # 찜상품
                 </Typography>

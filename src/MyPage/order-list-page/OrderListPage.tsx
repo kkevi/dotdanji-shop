@@ -18,10 +18,10 @@ export default function OrderListPage({front}: Props) {
     const mobile = useMediaQuery(theme.breakpoints.down("sm"))
 
     return (
-        <Stack py={mobile ? 9.5 : 13.5}>
+        <Stack py={mobile ? 9.9 : 13.5}>
             {front ? undefined : <MyPageHeader title="마이페이지" subtitle={"구매내역"} mobile={mobile} />}
             <Container maxWidth="lg">
-                <Stack mt={front ? 0 : 16} className={classes.rootStack}>
+                <Stack mt={front ? 0 : mobile ? 6 : 12} className={classes.rootStack}>
                     <Typography
                         variant={mobile ? "h6" : "h5"}
                         mb={1}

@@ -36,7 +36,7 @@ export default function NewArrivalWeb(props: Props) {
                     <ImageBox
                         width="100%"
                         height="100%"
-                        src={newArrivalList[hover].thumbnails}
+                        src={newArrivalList[hover].thumbnail}
                         style={{
                             borderTopLeftRadius: 20,
                             borderBottomLeftRadius: 20,

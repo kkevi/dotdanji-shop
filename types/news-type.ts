@@ -1,5 +1,6 @@
 export interface NewsType {
-    thumbnails: string
+    thumbnail: string
+    thumbnailMobile: string
     title: string
     url: string
 }

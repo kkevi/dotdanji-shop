@@ -20,6 +20,7 @@ export default function HomeSlider({isMobile}: HomeSliderProps) {
                     title={itm.title}
                     subTitle={itm.subTitle}
                     image={itm.image}
+                    imageMobile={itm.imageMobile}
                     backgroundColor={itm.imageBackgroundColor}
                     url={itm.url}
                     mobile={isMobile}

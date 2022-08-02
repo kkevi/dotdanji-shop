@@ -33,7 +33,7 @@ export default function NewArrivalMobile(props: Props) {
             <Slider {...sliderSetOption}>
                 {newArrivalList.map((goods, index) => (
                     <Stack alignItems="flex-start" mb={4} key={goods.title}>
-                        <ImageBox width="100%" height={450} src={goods.thumbnails} />
+                        <ImageBox width="100%" height={450} src={goods.thumbnailMobile} />
 
                         <Typography
                             mt={2}
