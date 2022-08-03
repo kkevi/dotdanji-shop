@@ -1,4 +1,4 @@
-type NameType =
+export type NameType =
     | "Gandhi"
     | "Nightingale"
     | "Fabre"
@@ -9,18 +9,19 @@ type NameType =
     | "Curie"
     | "daVinci"
 
-type WiseManListType = {
+export type WiseManListType = {
     name: string
     img: string
     wise: string
     desc: string[]
     fairytale: {
+        image: string
         title: string
         desc: string
     }
 }
 
-export const WISE_MAN_LIST: Record<NameType, Record<string, any>> = {
+export const WISE_MAN_LIST: Record<NameType, WiseManListType> = {
     Gandhi: {
         name: "마하트마 간디",
         img: "/images/portrait/1_gandhi.png",
@@ -33,7 +34,7 @@ export const WISE_MAN_LIST: Record<NameType, Record<string, any>> = {
             "칭찬은 잘 수용하지만 아이에 대한 비판에 대해서는 무시하는 태도를 보일 수 있습니다. 때로는 타인의 평가가 자신을 객관적으로 볼 수 있는 기회라는 것을 알려주세요.",
         ],
         fairytale: {
-            image: "",
+            image: "/images/portrait/1_bootscat.jpg",
             title: "장화 신은 고양이",
             desc: "샤를 페로의 장화 신은 고양이를 보며, 아이가 동화 속에서 등장하는 고양이의 지혜로움과 기발한 재치를 배울 수 있습니다. 또한 약한 동물을 아끼는 막내의 모습을 통해 타인을 배려하면 후에 긍정적인 효과가 나타난다는 교훈을 얻을 수 있습니다.",
         },
@@ -50,7 +51,7 @@ export const WISE_MAN_LIST: Record<NameType, Record<string, any>> = {
             "아이가 자기 자신에 대한 믿음이 부족하지 않도록 자아존중감을 늘릴 수 있는 교육을 추천드립니다.",
         ],
         fairytale: {
-            image: "",
+            image: "/images/portrait/2_wolf.jpg",
             title: "늑대와 일곱마리 아기 염소",
             desc: "그림 형제의 늑대와 일곱마리 아기 염소 동화를 통해 낯선 사람이 착하게 다가온다고 해도, 함부로 따라가면 안된다는 교훈을 배울 수 있습니다. 또한 그 속에서 부모님의 말씀을 잘 들어야한다는 마음가짐을 얻을 수 있습니다.",
         },
@@ -67,7 +68,7 @@ export const WISE_MAN_LIST: Record<NameType, Record<string, any>> = {
             "성실하고 끈기 있는 성격이기 때문에 아이가 하는 일이 조금은 답답해보여도 믿고 지켜봐주세요.",
         ],
         fairytale: {
-            image: "",
+            image: "/images/portrait/3_peterpan.jpg",
             title: "피터 팬",
             desc: "제임스 매슈 배리의 피터 팬은 아이에게 무한한 상상력을 펼쳐주는 동화입니다. 현실과 다른 네버랜드에서 일어나는 흥미로운 이야기 속, 주인공 피터 팬에 몰입하게 됩니다. 판타지 동화를 보는 아이는 감성, 상상력, 논리적 사고력이 높아집니다. 때문에 상상력과 호기심이 많은 아이에게 피터팬은 독서를 재미있는 시간으로 만들어줍니다.",
         },
@@ -84,7 +85,7 @@ export const WISE_MAN_LIST: Record<NameType, Record<string, any>> = {
             "조금은 즉흥적일 수 있는 아이에게 천천히 계획적으로 생활하는 습관을 잡아주세요. 계획되지 않은 놀이보다 스스로 생각하고 설계한 놀이가 더 재밌다는 것을 알려주세요.",
         ],
         fairytale: {
-            image: "",
+            image: "/images/portrait/4_littleprince.jpg",
             title: "어린왕자",
             desc: "생텍쥐페리의 어린 왕자는 고전 동화 중 많은 교훈을 주는 아름다운 동화입니다. 이야기에서는 삶에 대한 교훈을 여러 행성을 통해 간접적으로 느끼게 해줍니다. 아이는 동화를 보며 자신이 동화 속의 교훈에 대해 생각해보고 배우게됩니다. 이는 바른 마음으로 행동할 수 있는 힘을 길러주는데 도움이 됩니다.",
         },
@@ -101,7 +102,7 @@ export const WISE_MAN_LIST: Record<NameType, Record<string, any>> = {
             "독창적인 창의력과 상상력도 좋지만 지나치게 몰입하면 고립될 수 있습니다. 타인과의 소통 속에서도 충분히 흥미로운 경험을 할 수 있다는 것을 알려주세요.",
         ],
         fairytale: {
-            image: "",
+            image: "/images/portrait/5_goldilocks.jpg",
             title: "골디락스와 세마리 곰",
             desc: "동화 속 골디락스가 곰의 집에서 자신에게 딱 맞는 물건들을 찾는 모습을 보며 큰 것이 아닌 자기자신에게 이상적인 선택을 한다는 점을 보고 교훈을 배울 수 있습니다. 골디락스(Goldilocks)라는 주인공 이름은 경제학에서 하나의 용어로서 사용되기 때문에 아이의 상식을 키우는데 도움이 됩니다.",
         },
@@ -118,7 +119,7 @@ export const WISE_MAN_LIST: Record<NameType, Record<string, any>> = {
             "넘치는 창의력으로 남들이 생각하지 못한 방향을 지적하고 지혜롭게 해결할 수 있습니다. 아이의 의견이 이상하다고 생각하지 말고 귀 기울여 들어주세요.",
         ],
         fairytale: {
-            image: "",
+            image: "/images/portrait/6_alice.jpg",
             title: "이상한 나라의 앨리스",
             desc: "루이스 캐럴의 이상한 나라의 앨리스는 앨리스에게 일어나는 환상적인 모험을 통해 아이의 상상력을 자극해 풍부한 상상력을 길러줍니다. 다른 교훈적인 동화보다 순수한 즐거움을 선사하여 아이가 문학에 가까워질 수 있도록 도와주는 동화입니다.",
         },
@@ -135,7 +136,7 @@ export const WISE_MAN_LIST: Record<NameType, Record<string, any>> = {
             "나와 다른 의견을 갖고 있더라도 충분히 이해하고 수용할 수 있도록 가르쳐주세요.",
         ],
         fairytale: {
-            image: "",
+            image: "/images/portrait/7_pinokio.jpg",
             title: "피노키오",
             desc: "카를로 콜로디의 피노키오는 옳고 그른 것에 대하여 도덕적인 내용을 담고 있습니다. 아이는 이야기를 읽으며 거짓말은 나쁘다라는 교훈을 얻을 수 있습니다. 또한 제페토 할아버지의 피노키오에 대한 사랑을 통해 부모님과 자신의 관계과 사랑에 대해 깊게 생각할 수 있는 시간을 가질 수 있습니다.",
         },
@@ -152,7 +153,7 @@ export const WISE_MAN_LIST: Record<NameType, Record<string, any>> = {
             "낯설고 새로운 것에 대한 거부감을 느끼고 받아들이기 어려워할 수 있습니다. 처음부터 모두 수용하기보다는 천천히 아이가 흥미를 느끼는 것과 함께 소개하여 이를 극복할 수 있도록 도와주세요.",
         ],
         fairytale: {
-            image: "",
+            image: "/images/portrait/9_walnut.jpg",
             title: "혹부리 영감",
             desc: "전래동화인 혹부리 영감은 누군가를 속이는 행동은 결국 실패하여 화를 부른다는 가르침을 가지고 있습니다. 또한 혹부리 영감의 재치를 통해 부를 이루는 모습은 아이들에게 재미와 더불어 긍정적으로 생각할 수 있는 힘을 길러줍니다. 유명한 국내문학(설화)이므로, 아이에게 교육적으로많은 도움이 될 것입니다.",
         },
@@ -169,7 +170,7 @@ export const WISE_MAN_LIST: Record<NameType, Record<string, any>> = {
             "여러 분야의 경험을 하고 모두 흥미를 느낄 수 있습니다. 오로지 하나에만 집중하는 것보다 아이가 즐거워하고 좋아하는 모든 것을 체험해볼 수 있도록 장려 해주세요.",
         ],
         fairytale: {
-            image: "",
+            image: "/images/portrait/1_bootscat.jpg",
             title: "호두까기 인형",
             desc: "차이코프스키의 아름다운 음악과 발레 공연으로 유명한 호두까기 인형은, 예술적인 영향뿐만 아니라 사랑하는 마음과 아름다운 선함을 가지고 있는 주인공의 이야기가 담긴 명작동화입니다. 동화 속 이야기가 판타지적 요소를 가지고 있어서 아이의 상상력을 키워주는데 도움이 됩니다. 또한 곤경에 처한 친구들을 도와주자는 도덕심을 배울 수 있습니다.",
         },

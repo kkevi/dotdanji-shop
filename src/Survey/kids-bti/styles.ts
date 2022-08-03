@@ -81,8 +81,10 @@ const styles = makeStyles(() =>
         },
 
         contents2: {
-            fontSize: 16,
+            marginTop: 12,
             color: theme.palette.secondary.dark,
+            fontSize: 16,
+            textAlign: "left",
         },
 
         resultButton: {

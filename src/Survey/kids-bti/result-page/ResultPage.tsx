@@ -6,7 +6,7 @@ import {Container, Button, Stack, Typography} from "@mui/material"
 
 import HeadMeta from "components/head/HeadMeta"
 import ImageBox from "components/image-box/ImageBox"
-import {WISE_MAN_LIST} from "./result-list"
+import {WISE_MAN_LIST, NameType, WiseManListType} from "./result-list"
 
 type ResultPageProps = {
     result: string
@@ -31,9 +31,7 @@ export default function ResultPage({result}: ResultPageProps) {
     }
 
     const onShowName = (result: string) => {
-        const wisemanData: [string, Record<string, string>] = Object.entries(WISE_MAN_LIST).filter(
-            it => it[0] === result,
-        )[0]
+        const wisemanData: [string, WiseManListType] = Object.entries(WISE_MAN_LIST).filter(it => it[0] === result)[0]
 
         if (wisemanData) return wisemanData[1]
     }
@@ -68,32 +66,38 @@ export default function ResultPage({result}: ResultPageProps) {
                         돛단지 위인 테스트 결과
                     </Typography>
                     <ImageBox width={250} height={250} src={onShowName(result)?.img} />
-                    <Typography my={1} className={`${classes.score} pointFont`}>
+                    <Typography my={2} className={`${classes.score} pointFont`}>
                         {onShowName(result)?.name}
                     </Typography>
-                    <Typography className={`${classes.contents} pointFont`}>{onShowName(result)?.wise}</Typography>
-
-                    <Typography mt={4} className={`${classes.contents2}`}>
-                        {onShowName(result)?.desc[0]}
+                    <Typography mb={1} className={`${classes.contents} pointFont`}>
+                        "{onShowName(result)?.wise}"
                     </Typography>
-                    <Typography className={`${classes.contents2}`}>{onShowName(result)?.desc[1]}</Typography>
-                    <Typography className={`${classes.contents2}`}>{onShowName(result)?.desc[2]}</Typography>
-                    <Typography className={`${classes.contents2}`}>{onShowName(result)?.desc[3]}</Typography>
-                    <Typography className={`${classes.contents2}`}>{onShowName(result)?.desc[4]}</Typography>
+
+                    <Typography className={`${classes.contents2}`}>▪ {onShowName(result)?.desc[0]}</Typography>
+                    <Typography className={`${classes.contents2}`}>▪ {onShowName(result)?.desc[1]}</Typography>
+                    <Typography className={`${classes.contents2}`}>▪ {onShowName(result)?.desc[2]}</Typography>
+                    <Typography className={`${classes.contents2}`}>▪ {onShowName(result)?.desc[3]}</Typography>
+                    <Typography className={`${classes.contents2}`}>▪ {onShowName(result)?.desc[4]}</Typography>
                 </Stack>
 
                 <Stack className={classes.resultContainer}>
-                    <Typography sx={{fontSize: "18px !important"}} className={`${classes.score} pointFont`}>
-                        "2세 여자 아이들"은
+                    <Typography mb={2} className={`${classes.contents} pointFont`}>
+                        추천 동화
                     </Typography>
-                    <Typography className={`${classes.contents} pointFont`}>
-                        평균적으로 "이러이러한" 언어실력을 가지고 있습니다.
+                    <ImageBox
+                        width={250}
+                        height={150}
+                        style={{borderRadius: 20}}
+                        src={onShowName(result)?.fairytale.image}
+                    />
+                    <Typography mt={2} sx={{fontSize: "24px !important"}} className={`${classes.score} pointFont`}>
+                        {onShowName(result)?.fairytale.title}
                     </Typography>
 
-                    <Typography mt={3} mb={2} className={`${classes.contents2}`}>
-                        지금 회원가입하면 스토리셀프 1주 무료체험권을 드려요!
+                    <Typography mt={3} className={`${classes.contents2}`}>
+                        {onShowName(result)?.fairytale.desc}
                     </Typography>
-                    <Button className={classes.resultButton} onClick={() => route.push("/signup")} sx={{mb: 1}}>
+                    {/* <Button className={classes.resultButton} onClick={() => route.push("/signup")} sx={{mb: 1}}>
                         회원가입하기
                     </Button>
                     <Button
@@ -101,7 +105,7 @@ export default function ResultPage({result}: ResultPageProps) {
                         onClick={() => route.push("/product/detail?goodsId=fake-goodsId-0")}
                     >
                         스토리셀프 살펴보기
-                    </Button>
+                    </Button> */}
                 </Stack>
 
                 <Stack mt={4} mb={10} width="100%" alignItems="center">
