@@ -15,14 +15,16 @@ export default function InitialStep({setStep}: InitialStepProps) {
         <>
             <ImageBox height={"80%"} style={{borderRadius: 20}} src="/images/illust/dottdanji-illust2.png" />
             <Typography mt={5} className={`${classes.title} pointFont`}>
-                우리 아이의 언어 발달은 어느정도?
+                우리 아이는 어떤 위인으로 클까?
             </Typography>
             <Typography mt={2} className={`${classes.contents}`}>
-                한글 공부를 하고 싶은데 어떻게 하지?
+                현재 우리 아이가 미래에 어떤 모습으로 클까요?
             </Typography>
-            <Typography className={`${classes.contents}`}>정확히 알아야 정확히 공부한다!</Typography>
+            <Typography className={`${classes.contents}`}>
+                어떠한 교육방향으로 나아가야할지, 간단한 설문을 통해 알아보세요.
+            </Typography>
             <Typography mb={5} className={`${classes.contents}`}>
-                돛단지와 함께 언어 능력을 검사 해보아요.
+                돛단지가 유명한 위인을 토대로 재미있게 알려드릴게요!
             </Typography>
 
             <Button className={classes.containedButton} onClick={() => setStep(prev => prev + 1)}>
