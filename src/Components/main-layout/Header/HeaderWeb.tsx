@@ -1,21 +1,20 @@
+//ui components
+import {Button, ButtonGroup, Container, Stack} from "@mui/material"
 import React, {useEffect, useState} from "react"
 import Router, {useRouter} from "next/router"
-//ui components
-import {Button, ButtonGroup, Container, Stack, useTheme} from "@mui/material"
-import useStyles from "./styles"
+
 //icon
 //fake data
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
-import UserLoginButton from "./components/user-login-button/UserLoginButton"
 import ShopCartButton from "./components/shop-cart-button/ShopCartButton"
+import UserLoginButton from "./components/user-login-button/UserLoginButton"
+import useStyles from "./styles"
 
 export default function HeaderWeb() {
     const classes = useStyles()
     const route = useRouter()
-    const theme = useTheme()
     const [category, setCategory] = useState(GOODS_CATEGORY_DATA)
     const [badgeContent, setBadgeContent] = useState(1)
-    const [hovering, setHovering] = useState(false)
 
     const isLoggedIn = false
 
@@ -28,8 +27,6 @@ export default function HeaderWeb() {
     useEffect(() => {
         window.addEventListener("scroll", updateScroll)
     })
-
-    const textColor = {}
 
     const onClickCategorys = (categoryId: string) => {
         Router.push({pathname: "/product", query: {categoryId: categoryId}})
@@ -62,7 +59,7 @@ export default function HeaderWeb() {
                             justifyContent="space-between"
                             fontWeight={700}
                         >
-                            {category.map(({categoryId, title}, index) => (
+                            {category.map(({categoryId, title}) => (
                                 <Button
                                     onClick={() => onClickCategorys(categoryId)}
                                     key={categoryId}

@@ -1,9 +1,11 @@
-import {useEffect} from "react"
-import {routerPush} from "lib/routerPush"
+import MainLayout from "src/Components/main-layout/MainLayout"
+import React from "react"
+import ServicePage from "src/Service"
 
-export default function Index() {
-    useEffect(() => {
-        routerPush("/service/notice")
-    }, [])
-    return null
+export default function Service() {
+    return (
+        <MainLayout>
+            <ServicePage tabIndex={"notice"} />
+        </MainLayout>
+    )
 }

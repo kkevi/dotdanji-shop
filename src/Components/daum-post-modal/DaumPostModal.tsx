@@ -1,7 +1,7 @@
-import React from "react"
 import DaumPostcode from "react-daum-postcode"
-
 import {Dialog} from "@mui/material"
+import React from "react"
+
 type DaumPostModalTypes = {
     onChangeAddress: (val: string, val2: string) => void
     visibleModal: boolean

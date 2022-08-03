@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react"
-import {useRouter} from "next/router"
+
 import MainLayout from "components/main-layout/MainLayout"
 import ProductDetailPage from "src/Product/product-detail-page/ProductDetailPage"
+import {useRouter} from "next/router"
 
 export default function IndexGoodsDetail() {
     const route = useRouter()
@@ -10,7 +11,7 @@ export default function IndexGoodsDetail() {
     useEffect(() => {
         if (route.query.productId) setProductId(route.query.productId)
         else route.push("/")
-    }, [route.query])
+    }, [route, route.query])
 
     return (
         <MainLayout>

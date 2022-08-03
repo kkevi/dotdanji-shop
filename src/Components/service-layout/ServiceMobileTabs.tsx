@@ -1,11 +1,10 @@
-import React from "react"
-import {Typography, Stack, Tabs, Tab} from "@mui/material"
-
-import {routerPush} from "lib/routerPush"
-import {useTheme} from "@mui/material"
 import {ServiceBannerType, ServiceTabKey} from "types/service-type"
-import {serviceTabList} from "./banner-list"
+import {Stack, Tab, Tabs, Typography, useTheme} from "@mui/material"
+
 import ImageBox from "../image-box/ImageBox"
+import React from "react"
+import {routerPush} from "lib/routerPush"
+import {serviceTabList} from "./banner-list"
 
 function tabProps(index: number) {
     return {

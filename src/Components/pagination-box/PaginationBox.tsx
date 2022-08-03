@@ -1,9 +1,8 @@
-import React from "react"
-import styled from "styled-components"
-import Pagination from "react-js-pagination"
-
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded"
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded"
+import Pagination from "react-js-pagination"
+import React from "react"
+import styled from "styled-components"
 import {useTheme} from "@mui/material"
 
 type Props = {

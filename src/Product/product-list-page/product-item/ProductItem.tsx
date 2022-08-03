@@ -1,21 +1,22 @@
-import {useCallback, useEffect, useState} from "react"
-import {useRouter} from "next/router"
-import useStyles from "./styles"
-import {ProductItemType} from "types/product-type"
 //component
-import {IconButton, Typography, ButtonBase} from "@mui/material"
+import {ButtonBase, IconButton, Typography} from "@mui/material"
+import React, {useCallback, useEffect, useState} from "react"
+
 import ImageBox from "components/image-box/ImageBox"
+import {ProductItemType} from "types/product-type"
 //icon
 import {toast} from "react-toastify"
+import {useRouter} from "next/router"
+import useStyles from "./styles"
 
 type props = {
     data: ProductItemType
-    mobile: boolean
+    isMobile: boolean
 }
 
 export default function ProductItem(props: props) {
-    const {productId, categoryId, listThumbnail, name, price, discount} = props.data
-    const {mobile} = props
+    const {productId, listThumbnail, name, price, discount} = props.data
+    const {isMobile} = props
     const classes = useStyles()
     const route = useRouter()
     //state
@@ -78,29 +79,37 @@ export default function ProductItem(props: props) {
         <div className={classes.root}>
             <div className={classes.thumbnail}>
                 <ButtonBase onClick={onClickRouter} disabled={disabled}>
-                    {listThumbnail && <ImageBox src={listThumbnail} height={mobile ? "180px" : "400px"} />}
+                    {listThumbnail && <ImageBox src={listThumbnail} height={isMobile ? "180px" : "400px"} />}
                 </ButtonBase>
 
-                <div className={mobile ? classes.iconButtonListMobile : classes.iconButtonList}>
+                <div className={isMobile ? classes.iconButtonListMobile : classes.iconButtonList}>
                     <IconButton onClick={onClickFavorBtn}>
                         {favorState ? (
-                            <ImageBox width={mobile ? 23 : 30} height={mobile ? 23 : 30} src="/icons/icon-heart.png" />
+                            <ImageBox
+                                width={isMobile ? 23 : 30}
+                                height={isMobile ? 23 : 30}
+                                src="/icons/icon-heart.png"
+                            />
                         ) : (
-                            <ImageBox width={mobile ? 23 : 30} height={mobile ? 23 : 30} src="/icons/icon-heart2.png" />
+                            <ImageBox
+                                width={isMobile ? 23 : 30}
+                                height={isMobile ? 23 : 30}
+                                src="/icons/icon-heart2.png"
+                            />
                         )}
                     </IconButton>
                     <IconButton onClick={onClickShare}>
-                        <ImageBox width={mobile ? 28 : 32} height={mobile ? 28 : 32} src="/icons/icon-share.png" />
+                        <ImageBox width={isMobile ? 28 : 32} height={isMobile ? 28 : 32} src="/icons/icon-share.png" />
                     </IconButton>
                 </div>
             </div>
 
             <ButtonBase className={classes.titleArea} onClick={onClickRouter} disabled={disabled}>
-                <Typography fontSize={mobile ? 12 : 14} variant="body2" mt={2}>
+                <Typography fontSize={isMobile ? 12 : 14} variant="body2" mt={2}>
                     {discount > 0 && <span>{price} 원</span>}
                     {`${resultPrice.toLocaleString()} 원`}
                 </Typography>
-                <Typography fontSize={mobile ? 14 : 16}>{name}</Typography>
+                <Typography fontSize={isMobile ? 14 : 16}>{name}</Typography>
             </ButtonBase>
         </div>
     )

@@ -1,5 +1,5 @@
-import React from "react"
 import Head from "next/head"
+import React from "react"
 
 type HeadMeta = {
     title: string
@@ -8,7 +8,7 @@ type HeadMeta = {
     image?: string
 }
 
-const HeadMeta = ({title, description, url, image}: HeadMeta) => {
+const HeadMeta = ({title, description, image}: HeadMeta) => {
     return (
         <Head>
             <title>{title || "정리습관"}</title>
