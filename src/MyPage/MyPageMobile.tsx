@@ -68,13 +68,8 @@ export default function MyPageMobile(prop: MyPageProps) {
             </Stack>
             {/* 회원정보 리스트2 */}
             <Stack direction="row" alignItems="center" alignSelf="center" mt={2} spacing={2}>
+                <Box onClick={() => route.push("/mypage/inquiry")} src="/icons/icon-mail.png" title="문의 내역" />
                 <Box onClick={() => route.push("/mypage/modify")} src="/icons/icon-mypage.png" title="내 정보 수정" />
-
-                <Box
-                    onClick={() => route.push("/mypage/password-edit")}
-                    src="/icons/icon-lock2.png"
-                    title="비밀번호 변경"
-                />
             </Stack>
 
             <OrderListPage front />
