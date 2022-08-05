@@ -6,7 +6,7 @@ import {Container, Button, Stack, Typography} from "@mui/material"
 
 import HeadMeta from "components/head/HeadMeta"
 import ImageBox from "components/image-box/ImageBox"
-import {WISE_MAN_LIST, NameType, WiseManListType} from "./result-list"
+import {WISE_MAN_LIST, WiseManListType} from "./result-list"
 
 type ResultPageProps = {
     result: string

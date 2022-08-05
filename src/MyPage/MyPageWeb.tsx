@@ -66,13 +66,9 @@ export default function MyPageWeb(prop: MyPageProps) {
                     title="마일리지"
                 />
 
-                <Box onClick={() => route.push("/mypage/modify")} src="/icons/icon-mypage.png" title="내 정보 수정" />
+                <Box onClick={() => route.push("/mypage/inquiry")} src="/icons/icon-mail.png" title="문의 내역" />
 
-                <Box
-                    onClick={() => route.push("/mypage/password-edit")}
-                    src="/icons/icon-lock2.png"
-                    title="비밀번호 변경"
-                />
+                <Box onClick={() => route.push("/mypage/modify")} src="/icons/icon-mypage.png" title="내 정보 수정" />
             </Stack>
 
             <OrderListPage front />
