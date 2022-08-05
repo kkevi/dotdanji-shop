@@ -14,7 +14,6 @@ export const GlobalStyle = createGlobalStyle`
     
     :focus {
         outline: none;
-        border: none;
     }
     ::-webkit-scrollbar {
         display: none;

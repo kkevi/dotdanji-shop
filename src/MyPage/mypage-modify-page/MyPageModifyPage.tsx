@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {useRouter} from "next/router"
-import {Container, Stack, Typography, Button, InputAdornment, useMediaQuery, useTheme} from "@mui/material"
+import {Container, Stack, Typography, Button, InputAdornment, useMediaQuery, useTheme, TextField} from "@mui/material"
 
 import useStyles from "../styles"
 import MyPageHeader from "src/MyPage/mypage-header/MyPageHeader"
@@ -8,6 +8,9 @@ import DaumPostModal from "components/daum-post-modal/DaumPostModal"
 import {MyPageModifyFormDefaultData, UserDataType} from "types/user-type"
 
 import {CustomedTextField} from "src/Components/customed-textfield/CustomedTextField"
+import VisibilityButton from "src/Components/visibility-button/VisibilityButton"
+
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded"
 
 export default function MyPageModifyPage() {
     const theme = useTheme()
@@ -16,6 +19,24 @@ export default function MyPageModifyPage() {
     const route = useRouter()
     const [formData, setFormData] = useState<UserDataType>(MyPageModifyFormDefaultData)
     const [visibleModal, setVisibleModal] = useState(false)
+
+    // const [formData, setFormData] = useState<MyPagePwEditFormProps>(MyPagePwEditFormDefaultData)
+    const [visibility, setVisibility] = useState<boolean>(false)
+    const [visibility2, setVisibility2] = useState<boolean>(false)
+    const [visibility3, setVisibility3] = useState<boolean>(false)
+
+    // const validPw = useVerfiyPw(formData.newPw)
+    // const validPwLength = formData.newPw.length < 21 && formData.newPw.length > 7
+    // const correspondPw = formData.newPw !== "" && formData.newPw === formData.newPwVerify
+    // const validPwAll = validPw && validPwLength && formData.newPw === formData.newPwVerify
+
+    // const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const {value, name} = e.target
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value,
+    //     })
+    // }
 
     const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {value, name} = e.target
@@ -125,7 +146,121 @@ export default function MyPageModifyPage() {
                             value={formData.addressDetailed}
                             onChange={onChangeInput}
                             style={{marginTop: theme.spacing(-2)}}
+                        />{" "}
+                        <Typography
+                            className="pointFont"
+                            color={theme.palette.secondary.dark}
+                            mb={4}
+                            fontWeight={800}
+                            fontSize={22}
+                            sx={{alignSelf: "flex-start"}}
+                        >
+                            # 비밀번호 변경
+                        </Typography>
+                        <TextField
+                            className={classes.disabledTextField}
+                            type={visibility ? "text" : "password"}
+                            required
+                            fullWidth
+                            label="현재 비밀번호"
+                            name="currentPw"
+                            value={"formData.currentPw"}
+                            onChange={onChangeInput}
+                            InputProps={{
+                                endAdornment: (
+                                    <VisibilityButton
+                                        position="end"
+                                        visibility={visibility}
+                                        setVisibility={setVisibility}
+                                    />
+                                ),
+                            }}
                         />
+                        <TextField
+                            className={classes.textField}
+                            sx={{marginBottom: "0 !important"}}
+                            type={visibility2 ? "text" : "password"}
+                            required
+                            fullWidth
+                            label="새 비밀번호"
+                            name="newPw"
+                            value={"formData.newPw"}
+                            onChange={onChangeInput}
+                            InputProps={{
+                                endAdornment: (
+                                    <VisibilityButton
+                                        position="end"
+                                        visibility={visibility2}
+                                        setVisibility={setVisibility2}
+                                    />
+                                ),
+                            }}
+                        />
+                        <Stack ml={1} mt={1} mb={4} height={10} direction="row">
+                            <CheckRoundedIcon
+                                sx={{
+                                    marginRight: "2px",
+                                    // color: validPw ? theme.palette.primary.light : "#757575",
+                                    fontSize: 18,
+                                }}
+                            />
+                            <Typography
+                                mr={2}
+                                variant="caption"
+                                // color={validPw ? theme.palette.primary.light : "#757575"}
+                            >
+                                특수문자 포함
+                            </Typography>
+
+                            <CheckRoundedIcon
+                                sx={{
+                                    marginRight: "2px",
+                                    // color: validPwLength ? theme.palette.primary.light : "#757575",
+                                    fontSize: 18,
+                                }}
+                            />
+                            <Typography
+                                variant="caption"
+                                // color={validPwLength ? theme.palette.primary.light : "#757575"}
+                            >
+                                8~20자 이내
+                            </Typography>
+                        </Stack>
+                        <TextField
+                            className={classes.textField}
+                            sx={{marginBottom: "0 !important"}}
+                            type={visibility3 ? "text" : "password"}
+                            required
+                            fullWidth
+                            label="새 비밀번호 확인"
+                            name="newPwVerify"
+                            value={"formData.newPwVerify"}
+                            onChange={onChangeInput}
+                            InputProps={{
+                                endAdornment: (
+                                    <VisibilityButton
+                                        position="end"
+                                        visibility={visibility}
+                                        setVisibility={setVisibility}
+                                    />
+                                ),
+                            }}
+                        />
+                        <Stack ml={1} mt={1} mb={2} height={10} direction="row">
+                            <CheckRoundedIcon
+                                sx={{
+                                    marginRight: "2px",
+                                    // color: correspondPw ? theme.palette.primary.light : "#757575",
+                                    fontSize: 18,
+                                }}
+                            />
+                            <Typography
+                                variant="caption"
+                                // color={correspondPw ? theme.palette.primary.light : "#757575"}
+                            >
+                                비밀번호 일치
+                            </Typography>
+                        </Stack>
                         <Button
                             className={classes.button}
                             sx={{alignSelf: "center"}}
@@ -134,7 +269,6 @@ export default function MyPageModifyPage() {
                         >
                             저장하기
                         </Button>
-
                         <Typography
                             mt={2}
                             fontSize={12}
