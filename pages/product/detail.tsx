@@ -9,7 +9,7 @@ export default function IndexGoodsDetail() {
     const [productId, setProductId] = useState<string | string[] | undefined>("")
 
     useEffect(() => {
-        if (route.query.productId) setProductId(route.query.productId)
+        if (route.query.productId) setProductId(route.query.productId as string)
         else route.push("/")
     }, [route, route.query])
 

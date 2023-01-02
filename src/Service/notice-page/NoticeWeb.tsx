@@ -1,9 +1,9 @@
+import {Divider, Stack, Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material"
 import React, {useState} from "react"
-import {useRouter} from "next/router"
-import {Stack, Divider, Table, TableHead, TableRow, TableCell, TableBody} from "@mui/material"
 
-import PaginationBox from "src/Components/pagination-box/PaginationBox"
 import {NoticeType} from "types/service-type"
+import PaginationBox from "src/Components/pagination-box/PaginationBox"
+import {useRouter} from "next/router"
 
 type Props = {
     noticeList: NoticeType[]
@@ -27,7 +27,7 @@ export default function NoticeWeb(props: Props) {
 
             <Table>
                 <TableHead>
-                    <TableRow key={`tableTitle`}>
+                    <TableRow key="tableTitle">
                         {tableTitle.map((title, index) => (
                             <TableCell
                                 key={"tableTitle" + index}

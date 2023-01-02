@@ -1,12 +1,11 @@
-import React, {useState, useRef} from "react"
-import {Stack, Typography, Button, Select, MenuItem, SelectChangeEvent, useMediaQuery, useTheme} from "@mui/material"
-
-import useStyles from "./styles"
+import {Button, MenuItem, Select, SelectChangeEvent, Stack, Typography, useMediaQuery, useTheme} from "@mui/material"
 import {InquiryFormProps, categoryList, inquiryFormDefaultData} from "types/service-type"
-import InquiryTerms from "./inquiry-terms/InquiryTerms"
-import {toast} from "react-toastify"
+import React, {useRef, useState} from "react"
 
 import {CustomedTextField} from "components/customed-textfield/CustomedTextField"
+import InquiryTerms from "./inquiry-terms/InquiryTerms"
+import {toast} from "react-toastify"
+import useStyles from "./styles"
 
 export default function Index() {
     const theme = useTheme()
@@ -27,7 +26,7 @@ export default function Index() {
     const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target?.files
         const maxSize = 5 * 1024 * 1024 // 5MB
-        let reader = new FileReader()
+        const reader = new FileReader()
         if (!files || files.length === 0 || files[0].size === 0) return
         else if (files[0]?.size > maxSize) {
             return toast.error("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.")

@@ -1,19 +1,16 @@
-import React from "react"
-import {useRouter} from "next/router"
-
-import {Container, Stack, Typography, Button} from "@mui/material"
-import {theme} from "src/styles/theme"
-
-import ImageBox from "components/image-box/ImageBox"
-import HomeVideo from "../home-video/HomeVideo"
-
-import {EventType} from "types/event-type"
-
-import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import {sliderSetOption} from "../slider-set-option"
 
+import {Button, Container, Stack, Typography} from "@mui/material"
+
+import {EventType} from "types/event-type"
+import HomeVideo from "../home-video/HomeVideo"
+import ImageBox from "components/image-box/ImageBox"
+import React from "react"
+import Slider from "react-slick"
+import {sliderSetOption} from "../slider-set-option"
+import {theme} from "src/styles/theme"
+import {useRouter} from "next/router"
 import useStyles from "./style"
 
 type Props = {
@@ -44,7 +41,6 @@ export default function EventSliderWeb(props: Props) {
                     <ImageBox src="/images/sticker/gomi2.png" width={62} height={37} />
                     <ImageBox src="/images/sticker/gomi1.png" width={89} height={181} />
                 </div>
-                {/* 퐁구 이미지 */}
                 <div style={{width: 850, height: 450, borderRadius: 20, overflow: "hidden"}}>
                     <HomeVideo />
                 </div>

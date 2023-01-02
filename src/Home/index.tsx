@@ -1,11 +1,11 @@
-import React from "react"
-import {useTheme, useMediaQuery} from "@mui/material"
+import React, {useEffect, useState} from "react"
+import {useMediaQuery, useTheme} from "@mui/material"
 
-import HomeSlider from "./home-slider"
-import EventSlider from "./event-slider"
 import AppBanner from "./app-banner"
-import NewArrival from "./new-arrival"
 import BestSeller from "./best-seller"
+import EventSlider from "./event-slider"
+import HomeSlider from "./home-slider"
+import NewArrival from "./new-arrival"
 import PartnerBenner from "./partner-benner"
 
 export default function Home() {
