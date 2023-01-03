@@ -1,12 +1,13 @@
-import {Button} from "@mui/material"
-import {useRouter} from "next/router"
-import {useState} from "react"
-import {toast} from "react-toastify"
-import useStyles from "./styles"
-
 import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js"
 import {userEmailCheck, userPasswordCheck} from "../../validation-check"
+
+import {Button} from "@mui/material"
+import React from "react"
 import UserPool from "../../user-pool"
+import {toast} from "react-toastify"
+import {useRouter} from "next/router"
+import {useState} from "react"
+import useStyles from "./styles"
 
 type Props = {
     email: string

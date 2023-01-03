@@ -1,12 +1,11 @@
+import {Container, Stack, Typography} from "@mui/material"
 import React, {useState} from "react"
-import {Stack, Container, Typography} from "@mui/material"
-import {useRouter} from "next/router"
 import {useMediaQuery, useTheme} from "@mui/material"
+
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded"
 import CartListPage from "./cart-list-page"
 import CartSection2 from "./cart-section2"
 import CartSection3 from "./cart-section3"
-
-import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded"
 
 export default function Cart() {
     const theme = useTheme()

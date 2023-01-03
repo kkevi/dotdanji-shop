@@ -1,9 +1,8 @@
+import {Button, Container, Divider, Stack, Typography, useTheme} from "@mui/material"
+
 import React from "react"
-
-import {Container, Stack, Typography, Button, Divider, useTheme} from "@mui/material"
-
-import useStyles from "./style"
 import WishListTable from "./components/WishListTable"
+import useStyles from "./style"
 
 type WishListPageProps = {
     wishItemList: never[]
@@ -54,10 +53,10 @@ export default function WishListPageWeb(prop: WishListPageProps) {
 
                 {/* 주문결제버튼 */}
                 <Stack className={classes.rootStack} alignSelf="center" mt={8} width={"50% !important"} mb={16}>
-                    <Button variant="outlined" fullWidth onClick={() => {}}>
+                    <Button variant="outlined" fullWidth>
                         <Typography variant="h6">장바구니에 넣기</Typography>
                     </Button>
-                    <Button variant="contained" fullWidth onClick={() => {}} disableElevation>
+                    <Button variant="contained" fullWidth disableElevation>
                         <Typography variant="h6">선택상품 구매하기</Typography>
                     </Button>
                 </Stack>

@@ -1,10 +1,10 @@
 import React, {MutableRefObject, useEffect, useRef} from "react"
+import {Stack, useTheme} from "@mui/material"
+
+import {socialList} from "./social-list"
 import {useRouter} from "next/router"
 import {useSessionStorage} from "react-use"
-
-import {Stack, useTheme} from "@mui/material"
 import useStyles from "./styles"
-import {socialList} from "./social-list"
 
 export default function SocialLoginButton() {
     const classes = useStyles()
@@ -41,7 +41,7 @@ export default function SocialLoginButton() {
     // 카카오 로그인
     const onLoggedInKakao = () => {
         window.Kakao.Auth.authorize({
-            redirectUri: ``,
+            redirectUri: "",
             success: function (response: any) {
                 console.log("kakao-response:", response)
                 window.Kakao.Auth.setAccessToken(response.access_token)
@@ -61,7 +61,7 @@ export default function SocialLoginButton() {
     }
 
     //구글 로그인
-    const onLoggedInGoggle = () => {}
+    // const onLoggedInGoggle = () => {}
 
     const onClickSocialButton = (snsId: string) => {
         alert("현재 회원에 대한 서비스는 준비중입니다. 빠른 시일내에 찾아뵙겠습니다.")
@@ -86,7 +86,7 @@ export default function SocialLoginButton() {
         <Stack direction="row" width="40%" justifyContent="space-between" alignSelf="center">
             <div id="naverIdLogin" ref={naverRef} style={{display: "none"}} />
             {socialList.map((sns, index) => (
-                <div className={classes.socialLogin} style={{backgroundColor: sns.color}} key={index}>
+                <div className={classes.socialLogin} style={{backgroundColor: sns.color}} key={sns.snsId}>
                     <img
                         className={classes.socialImage}
                         src={sns.image}

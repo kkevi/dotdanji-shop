@@ -1,6 +1,7 @@
 import {Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material"
-import OredrListTableItem from "./OredrListTableItem"
 
+import OredrListTableItem from "./OredrListTableItem"
+import React from "react"
 export default function OredrListTable() {
     const tableTitle = ["제품정보", "결제금액", "주문일", "주문번호", "주문상태", "기타"]
 

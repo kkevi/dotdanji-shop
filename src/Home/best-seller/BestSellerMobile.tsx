@@ -1,11 +1,10 @@
-import React from "react"
-
 import {Container, Grid, Stack, Typography, useTheme} from "@mui/material"
 
-import useStyles from "./styles"
 import ImageBox from "components/image-box/ImageBox"
 import {ProductItemType} from "types/product-type"
+import React from "react"
 import {useRouter} from "next/router"
+import useStyles from "./styles"
 
 type Props = {
     bestSellerList: ProductItemType[]
@@ -46,7 +45,7 @@ export default function BestSellerMobile(props: Props) {
                                     border: "1px solid white",
                                 }}
                                 onClick={() =>
-                                    route.push({pathname: `/product/detail`, query: {productId: goods.productId}})
+                                    route.push({pathname: "/product/detail", query: {productId: goods.productId}})
                                 }
                             >
                                 <div

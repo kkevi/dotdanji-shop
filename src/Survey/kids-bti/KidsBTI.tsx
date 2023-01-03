@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from "react"
-import {useRouter} from "next/router"
-
-import useStyles from "./styles"
 import {Container, Stack} from "@mui/material"
+import React, {useEffect, useState} from "react"
 
 import InitialStep from "./components/InitialStep"
 import Steps from "./components/Steps"
+import {useRouter} from "next/router"
+import useStyles from "./styles"
 
 export default function KidsBTI() {
     const route = useRouter()
@@ -70,7 +69,7 @@ export default function KidsBTI() {
         },
     ]
 
-    let totalScore: number = 0
+    let totalScore = 0
     const calScore = async () => {
         score.forEach(itm => {
             totalScore += itm

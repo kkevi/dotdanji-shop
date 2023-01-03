@@ -1,5 +1,6 @@
-import {Table, TableHead, TableBody, TableRow, TableCell, FormControlLabel, Checkbox} from "@mui/material"
+import {Checkbox, FormControlLabel, Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material"
 
+import React from "react"
 import WishListTableItem from "./WishListTableItem"
 
 type WishListTableType = {

@@ -1,10 +1,10 @@
-import React from "react"
-import {Typography, Divider, Button, Stack, useTheme} from "@mui/material"
-import useStyles from "./style"
+import {Button, Divider, Stack, Typography, useTheme} from "@mui/material"
 
 import {CartOptionsType} from "types/cart-type"
 import CartTable from "./components/CartTable"
+import React from "react"
 import TotalPrice from "./components/TotalPrice"
+import useStyles from "./style"
 
 type Props = {
     onCheckAll: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -71,7 +71,7 @@ export default function CartSection1Web(props: Props) {
 
             {/* 주문결제버튼 */}
             <Stack className={classes.rootStack} width={"50% !important"} mb={16}>
-                <Button variant="outlined" fullWidth onClick={() => {}}>
+                <Button variant="outlined" fullWidth>
                     <Typography variant="h6">쇼핑 계속하기</Typography>
                 </Button>
                 <Button variant="contained" fullWidth onClick={onClickOrder} disableElevation>

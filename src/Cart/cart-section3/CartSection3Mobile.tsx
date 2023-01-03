@@ -1,12 +1,11 @@
-import React from "react"
-import {Typography, Divider, Stack, Button} from "@mui/material"
+import {Button, Divider, Stack, Typography} from "@mui/material"
 
-import useStyles from "./style-mobile"
-
-import CartTableItem from "src/Cart/cart-section2/components-mobile/CartTableItem"
-import {useTheme} from "@mui/material"
-import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded"
 import {CartOptionsType} from "types/cart-type"
+import CartTableItem from "src/Cart/cart-section2/components-mobile/CartTableItem"
+import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded"
+import React from "react"
+import useStyles from "./style-mobile"
+import {useTheme} from "@mui/material"
 
 type Props = {
     cartItemList: CartOptionsType[]
@@ -41,7 +40,7 @@ export default function CartSection3Mobile(prop: Props) {
                 <Divider className={classes.divider} flexItem />
 
                 {cartItemList.map((itm, index) => (
-                    <CartTableItem index={index} cartItem={itm} />
+                    <CartTableItem key={itm.productId} index={index} cartItem={itm} />
                 ))}
 
                 <Divider className={classes.divider} flexItem />

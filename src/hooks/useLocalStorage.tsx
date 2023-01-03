@@ -1,5 +1,5 @@
 // 추후 사용하지 않는다면 삭제 요망
-import React, {useState} from "react"
+import {useState} from "react"
 
 type props = {
     keyName: string

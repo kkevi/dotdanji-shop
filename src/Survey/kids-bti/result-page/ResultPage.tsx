@@ -1,12 +1,11 @@
+import {Button, Container, Stack, Typography} from "@mui/material"
 import React, {useEffect} from "react"
-import {useRouter} from "next/router"
-import useStyles from "../styles"
-
-import {Container, Button, Stack, Typography} from "@mui/material"
+import {WISE_MAN_LIST, WiseManListType} from "./result-list"
 
 import HeadMeta from "components/head/HeadMeta"
 import ImageBox from "components/image-box/ImageBox"
-import {WISE_MAN_LIST, WiseManListType} from "./result-list"
+import {useRouter} from "next/router"
+import useStyles from "../styles"
 
 type ResultPageProps = {
     result: string

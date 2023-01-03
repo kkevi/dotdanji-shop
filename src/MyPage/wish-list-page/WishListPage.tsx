@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from "react"
-
+import React, {useEffect, useState} from "react"
 import {Stack, useMediaQuery, useTheme} from "@mui/material"
 
-import WishListPageWeb from "./WishListPageWeb"
-import WishListPageMobile from "./WishListPageMobile"
 import MyPageHeader from "../mypage-header/MyPageHeader"
+import WishListPageMobile from "./WishListPageMobile"
+import WishListPageWeb from "./WishListPageWeb"
 
 export default function WishListPage() {
     const theme = useTheme()
@@ -21,7 +20,9 @@ export default function WishListPage() {
         }
     }
 
-    const onDeleteWishItem = () => {}
+    const onDeleteWishItem = () => {
+        return
+    }
 
     /*
      * 체크기능

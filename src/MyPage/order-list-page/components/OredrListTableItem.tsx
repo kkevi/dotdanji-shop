@@ -1,9 +1,9 @@
+import {Button, Stack, TableCell, Typography} from "@mui/material"
 import React, {useState} from "react"
-import {Stack, TableCell, Typography, Button} from "@mui/material"
 
-import useStyles from "../style"
 import ImageBox from "components/image-box/ImageBox"
 import OrderReturnModal from "./OrderReturnModal"
+import useStyles from "../style"
 
 type OredrListTableItemProps = {
     goodsId: string
@@ -88,7 +88,7 @@ export default function OredrListTableItem() {
                     <Button className={classes.smallButton} variant="outlined" onClick={() => setVisibleModal(true)}>
                         환불/반품
                     </Button>
-                    <Button className={classes.smallButton} variant="outlined" onClick={() => {}}>
+                    <Button className={classes.smallButton} variant="outlined">
                         재구매
                     </Button>
                 </Stack>

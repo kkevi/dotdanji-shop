@@ -1,9 +1,9 @@
+import {Button, Stack, Typography} from "@mui/material"
 import React, {useState} from "react"
-import {Stack, Typography, Button} from "@mui/material"
 
-import useStyles from "../style"
 import ImageBox from "components/image-box/ImageBox"
 import OrderReturnModal from "../components-mobile/OrderReturnModal"
+import useStyles from "../style"
 
 type OrderListItemProps = {
     goodsId: string
@@ -82,7 +82,7 @@ export default function OrderListItem() {
                         >
                             환불/반품
                         </Button>
-                        <Button className={classes.smallButton} fullWidth variant="outlined" onClick={() => {}}>
+                        <Button className={classes.smallButton} fullWidth variant="outlined">
                             재구매
                         </Button>
                     </Stack>

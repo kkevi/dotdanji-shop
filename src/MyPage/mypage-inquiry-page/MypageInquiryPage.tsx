@@ -1,15 +1,12 @@
+import {Divider, Stack, Typography, useMediaQuery, useTheme} from "@mui/material"
 import React, {useState} from "react"
 
-import {Divider, Stack, Typography, useMediaQuery, useTheme} from "@mui/material"
-
-import MyPageHeader from "../mypage-header/MyPageHeader"
-import FaqAccordion from "src/Service/faq-page/faq-accordion/FaqAccordion"
-import PaginationBox from "src/Components/pagination-box/PaginationBox"
-
-import useStyles from "./style"
 import {Container} from "@mui/system"
-import {InquiryDataType} from "./InquiryType"
 import InquiryAccordion from "./InquiryAccordion/InquiryAccordion"
+import {InquiryDataType} from "./InquiryType"
+import MyPageHeader from "../mypage-header/MyPageHeader"
+import PaginationBox from "src/Components/pagination-box/PaginationBox"
+import useStyles from "./style"
 
 const FAKE_FAQ_DATA: InquiryDataType[] = [
     {

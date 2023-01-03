@@ -1,16 +1,14 @@
-import React, {useState} from "react"
-import {useRouter} from "next/router"
-import {Container, Stack, Typography, Button, InputAdornment, useMediaQuery, useTheme, TextField} from "@mui/material"
-
-import useStyles from "../styles"
-import MyPageHeader from "src/MyPage/mypage-header/MyPageHeader"
-import DaumPostModal from "components/daum-post-modal/DaumPostModal"
+import {Button, Container, InputAdornment, Stack, TextField, Typography, useMediaQuery, useTheme} from "@mui/material"
 import {MyPageModifyFormDefaultData, UserDataType} from "types/user-type"
-
-import {CustomedTextField} from "src/Components/customed-textfield/CustomedTextField"
-import VisibilityButton from "src/Components/visibility-button/VisibilityButton"
+import React, {useState} from "react"
 
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded"
+import {CustomedTextField} from "src/Components/customed-textfield/CustomedTextField"
+import DaumPostModal from "components/daum-post-modal/DaumPostModal"
+import MyPageHeader from "src/MyPage/mypage-header/MyPageHeader"
+import VisibilityButton from "src/Components/visibility-button/VisibilityButton"
+import {useRouter} from "next/router"
+import useStyles from "../styles"
 
 export default function MyPageModifyPage() {
     const theme = useTheme()
@@ -56,8 +54,6 @@ export default function MyPageModifyPage() {
         })
         setVisibleModal(false)
     }
-
-    const onSave = () => {}
 
     return (
         <Stack py={mobile ? 9.9 : 13.5}>
@@ -265,7 +261,7 @@ export default function MyPageModifyPage() {
                             className={classes.button}
                             sx={{alignSelf: "center"}}
                             variant="outlined"
-                            onClick={onSave}
+                            // onClick={onSave}
                         >
                             저장하기
                         </Button>

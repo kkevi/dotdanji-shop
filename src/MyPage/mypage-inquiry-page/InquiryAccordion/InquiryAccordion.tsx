@@ -1,17 +1,17 @@
-import React from "react"
-import {styled} from "@mui/material/styles"
-import {Typography, useTheme} from "@mui/material"
 import MuiAccordion, {AccordionProps} from "@mui/material/Accordion"
 import MuiAccordionSummary, {AccordionSummaryProps} from "@mui/material/AccordionSummary"
-import MuiAccordionDetails from "@mui/material/AccordionDetails"
+import {Typography, useTheme} from "@mui/material"
 
-import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded"
+import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
+import MuiAccordionDetails from "@mui/material/AccordionDetails"
+import React from "react"
+import {styled} from "@mui/material/styles"
 
 // 아코디언 메인
 const Accordion = styled((props: AccordionProps) => <MuiAccordion disableGutters elevation={0} square {...props} />)(
     ({theme}) => ({
-        borderBottom: `1px solid rgba(0,0,0,0.08)`,
+        borderBottom: "1px solid rgba(0,0,0,0.08)",
         width: "100%",
         "&:before": {
             display: "none",
@@ -69,7 +69,7 @@ export default function InquiryAccordion(prop: InquiryAccordionProps) {
                 expandIcon={<ExpandMoreRoundedIcon fontSize="large" color="primary" />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
-                sx={{p: mobile ? `12px 0` : 2}}
+                sx={{p: mobile ? "12px 0" : 2}}
             >
                 <Typography
                     fontSize={mobile ? 14 : 20}

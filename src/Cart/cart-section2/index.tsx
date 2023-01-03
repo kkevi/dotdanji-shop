@@ -1,13 +1,13 @@
+import {CartFormDefaultData, CartFormProps} from "types/cart-type"
 import React, {useEffect, useState} from "react"
-import {useMediaQuery} from "@mui/material"
+import {RequestPayProps, RequestPayResponse} from "types/payment-type"
 
 //types
 import {CartOptionsType} from "types/cart-type"
-import {CartFormDefaultData, CartFormProps} from "types/cart-type"
-import {RequestPayProps, RequestPayResponse} from "types/payment-type"
-import {useTheme} from "@mui/material"
-import CartSection2Web from "./CartSection2Web"
 import CartSection2Mobile from "./CartSection2Mobile"
+import CartSection2Web from "./CartSection2Web"
+import {useMediaQuery} from "@mui/material"
+import {useTheme} from "@mui/material"
 
 type Props = {
     onChangeNextStep: (index: number) => void
@@ -58,7 +58,6 @@ export default function CartSection2(props: Props) {
     /*
      * 장바구니 데이터 가져오기
      */
-    useEffect(() => {}, [])
 
     const IMP = window.IMP // 생략 가능
     IMP.init("{Merchant ID}") // Example: imp00000000

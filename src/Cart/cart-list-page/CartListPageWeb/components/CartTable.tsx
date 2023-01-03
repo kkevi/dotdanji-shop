@@ -1,6 +1,8 @@
-import {Table, TableHead, TableBody, TableRow, TableCell, FormControlLabel, Checkbox} from "@mui/material"
+import {Checkbox, FormControlLabel, Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material"
+
 import {CartOptionsType} from "types/cart-type"
 import CartTableItem from "./CartTableItem"
+import React from "react"
 
 type Props = {
     cartItemList: CartOptionsType[]

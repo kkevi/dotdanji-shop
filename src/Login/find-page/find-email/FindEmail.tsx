@@ -1,12 +1,11 @@
-import React, {useState} from "react"
-import {useRouter} from "next/router"
-
 import {Button, Stack} from "@mui/material"
-import useStyles from "../styles"
-import {useVerfiyPhone} from "lib/useVerifyData"
+import React, {useState} from "react"
 
 import FindEmail1 from "./components/FindEmail1"
 import FindEmail2 from "./components/FindEmail2"
+import {useRouter} from "next/router"
+import useStyles from "../styles"
+import {useVerfiyPhone} from "lib/useVerifyData"
 
 type FindEmailProps = {
     mobile: boolean
@@ -35,10 +34,10 @@ export default function FindEmail(props: FindEmailProps) {
     }
 
     const foundEmail = () => {
-        let email: string = "bora_kim980@naver.com"
-        let subStrEmail: string[] = email.split("@")
-        let showingEmail: string = subStrEmail[0].slice(0, subStrEmail[0].length - 3)
-        let hiddenEmail: string = showingEmail + "***@" + subStrEmail[1]
+        const email = "bora_kim980@naver.com"
+        const subStrEmail = email.split("@")
+        const showingEmail = subStrEmail[0].slice(0, subStrEmail[0].length - 3)
+        const hiddenEmail = showingEmail + "***@" + subStrEmail[1]
 
         return hiddenEmail
     }

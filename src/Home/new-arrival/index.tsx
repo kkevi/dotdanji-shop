@@ -1,7 +1,8 @@
-import {useState} from "react"
-import {NewsType} from "types/news-type"
 import NewArrivalMobile from "./NewArrivalMobile"
 import NewArrivalWeb from "./NewArrivalWeb"
+import {NewsType} from "types/news-type"
+import React from "react"
+import {useState} from "react"
 
 type Props = {
     isMobile: boolean

@@ -1,10 +1,17 @@
+import React, {useEffect} from "react"
+
 import EventDetailPage from "src/Service/event-detail-page"
 import MainLayout from "components/main-layout/MainLayout"
-import React from "react"
 import {useRouter} from "next/router"
 
 export default function Event() {
     const route = useRouter()
+
+    const allianceId = route.query.allianceId
+
+    useEffect(() => {
+        if (!allianceId) return
+    }, [route])
 
     return (
         <MainLayout>

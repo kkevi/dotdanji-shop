@@ -1,20 +1,20 @@
-import React, {useState} from "react"
-import {Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
-//components
-import {ProductItemType, OptionsType} from "types/product-type"
-import useStyles from "./style"
-//slick
-import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-import {OptionCart} from "types/cart-type"
-import SelectOptionBox from "./components/SelectOptionBox"
-import ImageBox from "components/image-box/ImageBox"
+import {Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
+//components
+import {OptionsType, ProductItemType} from "types/product-type"
+import React, {useState} from "react"
 
-import ExtraInformationModule from "./components/ExtraInformationModule"
 import AddCartButton from "./components/AddCartButton"
+import ExtraInformationModule from "./components/ExtraInformationModule"
+import ImageBox from "components/image-box/ImageBox"
+import {OptionCart} from "types/cart-type"
 import PaymentButton from "./components/PaymentButton"
+import SelectOptionBox from "./components/SelectOptionBox"
+//slick
+import Slider from "react-slick"
+import useStyles from "./style"
 
 type Props = {
     productItem: ProductItemType
@@ -45,7 +45,7 @@ export default function GoodsDetailPageMobile(props: Props) {
     } = productItem
 
     //할인 계산식
-    var resultPrice = discount > 0 ? price - price * (discount / 100) : price
+    const resultPrice = discount > 0 ? price - price * (discount / 100) : price
 
     //옵션 선택 박스
     const defaultOption = "옵션 선택"

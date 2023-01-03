@@ -1,24 +1,22 @@
-import React, {useState} from "react"
 import {
+    Button,
     Dialog,
     DialogContent,
+    IconButton,
     MenuItem,
     Select,
     SelectChangeEvent,
     Stack,
     Typography,
-    Button,
-    IconButton,
     useTheme,
 } from "@mui/material"
-
-import useStyles from "../style"
-import ImageBox from "components/image-box/ImageBox"
+import React, {useState} from "react"
 import {categoryList, inquiryFormDefaultData} from "../order-list-item-type"
 
-import {CustomedTextField} from "components/customed-textfield/CustomedTextField"
-
 import CloseIcon from "@mui/icons-material/Close"
+import {CustomedTextField} from "components/customed-textfield/CustomedTextField"
+import ImageBox from "components/image-box/ImageBox"
+import useStyles from "../style"
 
 type OrderReturnModalTypes = {
     visibleModal: boolean
@@ -157,7 +155,6 @@ export default function OrderReturnModal(props: OrderReturnModalTypes) {
                     className={classes.submitButton2}
                     sx={{alignSelf: "center", marginBottom: 2}}
                     variant="outlined"
-                    onClick={() => {}}
                 >
                     요청하기
                 </Button>

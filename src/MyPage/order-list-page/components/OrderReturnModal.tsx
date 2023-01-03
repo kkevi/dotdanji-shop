@@ -1,5 +1,5 @@
-import React, {useState} from "react"
 import {
+    Button,
     Dialog,
     DialogContent,
     MenuItem,
@@ -10,16 +10,16 @@ import {
     TableBody,
     TableCell,
     TableRow,
-    Typography,
     TextField,
-    Button,
+    Typography,
     tableCellClasses,
     useTheme,
 } from "@mui/material"
-
-import useStyles from "../style"
-import ImageBox from "components/image-box/ImageBox"
+import React, {useState} from "react"
 import {categoryList, inquiryFormDefaultData} from "../order-list-item-type"
+
+import ImageBox from "components/image-box/ImageBox"
+import useStyles from "../style"
 
 type OrderReturnModalTypes = {
     visibleModal: boolean
@@ -174,12 +174,7 @@ export default function OrderReturnModal(props: OrderReturnModalTypes) {
                     onChange={onChangeInput}
                 />
 
-                <Button
-                    className={classes.submitButton}
-                    sx={{alignSelf: "center", marginBottom: 2}}
-                    variant="outlined"
-                    onClick={() => {}}
-                >
+                <Button className={classes.submitButton} sx={{alignSelf: "center", marginBottom: 2}} variant="outlined">
                     요청하기
                 </Button>
             </DialogContent>

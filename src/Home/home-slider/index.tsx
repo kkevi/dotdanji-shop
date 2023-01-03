@@ -1,9 +1,10 @@
-import {useState} from "react"
-import Slider from "react-slick"
 import {FAKE_SLIDER_LIST} from "src/Components/fake-data/fake-home"
-import {MainSlideType} from "types/event-type"
-import {sliderSetOption} from "../slider-set-option"
 import HomeSliderItem from "./HomeSliderItem"
+import {MainSlideType} from "types/event-type"
+import React from "react"
+import Slider from "react-slick"
+import {sliderSetOption} from "../slider-set-option"
+import {useState} from "react"
 
 type HomeSliderProps = {
     isMobile: boolean

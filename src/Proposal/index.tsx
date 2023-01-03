@@ -1,15 +1,13 @@
+import {Button, Divider, Stack, Typography, useMediaQuery, useTheme} from "@mui/material"
+import {ProposalFormProps, proposalFormDefaultData} from "./ProposalDataType"
 import React, {useState} from "react"
-import {Typography, Stack, Divider, Button, useMediaQuery, useTheme} from "@mui/material"
 
-import useStyles from "./styles"
-
+import ProposalForm from "./proposal-form/ProposalForm"
 import ProposalProcess from "./proposal-process/ProposalProcess"
 import ProposalProcessMobile from "./proposal-process/ProposalProcessMobile"
 import ProposalTerms from "./proposal-terms/ProposalTerms"
-import ProposalForm from "./proposal-form/ProposalForm"
-
-import {ProposalFormProps, proposalFormDefaultData} from "./ProposalDataType"
 import {toast} from "react-toastify"
+import useStyles from "./styles"
 
 export default function Index() {
     const theme = useTheme()
@@ -30,7 +28,7 @@ export default function Index() {
     const onChangeOperationFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target?.files
         const maxSize = 20 * 1024 * 1024 // 20MB
-        let reader = new FileReader()
+        const reader = new FileReader()
         if (!files || files.length === 0 || files[0].size === 0) return
         else if (files[0]?.size > maxSize) {
             return toast.error("첨부파일 사이즈는 20MB 이내로 등록 가능합니다.")
@@ -52,7 +50,7 @@ export default function Index() {
     const onChangeProposalFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target?.files
         const maxSize = 20 * 1024 * 1024 // 20MB
-        let reader = new FileReader()
+        const reader = new FileReader()
         if (!files || files.length === 0 || files[0].size === 0) return
         else if (files[0]?.size > maxSize) {
             return toast.error("첨부파일 사이즈는 20MB 이내로 등록 가능합니다.")

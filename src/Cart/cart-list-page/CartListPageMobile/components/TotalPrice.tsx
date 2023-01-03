@@ -1,5 +1,7 @@
 import {Stack, Typography} from "@mui/material"
+
 import ImageBox from "components/image-box/ImageBox"
+import React from "react"
 import useStyles from "../../CartListPageWeb/style"
 
 type Props = {
