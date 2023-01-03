@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from "react"
-import axios from "axios"
 import {ProductItemDefaultData, ProductItemType} from "types/product-type"
+import React, {useEffect, useState} from "react"
+
 import BestSellerMobile from "./BestSellerMobile"
 import BestSellerWeb from "./BestSellerWeb"
+import {FAKE_PRODUCT_ITEMS} from "src/Components/fake-data/product-fake-items"
+import axios from "axios"
 
 type Props = {
     isMobile: boolean
@@ -13,7 +15,8 @@ export default function BestSeller(props: Props) {
     const [bestSellerList, setBestSellerList] = useState<ProductItemType[]>([ProductItemDefaultData])
 
     useEffect(() => {
-        getData()
+        // getData()
+        setBestSellerList(FAKE_PRODUCT_ITEMS)
     }, [])
 
     const getData = async () => {

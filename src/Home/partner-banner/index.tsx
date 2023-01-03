@@ -1,7 +1,9 @@
 import {Container, Stack} from "@mui/material"
-import ImageBox from "src/Components/image-box/ImageBox"
 
-export default function PartnerBenner() {
+import ImageBox from "src/Components/image-box/ImageBox"
+import React from "react"
+
+export default function PartnerBanner() {
     return (
         <div
             style={{

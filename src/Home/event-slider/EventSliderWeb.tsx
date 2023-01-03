@@ -89,12 +89,16 @@ export default function EventSliderWeb(props: Props) {
                                         sx={{marginTop: 4, width: 120}}
                                         variant="outlined"
                                         className={classes.outlinedButton}
-                                        onClick={() =>
-                                            route.push({
-                                                pathname: "/service/detail/event",
-                                                query: {eventId: event.eventId},
-                                            })
-                                        }
+                                        onClick={() => {
+                                            if (event.eventId === "fake_event_1") {
+                                                route.push("/kids-bti")
+                                            } else {
+                                                route.push({
+                                                    pathname: "/service/detail/event",
+                                                    query: {eventId: event.eventId},
+                                                })
+                                            }
+                                        }}
                                     >
                                         확인하기
                                     </Button>

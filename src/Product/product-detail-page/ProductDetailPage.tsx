@@ -1,14 +1,13 @@
-import React, {CSSProperties, useEffect, useState} from "react"
-import SyncLoader from "react-spinners/ClipLoader"
-
-import {SelectChangeEvent, Stack, useMediaQuery, useTheme} from "@mui/material"
 //components
 import {ProductItemDefaultData, ProductItemType} from "types/product-type"
+import React, {CSSProperties, useEffect, useState} from "react"
+import {SelectChangeEvent, Stack, useMediaQuery, useTheme} from "@mui/material"
 
 import {OptionCart} from "types/cart-type"
-
-import ProductDetailPageWeb from "./ProductDetailPageWeb"
 import ProductDetailPageMobile from "./ProductDetailPageMobile"
+import ProductDetailPageWeb from "./ProductDetailPageWeb"
+import {ProductItemFakeData} from "src/Components/fake-data/product-fake-items"
+import SyncLoader from "react-spinners/ClipLoader"
 import axios from "axios"
 
 type Props = {
@@ -44,7 +43,9 @@ export default function ProductDetailPage(props: Props) {
     }
 
     useEffect(() => {
-        onLoadData()
+        setLoading(false)
+        setProductItemData(ProductItemFakeData)
+        // onLoadData()
     }, [productId])
 
     const onLoadData = async () => {

@@ -1,7 +1,8 @@
-import React from "react"
 import {Container, Stack} from "@mui/material"
-import MainLayout from "components/main-layout/MainLayout"
+
 import ImageBox from "src/Components/image-box/ImageBox"
+import MainLayout from "components/main-layout/MainLayout"
+import React from "react"
 import {useRouter} from "next/router"
 
 export default function Index() {
@@ -11,7 +12,7 @@ export default function Index() {
         <MainLayout>
             <Stack pt={13.5}>
                 <Container maxWidth="sm" sx={{position: "relative"}}>
-                    <ImageBox height={1000} src="/images/banner3-mobile-white.png" />
+                    {/* <ImageBox height={1000} src="/images/banner3-mobile-white.png" />
                     <Stack
                         position="absolute"
                         justifyContent="center"
@@ -40,7 +41,7 @@ export default function Index() {
                                 )
                             }
                         />
-                    </Stack>
+                    </Stack> */}
                 </Container>
             </Stack>
         </MainLayout>

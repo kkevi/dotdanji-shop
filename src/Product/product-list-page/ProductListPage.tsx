@@ -1,4 +1,3 @@
-import React, {useEffect, useState, CSSProperties} from "react"
 import {
     Container,
     Grid,
@@ -12,11 +11,13 @@ import {
     useTheme,
 } from "@mui/material"
 import {ProductCategoryType, ProductItemType} from "types/product-type"
+import React, {CSSProperties, useCallback, useEffect, useState} from "react"
 
-import SyncLoader from "react-spinners/ClipLoader"
+import {FAKE_PRODUCT_ITEMS} from "src/Components/fake-data/product-fake-items"
 //fake data
 import {GOODS_CATEGORY_DATA} from "components/fake-data/fake-goods"
 import GoodsItem from "./product-item/ProductItem"
+import SyncLoader from "react-spinners/ClipLoader"
 import axios from "axios"
 
 type Props = {
@@ -41,13 +42,14 @@ export default function GoodsLayout(props: Props) {
 
     const goodsArr = [
         {name: "신상품순", value: "newest"},
-        {name: "인기순", value: "topsellers"},
+        {name: "인기순", value: "topSellers"},
         {name: "높은가격순", value: "high"},
         {name: "낮은가격순", value: "low"},
     ]
 
     useEffect(() => {
-        getData()
+        setLoading(false)
+        // getData()
     }, [categoryId])
 
     const getData = async () => {
@@ -103,14 +105,16 @@ export default function GoodsLayout(props: Props) {
     }
 
     useEffect(() => {
+        console.log("categoryId", categoryId)
         //최상단 title 표시
         const category = categoryList.filter(it => it.categoryId === categoryId)[0]
         setCategoryTitle(category?.title)
+        if (categoryId === "goods") setProductList(FAKE_PRODUCT_ITEMS)
     }, [categoryId, categoryList])
 
-    const onChangeSelect = (event: SelectChangeEvent) => {
+    const onChangeSelect = useCallback((event: SelectChangeEvent) => {
         setGoodsFilter(event.target.value)
-    }
+    }, [])
 
     return (
         <Container maxWidth={mobile ? "sm" : "lg"} sx={{my: mobile ? 16 : 24}}>
@@ -139,7 +143,7 @@ export default function GoodsLayout(props: Props) {
                         sx={{fontSize: mobile ? 14 : 16}}
                     >
                         {goodsArr.map(({name, value}, index) => (
-                            <MenuItem value={value} key={value + index} sx={{fontSize: mobile ? 14 : 16}}>
+                            <MenuItem value={value} key={value} sx={{fontSize: mobile ? 14 : 16}}>
                                 {name}
                             </MenuItem>
                         ))}

@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from "react"
 import {useMediaQuery, useTheme} from "@mui/material"
 
-import AppBanner from "./app-banner"
 import BestSeller from "./best-seller"
 import EventSlider from "./event-slider"
 import HomeSlider from "./home-slider"
 import NewArrival from "./new-arrival"
-import PartnerBenner from "./partner-benner"
+import PartnerBanner from "./partner-banner"
+import React from "react"
 
 export default function Home() {
     const theme = useTheme()
@@ -49,7 +48,7 @@ export default function Home() {
             )}
 
             {/* 파트너사 */}
-            {smDown ? undefined : <PartnerBenner />}
+            {smDown ? undefined : <PartnerBanner />}
         </div>
     )
 }

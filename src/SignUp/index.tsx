@@ -1,14 +1,13 @@
 import React, {useState} from "react"
-
 import {Stack, Typography, useMediaQuery, useTheme} from "@mui/material"
 
+import {CognitoUserAttribute} from "amazon-cognito-identity-js"
 import SignUpSection1 from "./signup-section1/SignUpSection1"
 import SignUpSection2 from "./signup-section2/SignUpSection2"
 import SignUpSection3 from "./signup-section3/SignUpSection3"
 import SignUpSection4 from "./signup-section4/SignUpSection4"
-import userPool from "src/Login/user-pool"
 import {toast} from "react-toastify"
-import {CognitoUserAttribute} from "amazon-cognito-identity-js"
+import userPool from "src/Login/user-pool"
 
 export default function SignUp() {
     const theme = useTheme()
@@ -20,14 +19,17 @@ export default function SignUp() {
     const [validPassword, setValidPassword] = useState("")
 
     const onSignUp = () => {
-        var attributeName = new CognitoUserAttribute({Name: "name", Value: phoneNumber})
-        userPool.signUp(email, password, [attributeName], [], (err, data) => {
-            if (err) {
-                return console.error("SignUp error: ", err)
-            }
-            setStep(3)
-            toast.success("가입완료! 이메일 인증 후 로그인 하세요.")
-        })
+        alert("회원가입은 준비 중입니다.")
+        setStep(3)
+
+        // var attributeName = new CognitoUserAttribute({Name: "name", Value: phoneNumber})
+        // userPool.signUp(email, password, [attributeName], [], (err, data) => {
+        //     if (err) {
+        //         return console.error("SignUp error: ", err)
+        //     }
+        //     setStep(3)
+        //     toast.success("가입완료! 이메일 인증 후 로그인 하세요.")
+        // })
     }
 
     const section = [

@@ -1,8 +1,9 @@
-import {Typography, Button} from "@mui/material"
-import {useRouter} from "next/router"
-import {useLocalStorage} from "react-use"
+import {Button, Typography} from "@mui/material"
 import {CartItemProps, CartOptionsType, OptionCart} from "types/cart-type"
+import React, {useRouter} from "next/router"
+
 import {OptionsType} from "types/product-type"
+import {useLocalStorage} from "react-use"
 import useStyles from "./style"
 
 type Props = {
@@ -25,44 +26,45 @@ export default function AddCartButton(props: Props) {
 
         try {
             //TODO: 서버 장바구니에 저장 기능 추가
-            const data = selectValueList.reduce((acc: CartItemProps[], cur: OptionCart) => {
-                acc.push({
-                    productId: productId,
-                    options: {
-                        optionId: cur.optionId,
-                        count: cur.count,
-                    },
-                })
-                return acc
-            }, [])
+            alert("현재 준비 중인 서비스입니다.")
+            // const data = selectValueList.reduce((acc: CartItemProps[], cur: OptionCart) => {
+            //     acc.push({
+            //         productId: productId,
+            //         options: {
+            //             optionId: cur.optionId,
+            //             count: cur.count,
+            //         },
+            //     })
+            //     return acc
+            // }, [])
 
-            if (!cartData) {
-                // 기존 장바구니가 비어있을 경우
-                await setCartData(data)
-                if (confirm("장바구니를 확인하시겠습니까?")) await route.push("/cart")
-            } else {
-                // 장바구니에 하나라도 값이 있을 경우
-                const parseCartData = cartData
+            // if (!cartData) {
+            //     // 기존 장바구니가 비어있을 경우
+            //     await setCartData(data)
+            //     if (confirm("장바구니를 확인하시겠습니까?")) await route.push("/cart")
+            // } else {
+            //     // 장바구니에 하나라도 값이 있을 경우
+            //     const parseCartData = cartData
 
-                const data_OptionIds = data.map(itm => {
-                    return itm.options.optionId
-                })
-                const cartData_OptionIds = parseCartData.map(itm => {
-                    return itm.options.optionId
-                })
-                const comparing = data_OptionIds.filter(it => cartData_OptionIds.includes(it))
-                if (comparing.length === 0) {
-                    // 없을 경우
-                    const newCartData = [...data, ...parseCartData]
-                    await setCartData(newCartData)
-                    if (confirm("장바구니를 확인하시겠습니까?")) await route.push("/cart")
-                } else {
-                    // 동일한 옵션이 있을 경우
-                    if (confirm("장바구니에 동일한 상품이 존재합니다. 장바구니로 이동하시겠습니까?")) {
-                        return route.push("/cart")
-                    }
-                }
-            }
+            //     const data_OptionIds = data.map(itm => {
+            //         return itm.options.optionId
+            //     })
+            //     const cartData_OptionIds = parseCartData.map(itm => {
+            //         return itm.options.optionId
+            //     })
+            //     const comparing = data_OptionIds.filter(it => cartData_OptionIds.includes(it))
+            //     if (comparing.length === 0) {
+            //         // 없을 경우
+            //         const newCartData = [...data, ...parseCartData]
+            //         await setCartData(newCartData)
+            //         if (confirm("장바구니를 확인하시겠습니까?")) await route.push("/cart")
+            //     } else {
+            //         // 동일한 옵션이 있을 경우
+            //         if (confirm("장바구니에 동일한 상품이 존재합니다. 장바구니로 이동하시겠습니까?")) {
+            //             return route.push("/cart")
+            //         }
+            //     }
+            // }
         } catch (e) {
             console.log("e:", e)
         }

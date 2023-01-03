@@ -1,11 +1,9 @@
+import {Button, Stack, Typography, useMediaQuery, useTheme} from "@mui/material"
 import React, {useState} from "react"
-
-import {Stack, Button, useMediaQuery, Typography, useTheme} from "@mui/material"
-import useStyles from "../styles"
-
-import {useVerfiyPhone, useVerfiyEmail} from "lib/useVerifyData"
+import {useVerfiyEmail, useVerfiyPhone} from "lib/useVerifyData"
 
 import {CustomedTextField} from "components/customed-textfield/CustomedTextField"
+import useStyles from "../styles"
 
 type SignUpSection2Prop = {
     email: string
@@ -38,6 +36,7 @@ export default function SignUpSection2(prop: SignUpSection2Prop) {
         if (validEmail) {
             setWarningEmail("")
             // TODO : 이메일 중복확인
+            alert("서비스 준비 중입니다.")
 
             setValidAll({
                 ...validAll,
@@ -54,6 +53,7 @@ export default function SignUpSection2(prop: SignUpSection2Prop) {
         if (validPhone) {
             setWarningPhone("")
             // TODO : 본인인증
+            alert("서비스 준비 중입니다.")
 
             setValidAll({
                 ...validAll,

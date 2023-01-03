@@ -1,20 +1,20 @@
-import {Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
-import React from "react"
-//components
-import {OptionsType, ProductItemType} from "types/product-type"
-import useStyles from "./style"
-//slick
-import Slider from "react-slick"
 import "slick-carousel/slick/slick-theme.css"
 import "slick-carousel/slick/slick.css"
 
-import ImageBox from "components/image-box/ImageBox"
-import {OptionCart} from "types/cart-type"
-import SelectOptionBox from "./components/SelectOptionBox"
+import {Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography} from "@mui/material"
+//components
+import {OptionsType, ProductItemType} from "types/product-type"
 
 import AddCartButton from "./components/AddCartButton"
 import ExtraInformationModule from "./components/ExtraInformationModule"
+import ImageBox from "components/image-box/ImageBox"
+import {OptionCart} from "types/cart-type"
 import PaymentButton from "./components/PaymentButton"
+import React from "react"
+import SelectOptionBox from "./components/SelectOptionBox"
+//slick
+import Slider from "react-slick"
+import useStyles from "./style"
 
 type Props = {
     productItem: ProductItemType
