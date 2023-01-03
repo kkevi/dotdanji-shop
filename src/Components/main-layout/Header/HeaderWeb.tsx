@@ -71,7 +71,7 @@ export default function HeaderWeb() {
                             ))}
 
                             <Button
-                                onClick={() => Router.push("/service")}
+                                onClick={() => Router.push("/service/notice")}
                                 style={{fontSize: 20}}
                                 className={classes.titleButton}
                             >

@@ -7,12 +7,6 @@ import {useRouter} from "next/router"
 export default function Event() {
     const route = useRouter()
 
-    const allianceId = route.query.allianceId
-
-    useEffect(() => {
-        if (!allianceId) return
-    }, [route])
-
     return (
         <MainLayout>
             <EventDetailPage eventId={route.query.eventId as string} />

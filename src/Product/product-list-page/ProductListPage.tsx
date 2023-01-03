@@ -105,7 +105,6 @@ export default function GoodsLayout(props: Props) {
     }
 
     useEffect(() => {
-        console.log("categoryId", categoryId)
         //최상단 title 표시
         const category = categoryList.filter(it => it.categoryId === categoryId)[0]
         setCategoryTitle(category?.title)
